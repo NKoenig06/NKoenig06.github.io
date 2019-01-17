@@ -991,8 +991,14 @@ h6:hover .anchor-link {
 &lt;li&gt;This site will give you the installation for your specific OS: &lt;a href="https://www.anaconda.com/download/#linux"&gt;https://www.anaconda.com/download/#linux&lt;/a&gt;. You can see it defaults to your OS when you go to the site and recognizes that I'm in Linux. &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;Navigating to the terminal/command prompt&lt;ul&gt;
+&lt;li&gt;If you are in &lt;strong&gt;Windows&lt;/strong&gt; in your start menu you should now be able to search for &lt;strong&gt;Anaconda Prompt&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;If you are in &lt;strong&gt;Linux&lt;/strong&gt; or &lt;strong&gt;Mac&lt;/strong&gt; you can use the actual terminal.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Open Anaconda Prompt or the terminal and you should see something similar to the image below&lt;/li&gt;
 &lt;li&gt;After successfully installing Anaconda you can use conda commands. &lt;ul&gt;
-&lt;li&gt;This is where you will create your first virtual environment. I want my environment to be in python 3.7, so I will specify that in the creation by writing the following:&lt;/li&gt;
+&lt;li&gt;This is where you will create your first virtual environment. A virtual environment is extremely important when it comes to keeping your work environment from being overrun by packages (collections of python files) you aren't using for your specific project. You can then specify the version of python you want. I want my environment to be in python 3.7, so I will specify that in the creation by writing the following:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
@@ -1047,6 +1053,16 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;There are differences between Python 2 and Python 3, that are beyond the scope of this blog, but most new data analysis and data science methods will be more routinely updated in python 3.&lt;/p&gt;
+&lt;p&gt;In fact Guido van Rossum, the creator of Python has told the community Python 2 will stop being support in January of 2020. You can view the &lt;a href="https://pythonclock.org/"&gt;countdown here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
@@ -1136,7 +1152,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Most people running data analyis won't want to work in a traditional developers IDE, like &lt;a href="https://www.jetbrains.com/pycharm/"&gt;PyCharm&lt;/a&gt; because it's fairly cumbersome to debug code when you can't run it in line. For this reason I think Jupyter is an excellent solution for people that are unlikely to be productionizing their analysis, but instead will be trying to derive quick calculations, like means, standard deviations, correlations, etc.&lt;/p&gt;
+&lt;p&gt;Most people running data analyis won't want to work in a traditional developers IDE (Integrated Development Environment), like &lt;a href="https://www.jetbrains.com/pycharm/"&gt;PyCharm&lt;/a&gt; because it's fairly cumbersome to debug code when you can't run it in line. For this reason I think Jupyter is an excellent solution for people that are unlikely to be productionizing their analysis, but instead will be trying to derive quick calculations, like means, standard deviations, correlations, etc.&lt;/p&gt;
 &lt;p&gt;So let's create a kernel specific to our virtual environment.&lt;/p&gt;
 &lt;p&gt;First thing we need to do is install ipykernel in our venv&lt;/p&gt;
 

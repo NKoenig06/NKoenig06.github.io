@@ -7,7 +7,7 @@
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="An I/Os guide to Data Science Atom Feed" />
 
         <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 </head>
 
@@ -16,22 +16,16 @@
                 <h1><a href="/">An I/Os guide to Data Science </a></h1>
                 <nav><ul>
                     <li><a href="/category/posts.html">posts</a></li>
-                </ul></nav>
+                </ul>
+                </nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
                     <h1 class="entry-title"><a href="/hello-world.html">Hello World!</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2019-01-17T10:30:00-06:00">
-                Published: Thu 17 January 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/nick-koenig.html">Nick Koenig</a>
-        </address>
-<p>In <a href="/category/posts.html">posts</a>.</p>
-<p>tags: <a href="/tag/data-science.html">Data Science</a> <a href="/tag/io-psychology.html">IO Psychology</a> <a href="/tag/environment-setup.html">Environment Setup</a> <a href="/tag/jupyter.html">Jupyter</a> </p>
+        <span>Thu 17 January 2019</span>
+<span>| tags: <a href="/tag/data-science.html">Data Science</a><a href="/tag/io-psychology.html">IO Psychology</a><a href="/tag/environment-setup.html">Environment Setup</a><a href="/tag/jupyter.html">Jupyter</a></span>
 </footer><!-- /.post-info --><style type="text/css">/*!
 *
 * IPython notebook
@@ -1024,8 +1018,14 @@ h6:hover .anchor-link {
 <li>This site will give you the installation for your specific OS: <a href="https://www.anaconda.com/download/#linux">https://www.anaconda.com/download/#linux</a>. You can see it defaults to your OS when you go to the site and recognizes that I'm in Linux. </li>
 </ul>
 </li>
+<li>Navigating to the terminal/command prompt<ul>
+<li>If you are in <strong>Windows</strong> in your start menu you should now be able to search for <strong>Anaconda Prompt</strong>.</li>
+<li>If you are in <strong>Linux</strong> or <strong>Mac</strong> you can use the actual terminal.</li>
+</ul>
+</li>
+<li>Open Anaconda Prompt or the terminal and you should see something similar to the image below</li>
 <li>After successfully installing Anaconda you can use conda commands. <ul>
-<li>This is where you will create your first virtual environment. I want my environment to be in python 3.7, so I will specify that in the creation by writing the following:</li>
+<li>This is where you will create your first virtual environment. A virtual environment is extremely important when it comes to keeping your work environment from being overrun by packages (collections of python files) you aren't using for your specific project. You can then specify the version of python you want. I want my environment to be in python 3.7, so I will specify that in the creation by writing the following:</li>
 </ul>
 </li>
 </ol>
@@ -1080,6 +1080,16 @@ h6:hover .anchor-link {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are differences between Python 2 and Python 3, that are beyond the scope of this blog, but most new data analysis and data science methods will be more routinely updated in python 3.</p>
+<p>In fact Guido van Rossum, the creator of Python has told the community Python 2 will stop being support in January of 2020. You can view the <a href="https://pythonclock.org/">countdown here</a>.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -1169,7 +1179,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Most people running data analyis won't want to work in a traditional developers IDE, like <a href="https://www.jetbrains.com/pycharm/">PyCharm</a> because it's fairly cumbersome to debug code when you can't run it in line. For this reason I think Jupyter is an excellent solution for people that are unlikely to be productionizing their analysis, but instead will be trying to derive quick calculations, like means, standard deviations, correlations, etc.</p>
+<p>Most people running data analyis won't want to work in a traditional developers IDE (Integrated Development Environment), like <a href="https://www.jetbrains.com/pycharm/">PyCharm</a> because it's fairly cumbersome to debug code when you can't run it in line. For this reason I think Jupyter is an excellent solution for people that are unlikely to be productionizing their analysis, but instead will be trying to derive quick calculations, like means, standard deviations, correlations, etc.</p>
 <p>So let's create a kernel specific to our virtual environment.</p>
 <p>First thing we need to do is install ipykernel in our venv</p>
 
@@ -1498,8 +1508,13 @@ h6:hover .anchor-link {
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-<p>There are <a href="/hello-world.html#disqus_thread">comments</a>.</p>                </article>
+<p><a href="/hello-world.html#disqus_thread">comments</a></p>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
             </aside><!-- /#featured -->
+            </ol><!-- /#posts-list -->
+            </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>
@@ -1522,11 +1537,7 @@ h6:hover .anchor-link {
         </section><!-- /#extras -->
 
         <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
         </footer><!-- /#contentinfo -->
 
 <script type="text/javascript">
@@ -1534,7 +1545,7 @@ h6:hover .anchor-link {
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';
-        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 </script>

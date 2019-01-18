@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>An I/Os guide to Data Science</title><link href="/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>/</id><updated>2019-01-17T10:30:00-06:00</updated><entry><title>Hello World!</title><link href="/hello-world.html" rel="alternate"></link><published>2019-01-17T10:30:00-06:00</published><updated>2019-01-17T10:30:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-01-17:hello-world.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>An I/Os guide to Data Science</title><link href="/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>/</id><updated>2019-01-17T10:30:00-06:00</updated><entry><title>Hello World &amp; Installing Python and Jupyter</title><link href="/hello-world.html" rel="alternate"></link><published>2019-01-17T10:30:00-06:00</published><updated>2019-01-17T10:30:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-01-17:hello-world.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -975,7 +975,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="My-Hello-World"&gt;My Hello World&lt;a class="anchor-link" href="#My-Hello-World"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id="Hello-World-&amp;amp;-Installing-Python-and-Jupyter"&gt;Hello World &amp;amp; Installing Python and Jupyter&lt;a class="anchor-link" href="#Hello-World-&amp;amp;-Installing-Python-and-Jupyter"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

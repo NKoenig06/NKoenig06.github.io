@@ -1021,7 +1021,19 @@ h6:hover .anchor-link {
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="Where-I'm-From:"&gt;Where I'm From:&lt;a class="anchor-link" href="#Where-I'm-From:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I grew up in Saint Louis, Go Cardinals and Go Blues!!&lt;/p&gt;
 &lt;h2 id="My-Background:"&gt;My Background:&lt;a class="anchor-link" href="#My-Background:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I have my Ph.D. in Industrial and Organizational Psychology and within the past 3 years have become increasingly interested in Python, Machine Learning, and Deep Learning. I've taught myself how to program, use advanced machine learning algorithms and techniques, manipulate data, and even leverage Tensorflow and PyTorch for deep learning. I constantly like to learn new things, so I always have something I am working on.&lt;/p&gt;
-&lt;h2 id="Why-I-Started-This-Blog:"&gt;Why I Started This Blog:&lt;a class="anchor-link" href="#Why-I-Started-This-Blog:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I figured I'd use this blog to help teach other social scientists how to use Python effectively in their daily lives. I hope this site can be somewhat close to a full resource from beginner to advanced when it comes to all Python and ML/DL.&lt;/p&gt;
+&lt;h2 id="The-Purpose-of-This-Blog:"&gt;The Purpose of This Blog:&lt;a class="anchor-link" href="#The-Purpose-of-This-Blog:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A lot of the language in programming and Data Science is very foreign to the language we were taught as social scientists. It took me a lot of time and research to start to tie everything together. I hope this site can help other social scientists because I will try to tie what I am doing back to it's purpose for work we are likely to do.&lt;/p&gt;
+&lt;p&gt;I think programming is extremely important for everyone. I see a lot of people ask if there are packages or pre-built resources to do certain things when it comes to data. The beauty of being able to program is you can build them.&lt;/p&gt;
+&lt;p&gt;As of now I will likely post about the following in reference to what/how I've learned and what I've found useful/important.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python/Programming&lt;/li&gt;
+&lt;li&gt;Machine Learning&lt;/li&gt;
+&lt;li&gt;Data Wrangling/Manipulation&lt;/li&gt;
+&lt;li&gt;Deep Learning&lt;/li&gt;
+&lt;li&gt;Version Control (Git)&lt;/li&gt;
+&lt;li&gt;Math&lt;/li&gt;
+&lt;li&gt;I/O relevant topics I think are important as they come up&lt;/li&gt;
+&lt;li&gt;The integration of AI and I/O&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

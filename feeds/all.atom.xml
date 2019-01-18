@@ -1087,6 +1087,15 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Does-data-matter?"&gt;Does data matter?&lt;a class="anchor-link" href="#Does-data-matter?"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;I often get people from I/O or other social sciences telling me that they don't see how many of the publicly available datasets are applicable to them. In my opinion all datasets are equally valuable when it comes to learning exploration and data manipulation techniques and perdictive algorithms. The data below is about housing, but you could just as easily replace the features about &lt;strong&gt;crime rate&lt;/strong&gt; and &lt;strong&gt;# of rooms&lt;/strong&gt; with &lt;strong&gt;cognitive ability&lt;/strong&gt; and &lt;strong&gt;extraversion&lt;/strong&gt; and instead of predicting &lt;strong&gt;median house value&lt;/strong&gt; you are predicting &lt;strong&gt;job performance&lt;/strong&gt; The linear model works the exact same way.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h3 id="Load-the-data"&gt;Load the data&lt;a class="anchor-link" href="#Load-the-data"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;This is the &lt;a href="https://www.kaggle.com/c/boston-housing"&gt;Boston housing&lt;/a&gt; training data. It's an easy way to build a straightforward regression model that is comparable across packages and languages.&lt;/p&gt;
 
 &lt;/div&gt;
@@ -3341,6 +3350,22 @@ h6:hover .anchor-link {
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h1 id="Installing-an-R-Kernel-in-Jupyter"&gt;Installing an R Kernel in Jupyter&lt;a class="anchor-link" href="#Installing-an-R-Kernel-in-Jupyter"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Jupyter is commonly thought of as a resources for python. But it works just as well with R. In this brief post I will show you how to create a Jupyter kernel for R, so you can run R line by line.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;If you don't already have R follow these two instructions to download R and R studio. R studio isn't necessarily needed if you will be working in jupyter, but it's always a good piece of software to have.&lt;/p&gt;
+&lt;h3 id="INSTALLING-R:"&gt;INSTALLING R:&lt;a class="anchor-link" href="#INSTALLING-R:"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Go to &lt;a href="http://www.r-project.org/"&gt;http://www.r-project.org/&lt;/a&gt;, and in the “Getting Started” box, click on “download R.”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="INSTALLING-R-STUDIO:"&gt;INSTALLING R STUDIO:&lt;a class="anchor-link" href="#INSTALLING-R-STUDIO:"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Go to &lt;a href="http://www.rstudio.com"&gt;http://www.rstudio.com&lt;/a&gt;, click on “Download RStudio” and follow the directions for your
+operating system. &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -7086,7 +7111,8 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;If that doesn't launch the notebook in a browser you can use the following command:&lt;/p&gt;
+&lt;p&gt;If that doesn't launch the notebook in a browser you can use the following command in your terminal/anaconda prompt&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; I don't typically work in Windows or MacOS, but I have been told that once Jupyter is installed on your computer you can also just launch it by searching through the &lt;strong&gt;START&lt;/strong&gt; menu. If that's the case I'd recommend creating a shortcut on your desktop, so you can just double-click and get it started.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -8391,7 +8417,19 @@ h6:hover .anchor-link {
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="Where-I'm-From:"&gt;Where I'm From:&lt;a class="anchor-link" href="#Where-I'm-From:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I grew up in Saint Louis, Go Cardinals and Go Blues!!&lt;/p&gt;
 &lt;h2 id="My-Background:"&gt;My Background:&lt;a class="anchor-link" href="#My-Background:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I have my Ph.D. in Industrial and Organizational Psychology and within the past 3 years have become increasingly interested in Python, Machine Learning, and Deep Learning. I've taught myself how to program, use advanced machine learning algorithms and techniques, manipulate data, and even leverage Tensorflow and PyTorch for deep learning. I constantly like to learn new things, so I always have something I am working on.&lt;/p&gt;
-&lt;h2 id="Why-I-Started-This-Blog:"&gt;Why I Started This Blog:&lt;a class="anchor-link" href="#Why-I-Started-This-Blog:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I figured I'd use this blog to help teach other social scientists how to use Python effectively in their daily lives. I hope this site can be somewhat close to a full resource from beginner to advanced when it comes to all Python and ML/DL.&lt;/p&gt;
+&lt;h2 id="The-Purpose-of-This-Blog:"&gt;The Purpose of This Blog:&lt;a class="anchor-link" href="#The-Purpose-of-This-Blog:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A lot of the language in programming and Data Science is very foreign to the language we were taught as social scientists. It took me a lot of time and research to start to tie everything together. I hope this site can help other social scientists because I will try to tie what I am doing back to it's purpose for work we are likely to do.&lt;/p&gt;
+&lt;p&gt;I think programming is extremely important for everyone. I see a lot of people ask if there are packages or pre-built resources to do certain things when it comes to data. The beauty of being able to program is you can build them.&lt;/p&gt;
+&lt;p&gt;As of now I will likely post about the following in reference to what/how I've learned and what I've found useful/important.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python/Programming&lt;/li&gt;
+&lt;li&gt;Machine Learning&lt;/li&gt;
+&lt;li&gt;Data Wrangling/Manipulation&lt;/li&gt;
+&lt;li&gt;Deep Learning&lt;/li&gt;
+&lt;li&gt;Version Control (Git)&lt;/li&gt;
+&lt;li&gt;Math&lt;/li&gt;
+&lt;li&gt;I/O relevant topics I think are important as they come up&lt;/li&gt;
+&lt;li&gt;The integration of AI and I/O&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

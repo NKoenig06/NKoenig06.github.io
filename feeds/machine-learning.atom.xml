@@ -1026,7 +1026,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[20]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Images/python.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
@@ -1042,7 +1042,7 @@ h6:hover .anchor-link {
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[20]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[2]:&lt;/div&gt;
 
 
 
@@ -1415,10 +1415,10 @@ median value of owner-occupied homes in $1000s.&lt;/p&gt;
   &lt;th&gt;Method:&lt;/th&gt;             &lt;td&gt;Least Squares&lt;/td&gt;  &lt;th&gt;  F-statistic:       &lt;/th&gt; &lt;td&gt;   70.07&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-  &lt;th&gt;Date:&lt;/th&gt;             &lt;td&gt;Thu, 17 Jan 2019&lt;/td&gt; &lt;th&gt;  Prob (F-statistic):&lt;/th&gt; &lt;td&gt;5.58e-82&lt;/td&gt;
+  &lt;th&gt;Date:&lt;/th&gt;             &lt;td&gt;Fri, 18 Jan 2019&lt;/td&gt; &lt;th&gt;  Prob (F-statistic):&lt;/th&gt; &lt;td&gt;5.58e-82&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-  &lt;th&gt;Time:&lt;/th&gt;                 &lt;td&gt;22:14:56&lt;/td&gt;     &lt;th&gt;  Log-Likelihood:    &lt;/th&gt; &lt;td&gt; -995.49&lt;/td&gt;
+  &lt;th&gt;Time:&lt;/th&gt;                 &lt;td&gt;08:02:55&lt;/td&gt;     &lt;th&gt;  Log-Likelihood:    &lt;/th&gt; &lt;td&gt; -995.49&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;th&gt;No. Observations:&lt;/th&gt;      &lt;td&gt;   333&lt;/td&gt;      &lt;th&gt;  AIC:               &lt;/th&gt; &lt;td&gt;   2017.&lt;/td&gt;
@@ -1517,7 +1517,7 @@ median value of owner-occupied homes in $1000s.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[24]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Images/R_lang.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
@@ -1533,7 +1533,7 @@ median value of owner-occupied homes in $1000s.&lt;/p&gt;
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[24]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[9]:&lt;/div&gt;
 
 
 
@@ -1552,7 +1552,7 @@ median value of owner-occupied homes in $1000s.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[16]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;warnings&lt;/span&gt;
@@ -1566,7 +1566,7 @@ median value of owner-occupied homes in $1000s.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[11]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# enables the %%R magic, this is necessary to run R code in a python kernel, not necessary if you are working in an R kernel&lt;/span&gt;
@@ -1574,25 +1574,6 @@ median value of owner-occupied homes in $1000s.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;
-
-&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;The rpy2.ipython extension is already loaded. To reload it, use:
-  %reload_ext rpy2.ipython
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1616,7 +1597,7 @@ median value of owner-occupied homes in $1000s.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[17]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[12]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;R 
@@ -1639,7 +1620,7 @@ train &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; read_csv&lt;span class="p"&gt
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[15]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[13]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;R
@@ -1662,7 +1643,7 @@ X &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kp"&gt;subset&lt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[18]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[14]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;R 
@@ -1676,7 +1657,7 @@ model &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; lm&lt;span class="p"&gt;(&lt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[19]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[15]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;R
@@ -1701,7 +1682,7 @@ model &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; lm&lt;span class="p"&gt;(&lt;
 &lt;div class="output_text output_subarea "&gt;
 &lt;pre&gt;
 Call:
-lm(formula = medv ~ ., data = train_new)
+lm(formula = medv ~ ., data = X)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
@@ -1759,7 +1740,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[25]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[16]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Images/scikit-learn-logo.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
@@ -1775,7 +1756,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[25]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
 
 
 
@@ -1794,7 +1775,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[26]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[17]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data/train.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;## load the dataset&lt;/span&gt;
@@ -1817,10 +1798,10 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[27]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[18]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;constant&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;constant&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;
 &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1834,7 +1815,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[27]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[18]:&lt;/div&gt;
 
 
 
@@ -1893,7 +1874,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
       &lt;td&gt;396.90&lt;/td&gt;
       &lt;td&gt;4.98&lt;/td&gt;
       &lt;td&gt;24.0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;th&gt;1&lt;/th&gt;
@@ -1912,7 +1893,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
       &lt;td&gt;396.90&lt;/td&gt;
       &lt;td&gt;9.14&lt;/td&gt;
       &lt;td&gt;21.6&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;th&gt;2&lt;/th&gt;
@@ -1931,7 +1912,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
       &lt;td&gt;394.63&lt;/td&gt;
       &lt;td&gt;2.94&lt;/td&gt;
       &lt;td&gt;33.4&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;th&gt;3&lt;/th&gt;
@@ -1950,7 +1931,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
       &lt;td&gt;396.90&lt;/td&gt;
       &lt;td&gt;5.33&lt;/td&gt;
       &lt;td&gt;36.2&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;th&gt;4&lt;/th&gt;
@@ -1969,7 +1950,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
       &lt;td&gt;395.60&lt;/td&gt;
       &lt;td&gt;12.43&lt;/td&gt;
       &lt;td&gt;22.9&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -2002,7 +1983,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[28]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[19]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.linear_model&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LinearRegression&lt;/span&gt;
@@ -2015,7 +1996,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[29]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[20]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ID&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;black&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;medv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="c1"&gt;# dropping the 3 columns as we did earlier&lt;/span&gt;
@@ -2038,7 +2019,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[30]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[21]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LinearRegression&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -2054,14 +2035,14 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Let's look at the R-square, which is defined as the .score() method.&lt;/p&gt;
+&lt;p&gt;Let's look at the R-square, which is defined as the .score() method. Notice, even the language suggests that there is a competition to predict. &lt;strong&gt;Score&lt;/strong&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[32]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[22]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;R-square: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -2101,7 +2082,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[33]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[23]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Intercept/Constant: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;lr_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;intercept_&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -2141,7 +2122,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[34]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[24]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;lr_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coef_&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;features&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;estimated_Coefficients&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
@@ -2157,7 +2138,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &amp;lt; 2.2e-16
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[34]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[24]:&lt;/div&gt;
 
 
 

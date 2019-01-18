@@ -2334,7 +2334,7 @@ model &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; lm&lt;span class="p"&gt;(&lt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Links to documentation:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"&gt;Scikit Learn LinearRegression class&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"&gt;Scikit Learn LinearRegression&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.statsmodels.org/dev/generated/statsmodels.regression.linear_model.OLS.html"&gt;Statsmodels&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.rdocumentation.org/packages/stats/versions/3.5.2/topics/lm"&gt;LM&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;

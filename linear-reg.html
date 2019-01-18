@@ -1698,7 +1698,7 @@ train <span class="o">&lt;-</span> read_csv<span class="p">(</span><span class="
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span>R
-train_new <span class="o">&lt;-</span> <span class="kp">subset</span><span class="p">(</span>train<span class="p">,</span> select <span class="o">=</span> <span class="o">-</span><span class="kt">c</span><span class="p">(</span>black<span class="p">,</span>ID<span class="p">))</span>
+X <span class="o">&lt;-</span> <span class="kp">subset</span><span class="p">(</span>train<span class="p">,</span> select <span class="o">=</span> <span class="o">-</span><span class="kt">c</span><span class="p">(</span>black<span class="p">,</span>ID<span class="p">))</span>
 </pre></div>
 
 </div>
@@ -1721,7 +1721,7 @@ train_new <span class="o">&lt;-</span> <span class="kp">subset</span><span class
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span>R 
-model <span class="o">&lt;-</span> lm<span class="p">(</span>medv <span class="o">~</span><span class="m">.</span><span class="p">,</span> data<span class="o">=</span>train_new<span class="p">)</span>
+model <span class="o">&lt;-</span> lm<span class="p">(</span>medv <span class="o">~</span><span class="m">.</span><span class="p">,</span> data<span class="o">=</span>X<span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2312,6 +2312,75 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-TLDR-Version">The TLDR Version<a class="anchor-link" href="#The-TLDR-Version">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#statsmodels</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/train.csv&#39;</span><span class="p">)</span>
+<span class="n">x_sm</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="s1">&#39;medv&#39;</span><span class="p">])</span>
+<span class="n">y_sm</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;medv&#39;</span><span class="p">]</span>
+<span class="n">x_sm</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">x_sm</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y_sm</span><span class="p">,</span><span class="n">x_sm</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span>R
+<span class="c1">#R</span>
+<span class="kn">library</span><span class="p">(</span>readr<span class="p">)</span>
+train <span class="o">&lt;-</span> read_csv<span class="p">(</span><span class="s">&#39;data/train.csv&#39;</span><span class="p">)</span>
+X <span class="o">&lt;-</span> <span class="kp">subset</span><span class="p">(</span>train<span class="p">,</span> select <span class="o">=</span> <span class="o">-</span><span class="kt">c</span><span class="p">(</span>black<span class="p">,</span>ID<span class="p">))</span>
+model <span class="o">&lt;-</span> lm<span class="p">(</span>medv <span class="o">~</span><span class="m">.</span><span class="p">,</span> data<span class="o">=</span>X<span class="p">)</span>
+<span class="kp">summary</span><span class="p">(</span>model<span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#scikitlearn</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LinearRegression</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/train.csv&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="s1">&#39;medv&#39;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;medv&#39;</span><span class="p">]</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lr_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;R-square: &#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Intercept/Constant: &#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">((</span><span class="n">lr_model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">),</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span><span class="n">lr_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">,</span><span class="s1">&#39;estimated_Coefficients&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
 </div>
 </div>
 

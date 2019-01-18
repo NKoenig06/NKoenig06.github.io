@@ -1334,7 +1334,7 @@ median value of owner-occupied homes in $1000s.&lt;/p&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Let's define our IVs and DV.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;In this instance we'll use everything but the ID, black, and medv, which will be the DV as our X. &lt;/li&gt;
+&lt;li&gt;In this instance we'll use everything but the ID, black, and medv, which will be the DV as our X.&lt;/li&gt;
 &lt;li&gt;We'll use median value as our Y. &lt;/li&gt;
 &lt;/ul&gt;
 

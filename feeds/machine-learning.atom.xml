@@ -1021,7 +1021,6 @@ h6:hover .anchor-link {
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="Linear-Regression-in-Python-Using-Statsmodels"&gt;Linear Regression in Python Using Statsmodels&lt;a class="anchor-link" href="#Linear-Regression-in-Python-Using-Statsmodels"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Let's Regression!!&lt;/p&gt;
 &lt;p&gt;Isn't that what everybody says after their first day in grad methods?&lt;/p&gt;
-&lt;p&gt;Let's take advantage of open source and use this &lt;strong&gt;book&lt;/strong&gt; to finish our day&lt;/p&gt;
 &lt;h1 id="What-is-Python?"&gt;What is Python?&lt;a class="anchor-link" href="#What-is-Python?"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1099,7 +1098,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="Does-data-matter?"&gt;Does data matter?&lt;a class="anchor-link" href="#Does-data-matter?"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;I often get people from I/O or other social sciences telling me that they don't see how many of the publicly available datasets are applicable to them. In my opinion all datasets are equally valuable when it comes to learning exploration and data manipulation techniques and perdictive algorithms. The data below is about housing, but you could just as easily replace the features about &lt;strong&gt;crime rate&lt;/strong&gt; and &lt;strong&gt;# of rooms&lt;/strong&gt; with &lt;strong&gt;cognitive ability&lt;/strong&gt; and &lt;strong&gt;extraversion&lt;/strong&gt; and instead of predicting &lt;strong&gt;median house value&lt;/strong&gt; you are predicting &lt;strong&gt;job performance&lt;/strong&gt; The linear model works the exact same way.&lt;/p&gt;
+&lt;h1 id="Does-data-matter?"&gt;Does data matter?&lt;a class="anchor-link" href="#Does-data-matter?"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;I often get people from I/O or other social sciences telling me that they don't see how many of the publicly available datasets are applicable to them. In my opinion all datasets are equally valuable when it comes to learning exploration and data manipulation techniques and predictive algorithms. The data below is about housing, but you could just as easily replace the features about &lt;strong&gt;crime rate&lt;/strong&gt; and &lt;strong&gt;# of rooms&lt;/strong&gt; with &lt;strong&gt;cognitive ability&lt;/strong&gt; and &lt;strong&gt;extraversion&lt;/strong&gt; and instead of predicting &lt;strong&gt;median house value&lt;/strong&gt; you are predicting &lt;strong&gt;job performance&lt;/strong&gt; The linear model works the exact same way.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

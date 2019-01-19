@@ -1030,7 +1030,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Why-use-NumPy?-Why-should-I-care-about-linear-algebra-as-an-I/O?">Why use NumPy? Why should I care about linear algebra as an I/O?<a class="anchor-link" href="#Why-use-NumPy?-Why-should-I-care-about-linear-algebra-as-an-I/O?">&#182;</a></h1><p>NumPy (Numerical Python) is a linear algebra library for python. But why use it? Python handles numbers natively. Let's do some basic math in python.</p>
+<h1 id="Why-use-NumPy?-Why-should-I-care-about-linear-algebra-as-an-I/O?">Why use NumPy? Why should I care about linear algebra as an I/O?<a class="anchor-link" href="#Why-use-NumPy?-Why-should-I-care-about-linear-algebra-as-an-I/O?">&#182;</a></h1><p>NumPy (Numerical Python) is a linear algebra library for python. But why use it? Python handles numbers natively. Let's do some basic math in python to show you what I am talking about.</p>
 
 </div>
 </div>
@@ -1040,7 +1040,7 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In&nbsp;[134]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span> 
 <span class="nb">print</span><span class="p">(</span><span class="mi">7</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">lst1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
 <span class="n">lst2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">16</span><span class="p">]</span>
@@ -1120,7 +1120,7 @@ h6:hover .anchor-link {
 <p>So again, why use NumPy? It seems basic python has this taken care of. Well here are a few reasons:</p>
 <h2 id="1.-Memory:-NumPy-objects-take-up-less-space-than-python-list-objects.">1. Memory: NumPy objects take up less space than python list objects.<a class="anchor-link" href="#1.-Memory:-NumPy-objects-take-up-less-space-than-python-list-objects.">&#182;</a></h2><p>While this is important, it's not a huge deal with most of the datasets we use.</p>
 <h2 id="2.-Speed:-NumPy-leverages-broadcasting-which-makes-the-computation-much-faster.">2. Speed: NumPy leverages broadcasting which makes the computation much faster.<a class="anchor-link" href="#2.-Speed:-NumPy-leverages-broadcasting-which-makes-the-computation-much-faster.">&#182;</a></h2><p>Let's take a look</p>
-<p>First we import numpy and assign it an alias of np</p>
+<p>First we import numpy and assign it an alias of np as this is the standard python etiquette</p>
 
 </div>
 </div>
@@ -1190,7 +1190,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Next</strong> that let's build a function using NumPy that does the exact same thing.</p>
+<p><strong>Next</strong> let's build a function using NumPy that does the exact same thing.</p>
 
 </div>
 </div>
@@ -1294,10 +1294,12 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Basic-NumPy">Basic NumPy<a class="anchor-link" href="#Basic-NumPy">&#182;</a></h2><p>So as you can see it is much faster. But why should we even care about this as social scientists? What does NumPy even do that's relevant to our work. Like many people going into social sciences, I didn't have a strong math background. I certainly never took a course in linear algebra. But...if you look at what we do in excel or SPSS what we are doing is basic linear algebra.</p>
-<p>For example, let's say we collected data on 20 respondents and we asked them a 5 item Extraversion battery. What would that data look like in excel or SPSS? It would be a row of 100 and it would contain 5 columns, with each of their responses to the item.</p>
+<h2 id="Basic-NumPy">Basic NumPy<a class="anchor-link" href="#Basic-NumPy">&#182;</a></h2><p>So as you can see it is much faster. But why should we even care about this as social scientists? What does NumPy even do that's relevant to our work? Like many people going into social sciences, I didn't have a strong math background. I certainly never took a course in linear algebra. But...if you look at what we do in excel or SPSS what we are often doing is basic linear algebra.</p>
+<p>For example, let's say we collected data on 20 respondents and we asked them a 5 item Extraversion battery. What would that data look like in excel or SPSS? It would be 20 rows and it would contain 5 columns, with each  individual's response to the 5 items.</p>
 <p>Let's create that array right now.</p>
-<p><strong>First</strong> we want to create a random array with numbers between 1-5 that has a size of 100 (20 people X 5 responses)</p>
+<p><strong>First</strong> we want to create a random array with numbers between 1-5 that has a size of 100 (20 people X 5 responses)
+<strong>Second</strong> we want to reshape it to be a 20,5 matrix.</p>
+<p>The beauty of python is that you can chain methods together, so we can do all of that in one line of code. We'll assign the output of that to a variable named extraversion.</p>
 
 </div>
 </div>
@@ -1371,8 +1373,118 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we have our responses for each respondent. Is this starting to look familiar? It looks extremely similar to an excel sheet, without column headers.</p>
-<p>Let's imagine we get asked to give our professor the <strong>mean extraversion score</strong> for each respondent. How would you do that? If it were a python list you would have to add up each item in the list and divide by the length of the list, something similar to this.</p>
+<p>Now we have our responses for each respondent. Is this starting to look familiar? It looks extremely similar to an excel sheet, without column headers. In fact if we wanted to we could import Pandas and turn this into a replica of an excel sheet.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[186]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1">#alias</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">extraversion</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;item_1&#39;</span><span class="p">,</span><span class="s1">&#39;item_2&#39;</span><span class="p">,</span><span class="s1">&#39;item_3&#39;</span><span class="p">,</span><span class="s1">&#39;item_4&#39;</span><span class="p">,</span><span class="s1">&#39;item_5&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[186]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>item_1</th>
+      <th>item_2</th>
+      <th>item_3</th>
+      <th>item_4</th>
+      <th>item_5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But the focus of this post is on NumPy, so let's return to our array!</p>
+<p>Now, Let's imagine we get asked to give our professor the <strong>mean extraversion score</strong> for each respondent. How would you do that? If it were a python list you would have to add up each item in the list and divide by the length of the list, something similar to this.</p>
 
 </div>
 </div>
@@ -1416,7 +1528,7 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So what that function did was the equivalent to generating the mean for one row of the NumPy array. You'd need to loop through that using extraversion[0] through extraversion[19] to get everyone's mean. Seem pretty time consuming.</p>
-<p>That's where NumPy comes in. in NumPy I can simply add the columns together.</p>
+<p>That's where NumPy comes in. Using NumPy I can simply add the columns together like a basic math problem.</p>
 
 </div>
 </div>
@@ -1546,7 +1658,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Hopefully-now-you-have-an-understanding-of-how-and-why-linear-algebra-and-the-NumPy-package.">Hopefully now you have an understanding of how and why linear algebra and the NumPy package.<a class="anchor-link" href="#Hopefully-now-you-have-an-understanding-of-how-and-why-linear-algebra-and-the-NumPy-package.">&#182;</a></h3><p>I feel like the basic mathematical understanding is kind of assumed when learning how to calculate means or sum numbers for multiple respondents.</p>
+<h3 id="Hopefully-now-you-have-an-understanding-of-how-and-why-linear-algebra-and-the-NumPy-packag-are-important-to-us-and-how-it-relates-to-your-research/work-as-an-I/O">Hopefully now you have an understanding of how and why linear algebra and the NumPy packag are important to us and how it relates to your research/work as an I/O<a class="anchor-link" href="#Hopefully-now-you-have-an-understanding-of-how-and-why-linear-algebra-and-the-NumPy-packag-are-important-to-us-and-how-it-relates-to-your-research/work-as-an-I/O">&#182;</a></h3><p>I feel like the basic mathematical understanding is kind of assumed when learning how to calculate means or sum numbers for multiple respondents, but it's interesting to think about how it works when it comes to programming.</p>
 <p>If you are interested in learning more about how to use NumPy, Jake Vanderplas has a great book titled: <a href="https://www.amazon.com/Python-Data-Science-Handbook-Essential/dp/1491912057">Python Data Science Handbook</a></p>
 <p>He made all of his notebooks available for free on his Github account. The notebooks below are great resources for diggin in further.</p>
 <ul>

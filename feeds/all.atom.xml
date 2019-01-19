@@ -1472,7 +1472,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;So what that function did was the equivalent to generating the mean for one row of the NumPy array. You'd need to loop through that using extraversion[0] through extraversion[19] to get everyone's mean. Seem pretty time consuming.&lt;/p&gt;
+&lt;p&gt;So what that function did was the equivalent to generating the mean for one row of the NumPy array. You'd need to loop through that using extraversion[0] through extraversion[19] to get everyone's mean. Seems pretty time consuming and inefficient.&lt;/p&gt;
 &lt;p&gt;That's where NumPy comes in. Using NumPy I can simply add the columns together like a basic math problem.&lt;/p&gt;
 
 &lt;/div&gt;
@@ -1482,7 +1482,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Intuitively-this-is-what-is-happening-when-you-use-a-linear-algebra-package-like-NumPy"&gt;Intuitively this is what is happening when you use a linear algebra package like NumPy&lt;a class="anchor-link" href="#Intuitively-this-is-what-is-happening-when-you-use-a-linear-algebra-package-like-NumPy"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Intuitively-this-is-what-is-happening-when-you-use-a-linear-algebra-package-like-NumPy,-this-specifically-is-an-example-of-broadcasting"&gt;Intuitively this is what is happening when you use a linear algebra package like NumPy, this specifically is an example of &lt;a href="https://machinelearningmastery.com/broadcasting-with-numpy-arrays/"&gt;broadcasting&lt;/a&gt;&lt;a class="anchor-link" href="#Intuitively-this-is-what-is-happening-when-you-use-a-linear-algebra-package-like-NumPy,-this-specifically-is-an-example-of-broadcasting"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

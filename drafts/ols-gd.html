@@ -47,6 +47,9 @@
 		<span itemprop="keywords">
 			<a href="/tag/math.html" rel="tag">Math</a>
 		</span>
+		<span itemprop="keywords">
+			<a href="/tag/python.html" rel="tag">Python</a>
+		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
 *
@@ -1069,8 +1072,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The idea of local minima's and the global minima, etc. For some reason I was never told this is one method for linear regression too.</p>
-
+<h3 id="The-idea-of-local-minima's-and-the-global-minima,-etc.-For-some-reason-I-was-never-told-this-is-one-method-for-linear-regression-too.">The idea of local minima's and the global minima, etc. For some reason I was never told this is one method for linear regression too.<a class="anchor-link" href="#The-idea-of-local-minima's-and-the-global-minima,-etc.-For-some-reason-I-was-never-told-this-is-one-method-for-linear-regression-too.">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -1078,7 +1080,8 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Ordinary-Least-Squares-(OLS)">Ordinary Least Squares (OLS)<a class="anchor-link" href="#Ordinary-Least-Squares-(OLS)">&#182;</a></h1><p>OLS is actually a very specific formula that turns the regression problem into what's known in math as <strong>close-formed solution</strong></p>
+<h1 id="Ordinary-Least-Squares-(OLS)">Ordinary Least Squares (OLS)<a class="anchor-link" href="#Ordinary-Least-Squares-(OLS)">&#182;</a></h1><p>Despite what your professors told you about the Church of OLS.</p>
+<p>OLS is actually a very specific formula that turns the regression problem into what's known in math as <strong>close-formed solution</strong></p>
 <p><strong>$\beta=(X'X)^{-1}X'Y$</strong></p>
 <p>This is the actual formula, you essentially invert the matrix and can solve for the <strong>"global minimum"</strong></p>
 
@@ -1089,7 +1092,16 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In our work this isn't very computationally expensive as the # of variables in most of our models are extremely reasonable for computational purposes. But if you had 1,000+ variables in your model the computation would begin to become much more complex. In these instances gradient descent is necessary.</p>
+<h2 id="End-of-story.....right!">End of story.....right!<a class="anchor-link" href="#End-of-story.....right!">&#182;</a></h2><p>In our work this isn't very computationally expensive as the # of variables in most of our models are extremely reasonable for computational purposes. But if you had 1,000+ variables in your model the computation would begin to become much more complex. In these instances gradient descent is necessary.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Remember-when-people-talk-about-the-importance-of-standardization-or-normalitation?">Remember when people talk about the importance of standardization or normalitation?<a class="anchor-link" href="#Remember-when-people-talk-about-the-importance-of-standardization-or-normalitation?">&#182;</a></h4><p>The truth is that when it comes to OLS it's irrelevant, the formula is just as easy to solve if the numbers are 1,000,000,000 as they are if they are if it's 1.0. But if you are using gradient descent those numbers make a huge differenece.</p>
 
 </div>
 </div>
@@ -3006,8 +3018,8 @@ epoch 1000, loss 0.2768062651157379
 					<div class="col-md-3">
 						<h4>Categories</h4>
 						<ul class="list-unstyled my-list-style">
-							<li><a href="/category/about.html">about (1)</a></li>
 							<li><a href="/category/machine-learning.html">machine learning (1)</a></li>
+							<li><a href="/category/misc.html">misc (1)</a></li>
 							<li><a href="/category/python.html">python (1)</a></li>
 							<li><a href="/category/r.html">R (1)</a></li>
 						</ul>

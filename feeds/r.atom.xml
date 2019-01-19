@@ -3418,4 +3418,4 @@ AElFTkSuQmCC"
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="Data Science"></category><category term="IO Psychology"></category><category term="R"></category><category term="Jupyter"></category></entry></feed>
+</summary><category term="Data Science"></category><category term="R"></category><category term="Jupyter"></category></entry></feed>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>An I/Os guide to Data Science</title><link href="/" rel="alternate"></link><link href="/feeds/about.atom.xml" rel="self"></link><id>/</id><updated>2019-01-16T14:30:00-06:00</updated><entry><title>About Me</title><link href="/about-me.html" rel="alternate"></link><published>2019-01-16T14:30:00-06:00</published><updated>2019-01-16T14:30:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-01-16:about-me.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>An I/Os guide to Data Science</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2019-01-16T14:30:00-06:00</updated><entry><title>About Me</title><link href="/about-me.html" rel="alternate"></link><published>2019-01-16T14:30:00-06:00</published><updated>2019-01-16T14:30:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-01-16:about-me.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *

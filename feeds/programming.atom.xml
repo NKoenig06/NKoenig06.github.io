@@ -1435,9 +1435,11 @@ h6:hover .anchor-link {
 &lt;/ol&gt;
 &lt;p&gt;I hope I communicated how important this is and even if your company does not use github the first 3 commands still work within your local machine and there are ways to go back in history to look at previous versions and changes that have been made to specific files.&lt;/p&gt;
 &lt;p&gt;Also, this is literally very basic use of git, it has a ton more features.&lt;/p&gt;
-&lt;p&gt;Additional Resources:
-&lt;a href="https://medium.freecodecamp.org/what-is-git-and-how-to-use-it-c341b049ae61"&gt;Article on intro to git&lt;/a&gt;
-&lt;a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics"&gt;Article on git basics&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Additional Resources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://medium.freecodecamp.org/what-is-git-and-how-to-use-it-c341b049ae61"&gt;Article on intro to git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics"&gt;Article on git basics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1 id="You-are-well-on-your-way-to-becoming-a-technologically-saavy-social-scientist!!"&gt;You are well on your way to becoming a technologically saavy social scientist!!&lt;a class="anchor-link" href="#You-are-well-on-your-way-to-becoming-a-technologically-saavy-social-scientist!!"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
 &lt;/div&gt;
 &lt;/div&gt;

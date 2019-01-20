@@ -1192,7 +1192,7 @@ h6:hover .anchor-link {
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Now because I made this a private repo it will ask me for my username and password. If you had instead made it public it would just automatically clone it for you.&lt;/p&gt;
 &lt;p&gt;I found a &lt;a href="https://www.lemoda.net/windows/windows2unix/windows2unix.html"&gt;good resource&lt;/a&gt; for communicating between unix and windows bash commands. This might be useful to keep as you work through bash stuff with me as I will be talking about unix commands, so if you are in windows your commands might be slightly different.&lt;/p&gt;
-&lt;p&gt;For example I want to use the &lt;strong&gt;ls&lt;/strong&gt; command now to view the directories in the Projects folder to ensusre we did in fact clone the repo. But if you are in windows according to the resource link you will need to use &lt;strong&gt;dir&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For example I want to use the &lt;strong&gt;ls&lt;/strong&gt; command now to view the directories in the Projects folder to ensure we did in fact clone the repo. But if you are in windows according to the resource link you will need to use &lt;strong&gt;dir&lt;/strong&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

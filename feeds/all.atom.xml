@@ -1426,7 +1426,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="The-TLDR-version:"&gt;The TLDR version:&lt;a class="anchor-link" href="#The-TLDR-version:"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Now you have successfully leveraged git and moving forward if you structure all of your projects like this it's as simple as the following for commands in the bash shell after navigating to the directory.&lt;/p&gt;
+&lt;h1 id="The-TLDR-version:"&gt;The TLDR version:&lt;a class="anchor-link" href="#The-TLDR-version:"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Now you have successfully leveraged git and moving forward if you structure all of your projects like this it's as simple as the following four commands in the bash shell after navigating to the directory.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;git status&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;git add .&lt;/strong&gt;&lt;/li&gt;

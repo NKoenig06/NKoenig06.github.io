@@ -976,9 +976,9 @@ h6:hover .anchor-link {
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h1 id="Why-should-you-care-about-this-stuff-as-a-social-scientist?"&gt;Why should you care about this stuff as a social scientist?&lt;a class="anchor-link" href="#Why-should-you-care-about-this-stuff-as-a-social-scientist?"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;I still think I've done a poor job of communicating why you should care about learning this stuff as a social scientist, so I'll try to write a quick article giving you my thoughts on why.&lt;/p&gt;
-&lt;ul&gt;
+&lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Python (and R)&lt;/strong&gt; are quickly becoming some of the &lt;a href="https://www.economist.com/graphic-detail/2018/07/26/python-is-becoming-the-worlds-most-popular-coding-language"&gt;most popular&lt;/a&gt; programming languages&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ol&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1023,7 +1023,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;ul&gt;
+&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Open Source&lt;/strong&gt;; is becoming the way of life for everything from development to data science. Software like SPSS and SAS are quickly falling behind because the types of functions and algorithms they can offer will always be behind open source, in most cases by 5-10 years.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Reproducibility&lt;/strong&gt;; as both a practitioner and an academic reproducible research and work is quickly becoming a necessity. Just look at the popularity of the site &lt;a href="https://en.wikipedia.org/wiki/ArXiv"&gt;arXiv&lt;/a&gt; and github. The expectation is becoming that you show your work.&lt;/p&gt;
@@ -1043,7 +1043,7 @@ h6:hover .anchor-link {
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Keeping up with technology&lt;/strong&gt;; it's just keeping up with the Joneses at this point. Everyone outside of the social sciences is learning to program in Python or R, so it will soon become an expectation when hiring. Even my old boss, who's a wizard at SPSS and is likely only a few years away from retirement has spent time dabbling in Python and R (he heavily prefers R, and I think that's blasphemy!! but at least he's learning one)&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ol&gt;
 &lt;h2 id="And-finally-and-most-importantly,-because-you-sound-so-smart-and-cool-when-you-talk-about-it!!!"&gt;And finally and most &lt;strong&gt;importantly&lt;/strong&gt;, because you sound so smart and cool when you talk about it!!!&lt;a class="anchor-link" href="#And-finally-and-most-importantly,-because-you-sound-so-smart-and-cool-when-you-talk-about-it!!!"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;

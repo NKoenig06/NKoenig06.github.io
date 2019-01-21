@@ -1301,7 +1301,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -1317,7 +1317,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[28]:</div>
+<div class="prompt output_prompt">Out[45]:</div>
 
 
 
@@ -1501,6 +1501,222 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>SPSS won't allow you to add columns with a data type that is not an int or float for examining descriptives. In Python you can add it, but it won't show anything. Given what we saw above we should expect to see descriptive statistics for every column except <strong>purpose</strong> and it appears we do in fact have descriptives for every column except purpose. This provides us more than the base <strong>descriptives</strong> command from SPSS as we also see the <strong>quartiles</strong>.</p>
 <p>Of course this would be great if this was all pandas had to offer, but there are additional packages that offer so much more. Let's explore one of those packages a bit further.</p>
+<h2 id="But-I-hear-you-saying,-that's-great-and-all,-but-I've-used-SPSS-for-so-long-I-like-the-stacked-output-better-than-the-wide-output-(variables-as-rows-instead-of-columns)">But I hear you saying, that's great and all, but I've used SPSS for so long I like the stacked output better than the wide output (variables as rows instead of columns)<a class="anchor-link" href="#But-I-hear-you-saying,-that's-great-and-all,-but-I've-used-SPSS-for-so-long-I-like-the-stacked-output-better-than-the-wide-output-(variables-as-rows-instead-of-columns)">&#182;</a></h2><p><strong>Well</strong> The great thing about object oriented programming is the table is an objec that can be manipulated. So let's think about an easy way to do that. What if we just transposed the table?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[46]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>credit.policy</th>
+      <td>9578.0</td>
+      <td>0.804970</td>
+      <td>0.396245</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000e+00</td>
+    </tr>
+    <tr>
+      <th>int.rate</th>
+      <td>9578.0</td>
+      <td>0.122640</td>
+      <td>0.026847</td>
+      <td>0.060000</td>
+      <td>0.103900</td>
+      <td>0.122100</td>
+      <td>0.140700</td>
+      <td>2.164000e-01</td>
+    </tr>
+    <tr>
+      <th>installment</th>
+      <td>9578.0</td>
+      <td>319.089413</td>
+      <td>207.071301</td>
+      <td>15.670000</td>
+      <td>163.770000</td>
+      <td>268.950000</td>
+      <td>432.762500</td>
+      <td>9.401400e+02</td>
+    </tr>
+    <tr>
+      <th>log.annual.inc</th>
+      <td>9578.0</td>
+      <td>10.932117</td>
+      <td>0.614813</td>
+      <td>7.547502</td>
+      <td>10.558414</td>
+      <td>10.928884</td>
+      <td>11.291293</td>
+      <td>1.452835e+01</td>
+    </tr>
+    <tr>
+      <th>dti</th>
+      <td>9578.0</td>
+      <td>12.606679</td>
+      <td>6.883970</td>
+      <td>0.000000</td>
+      <td>7.212500</td>
+      <td>12.665000</td>
+      <td>17.950000</td>
+      <td>2.996000e+01</td>
+    </tr>
+    <tr>
+      <th>fico</th>
+      <td>9578.0</td>
+      <td>710.846314</td>
+      <td>37.970537</td>
+      <td>612.000000</td>
+      <td>682.000000</td>
+      <td>707.000000</td>
+      <td>737.000000</td>
+      <td>8.270000e+02</td>
+    </tr>
+    <tr>
+      <th>days.with.cr.line</th>
+      <td>9578.0</td>
+      <td>4560.767197</td>
+      <td>2496.930377</td>
+      <td>178.958333</td>
+      <td>2820.000000</td>
+      <td>4139.958333</td>
+      <td>5730.000000</td>
+      <td>1.763996e+04</td>
+    </tr>
+    <tr>
+      <th>revol.bal</th>
+      <td>9578.0</td>
+      <td>16913.963876</td>
+      <td>33756.189557</td>
+      <td>0.000000</td>
+      <td>3187.000000</td>
+      <td>8596.000000</td>
+      <td>18249.500000</td>
+      <td>1.207359e+06</td>
+    </tr>
+    <tr>
+      <th>revol.util</th>
+      <td>9578.0</td>
+      <td>46.799236</td>
+      <td>29.014417</td>
+      <td>0.000000</td>
+      <td>22.600000</td>
+      <td>46.300000</td>
+      <td>70.900000</td>
+      <td>1.190000e+02</td>
+    </tr>
+    <tr>
+      <th>inq.last.6mths</th>
+      <td>9578.0</td>
+      <td>1.577469</td>
+      <td>2.200245</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>3.300000e+01</td>
+    </tr>
+    <tr>
+      <th>delinq.2yrs</th>
+      <td>9578.0</td>
+      <td>0.163708</td>
+      <td>0.546215</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.300000e+01</td>
+    </tr>
+    <tr>
+      <th>pub.rec</th>
+      <td>9578.0</td>
+      <td>0.062122</td>
+      <td>0.262126</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>5.000000e+00</td>
+    </tr>
+    <tr>
+      <th>not.fully.paid</th>
+      <td>9578.0</td>
+      <td>0.160054</td>
+      <td>0.366676</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Now it looks identical to the SPSS output above!</strong></p>
 <h1 id="Pandas-Profiling"><a href="https://github.com/pandas-profiling/pandas-profiling">Pandas Profiling</a><a class="anchor-link" href="#Pandas-Profiling">&#182;</a></h1><p><strong>Note</strong> in order to use pandas profiling (which we will explore next) you will need to install the package. You can do so, by using the following command in your terminal/anaconda prompt:</p>
 <p><strong>conda install -c conda-forge pandas-profiling</strong></p>
 <p>Let's see what additional features pandas profiling has to offer!</p>

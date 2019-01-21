@@ -1612,6 +1612,8 @@ h6:hover .anchor-link {
 &lt;li&gt;&lt;a href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.02-The-Basics-Of-NumPy-Arrays.ipynb"&gt;The Basics of NumPy Arrays&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://jakevdp.github.io/PythonDataScienceHandbook/02.05-computation-on-arrays-broadcasting.html"&gt;Broadcasting NumPy Arrays&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;This article wasn't meant to be all inclusive and show everything NumPy has to offer, moreso to be a quick overview of it's benefits and why I think it's relevant to the social sciences.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://towardsdatascience.com/numpy-guide-for-people-in-a-hurry-22232699259f"&gt;This&lt;/a&gt; is a very quick article that provides many of the highlights of NumPy functionality. Definitely worth taking a look to learn more.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

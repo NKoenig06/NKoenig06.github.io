@@ -1030,10 +1030,9 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Data-Munging-Survey-Data-in-Python">Data Munging Survey Data in Python<a class="anchor-link" href="#Data-Munging-Survey-Data-in-Python">&#182;</a></h1><p>As all I/Os that have collected data before know the responses are often far from perfect. You have to make decisions on whether to include data across a number of decision points.</p>
-<p>I was recently part of a project to collect roughly 2000 survey responses. We wanted to ensure that the respondents took their task seriously, so we had to identify whether or not an individuals' responses were <strong>quality</strong> at scale.</p>
-<p>That's where manipulating data or <strong>data munging/wrangling</strong>, whichever term you want to use comes into play. This quick article will show an example of this using a data set I think will resonate with I/Os and Social Scientists in general.</p>
-<p>So let's start by importing the packages we will need.</p>
+<h1 id="Data-Munging-Survey-Data-in-Python">Data Munging Survey Data in Python<a class="anchor-link" href="#Data-Munging-Survey-Data-in-Python">&#182;</a></h1><p>As all social scientists that have collected data before know the responses are often far from perfect. You have to make decisions on whether to include data across a number of factors.</p>
+<p>I was recently part of a project to collect roughly 1500 survey responses. We wanted to ensure that the respondents took their task seriously, so we had to identify whether or not an individuals' responses were <strong>quality</strong>, but we couldn't manually review all 1500, so we had to devise a strategy to do so at scale.</p>
+<p>That's where manipulating data or <strong>data munging/wrangling</strong>, whichever term you want to use comes into play. In this article I will walk through an example of how I approached this given our criteria using a data set that should resonate with I/Os and Social Scientists in general.</p>
 
 </div>
 </div>
@@ -1079,7 +1078,8 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import our packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -1149,7 +1149,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We have 1404 individuals in our dataset to begin with.</p>
+<p><strong>We have 1404 individuals in our dataset to begin with.</strong></p>
 
 </div>
 </div>
@@ -1158,7 +1158,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Overview-of-the-survey-and-the-data">Overview of the survey and the data<a class="anchor-link" href="#Overview-of-the-survey-and-the-data">&#182;</a></h2><p>The survey consisted of <strong>5 open-ended responses and 65 likert type items</strong>. The first thing we want to do is <strong>identify all the people that completed the survey</strong>. The questions were all mandatory, until the demographics section, so let's use the last likert type item as the indicator of whether or not they completed the portion of the survey we need.</p>
+<h2 id="Overview-of-the-survey-and-the-data">Overview of the survey and the data<a class="anchor-link" href="#Overview-of-the-survey-and-the-data">&#182;</a></h2><p>The survey consisted of <strong>5 open-ended responses and 65 likert type items along with a few demographic related questions</strong>. The first thing we want to do is <strong>identify all the people that completed the survey</strong>. The questions were all mandatory, until the demographics section, so let's use the last likert type item as the indicator of whether or not they completed the portion of the survey we need.</p>
 <p>How would we do that? Well let's create a new column in the dataframe that flags whether or not the last personality item is null or not by writing the code below</p>
 
 </div>
@@ -1525,7 +1525,7 @@ Name: good_attention_&amp;_length, dtype: int64</pre>
 					<div class="col-md-3">
 						<h4>Categories</h4>
 						<ul class="list-unstyled my-list-style">
-							<li><a href="/category/about.html">about (1)</a></li>
+							<li><a href="/category/about/site.html">about/site (2)</a></li>
 							<li><a href="/category/machine-learning.html">machine learning (1)</a></li>
 							<li><a href="/category/programming.html">programming (1)</a></li>
 							<li><a href="/category/python.html">python (2)</a></li>

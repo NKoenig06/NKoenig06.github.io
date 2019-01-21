@@ -1062,7 +1062,8 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;So again, why use NumPy? It seems basic python has this taken care of. Well here are a few reasons:&lt;/p&gt;
+&lt;h2 id="Quick-note-about-NumPy"&gt;Quick note about NumPy&lt;a class="anchor-link" href="#Quick-note-about-NumPy"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;NumPy was created by &lt;a href="https://github.com/teoliphant"&gt;Travis Oliphant&lt;/a&gt; who is actually the founder of &lt;strong&gt;Anaconda&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;So again&lt;/strong&gt;, why use NumPy? It seems basic python has this taken care of. Well here are a few reasons: |&lt;/p&gt;
 &lt;h2 id="1.-Memory:-NumPy-objects-take-up-less-space-than-python-list-objects."&gt;1. Memory: NumPy objects take up less space than python list objects.&lt;a class="anchor-link" href="#1.-Memory:-NumPy-objects-take-up-less-space-than-python-list-objects."&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;While this is important, it's not a huge deal with most of the datasets we use.&lt;/p&gt;
 &lt;h2 id="2.-Speed:-NumPy-leverages-broadcasting-which-makes-the-computation-much-faster."&gt;2. Speed: NumPy leverages broadcasting which makes the computation much faster.&lt;a class="anchor-link" href="#2.-Speed:-NumPy-leverages-broadcasting-which-makes-the-computation-much-faster."&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Let's take a look&lt;/p&gt;
 &lt;p&gt;First we import numpy and assign it an alias of np as this is the standard python etiquette&lt;/p&gt;
@@ -2784,7 +2785,8 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Getting-into-our-virtual-environment"&gt;Getting into our virtual environment&lt;a class="anchor-link" href="#Getting-into-our-virtual-environment"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Now that we have built our virtual environment let's use it. You can do that by using the source activate command and the name of the virtual environment you created above. Similar to what I did below.&lt;/p&gt;
+&lt;h3 id="Getting-into-our-virtual-environment"&gt;Getting into our virtual environment&lt;a class="anchor-link" href="#Getting-into-our-virtual-environment"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Now that we have built our virtual environment let's use it. You can do that by using the &lt;strong&gt;source activate&lt;/strong&gt; command and the name of the virtual environment you created above. Similar to what I did below.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; When you are finished in your virtual environment you just use the command &lt;strong&gt;source deactivate&lt;/strong&gt; and you will be back to a normal bash shell/terminal.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

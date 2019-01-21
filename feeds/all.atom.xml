@@ -1033,8 +1033,9 @@ h6:hover .anchor-link {
 &lt;li&gt;I've worked for a fortune 10 company that almost stopped paying for licenses because of all of the alternatives (Python, R, Alteryx, SAS, Scala, Spark, etc.). You definitely don't want to be caught not being able to do your job anymore because your company stopped paying for your software. &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Community&lt;/strong&gt;; I'm not sure why, but the community around open-source languages is so helpful and collaborative. They have tons of meetups, groups, even their own conferences (e.g. &lt;a href="https://www.rstudio.com/conference/"&gt;rstudio::conf&lt;/a&gt;, &lt;a href="https://pydata.org/miami2019/"&gt;PyData&lt;/a&gt;).&lt;/p&gt;
+&lt;/ul&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Community&lt;/strong&gt;; I'm not sure why, but the community around open-source languages is so helpful and collaborative. They have tons of meetups, groups, even their own conferences (e.g. &lt;a href="https://www.rstudio.com/conference/"&gt;rstudio::conf&lt;/a&gt;, &lt;a href="https://pydata.org/miami2019/"&gt;PyData&lt;/a&gt;).&lt;ul&gt;
 &lt;li&gt;You have a question about Python or R? You can basically just google it because your first couple pages will almost certainly be from &lt;a href="https://stackoverflow.com/"&gt;Stackoverflow&lt;/a&gt;, which is a community forum designed for people to post programming questions, which allows other users to provide solutions that can be voted (think Reddit for actual relevant questions/topics).&lt;/li&gt;
 &lt;li&gt;You have a question about SPSS? That's what the Syntax Guide is for, right? If you are great with your control f skills you can probably find your answer after a few hours...errr days. After all &lt;strong&gt;it's only 2500 pages&lt;/strong&gt;!!&lt;/li&gt;
 &lt;/ul&gt;

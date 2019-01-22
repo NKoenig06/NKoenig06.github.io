@@ -1,57 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>About Me, Focus of the Blog, and Resources — AIO: An I/Os guide to Data Science/AI</title>
-	<meta name="description" content="Title: About Me, Focus of the Blog, and Resources; Date: 2019-01-16; Author: N. Koenig">
-	<meta name="author" content="N. Koenig">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-	<!--[if lt IE 9]>
-		<script src="/theme/html5.js"></script>
-		<![endif]-->
-	<link href="/theme/css/ipython.css" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
-	<link href="/theme/css/local.css" rel="stylesheet">
-	<link href="/theme/css/pygments.css" rel="stylesheet">
-</head>
-<body>
-<div class="container">
-	<div class="page-header">
-		<h1><a href="/">AIO: An I/Os guide to Data Science/AI</a>
-			<br>	</div>
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">About Me, Focus of the Blog, and Resources</h1>
-		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
-			<h4 itemprop="name">N. Koenig</h4>
-		</span>
-		<time datetime="2019-01-16T14:30:00-06:00" itemprop="datePublished">Wed 16 January 2019</time>
-	</div>
-	<div>
-		Category:
-		<span itemprop="articleSection">
-			<a href="/category/about.html" rel="category">about</a>
-		</span>
-	</div>
- 
-	<div>
-		Tags:
-		<span itemprop="keywords">
-			<a href="/tag/about.html" rel="tag">About</a>
-		</span>
-		<span itemprop="keywords">
-			<a href="/tag/purpose.html" rel="tag">Purpose</a>
-		</span>
-		<span itemprop="keywords">
-			<a href="/tag/resources.html" rel="tag">Resources</a>
-		</span>
-	</div>
-	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>AIO: An I/Os guide to Data Science/AI</title><link href="/" rel="alternate"></link><link href="/feeds/about.atom.xml" rel="self"></link><id>/</id><updated>2019-01-16T14:30:00-06:00</updated><entry><title>About Me, Focus of the Blog, and Resources</title><link href="/about-me.html" rel="alternate"></link><published>2019-01-16T14:30:00-06:00</published><updated>2019-01-16T14:30:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-01-16:about-me.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -278,7 +226,7 @@ div.unrecognized_cell .inner_cell a:hover {
   text-decoration: none;
 }
 @media (max-width: 540px) {
-  div.unrecognized_cell > div.prompt {
+  div.unrecognized_cell &gt; div.prompt {
     display: none;
   }
 }
@@ -331,19 +279,19 @@ div.input_prompt {
   color: #303F9F;
   border-top: 1px solid transparent;
 }
-div.input_area > div.highlight {
+div.input_area &gt; div.highlight {
   margin: 0.4em;
   border: none;
   padding: 0px;
   background-color: transparent;
 }
-div.input_area > div.highlight > pre {
+div.input_area &gt; div.highlight &gt; pre {
   margin: 0px;
   border: none;
   padding: 0px;
   background-color: transparent;
 }
-/* The following gets added to the <head> if it is detected that the user has a
+/* The following gets added to the &lt;head&gt; if it is detected that the user has a
  * monospace font with inconsistent normal/bold/italic height.  See
  * notebookmain.js.  Such fonts will have keywords vertically offset with
  * respect to the rest of the text.  The user should select a better font.
@@ -389,7 +337,7 @@ div.input_area > div.highlight > pre {
 }
 /*
 
-Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
 Adapted from GitHub theme
 
 */
@@ -851,7 +799,7 @@ div.text_cell {
   align-items: stretch;
 }
 @media (max-width: 540px) {
-  div.text_cell > div.prompt {
+  div.text_cell &gt; div.prompt {
     display: none;
   }
 }
@@ -916,8 +864,8 @@ h6:hover .anchor-link {
   font-size: 100%;
   font-style: italic;
 }
-</style>
-<style type="text/css">.highlight .hll { background-color: #ffffcc }
+&lt;/style&gt;
+&lt;style type="text/css"&gt;.highlight .hll { background-color: #ffffcc }
 .highlight  { background: #f8f8f8; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
@@ -985,8 +933,8 @@ h6:hover .anchor-link {
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
-<style type="text/css">
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
+&lt;style type="text/css"&gt;
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
 .ansi-black-fg { color: #3E424D; }
 .ansi-black-bg { background-color: #3E424D; }
@@ -1022,163 +970,163 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="About-Me-&amp;-Resources-I've-Found-Useful">About Me &amp; Resources I've Found Useful<a class="anchor-link" href="#About-Me-&amp;-Resources-I've-Found-Useful">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/F4kIR7w.jpg" alt="STL"></p>
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="About-Me-&amp;amp;-Resources-I've-Found-Useful"&gt;About Me &amp;amp; Resources I've Found Useful&lt;a class="anchor-link" href="#About-Me-&amp;amp;-Resources-I've-Found-Useful"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/F4kIR7w.jpg" alt="STL"&gt;&lt;/p&gt;
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Where-I'm-From:">Where I'm From:<a class="anchor-link" href="#Where-I'm-From:">&#182;</a></h2><p>I grew up in Saint Louis, Go Cardinals and Go Blues!!</p>
-<h2 id="My-Background:">My Background:<a class="anchor-link" href="#My-Background:">&#182;</a></h2><p>I have my Ph.D. in Industrial and Organizational Psychology and within the past 3 years have become increasingly interested in Python, Machine Learning, and Deep Learning. I've taught myself how to program, use advanced machine learning algorithms and techniques, manipulate data, and even leverage Tensorflow and PyTorch for deep learning. I constantly like to learn new things, so I always have something I am working on.</p>
-<h2 id="The-Purpose-of-This-Blog:">The Purpose of This Blog:<a class="anchor-link" href="#The-Purpose-of-This-Blog:">&#182;</a></h2><p>A lot of the language in programming and Data Science is very foreign to the language we were taught as social scientists. It took me a lot of time and research to start to tie everything together. I hope this site can help other social scientists because I will try to tie what I am doing back to it's purpose for work we are likely to do.</p>
-<p>I think programming is extremely important for everyone. I see a lot of people ask if there are packages or pre-built resources to do certain things when it comes to data. The beauty of being able to program is you can build them.</p>
-<p>As of now I will likely post about the following in reference to what/how I've learned and what I've found useful/important.</p>
-<ul>
-<li>Python/Programming</li>
-<li>Machine Learning</li>
-<li>Data Wrangling/Manipulation</li>
-<li>Deep Learning</li>
-<li>Version Control (Git)</li>
-<li>Math</li>
-<li>I/O relevant topics I think are important as they come up</li>
-<li>The integration of AI and I/O</li>
-</ul>
-<p><strong>From my experience reading other resources many assume a basic familiarity with the computer that honestly many of us in the social sciences don't have. They assume you are coming from a developer type background. For this reason I will likely focus on some of the very basics, like how to install stuff step-by-step. I will also focus on certain packages and certain functions within them that I believe are valuable and useful for social science type research and data analysis. However, because there are a plethora of resources (that are free or extremely affordable) I won't teach you how to write python or how to use every single feature in a particular package. However, I will do my best to point you to resources to learn more. But the resources I provided below should be adequate</strong></p>
-<p><img src="https://i.imgur.com/xPplwkq.jpg" alt="programmer_joke"></p>
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Where-I'm-From:"&gt;Where I'm From:&lt;a class="anchor-link" href="#Where-I'm-From:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I grew up in Saint Louis, Go Cardinals and Go Blues!!&lt;/p&gt;
+&lt;h2 id="My-Background:"&gt;My Background:&lt;a class="anchor-link" href="#My-Background:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I have my Ph.D. in Industrial and Organizational Psychology and within the past 3 years have become increasingly interested in Python, Machine Learning, and Deep Learning. I've taught myself how to program, use advanced machine learning algorithms and techniques, manipulate data, and even leverage Tensorflow and PyTorch for deep learning. I constantly like to learn new things, so I always have something I am working on.&lt;/p&gt;
+&lt;h2 id="The-Purpose-of-This-Blog:"&gt;The Purpose of This Blog:&lt;a class="anchor-link" href="#The-Purpose-of-This-Blog:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A lot of the language in programming and Data Science is very foreign to the language we were taught as social scientists. It took me a lot of time and research to start to tie everything together. I hope this site can help other social scientists because I will try to tie what I am doing back to it's purpose for work we are likely to do.&lt;/p&gt;
+&lt;p&gt;I think programming is extremely important for everyone. I see a lot of people ask if there are packages or pre-built resources to do certain things when it comes to data. The beauty of being able to program is you can build them.&lt;/p&gt;
+&lt;p&gt;As of now I will likely post about the following in reference to what/how I've learned and what I've found useful/important.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python/Programming&lt;/li&gt;
+&lt;li&gt;Machine Learning&lt;/li&gt;
+&lt;li&gt;Data Wrangling/Manipulation&lt;/li&gt;
+&lt;li&gt;Deep Learning&lt;/li&gt;
+&lt;li&gt;Version Control (Git)&lt;/li&gt;
+&lt;li&gt;Math&lt;/li&gt;
+&lt;li&gt;I/O relevant topics I think are important as they come up&lt;/li&gt;
+&lt;li&gt;The integration of AI and I/O&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;From my experience reading other resources many assume a basic familiarity with the computer that honestly many of us in the social sciences don't have. They assume you are coming from a developer type background. For this reason I will likely focus on some of the very basics, like how to install stuff step-by-step. I will also focus on certain packages and certain functions within them that I believe are valuable and useful for social science type research and data analysis. However, because there are a plethora of resources (that are free or extremely affordable) I won't teach you how to write python or how to use every single feature in a particular package. However, I will do my best to point you to resources to learn more. But the resources I provided below should be adequate&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/xPplwkq.jpg" alt="programmer_joke"&gt;&lt;/p&gt;
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Resources">Resources<a class="anchor-link" href="#Resources">&#182;</a></h1><p>I don't intend for this blog to teach you how to use Python and/or R from scratch. I will show features and packages I think are important, but as many people have mentioned, most intro stuff has already been done 100+ times, so what I'll do is link you to resources I've found useful. Hopefully that helps you build your mental model around DS. I'm thinking if we came from similar backgrounds the resources that resonated with me will hopefully resonate with you as well.</p>
-<h2 id="Introduction-to-Python:">Introduction to Python:<a class="anchor-link" href="#Introduction-to-Python:">&#182;</a></h2><ul>
-<li><a href="https://www.edx.org/course/introduction-to-computer-science-and-programming-using-python-">Intro to CS with Python</a><ul>
-<li>This course is provided by MIT and is fairly difficult for a MOOC, but it provides you with a great intro background to Python and basic concepts in Computer Science. It's free to audit. </li>
-</ul>
-</li>
-<li><a href="https://www.udemy.com/complete-python-bootcamp/?couponCode=CURRENT_STU_COMPY">Complete Python Bootcamp</a><ul>
-<li>A great intro to Python course from Udemy taught by Jose Portilla, who IMO is a great instructor when it comes to teaching the basics. I included a coupon code that gets the price down to 11 dollars. </li>
-</ul>
-</li>
-</ul>
-<h2 id="Python-Podcasts">Python Podcasts<a class="anchor-link" href="#Python-Podcasts">&#182;</a></h2><p>I like to listen to podcasts when I'm lifting/running/driving, etc. I think it's a really good way to keep up-to-date and pick up on the langauge used. Here are a couple that I've found useful focused on Python</p>
-<ul>
-<li>Talk Python to Me</li>
-<li>Python Bytes</li>
-<li>Podcast.<strong>init</strong></li>
-</ul>
-<h2 id="Datascience/ML-Focused-Courses:">Datascience/ML Focused Courses:<a class="anchor-link" href="#Datascience/ML-Focused-Courses:">&#182;</a></h2><p>I would recommend these next resources for data science and machine learning in the order provided below as the first courses hold your hand a bit more than some of the other resources. Some of my basic thoughts when it comes to learning.</p>
-<ul>
-<li><p>I recommend using Jupyter Notebooks. It allows you to iterate through code quickly and fix broken code. When you are learning this is great.</p>
-</li>
-<li><p>One of the things I struggled with early on was getting frustrated when my code wouldn't run. Maybe this is just me, but when you are coding you will almost certainly screw up, lol. You can't always get it right the first time.</p>
-</li>
-<li><p>Google and Stackoverflow are your friend. The great thing about Python (and R) compared to SPSS and/or SAS is that there are tons of resources out there. If you have a question about something it's almost a gaurantee that someone else has had the same question and it has been answered on stackoverflow. Take advantage of that. As you get more familiar with Pandas, Numpy, etc. you will start to understand the lingo a bit better and your searches will yield you the results you are looking for much more quickly. At first for me it was searching something 4-5 different ways to find an answer, now I can usually find the information I am looking for on the first search.</p>
-</li>
-<li><p><a href="https://www.udemy.com/python-for-data-science-and-machine-learning-bootcamp/?couponCode=CURRENT_PY_DS_ML">Python for Data Science and Machine Learning Bootcamp</a></p>
-<ul>
-<li>Again I included a coupon so you can get the course for 11 dollars. I highly recommend this course, which is also taught by Jose Portilla. It goes over the basics of NumPy, Pandas, Matplotlib, Bokeh, and Scikit Learn. He uses actual datasets and provides you with challenges at the end of each section to help the topics sink in. </li>
-</ul>
-</li>
-<li><p><a href="https://www.udemy.com/machinelearning/">Machine Learning A-Z</a></p>
-<ul>
-<li>This course isn't as engaging as Jose's, but it does a really good job of showing you what a data pipeline process looks like. It really helps you understand how similar most of the commands are across algorithms. I.e. initialize the model as a python object, fit the model, then predict.</li>
-</ul>
-</li>
-<li><p><a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a></p>
-<ul>
-<li>Jake made his entire book available for free on his github page and I think it's a great resource. I would highly encourage you to purchase the book as well to support more experts like this helping to teach. After you get the basics down Jake's book does a great job of helping walk you through more complex topics and code.</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/rasbt/python-machine-learning-book-2nd-edition#whats-new-in-the-second-edition-from-the-first-edition">Python Machine Learning</a></p>
-<ul>
-<li>Sebastian's book is great and starts to get into some more advanced topic and code. This is one I personally own and reference very often. I would highly recommend.</li>
-</ul>
-</li>
-<li><p><a href="https://www.coursera.org/specializations/machine-learning">Machine Learning Specialization</a></p>
-<ul>
-<li>This is a Machine Learning specialization through Coursera taught by professors from the University of Washington. IMO this course does a great job of going deeper into the math behind linear and logistic regression. For those of you, like me, your grad program didn't really go into much detail about how the algorithms work, so this was a very interesting specialization for me. </li>
-<li>My only issue with the course was that it used an ML API different than scikit learn that actually costs money (although they provide it to students for free for one year). Early on when I was taking it I decided to do the assignments twice. Once with their API and then again with scikit learn, but I started to speed it up towards the end and didn't do it for the last 2 courses.</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><a href="https://www.udemy.com/data-science-and-machine-learning-bootcamp-with-r/?couponCode=CURRENT_STU_R">Data Science and Machine Learning Bootcamp with R</a><ul>
-<li>Very similar to the Python course, but using the R language instead.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Datascience-Focused-Podcasts:">Datascience Focused Podcasts:<a class="anchor-link" href="#Datascience-Focused-Podcasts:">&#182;</a></h2><p>I probably listen to DS podcasts more than Python podcasts and here are ones I've found useful:</p>
-<ul>
-<li>Machine Learning Guide</li>
-<li>SuperDataScience Podcast</li>
-<li>DataFramed</li>
-<li>This Week in Machine Learning &amp; AI</li>
-<li>Linear Degressions</li>
-<li>Data Journeys</li>
-<li>Practical AI</li>
-<li>O'Reilly Data Show</li>
-<li>Not So Standard Deviations</li>
-<li>Data Stories</li>
-</ul>
-<h1 id="Deep-Learning">Deep Learning<a class="anchor-link" href="#Deep-Learning">&#182;</a></h1><ul>
-<li><p><a href="https://www.coursera.org/specializations/deep-learning">Andrew Ng's Deep Learning Specialization</a></p>
-<ul>
-<li>Andrew did a lot over the last decade to make machine learning and deep learning a household name. He is one of the founders of Coursera and his Machine Learning course on Coursera is still probably one of the most popular courses ever on the platform. This specialization does a great job of breaking down the math and walking you through the code step by step for neural networks, CNNs, and RNNs. It's a great overview of everything deep learning has to offer.</li>
-</ul>
-</li>
-<li><p><a href="https://www.udemy.com/deeplearning/">Deep Learning A-Z</a></p>
-</li>
-<li><p><a href="https://www.udemy.com/chatbot/">Deep Learning and NLP A-Z</a></p>
-</li>
-<li><p><a href="https://www.udemy.com/practical-deep-learning-with-pytorch/">Practical Deep Learning with PyTorch</a></p>
-</li>
-<li><p><a href="https://www.udemy.com/complete-guide-to-tensorflow-for-deep-learning-with-python/">Complete Guide to Tensorflow for Deep Learning</a></p>
-</li>
-</ul>
-<p><strong>One thing I want to mention about all of the Udemy courses. For many of them I do not have a coupon code. Udemy's prices fluctuate like crazy. So if there is a course I listed or another one on the site you find interesting if it's like 99 dollars (like the PyTorch one when I just looked) wait a few weeks and you can probably get it on a sale for 10-12 dollars. I paid 10 dollars for that same PyTorch course a few weeks ago for example.</strong></p>
-<p>Sidenote: I had to use the word dollars instead of the dollar sign because in markdown the dollar sign is the start of mathemtical writing :)</p>
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Resources"&gt;Resources&lt;a class="anchor-link" href="#Resources"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;I don't intend for this blog to teach you how to use Python and/or R from scratch. I will show features and packages I think are important, but as many people have mentioned, most intro stuff has already been done 100+ times, so what I'll do is link you to resources I've found useful. Hopefully that helps you build your mental model around DS. I'm thinking if we came from similar backgrounds the resources that resonated with me will hopefully resonate with you as well.&lt;/p&gt;
+&lt;h2 id="Introduction-to-Python:"&gt;Introduction to Python:&lt;a class="anchor-link" href="#Introduction-to-Python:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.edx.org/course/introduction-to-computer-science-and-programming-using-python-"&gt;Intro to CS with Python&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;This course is provided by MIT and is fairly difficult for a MOOC, but it provides you with a great intro background to Python and basic concepts in Computer Science. It's free to audit. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.udemy.com/complete-python-bootcamp/?couponCode=CURRENT_STU_COMPY"&gt;Complete Python Bootcamp&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;A great intro to Python course from Udemy taught by Jose Portilla, who IMO is a great instructor when it comes to teaching the basics. I included a coupon code that gets the price down to 11 dollars. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="Python-Podcasts"&gt;Python Podcasts&lt;a class="anchor-link" href="#Python-Podcasts"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I like to listen to podcasts when I'm lifting/running/driving, etc. I think it's a really good way to keep up-to-date and pick up on the langauge used. Here are a couple that I've found useful focused on Python&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Talk Python to Me&lt;/li&gt;
+&lt;li&gt;Python Bytes&lt;/li&gt;
+&lt;li&gt;Podcast.&lt;strong&gt;init&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="Datascience/ML-Focused-Courses:"&gt;Datascience/ML Focused Courses:&lt;a class="anchor-link" href="#Datascience/ML-Focused-Courses:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I would recommend these next resources for data science and machine learning in the order provided below as the first courses hold your hand a bit more than some of the other resources. Some of my basic thoughts when it comes to learning.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;I recommend using Jupyter Notebooks. It allows you to iterate through code quickly and fix broken code. When you are learning this is great.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;One of the things I struggled with early on was getting frustrated when my code wouldn't run. Maybe this is just me, but when you are coding you will almost certainly screw up, lol. You can't always get it right the first time.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Google and Stackoverflow are your friend. The great thing about Python (and R) compared to SPSS and/or SAS is that there are tons of resources out there. If you have a question about something it's almost a gaurantee that someone else has had the same question and it has been answered on stackoverflow. Take advantage of that. As you get more familiar with Pandas, Numpy, etc. you will start to understand the lingo a bit better and your searches will yield you the results you are looking for much more quickly. At first for me it was searching something 4-5 different ways to find an answer, now I can usually find the information I am looking for on the first search.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://www.udemy.com/python-for-data-science-and-machine-learning-bootcamp/?couponCode=CURRENT_PY_DS_ML"&gt;Python for Data Science and Machine Learning Bootcamp&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Again I included a coupon so you can get the course for 11 dollars. I highly recommend this course, which is also taught by Jose Portilla. It goes over the basics of NumPy, Pandas, Matplotlib, Bokeh, and Scikit Learn. He uses actual datasets and provides you with challenges at the end of each section to help the topics sink in. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://www.udemy.com/machinelearning/"&gt;Machine Learning A-Z&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This course isn't as engaging as Jose's, but it does a really good job of showing you what a data pipeline process looks like. It really helps you understand how similar most of the commands are across algorithms. I.e. initialize the model as a python object, fit the model, then predict.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://jakevdp.github.io/PythonDataScienceHandbook/"&gt;Python Data Science Handbook&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Jake made his entire book available for free on his github page and I think it's a great resource. I would highly encourage you to purchase the book as well to support more experts like this helping to teach. After you get the basics down Jake's book does a great job of helping walk you through more complex topics and code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://github.com/rasbt/python-machine-learning-book-2nd-edition#whats-new-in-the-second-edition-from-the-first-edition"&gt;Python Machine Learning&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sebastian's book is great and starts to get into some more advanced topic and code. This is one I personally own and reference very often. I would highly recommend.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://www.coursera.org/specializations/machine-learning"&gt;Machine Learning Specialization&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This is a Machine Learning specialization through Coursera taught by professors from the University of Washington. IMO this course does a great job of going deeper into the math behind linear and logistic regression. For those of you, like me, your grad program didn't really go into much detail about how the algorithms work, so this was a very interesting specialization for me. &lt;/li&gt;
+&lt;li&gt;My only issue with the course was that it used an ML API different than scikit learn that actually costs money (although they provide it to students for free for one year). Early on when I was taking it I decided to do the assignments twice. Once with their API and then again with scikit learn, but I started to speed it up towards the end and didn't do it for the last 2 courses.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.udemy.com/data-science-and-machine-learning-bootcamp-with-r/?couponCode=CURRENT_STU_R"&gt;Data Science and Machine Learning Bootcamp with R&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;Very similar to the Python course, but using the R language instead.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="Datascience-Focused-Podcasts:"&gt;Datascience Focused Podcasts:&lt;a class="anchor-link" href="#Datascience-Focused-Podcasts:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I probably listen to DS podcasts more than Python podcasts and here are ones I've found useful:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Machine Learning Guide&lt;/li&gt;
+&lt;li&gt;SuperDataScience Podcast&lt;/li&gt;
+&lt;li&gt;DataFramed&lt;/li&gt;
+&lt;li&gt;This Week in Machine Learning &amp;amp; AI&lt;/li&gt;
+&lt;li&gt;Linear Degressions&lt;/li&gt;
+&lt;li&gt;Data Journeys&lt;/li&gt;
+&lt;li&gt;Practical AI&lt;/li&gt;
+&lt;li&gt;O'Reilly Data Show&lt;/li&gt;
+&lt;li&gt;Not So Standard Deviations&lt;/li&gt;
+&lt;li&gt;Data Stories&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="Deep-Learning"&gt;Deep Learning&lt;a class="anchor-link" href="#Deep-Learning"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://www.coursera.org/specializations/deep-learning"&gt;Andrew Ng's Deep Learning Specialization&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Andrew did a lot over the last decade to make machine learning and deep learning a household name. He is one of the founders of Coursera and his Machine Learning course on Coursera is still probably one of the most popular courses ever on the platform. This specialization does a great job of breaking down the math and walking you through the code step by step for neural networks, CNNs, and RNNs. It's a great overview of everything deep learning has to offer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://www.udemy.com/deeplearning/"&gt;Deep Learning A-Z&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://www.udemy.com/chatbot/"&gt;Deep Learning and NLP A-Z&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://www.udemy.com/practical-deep-learning-with-pytorch/"&gt;Practical Deep Learning with PyTorch&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://www.udemy.com/complete-guide-to-tensorflow-for-deep-learning-with-python/"&gt;Complete Guide to Tensorflow for Deep Learning&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;One thing I want to mention about all of the Udemy courses. For many of them I do not have a coupon code. Udemy's prices fluctuate like crazy. So if there is a course I listed or another one on the site you find interesting if it's like 99 dollars (like the PyTorch one when I just looked) wait a few weeks and you can probably get it on a sale for 10-12 dollars. I paid 10 dollars for that same PyTorch course a few weeks ago for example.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sidenote: I had to use the word dollars instead of the dollar sign because in markdown the dollar sign is the start of mathemtical writing :)&lt;/p&gt;
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="My-Advice-for-Python">My Advice for Python<a class="anchor-link" href="#My-Advice-for-Python">&#182;</a></h1><p>If I were trying to learn how to be a data science type person and had to start over I would take the following two courses:</p>
-<ol>
-<li><a href="https://www.udemy.com/complete-python-bootcamp/?couponCode=CURRENT_STU_COMPY">Complete Python Bootcamp</a></li>
-<li><a href="https://www.udemy.com/python-for-data-science-and-machine-learning-bootcamp/?couponCode=CURRENT_PY_DS_ML">Python for Data Science and Machine Learning Bootcamp</a></li>
-</ol>
-<p>In that order.</p>
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="My-Advice-for-Python"&gt;My Advice for Python&lt;a class="anchor-link" href="#My-Advice-for-Python"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;If I were trying to learn how to be a data science type person and had to start over I would take the following two courses:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://www.udemy.com/complete-python-bootcamp/?couponCode=CURRENT_STU_COMPY"&gt;Complete Python Bootcamp&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.udemy.com/python-for-data-science-and-machine-learning-bootcamp/?couponCode=CURRENT_PY_DS_ML"&gt;Python for Data Science and Machine Learning Bootcamp&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In that order.&lt;/p&gt;
 
-</div>
-</div>
-</div>
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
  
 
 
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
@@ -1205,103 +1153,5 @@ h6:hover .anchor-link {
         "}); ";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-</script>
-</div>
-	<hr>
-	<h2>Comments</h2>
-<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="@N_KNIG">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'About Me, Focus of the Blog, and Resources';
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-		</div>
-	</div> 	<!-- <hr> -->
-</div> <!-- /container -->
-<footer class="aw-footer bg-danger">
-	<div class="container"> <!-- footer -->
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<div class="row">
-					<div class="col-md-3">
-						<h4>Navigation</h4>
-						<ul class="list-unstyled my-list-style">
-							<li><a href="">AIO: An I/Os guide to Data Science/AI</a></li>
-							<li><a href="/feeds/all.atom.xml" type="application/atom+xml"><i class="fa fa-rss "></i> atom</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<h4>Author</h4>
-						<ul class="list-unstyled my-list-style">
-							<li><a href="http://twitter.com/N_KNIG/">Twitter</a></li>
-							<li><a href="http://www.linkedin.com/in/nick-koenig-69699a27/">LinkedIn</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<h4>Categories</h4>
-						<ul class="list-unstyled my-list-style">
-							<li><a href="/category/about.html">about (1)</a></li>
-							<li><a href="/category/machine-learning.html">machine learning (1)</a></li>
-							<li><a href="/category/programming.html">programming (2)</a></li>
-							<li><a href="/category/python.html">python (2)</a></li>
-							<li><a href="/category/r.html">R (1)</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<h4>Links</h4>
-						<ul class="list-unstyled my-list-style">
-							<li><a href="http://jupyter.org/">Jupyter.org</a></li>
-							<li><a href="http://python.org/">Python.org</a></li>
-							<li><a href="http://kdnuggets.com/">KDnuggets</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12 text-center center-block aw-bottom">
-			<p>&copy; N. Koenig 2016</p>
-			<p>Powered by Pelican</p>
-		</div>
-	</div>
-</div>
-<!-- JavaScript -->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-	$("div.collapseheader").click(function () {
-		$header = $(this).children("span").first();
-		$codearea = $(this).children(".input_area");
-		$codearea.slideToggle(500, function () {
-			$header.text(function () {
-				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
-			});
-		});
-	});
-});
-</script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-132815257-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-<a href="https://github.com/NKoenig06"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
-</body>
-</html>
+&lt;/script&gt;
+</summary><category term="About"></category><category term="Purpose"></category><category term="Resources"></category></entry></feed>

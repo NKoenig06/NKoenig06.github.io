@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Data Munging Survey Data in Python — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: Data Munging Survey Data in Python; Date: 2019-01-21; Author: N. Koenig">
+	<title>Data Wrangling Survey Data in Python — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Data Wrangling Survey Data in Python; Date: 2019-01-25; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,11 +26,11 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">Data Munging Survey Data in Python</h1>
+		<h1 itemprop="name headline" class="article-title">Data Wrangling Survey Data in Python</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2019-01-21T08:45:00-06:00" itemprop="datePublished">Mon 21 January 2019</time>
+		<time datetime="2019-01-25T08:45:00-06:00" itemprop="datePublished">Fri 25 January 2019</time>
 	</div>
 	<div>
 		Category:
@@ -1032,10 +1032,10 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Data-Wrangling-Survey-Data-in-Python">Data Wrangling Survey Data in Python<a class="anchor-link" href="#Data-Wrangling-Survey-Data-in-Python">&#182;</a></h1><p>As all social scientists that have collected data before know the responses are often far from perfect. You have to make decisions on whether to include data across a number of factors.</p>
 <p>I've gotten a lot of questions from I/Os about what I/O specific work looks like in Python and the process is very similar to what you traditionally do, just using different syntax. This article will walk through how we cleaned the data we used for the SIOP ML Competition.</p>
-<p>Recently, as the host of the <a href="https://evalai.cloudcv.org/web/challenges/challenge-page/160/overview">2019 SIOP Machine Learning Competition</a> our team had to identify criteria for inclusion into the final dataset. We wanted to ensure that the respondents took their task seriously, so we had to identify whether or not an individuals' responses were <strong>quality</strong>, but we couldn't manually review all 1500, so we had to devise a strategy to do so at scale.</p>
+<p>Recently, as the host of the <a href="https://evalai.cloudcv.org/web/challenges/challenge-page/160/overview">2019 SIOP Machine Learning Competition</a> our team had to identify criteria for inclusion into the final dataset. We wanted to ensure that the respondents took their task seriously, so we had to identify whether or not an individuals' responses were <strong>quality</strong>, but we couldn't manually review all 2000+, so we had to devise a strategy to do so at scale.</p>
 <p>That's where manipulating data or <strong>data wrangling/munging</strong>, whichever term you want to use comes into play. In this article I will walk through how we approached this given our criteria using the SIOP ML original dataset.</p>
 <p><strong>Note</strong> Because at this time the competition is still going on I will not do any data viz or discuss any specific items (which isn't even relevant to general cleaning anyway), but will walk through the cleaning process we took.</p>
-<p><img src="https://i.imgur.com/rPtZ78N.jpg" alt="Data Wrangling"></p>
+<h3 id="However,-I-wanted-to-add-that-because-of-Shaker-International's-support-of-open-source-and-open-source-research-they-have-decided-to-make-all-of-the-data-available-after-the-competition-is-completed.-This-includes-the-5-open-ended-SJIs,-the-60-item-level-responses,-and-several-demographic-variables-that-were-collected.-The-total-sample-size-is-1688.">However, I wanted to add that because of <a href="http://shakerinternational.com/">Shaker International's</a> support of open source and open source research they have decided to make all of the data available after the competition is completed. This includes the 5 open-ended SJIs, the 60 item level responses, and several demographic variables that were collected. The total sample size is 1688.<a class="anchor-link" href="#However,-I-wanted-to-add-that-because-of-Shaker-International's-support-of-open-source-and-open-source-research-they-have-decided-to-make-all-of-the-data-available-after-the-competition-is-completed.-This-includes-the-5-open-ended-SJIs,-the-60-item-level-responses,-and-several-demographic-variables-that-were-collected.-The-total-sample-size-is-1688.">&#182;</a></h3><p><img src="https://i.imgur.com/rPtZ78N.jpg" alt="Data Wrangling"></p>
 
 </div>
 </div>
@@ -1274,11 +1274,11 @@ Name: completed_survey, dtype: int64</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Let's-go-through-the-for-loop-in-a-bit-more-detail.">Let's go through the for loop in a bit more detail.<a class="anchor-link" href="#Let's-go-through-the-for-loop-in-a-bit-more-detail.">&#182;</a></h3><ul>
-<li><p>first we assigned each open end to <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.astype.html">.astype()</a> string to ensure we can use the .split() method which I'll talk about in a second.</p>
+<li><p><strong>First</strong> we assigned each open end to <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.astype.html">.astype()</a> string to ensure we can use the .split() method which I'll talk about in a second.</p>
 </li>
-<li><p>second we assign a new feature/variable with the open end name plus an underscore good, so the end results will be Q1_good for example.</p>
+<li><p><strong>Second</strong> we assign a new feature/variable with the open end name plus an underscore good, so the end results will be Q1_good for example.</p>
 </li>
-<li><p>Third let's look at the first lambda function. It asks for the <a href="https://www.programiz.com/python-programming/methods/built-in/len">length</a> of x <a href="https://www.w3schools.com/python/ref_string_split.asp">split</a> which splits everything in a string on on what you tell it to. The default in a blank method is a space. Let's see how it works below.</p>
+<li><p><strong>Third</strong> let's look at the first lambda function. It asks for the <a href="https://www.programiz.com/python-programming/methods/built-in/len">length</a> of x(which represents whatever is in the specific "cell") <a href="https://www.w3schools.com/python/ref_string_split.asp">split</a> which splits everything in a string on on what you tell it to. The default in a blank method is a space. Let's see how it works below.</p>
 </li>
 </ul>
 <h3 id="Example-of-what-.split()-is-doing">Example of what .split() is doing<a class="anchor-link" href="#Example-of-what-.split()-is-doing">&#182;</a></h3>
@@ -1325,7 +1325,7 @@ This is how many words are in the string_1 object:  14
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><strong>Finally</strong>, we used another lambda if/else statement to assign the variable a value of 1 if the number of words was equal to or greater than 15 or else we assigned it a 0.</li>
+<li><strong>Fourth</strong>, we used another lambda if/else statement to assign the variable a value of 1 if the number of words was equal to or greater than 15 or else we assigned it a 0.</li>
 </ul>
 <p>After we identified which open-ended responses met our criteria we want to identify if all of the individuals responses met this word length requirement, again we are going to use chaining, where we first sum along the row axis and then we identify if that sum equals 5 or not.</p>
 
@@ -1507,7 +1507,7 @@ Name: good_attention_&amp;_length, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In future articles I plan to go into a bit more detail about data wrangling, data exploration (EDA), data viz during data exploration, etc. But I wanted to briefly show I/Os and other social scientists used to working in SPSS or SAS that it's quick and easy to clean data in Python too.</p>
+<p>In future articles I plan to go into a bit more detail about data wrangling, data exploration (EDA), data viz during data exploration, etc. But I wanted to briefly show I/Os and other social scientists used to working in SPSS or SAS that it's quick and easy to clean data in Python too. This data, while very relevant to I/Os is being used as part of the competition and I don't want to do and data exploration for them :) After the competition as I mentioned above Shaker International plans to open source this data for all to explore and learn from.</p>
 <h1 id="Additional-Resources:">Additional Resources:<a class="anchor-link" href="#Additional-Resources:">&#182;</a></h1><p>I know I reference Jake VanderPlas' work a lot but he has another great chapter on <a href="https://jakevdp.github.io/PythonDataScienceHandbook/03.00-introduction-to-pandas.html">Pandas</a> in his Python Data Science Handbook.</p>
 <p>Another great resource for Pandas is <a href="https://github.com/wesm/pydata-book">Wes Mckinney's book</a> the guy who actually started and wrote the large majority of the Pandas library.</p>
 
@@ -1552,7 +1552,7 @@ Name: good_attention_&amp;_length, dtype: int64</pre>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'Data Munging Survey Data in Python';
+    var disqus_title = 'Data Wrangling Survey Data in Python';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -1588,7 +1588,7 @@ Name: good_attention_&amp;_length, dtype: int64</pre>
 						<h4>Categories</h4>
 						<ul class="list-unstyled my-list-style">
 							<li><a href="/category/about.html">about (1)</a></li>
-							<li><a href="/category/data-science.html">data science (2)</a></li>
+							<li><a href="/category/data-science.html">data science (3)</a></li>
 							<li><a href="/category/programming.html">programming (4)</a></li>
 						</ul>
 					</div>

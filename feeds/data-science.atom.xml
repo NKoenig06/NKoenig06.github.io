@@ -1187,12 +1187,9 @@ Name: completed_survey, dtype: int64&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;First&lt;/strong&gt;, I want to ensure that all the open-ended responses are of type string, so I just set them to that to be safe.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Second&lt;/strong&gt;, I want to loop through all of the open ends, get the length of a python list that consists of every word in the response&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Third&lt;/strong&gt;, I want to assign it a value of 1 if the response was greater than or equal to 15 words or a 0 if it was not&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Here is what I want this cell to accomplish;  I want to ensure that &lt;strong&gt;all the open-ended responses are of type string&lt;/strong&gt;, so I just set them to that to be safe, then I want to loop through all of the open ends, &lt;strong&gt;get the word count&lt;/strong&gt;, finally I want to assign a new variable a value of 1 if the response was greater than or equal to 15 words or a 0 if it was not.&lt;/p&gt;
 &lt;p&gt;I've mentioned it before, but you can chain methods together in python. So instead of creating two variables I can just chain both .apply() methods on each other and create 1 variable.&lt;/p&gt;
+&lt;p&gt;After the code cell I will walk through each of the steps in a bit more detail.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

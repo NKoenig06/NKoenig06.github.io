@@ -1032,9 +1032,8 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Data-Wrangling-Survey-Data-in-Python">Data Wrangling Survey Data in Python<a class="anchor-link" href="#Data-Wrangling-Survey-Data-in-Python">&#182;</a></h1><p>As all social scientists that have collected data before know the responses are often far from perfect. You have to make decisions on whether to include data across a number of factors.</p>
 <p>I've gotten a lot of questions from I/Os about what I/O specific work looks like in Python and the process is very similar to what you traditionally do, just using different syntax. This article will walk through how we cleaned the data we used for the SIOP ML Competition.</p>
-<p>Recently, as the host of the <a href="https://evalai.cloudcv.org/web/challenges/challenge-page/160/overview">2019 SIOP Machine Learning Competition</a> our team had to identify criteria for inclusion into the final dataset. We wanted to ensure that the respondents took their task seriously, so we had to identify whether or not an individuals' responses were <strong>quality</strong>, but we couldn't manually review all 2000+, so we had to devise a strategy to do so at scale.</p>
-<p>That's where manipulating data or <strong>data wrangling/munging</strong>, whichever term you want to use comes into play. In this article I will walk through how we approached this given our criteria using the SIOP ML original dataset.</p>
-<p><strong>Note</strong> Because at this time the competition is still going on I will not do any data viz or discuss any specific items (which isn't even relevant to general cleaning anyway), but will walk through the cleaning process we took.</p>
+<p>Recently, as the host of the <a href="https://evalai.cloudcv.org/web/challenges/challenge-page/160/overview">2019 SIOP Machine Learning Competition</a> our team had to identify criteria for inclusion into the final dataset. We wanted to ensure that the respondents took their task seriously, so we had to identify whether or not an individuals' responses were <strong>quality</strong>, but we couldn't manually review all 2000+, so we had to devise a strategy to do so at scale. That's where manipulating data or <strong>data wrangling/munging</strong>, whichever term you want to use comes into play. In this article I will walk through how we approached this given our criteria using the SIOP ML original dataset.</p>
+<p><strong>Note</strong>: Because at this time the competition is still going on I will not do any data viz or discuss any specific items (which isn't even relevant to general cleaning anyway), but will walk through the cleaning process we took.</p>
 <h3 id="However,-I-wanted-to-add-that-because-of-Shaker-International's-support-of-open-source-and-open-source-research-they-have-decided-to-make-all-of-the-data-available-after-the-competition-is-completed.-This-includes-the-5-open-ended-SJIs,-the-60-item-level-responses,-and-several-demographic-variables-that-were-collected.-The-total-sample-size-is-1688.">However, I wanted to add that because of <a href="http://shakerinternational.com/">Shaker International's</a> support of open source and open source research they have decided to make all of the data available after the competition is completed. This includes the 5 open-ended SJIs, the 60 item level responses, and several demographic variables that were collected. The total sample size is 1688.<a class="anchor-link" href="#However,-I-wanted-to-add-that-because-of-Shaker-International's-support-of-open-source-and-open-source-research-they-have-decided-to-make-all-of-the-data-available-after-the-competition-is-completed.-This-includes-the-5-open-ended-SJIs,-the-60-item-level-responses,-and-several-demographic-variables-that-were-collected.-The-total-sample-size-is-1688.">&#182;</a></h3><p><img src="https://i.imgur.com/rPtZ78N.jpg" alt="Data Wrangling"></p>
 
 </div>
@@ -1044,7 +1043,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Import-Packages">Import Packages<a class="anchor-link" href="#Import-Packages">&#182;</a></h1><p>the first thing we always do is import our packages. We'll only be using NumPy and Pandas for this process, I also import warnings because sometimes I get ugly red warnings about <a href="https://pypi.org/project/deprecation/">keyword argument deprecation</a> which just means the newer versions have changed keywords.</p>
+<h1 id="Import-Packages">Import Packages<a class="anchor-link" href="#Import-Packages">&#182;</a></h1><p>The first thing we always do is import our packages. We'll only be using NumPy and Pandas for this process, I also import warnings because sometimes I get ugly red warnings about <a href="https://pypi.org/project/deprecation/">keyword argument deprecation</a> which just means the newer versions have changed keywords.</p>
 <p>You can find out the exact keywords and inputs a method will take by visiting the <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.describe.html">documentation site</a> or in Jupyter by hitting the shift+tab keys when you are in the method of a python argument. The link and image are examples for the pandas.describe() method.</p>
 <p><img src="https://i.imgur.com/PZiN06K.png" alt="Method"></p>
 
@@ -1167,7 +1166,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Thi <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.isnull.html">.isnull()</a> method returns a boolean of True or False for each row in the column. The pandas <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.apply.html">.apply()</a> method is extremely powerful for data wrangling. I use it often. Additionally when I first learned about <a href="https://www.w3schools.com/python/python_lambda.asp">lambda functions</a> I thought I'd never need them, turns out I was extremely wrong. They are very useful for writing straightforward functions in very little code. The lambda above is a very short if else statement; assign x a 0 if x is equal to True else assign x a 1.</p>
+<p>Thi <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.isnull.html">.isnull()</a> method returns a boolean of True or False for each row in the column. The pandas <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.apply.html">.apply()</a> method is extremely powerful for data wrangling, which I use often. Additionally when I first learned about <a href="https://www.w3schools.com/python/python_lambda.asp">lambda functions</a> I thought I'd never need them, turns out I was extremely wrong. They are very useful for writing straightforward functions in very little code. The lambda above is a very short if else statement; assign x a 0 if x is equal to True else assign x a 1.</p>
 
 </div>
 </div>
@@ -1233,7 +1232,7 @@ Name: completed_survey, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Data-Wrangling-the-Open-Ends">Data Wrangling the Open Ends<a class="anchor-link" href="#Data-Wrangling-the-Open-Ends">&#182;</a></h1><p>In our request for data we asked that all responses be at least 3-4 sentences long, so if the responses aren't very long we want to flag those. Those people did not follow the instructions and their data will not be very useful for the purposes of the competition. We decided on 15 words or fewer was that threshold. So let's look at how we would do this.</p>
+<h1 id="Data-Wrangling-the-Open-Ends">Data Wrangling the Open Ends<a class="anchor-link" href="#Data-Wrangling-the-Open-Ends">&#182;</a></h1><p>In our request for data we asked that all responses be at least 3-4 sentences long, so if the responses aren't very long we want to flag those. Those people did not follow the instructions and their data will not be very useful for the purposes of the competition. We decided 15 words or fewer was a reasonable threshold. So let's look at how we would do this.</p>
 
 </div>
 </div>
@@ -1243,8 +1242,7 @@ Name: completed_survey, dtype: int64</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Here is what I want this cell to accomplish;  I want to ensure that <strong>all the open-ended responses are of type string</strong>, so I just set them to that to be safe, then I want to loop through all of the open ends, <strong>get the word count</strong>, finally I want to <strong>assign a new variable</strong> a value of 1 if the response was greater than or equal to 15 words or a 0 if it was not.</p>
-<p>I've mentioned it before, but you can chain methods together in python. So instead of creating two variables I can just chain both .apply() methods on each other and create 1 variable.</p>
-<p>After the code cell I will walk through each of the steps in a bit more detail.</p>
+<p>I've mentioned it before, but you can chain methods together in python. So instead of creating two variables I can just chain both .apply() methods on each other and create 1 variable. After the code cell I will walk through each of the steps in a bit more detail.</p>
 
 </div>
 </div>
@@ -1393,7 +1391,7 @@ Name: all_meet_word_length_req, dtype: int64</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>As you can see this process found 90 individuals that did not meet the requirement of having written at least 15 words to each response</strong></p>
 <h1 id="Data-Wrangling-Likert-Items">Data Wrangling Likert Items<a class="anchor-link" href="#Data-Wrangling-Likert-Items">&#182;</a></h1><p>In addition to flagging open end length we also added in 5 <strong>attention items</strong> to ensure that the respondents were paying attention as they went through the likert items. So let's do something similar for each of those items as well.</p>
-<p>Because all of these are slightly different we can't take quite as much advantage of the efficiency we had up above where we just pushed it through a for loop. But we can still take advantage of chaining.</p>
+<p>Because all of these are slightly different we can't take quite as much advantage of the efficiency we had up above where we just ran it through a for loop. But we can still take advantage of chaining.</p>
 <p>In this instance we gave people credit if they answered strongly disagree or disagree for each of the "opinion-based" ones and for the questions where we asked them to mark a specific response we ensured that had to equal that response. Then we summed all the attention check flags together and they needed to have made at least 4 of the attention checks to get credit.</p>
 <p>These are all relatively straightforward compared to above, but we used if/else lambdas. Then we again took the sum of the row, but this time we gave some leeway and only flagged them if they missed 2 or more attention checks.</p>
 
@@ -1422,7 +1420,7 @@ Name: all_meet_word_length_req, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Putting-it-all-together">Putting it all together<a class="anchor-link" href="#Putting-it-all-together">&#182;</a></h1><p>We said earlier we wanted them to pass the attention check section and meet the word length requirements, so now we have to put it all together. So, again let's sum those two columns and if that equals 2 we'll say they are good, if not let's discard them as poor respondents.</p>
+<h1 id="Putting-it-all-together">Putting it all together<a class="anchor-link" href="#Putting-it-all-together">&#182;</a></h1><p>We said earlier we wanted them to pass the attention check section <strong>and</strong> meet the word length requirements, so now we have to put it all together. Again, let's sum those two columns and if that equals 2 we'll say they are valid, if not let's discard them as poor respondents.</p>
 
 </div>
 </div>

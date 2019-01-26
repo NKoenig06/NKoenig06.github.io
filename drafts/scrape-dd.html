@@ -1028,12 +1028,16 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Webscraping-Glassdoor-for-Employee-Reviews">Webscraping Glassdoor for Employee Reviews<a class="anchor-link" href="#Webscraping-Glassdoor-for-Employee-Reviews">&#182;</a></h2><p><img src="https://i.imgur.com/WNIfWZr.jpg" alt="Imgur"></p>
-<p>In this article I'll walk through how to scrape <strong>Glassdoor for reviews</strong>. In the future I will examine the data more closely, but this article will focus specifically on the scraping. This process will be specific to glassdoor where I will leverage a github users repository via fork. I will link you to his repo as I feel they should get credit for it. This article will consist of.</p>
+<p>In this article I'll walk through how to scrape <strong>Glassdoor for reviews</strong>. In the future I will examine the data more closely, but this article will focus specifically on the scraping. This process will be specific to glassdoor where I will leverage a github users repository via fork. I will link you to his repo as I feel he should get credit for it. This article will consist of the following steps:</p>
 <ol>
-<li>forking and cloning the repo.</li>
-<li>downloading the requirements and setting up your directory.</li>
+<li>forking and cloning the repo</li>
+<li>downloading the requirements and setting up your directory</li>
 <li>Glassdoor account and secret.json file</li>
-<li>Writing an executable bash script so you can automate the the calls. </li>
+<li>Writing the bash script </li>
+<li>Making the bash script executable</li>
+<li>Running the executable bash script</li>
+<li>Merging the data</li>
+<li>A quick look at the data</li>
 </ol>
 
 </div>
@@ -1053,11 +1057,14 @@ h6:hover .anchor-link {
 <li>After that you will need to download and install <a href="http://chromedriver.chromium.org/">chromedriver</a> in the same directory the main.py file is located in. </li>
 </ul>
 <p><strong>Note</strong> I was getting errors when I first started experimenting and realized I didn't have a newer version of Chrome, you need to have at least Chrome 70. I had Chrome 66, which was causing some errors.</p>
-<h1 id="3.-Glassdoor-account-and-.json-file">3. Glassdoor account and .json file<a class="anchor-link" href="#3.-Glassdoor-account-and-.json-file">&#182;</a></h1><ul>
+<h1 id="3.-Glassdoor-Account-and-.json-File">3. Glassdoor Account and .json File<a class="anchor-link" href="#3.-Glassdoor-Account-and-.json-File">&#182;</a></h1><ul>
 <li>Ensure you have a glassdoor account. If you actually use this account I'd recommend getting another one as there is always the possibility it gets flagged for a terms of use issue. </li>
 <li>You will want to open up a text editor (I recommend <a href="https://www.sublimetext.com/">Sublime Text</a> and provide it with your username and password, like this:</li>
 </ul>
 <p><img src="https://i.imgur.com/KrPZzi9.png" alt="secretjson"></p>
+<ul>
+<li>Save the file as <strong>secret.json</strong> in the same directory main.py is located in.</li>
+</ul>
 <p>Now we have everything we need to begin. All the hard work is already done by the author, so let's take a quick look at his code.</p>
 <ul>
 <li>He has a file titled <a href="https://github.com/MatthewChatham/glassdoor-review-scraper/blob/master/schema.py">schema.py</a> that shows the table schema we will get from this scrape, let's take a quick look at it:</li>
@@ -1077,7 +1084,7 @@ h6:hover .anchor-link {
 </ul>
 <p>Those are all the arguments we will use, but there are additional arguments you can pass about the max date and min date as well.</p>
 <p><strong>This is perfect for one url but in his notes he mentions it takes about 25 minutes to scrape 1,000 reviews (I personally think it's faster than that), but that's a long time to wait to scrape 1k reviews from one company, so let's build a bash script that automatically starts the next python script after the previous one completes.</strong></p>
-<h1 id="4.-The-Bash-script">4. The Bash script<a class="anchor-link" href="#4.-The-Bash-script">&#182;</a></h1><ul>
+<h1 id="4.-The-Bash-Script">4. The Bash Script<a class="anchor-link" href="#4.-The-Bash-Script">&#182;</a></h1><ul>
 <li>The first thing we want to do is open Sublime Text, or your text editor of choice</li>
 <li>Then in order to make it a bash script we want to start the bash script off with <strong>#/bin/bash</strong></li>
 <li>Then let's just go ahead and use the terminal command we want, for the purposes of this I decided to scrape a bunch of entry hourly level companies, like Walmart, McDonalds, Publix, etc. I figured it might be fun to compare in a later article.<ul>
@@ -1099,7 +1106,15 @@ h6:hover .anchor-link {
 </li>
 </ul>
 <p><img src="https://i.imgur.com/fjrMCMi.png" alt="scrape_bash"></p>
-
+<h1 id="5.-Making-the-Bash-Script-Executable">5. Making the Bash Script Executable<a class="anchor-link" href="#5.-Making-the-Bash-Script-Executable">&#182;</a></h1><p>if you look at the files in your directory you will notice that they are all in white text. In order to make the bash script executable you will have to type in the following command: chmod +x my_bash_script like this:</p>
+<p><img src="https://i.imgur.com/W4BQWON.png" alt="chmod"></p>
+<p>This changes the mode from a non-executable to an executable script via <strong>chmod + x</strong>. Now when you look at the files in your directory the bash file should be a different color, mine is green.</p>
+<p><img src="https://i.imgur.com/TdmnJoX.png" alt="chmod_green"></p>
+<p>Now we have an executable bash script, so let's go run it.</p>
+<h1 id="6.-Running-the-Bash-Script">6. Running the Bash Script<a class="anchor-link" href="#6.-Running-the-Bash-Script">&#182;</a></h1><p>Running the bash script is relatively simple. You can try just typing the name of your bash script in the directory, but I had to add ./ scraping_bash to mine to get it to run, like this:</p>
+<p><img src="https://i.imgur.com/1UDLkNh.png" alt="Run_scrape"></p>
+<p>After this, you'll likely want to walk away from your computer for a few hours, depending on how many you company pages you decided to scrape and how many reviews from each site.</p>
+<h1 id="7.-Merging-the-data">7. Merging the data<a class="anchor-link" href="#7.-Merging-the-data">&#182;</a></h1>
 </div>
 </div>
 </div>

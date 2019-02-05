@@ -1053,7 +1053,7 @@ h6:hover .anchor-link {
 <h1 id="2.-Downloading-Requirements">2. Downloading Requirements<a class="anchor-link" href="#2.-Downloading-Requirements">&#182;</a></h1><p>This is a well documented repo so the author has a requirements.txt file. You can follow the instructions in his README.md file and put <strong>pip install -r requirements.txt</strong> in your shell like this:</p>
 <p><img src="https://i.imgur.com/qVa9cFv.png" alt="scrape_pip"></p>
 <ul>
-<li>It should involve you downloading Pandas (which if you don't have shame on you!!!) and <a href="https://pypi.org/project/selenium/">Selenium</a> which automates the web browser/python interaction.</li>
+<li>It should involve you downloading Pandas and <a href="https://pypi.org/project/selenium/">Selenium</a> which automates the web browser/python interaction.</li>
 <li>After that you will need to download and install <a href="http://chromedriver.chromium.org/">chromedriver</a> in the same directory the main.py file is located in. </li>
 </ul>
 <p><strong>Note</strong> I was getting errors when I first started experimenting and realized I didn't have a newer version of Chrome, you need to have at least Chrome 70. I had Chrome 66, which was causing some errors.</p>
@@ -1106,6 +1106,7 @@ h6:hover .anchor-link {
 </li>
 </ul>
 <p><img src="https://i.imgur.com/fjrMCMi.png" alt="scrape_bash"></p>
+<p><strong>Note about Windows</strong>: <a href="https://www.howtogeek.com/261591/how-to-create-and-run-bash-shell-scripts-on-windows-10/">Here</a> is a link that walks you through how to create bash scripts in windows</p>
 <h1 id="5.-Making-the-Bash-Script-Executable">5. Making the Bash Script Executable<a class="anchor-link" href="#5.-Making-the-Bash-Script-Executable">&#182;</a></h1><p>if you look at the files in your directory you will notice that they are all in white text. In order to make the bash script executable you will have to type in the following command: chmod +x my_bash_script like this:</p>
 <p><img src="https://i.imgur.com/W4BQWON.png" alt="chmod"></p>
 <p>This changes the mode from a non-executable to an executable script via <strong>chmod + x</strong>. Now when you look at the files in your directory the bash file should be a different color, mine is green.</p>
@@ -1113,7 +1114,7 @@ h6:hover .anchor-link {
 <p>Now we have an executable bash script, so let's go run it.</p>
 <h1 id="6.-Running-the-Bash-Script">6. Running the Bash Script<a class="anchor-link" href="#6.-Running-the-Bash-Script">&#182;</a></h1><p>Running the bash script is relatively simple. You can try just typing the name of your bash script in the directory, but I had to add ./ scraping_bash to mine to get it to run, like this:</p>
 <p><img src="https://i.imgur.com/1UDLkNh.png" alt="Run_scrape"></p>
-<p>After this, you'll likely want to walk away from your computer for a few hours, depending on how many you company pages you decided to scrape and how many reviews from each site.</p>
+<p>After this, you'll likely want to walk away from your computer for a few hours, depending on how many company pages you decided to scrape and how many reviews from each site.</p>
 <h1 id="7.-Merging-the-data">7. Merging the data<a class="anchor-link" href="#7.-Merging-the-data">&#182;</a></h1><p>The first thing we need to do is load all the data and then add a <strong>Company</strong> column before we append all of the data together.</p>
 
 </div>
@@ -1362,6 +1363,14 @@ h6:hover .anchor-link {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="A-quick-look-at-the-data">A quick look at the data<a class="anchor-link" href="#A-quick-look-at-the-data">&#182;</a></h1>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[60]:</div>
@@ -1430,6 +1439,28 @@ h6:hover .anchor-link {
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Finally">Finally<a class="anchor-link" href="#Finally">&#182;</a></h2><p>we can save it to csv if we want to use it later, which we will as we will explore this dataset further in future posts.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">full_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;glassdoor_data.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+</div>
 </div>
 </div>
 

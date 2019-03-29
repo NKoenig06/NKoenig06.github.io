@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Basics of Git for a Social/Data Scientist — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: Basics of Git for a Social/Data Scientist; Date: 2019-01-20; Author: N. Koenig">
+	<title>SIOP 2019 Data Science Resources — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: SIOP 2019 Data Science Resources; Date: 2019-03-22; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,16 +26,16 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">Basics of Git for a Social/Data Scientist</h1>
+		<h1 itemprop="name headline" class="article-title">SIOP 2019 Data Science Resources</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2019-01-20T08:45:00-06:00" itemprop="datePublished">Sun 20 January 2019</time>
+		<time datetime="2019-03-22T19:15:00-05:00" itemprop="datePublished">Fri 22 March 2019</time>
 	</div>
 	<div>
 		Category:
 		<span itemprop="articleSection">
-			<a href="/category/programming.html" rel="category">programming</a>
+			<a href="/category/data-science.html" rel="category">data science</a>
 		</span>
 	</div>
  
@@ -45,10 +45,10 @@
 			<a href="/tag/data-science.html" rel="tag">Data Science</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/git.html" rel="tag">Git</a>
+			<a href="/tag/math.html" rel="tag">Math</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/version-control.html" rel="tag">Version Control</a>
+			<a href="/tag/python.html" rel="tag">Python</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1027,167 +1027,454 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Basics-of-Git-for-a-Social/Data-Scientist">Basics of Git for a Social/Data Scientist<a class="anchor-link" href="#Basics-of-Git-for-a-Social/Data-Scientist">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>When I started working I was often asked to run analyses on our data. So I would do what I thought everyone else did. You fire up SPSS, you click thru, you get your output, then you paste it into excel, right? I quickly started to realize that I would get the same types of requests fairly often and it became fairly cumbersome to click thru the entire process each times, sometimes having to make very small tweaks after slightly different questions came back.</p>
-<p>This is when I discovered the power of syntax within SPSS. I could just paste the syntax once and then save that syntax. I just needed to point it to the right dataset and make the small tweaks in the syntax file each time a new request came in. I realized it could save me a lot of time. Over time you would start making edits to the script. This would require you to save the files each time.</p>
-<p>Eventually, you'd have a folder with 30 different variations of the syntax, as you make updates, then if you have to share with your colleagues at work you had to either email them or save them all to a shared drive. Which ones had you already uploaded, which ones had you not? Did you make changes to certain files, that you didn't remember? Do you just re-save the entire directory each time?</p>
-<p>Long story, short....keeping track of your version control and syntax required a lot of organization.</p>
-<p>Enter <a href="https://en.wikipedia.org/wiki/Git">Git</a>. Git is a version control system that keeps track of changes in all your computer files.</p>
-<p><img src="https://i.imgur.com/ZxHFq2B.jpg" alt="version_control_joke"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>I am by no means an expert in git and there are far more resources out there that explain all of the amazing stuff you can do like create branches off of the master branch to work on updating specific features. This is especially important if multiple people will be making updates to the files at the same time. But for the purposes of this post I will just share the basics. Like how to use git to quickly send your files to github, which now has <a href="https://techcrunch.com/2019/01/07/github-free-users-now-get-unlimited-private-repositories/"><strong>free private repos</strong></a>.</p>
-<p>So, this article will walk you through:</p>
+<h1 id="So-You-Want-To-Be-A-Data-Scientist?-A-Self-Guided-Curriculum">So You Want To Be A Data Scientist? A Self-Guided Curriculum<a class="anchor-link" href="#So-You-Want-To-Be-A-Data-Scientist?-A-Self-Guided-Curriculum">&#182;</a></h1><p><img src="https://i.imgur.com/OVQ33KM.png" alt="Imgur"></p>
+<p>One of the themes that has been becoming more and more popular over the past few years at SIOP has been the area(s) of data science and machine learning. Unfortunately many of our grad programs don't have the time to provide us with both a well rounded education in the core competencies of both I/O and data science.</p>
+<p>However, <strong>lucky for us</strong> many do provide us with what is in my opinion the most important competencies which can provide a solid foundation for a career in data science.</p>
+<p>While they don't often teach us about random forests, linear algebra, or programming what they do teach us in my experience is more fundamental and more rare in the practice of data science. I will list and describe the areas I think I/O does a great job of teaching.</p>
 <ol>
-<li>Setting up a github account</li>
-<li>Making your first repository</li>
-<li>Cloning the repository</li>
-<li>Creating a small jupyter notebook script</li>
-<li>Using git to make a commit and pushing the updates to github</li>
+<li>Critical Thinking: The idea that as data scientists we might not have all the data to fully answer the question asked is a difficult concept for many people with more pure computer science and statistics backgrounds to grasp at first. I/Os tend to understand that the data is what was thought to be important by one decision maker and at one point in time and may not even be appropriate given the question being asked. </li>
+<li>Research Methods: I/Os typically have strong training in research methods. <a href="https://www.amazon.com/Experimental-Quasi-Experimental-Designs-Generalized-Inference/dp/0395615569">Our holy grail for years in grad school</a> taught us all about the many experimental and quasi-experimental designs, along with the pros and cons of each. This allows us to view each research question in the context of the quasi-experimental design the data was collected in. On the other hand CS and Stats trained professionals might have only heard of A/B testing. </li>
 </ol>
-<p>I think this provides the basics of using git and is something that is valuable to all social scientists.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="1.-Setting-up-a-Github-account">1. Setting up a Github account<a class="anchor-link" href="#1.-Setting-up-a-Github-account">&#182;</a></h1><p>When you go to <a href="https://github.com/">https://github.com/</a> you will be immediately asked if you want to start a github account. You can enter a username, your email and a password and you are ready to go.</p>
-<h1 id="2.-Making-your-first-repository">2. Making your first repository<a class="anchor-link" href="#2.-Making-your-first-repository">&#182;</a></h1><ul>
-<li>Under your user on the top right of the page you will see a dropdown menu. One of the options is <strong>Your repositories</strong>. Let's click there.</li>
-<li>After that you will see a <strong>New</strong> option next to the <strong>Find a repository</strong> search bar. Click there. </li>
-<li>Let's give our repo a name; for the purposes of this I'll call it test-repository. I'll give it a description of "This is a test", I'll set it to private, and I'll check the box that says initialize a README. See an image of it below.</li>
+<p><strong>AND</strong> given the fact that most programming needs to happen by repetitive practice on your own time, learning by yourself through trial and error is honestly a great way to go about it. Plus, unlike learning critical thinking and research methods, there are an abundance of free or near free resources online to learn programming, linear algebra, and machine learning.</p>
+<p>Our hope for this session and this blog post is to provide you with the resources we found helpful. We also reflected back on our journey and the many courses/books we tried and decided if we could do it all over again we'd probably have focused on only a few of them. We provided these courses in a curriculum that any of you can follow to build the skills necessary to make the transition into Data Science.</p>
+<h1 id="The-Debate!">The Debate!<a class="anchor-link" href="#The-Debate!">&#182;</a></h1><p>There is often a debate when it comes to what programming language to learn. For open source the options are typically Python or R. In all honesty I think it's best to be able to use both, but I'd pick one and run with it. It's better to be able to do a lot in one language than a few things in either language. I'll give a few thoughts on each one below that hopefully helps you make a decision on which to focus on and then after that we will lay out our self-guided curriculum for both.</p>
+<h2 id="Python">Python<a class="anchor-link" href="#Python">&#182;</a></h2><ul>
+<li>A complete programming language. You can build a website, and a deep learning algorithm. This makes it extremely user friendly when it comes to doing traditional programming work that often comes up, like building functions to extract data, etc. </li>
+<li>The preferred programming language by the ML &amp; DL community. This means that the cutting edge stuff in ML &amp; DL will almost always be coming out first on Python and then someone will later build a wrapper or a similar implementation in R.</li>
+<li>All software developers know Python. While it's true most software developers don't prefer Python for the majority of their work they are all familiar with it and typically have an easier time tying Python code into their existing environment if your goal is to put a model into production. </li>
 </ul>
-<p><img src="https://i.imgur.com/tSlGfdK.png" alt="repo"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Congratulations!! You now have your first github repo!</strong></p>
-<h1 id="3.-Clone-your-repository">3. Clone your repository<a class="anchor-link" href="#3.-Clone-your-repository">&#182;</a></h1><p>This simply means copying your repository to your local machine (you could also clone it to a cloud machine if you had a live instance). The great thing about github is you can clone everyone's repository. I'd typically recommend forking it first, so that way you can just use this same process to make any changes to it. <a href="https://github.community/t5/Support-Protips/The-difference-between-forking-and-cloning-a-repository/ba-p/1372">Here's</a> a quick article on the differences between cloning and forking for those interested.</p>
-<p>To clone your repo you just click on the green clone or download tab and if you press the little notepad button it copies the url for you.</p>
-<p><img src="https://i.imgur.com/KLRdETI.png" alt="clone_repo"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we can clone our repo. One quick note is that if you followed my earlier tutorial on setting up a python environment and you downloaded miniconda or anaconda, it should have come with git. If you did not, you may need to download git. You can follow the instructions for your specific OS <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">here</a>.</p>
-<p>let's open up the bash shell/terminal and navigate to where we want the repository to go. I'm going to go to my desktop and the projects folder. Then we type in <strong>git clone</strong> and we paste the link we copied from above.</p>
-<p><img src="https://i.imgur.com/y9fHqUk.png" alt="clone_bash_1"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now because I made this a private repo it will ask me for my username and password. If you had instead made it public it would just automatically clone it for you.</p>
-<p>I found a <a href="https://www.lemoda.net/windows/windows2unix/windows2unix.html">good resource</a> for communicating between unix and windows bash commands. This might be useful to keep as you work through bash stuff with me as I will be talking about unix commands, so if you are in windows your commands might be slightly different.</p>
-<p>For example I want to use the <strong>ls</strong> command now to view the directories in the Projects folder to ensure we did in fact clone the repo. But if you are in windows according to the resource link you will need to use <strong>dir</strong></p>
-<p><img src="https://i.imgur.com/9dRwv3b.png" alt="clone_bash_2"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now as you can see we do have a directory/folder titled test-repository and if you navigate to that repo you can see we have a README.md, which is exactly what we had in our github repo. So now you have the repository locally.</p>
-<h1 id="4.-Now-let's-create-a-simple-Jupyter-Notebook-so-we-can-make-our-first-commit-and-push-it-to-github.">4. Now let's create a simple Jupyter Notebook so we can make our first commit and push it to github.<a class="anchor-link" href="#4.-Now-let's-create-a-simple-Jupyter-Notebook-so-we-can-make-our-first-commit-and-push-it-to-github.">&#182;</a></h1><ul>
-<li>Open jupyter, navigate to the repo folder and open up a notebook</li>
+<p><strong>The old saying is....Python is the second best language for everything.</strong></p>
+<h2 id="R">R<a class="anchor-link" href="#R">&#182;</a></h2><ul>
+<li>A statistical programming language. Developed specifically for working with dataframes. This makes a lot of the commands in base R extremely well suited for the way the I/O community views data analysis. </li>
+<li>Great niche packages, especially for the social sciences. If you can think of a niche implementation of an algorithm or a methodology, someone probably already has a package for it in R. This isn't necessarily true in Python, that's not to say you can't build one for Python, but just that most package devs in Python are focused on software dev, ML, and DL, and a lot less on Item Response Theory and Structural Equation Modeling. </li>
+<li>Data manipulation and management is extremely easy and intuitive (or so I've heard) with dplyr and tidyr. I personally haven't used this, but people familiar with both often complain about the lack of a dplyr and tidyr implementation in Python. </li>
 </ul>
-<p>I wrote a basic function and tested it with a couple of unit tests I saved it as <strong>First_commit.ipynb</strong></p>
-<p><strong>Hey... I can do AI!!!</strong></p>
-<p><img src="https://i.imgur.com/iHHbGyN.png" alt="first_commit"></p>
+<p><strong>Now onto the Curriculum(s)!</strong></p>
+<h1 id="The-Python-Self-Guided-Curriculum">The Python Self-Guided Curriculum<a class="anchor-link" href="#The-Python-Self-Guided-Curriculum">&#182;</a></h1><table>
+<thead><tr>
+<th>Step</th>
+<th>Resource Title</th>
+<th>Why This Resource?</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Codecademy Introduction to Python</td>
+<td>It's the fastest and easiests initial dive into Python out there.  Learning Python basics is a fundamental first step into getting into Machine Learning and this course will have you up in running in under a minute.  The class provides a great introduction to Python and trains you up through Object Oriented Programming.  This should be enough for you to begin learning Machine Learning specific Python modules and understanding Machine Learning specific educational resources.</td>
+<td><a href="https://www.codecademy.com/learn/learn-python">Link</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Python for Data Science and Machine Learning Bootcamp</td>
+<td>It draws a good connection between basic Python and the more specific visualization and ML libraries that are required to begin doing Machine Learning.  It also provides a nice overview intro to Python course to verify that you learned enough in the previous step and provide confidence in your ability to move on (you will always feel like you don't know enough to move on).   The class ends with a nice applied introduction to most Machine Learning methods giving you an idea of what each method does and allows you to decide where you want to dive deeper moving forward.</td>
+<td><a href="https://www.udemy.com/python-for-data-science-and-machine-learning-bootcamp/?couponCode=CURRENT_PY_DS_ML">Link</a></td>
+</tr>
+<tr>
+<td>3A</td>
+<td>Python Machine Learning: Machine Learning and Deep Learning with Python, scikit-learn, and TensorFlow</td>
+<td>Provides a nice survey of machine learning and deep learning methods. Assumes familiarity with Python and machine learning fundamentals.</td>
+<td><a href="https://www.amazon.com/Python-Machine-Learning-scikit-learn-TensorFlow-ebook/dp/B0742K7HYF/ref=pd_sim_351_8?_encoding=UTF8&amp;pd_rd_i=B0742K7HYF&amp;pd_rd_r=6e39d5da-473a-11e9-87a3-d1c5d12b63d5&amp;pd_rd_w=LEWix&amp;pd_rd_wg=Tvxvm&amp;pf_rd_p=90485860-83e9-4fd9-b838-b28a9b7fda30&amp;pf_rd_r=W7AHNJQ9PK89P34WHPX0&amp;psc=1&amp;refRID=W7AHNJQ9PK89P34WHPX0">Link</a></td>
+</tr>
+<tr>
+<td>3B</td>
+<td>Hands-On Machine Learning with Scikit-Learn and Tensorflow</td>
+<td>Provides a nice sruvey of machine learning and deep learning methods. Assumes familiarity with Python and machine learning fundamentals.</td>
+<td><a href="https://github.com/devakar/deep-learning-books/blob/master/Hands%20on%20Machine%20Learning%20with%20Scikit%20Learn%20and%20TensorFlow.pdf">Link</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Deep Learning with Python</td>
+<td>This book provides a history of deep learning, an introduction to the concepts and topics relevant to understanding deep learning, and then walk throughs of different deep learning methods using Keras.  The book was written by Francois Chollet, the lead developer at Google for Keras.  It's clearly written and a great way to quickly dive into deep learning methods and approaches.  Additionally, Chollet stays away from confusing looking mathematical equations and insteads writes out any relevant equations in Python code.  This approach is surprisingly effective as it makes it clear what the equation is doing and how the deep learning method is using that math to develop models from the data.</td>
+<td><a href="https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438/ref=asc_df_1617294438/?tag=hyprod-20&amp;linkCode=df0&amp;hvadid=266029226349&amp;hvpos=1o1&amp;hvnetw=g&amp;hvrand=8696879907107195053&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=9021464&amp;hvtargid=pla-356949152624&amp;psc=1">Link</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Coursera Deep Learning Specialization</td>
+<td>Andrew Ng did a lot over the last decade to make machine learning and deep learning a household name. He is one of the founders of Coursera and his Machine Learning course on Coursera is still probably one of the most popular courses ever on the platform. This specialization does a great job of breaking down the math and walking you through the code step by step for neural networks, CNNs, and RNNs. It's a great overview of everything deep learning has to offer.</td>
+<td><a href="https://www.coursera.org/specializations/deep-learning">Link</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="The-R-Self-Guided-Curriculum">The R Self-Guided Curriculum<a class="anchor-link" href="#The-R-Self-Guided-Curriculum">&#182;</a></h1><table>
+<thead><tr>
+<th>Step</th>
+<th>Resource Title</th>
+<th>Why This Resource?</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SWIRL</td>
+<td>SWIRL teaches you R programming and data science interactively, at your own pace, and right in the R console.  This is a fast and effective way to learn R from scratch from a Data Science lense.</td>
+<td><a href="https://swirlstats.com/">Link</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>An Introduction to Statistical Learning with applications in r</td>
+<td>This book provides an introduction to statistical learning methods. It is aimed for upper level undergraduate students, masters students and Ph.D. students in the non-mathematical sciences. The book also contains a number of R labs with detailed explanations on how to implement the various methods in real life settings, and should be a valuable resource for a practicing data scientist.</td>
+<td><a href="http://www-bcf.usc.edu/~gareth/ISL/">Link</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Data Science and Machine Learning Bootcamp with R</td>
+<td>Similar to Python's implementation of this course it takes you from the basics of R programming, through vector and matrix algebra, into the ggplot2 plotting library and finally introduces you to Machine Learning using real datasets.</td>
+<td><a href="https://www.udemy.com/data-science-and-machine-learning-bootcamp-with-r/?couponCode=CURRENT_STU_R">Link</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Pattern Recognition and Machine Learning</td>
+<td>This book, intended for advanced undergraduates, PhD students, researchers and practitioners in the ML field, provides an authoritative presentation of many statistical techniques  in machine learning. The book is as an excellent reference, written very clearly and structured in an excellent way. It is not math heavy and offers plenty of heuristic and intutions.</td>
+<td><a href="http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf">Link</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Pattern Recognition - Lecture Notes, North Carolina University</td>
+<td>A series of lecture notes from Professor Osuna on machine learning. The slides are extremely clear, simple and full of step by step examples.</td>
+<td><a href="https://psi.engr.tamu.edu/courses/">Link</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Deep Learning with R</td>
+<td>This book provides a history of deep learning, an introduction to the concepts and topics relevant to understanding deep learning, and then walk throughs of different deep learning methods using Keras.  The book was written by Francois Chollet, the lead developer at Google for Keras.  It's clearly written and a great way to quickly dive into deep learning methods and approaches.  Additionally, Chollet stays away from confusing looking mathematical equations and insteads writes out any relevant equations in R code.  This approach is surprisingly effective as it makes it clear what the equation is doing and how the deep learning method is using that math to develop models from the data.</td>
+<td><a href="https://www.amazon.com/Deep-Learning-R-Francois-Chollet/dp/161729554X">Link</a></td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="5.-Now-let's-do-our-first-commit">5. Now let's do our first commit<a class="anchor-link" href="#5.-Now-let's-do-our-first-commit">&#182;</a></h1><ul>
-<li>After you wrote your function and saved your .ipynb file we can go back to the bash shell</li>
-<li>Ensure you are still in the same directory and if you use the command to list directories you should see your .ipynb file</li>
-<li>First let's do a <strong>git status</strong> to see that we have untracked files present</li>
-<li>We can then use the command <strong>git add .</strong> which will add all of our files in the directory</li>
-<li>To do your first <strong>commit</strong> type the following command <strong>git commit -m "This is my first commit to this repo"</strong> where the dash m allows you to make a comment about the commit</li>
-</ul>
-<p><img src="https://i.imgur.com/Lh2raBb.png" alt="commit"></p>
+<h1 id="A-list-of-all-resources-gathered-by-our-team-along-with-the-approximate-level-of-difficulty.">A list of all resources gathered by our team along with the approximate level of difficulty.<a class="anchor-link" href="#A-list-of-all-resources-gathered-by-our-team-along-with-the-approximate-level-of-difficulty.">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">All_Resources</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/All_Resources.csv&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">All_Resources</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+</pre></div>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[41]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Title</th>
+      <th>Topic</th>
+      <th>Description</th>
+      <th>Language</th>
+      <th>Modality</th>
+      <th>Level of Difficulty</th>
+      <th>Link</th>
+      <th>Other</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Introduction to Computer Science and Programming Using Python</td>
+      <td>Intro to Computer Science Using Python</td>
+      <td>Computer Science is at the heart of all programming. It's often beneficial in your career as a data scientist to understand CS principals so you can communicate with your engineers and understand the limitations of algorithms and your code.</td>
+      <td>Python</td>
+      <td>Online Education</td>
+      <td>Moderate</td>
+      <td>https://www.edx.org/course/introduction-to-computer-science-and-programming-using-python-0</td>
+      <td>This course can be audited for free or you can pay 75 for the certificate.</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Complete Python Bootcamp</td>
+      <td>Introduction to Python</td>
+      <td>A beginners guide to Python. Before you can become a data scientist you need to know the language you will be using. This course offers a complete overview of programming in Python. Loops and Functions will become increasingly important as you become more advanced.</td>
+      <td>Python</td>
+      <td>Online Education</td>
+      <td>Beginner</td>
+      <td>https://www.udemy.com/complete-python-bootcamp/?couponCode=CURRENT_STU_COMPY</td>
+      <td>The link provided should allow you to get the course for 11</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Python for Data Science and Machine Learning Bootcamp</td>
+      <td>Introduction to DS &amp; ML using Python</td>
+      <td>A robust introduction to Data Science and Machine Learning using Python. This course starts with a refresher of basic Python that will be useful for the course and then moves into linear algebra concepts using NumPy. After that they go into data visualization options and methods within Python and finally they touch on important machine learning algorithms.</td>
+      <td>Python</td>
+      <td>Online Education</td>
+      <td>Moderate</td>
+      <td>https://www.udemy.com/python-for-data-science-and-machine-learning-bootcamp/?couponCode=CURRENT_PY_DS_ML</td>
+      <td>This link should come attached with a coupon to pay 11 for the course.</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Python Data Science Handbook</td>
+      <td>Introduction to DS &amp; ML using Python</td>
+      <td>Very similar to the bootcamp material, although Jake comes at it from a bit of a different angle, with different problems. IMO It's very important to review these algorithms and methods in different contexts to see how generalizable and useful they can be.</td>
+      <td>Python</td>
+      <td>Book</td>
+      <td>Moderate</td>
+      <td>https://jakevdp.github.io/PythonDataScienceHandbook/</td>
+      <td>The book is available for free on his Github, but as he suggests if you enjoy his work it would make sense to purchase it.</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking</td>
+      <td>Conceptual understanding of fundamentals</td>
+      <td>This book provides an overview of the terminology and concepts that underly data science. This book doesn't teach how to do data science, but is a place to start.</td>
+      <td>English</td>
+      <td>Book</td>
+      <td>Beginner</td>
+      <td>Available on Amazon</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Pandas Cookbook: Recipes for Scientific Computing, Time Series Analysis and Data Visualization using Python</td>
+      <td>Pandas (Python)</td>
+      <td>Fairly comprehensive overview of Pandas. There are a ton of tips and tricks in here that you will likely spend way too much time searching for if you only use online resources.</td>
+      <td>Python</td>
+      <td>Book</td>
+      <td>Beginner</td>
+      <td>Available on Amazon</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Python Machine Learning: Machine Learning and Deep Learning with Python, scikit-learn, and TensorFlow</td>
+      <td>Scikit-Learn &amp; TensorFlow (Python)</td>
+      <td>Provides a nice sruvey of machine learning and deep learning methods. Assumes familiarity with Python and machine learning fundamentals.</td>
+      <td>Python</td>
+      <td>Book</td>
+      <td>Moderate</td>
+      <td>Available on Amazon</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Codecademy Introduction to Python</td>
+      <td>Introduction to Python</td>
+      <td>A beginner class for learning Python in a hands on environment.  One great thing about this class is it all happens in an online IDE which means there's no requirement to install anything on your computer.  It allows for one to quickly get to actual programming instead of spending time at the beginning setting up your computer.  This removes a lot of the roadblocks that can start a true beginner.  Additionally, the class is entirely setup as a walkthrough with no video lectures.  This makes it easy to pick up a topic/lesson and take a module quickly wherever you are, no sound required.  From a beginners perspective, this is a great first step class.</td>
+      <td>Python</td>
+      <td>Online Education</td>
+      <td>Beginner</td>
+      <td>https://www.codecademy.com/learn/learn-python</td>
+      <td>The free class offers a lot, but it's still based in Python 2.</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Deep Learning with Python</td>
+      <td>Introduction to Deep Learning with Keras in Python</td>
+      <td>This book provides a history of deep learning, an introduction to the concepts and topics relevant to understanding deep learning, and then walk throughs of different deep learning methods using Keras.  The book was written by Francois Chollet, the lead developer at Google for Keras.  It's clearly written and a great way to quickly dive into deep learning methods and approaches.  Additionally, Chollet stays away from confusing looking mathematical equations and insteads writes out any relevant equations in Python code.  This approach is surprisingly effective as it makes it clear what the equation is doing and how the deep learning method is using that math to develop models from the data.</td>
+      <td>Python</td>
+      <td>Book</td>
+      <td>Moderate</td>
+      <td>https://www.amazon.com/dp/1617294438/ref=cm_sw_em_r_mt_dp_U_0b5MCbCJACFX6</td>
+      <td>The quality of the physical book is poor, pages started ripping out of my book within two weeks of use.  However, the book comes with a free PDF version as well after you purchase.</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Hands-On Machine Learning with Scikit-Learn and Tensorflow</td>
+      <td>Scikit-Learn &amp; TensorFlow (Python)</td>
+      <td>Provides a nice survey of machine learning and deep learning methods.  Assumes familiarity with Python.</td>
+      <td>Python</td>
+      <td>Book</td>
+      <td>Moderate</td>
+      <td>https://github.com/devakar/deep-learning-books/blob/master/Hands%20on%20Machine%20Learning%20with%20Scikit%20Learn%20and%20TensorFlow.pdf</td>
+      <td>The PDF of the books is free online, but you can also support the author and buy the book on Amazon.</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>The Hundred-Page Machine Learning Book</td>
+      <td>Machine Learning</td>
+      <td>Provides a knowledge compression of ML approaches all in 100 pages.  It's a relateable and easy to understand jump into machine learning.</td>
+      <td>English and Math</td>
+      <td>Book</td>
+      <td>Beginner</td>
+      <td>http://themlbook.com/wiki/doku.php</td>
+      <td>The funding model is to read the book and then pay for it based on the value you think you got out of it.  You can also buy the book on Amazon.</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Beginner SQL Track on Treehouse</td>
+      <td>Introduction to SQL</td>
+      <td>Provides an easy to use and quick introduction to SQL.  SQL is often not required to conduct Machine Learning, but is often needed to querry the databases where your data will come from so you can perform Machine Learning.  This class teaches you 90% of what you will need to extract the data important to you for your Machine Learning projects.</td>
+      <td>SQL</td>
+      <td>Online Education</td>
+      <td>Beginner</td>
+      <td>https://teamtreehouse.com/tracks/beginning-sql</td>
+      <td>This is not a comprehensive SQL course, it will quickly get you up to a functional level with SQL so you can pull the data you need and start manipulating it in Python.</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Python Tutor</td>
+      <td>Support Resource</td>
+      <td>This is a very helpful website that visually shows you what is happening in your code as it is executing.  It will help you understand how your code works and why you may be stuck on an error.</td>
+      <td>Python</td>
+      <td>Online Education</td>
+      <td>Beginner</td>
+      <td>http://pythontutor.com/</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Coursera Deep Learning Specialization</td>
+      <td>Deep Learning</td>
+      <td>Andrew Ng did a lot over the last decade to make machine learning and deep learning a household name. He is one of the founders of Coursera and his Machine Learning course on Coursera is still probably one of the most popular courses ever on the platform. This specialization does a great job of breaking down the math and walking you through the code step by step for neural networks, CNNs, and RNNs. It's a great overview of everything deep learning has to offer.</td>
+      <td>Python</td>
+      <td>Online</td>
+      <td>Advanced</td>
+      <td>https://www.coursera.org/specializations/deep-learning</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Data Framed</td>
+      <td>General Discussion</td>
+      <td>This podcast has a wide variety of experts from the field as guests and does a great job of discussing data science in applied practical terms.  Each interview follows a similar pattern.  The guest is asked what they are known for in the field, how they became a data scientist, what problems they currently are working on in the real world, and where they see the future of data science going.</td>
+      <td>English</td>
+      <td>Podcast</td>
+      <td>Beginner</td>
+      <td>https://www.datacamp.com/community/podcast</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Pattern Classification</td>
+      <td>Machine Learning</td>
+      <td>This is a timeless, excellent, comprehensive, and very clear book on machine learning with a practical, not math heavy approach. The authors explain the concepts and the reasoning behind the mathematical formulae in a super clear and simple fashion. It is a defining book in the field that anyone wanting to become an expert in the field should read and use as a reference.</td>
+      <td>R</td>
+      <td>Book</td>
+      <td>Moderate</td>
+      <td>https://www.amazon.com/Pattern-Classification-Pt-1-Richard-Duda/dp/0471056693</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Pattern Recognition - Lecture Notes, North Carolina University</td>
+      <td>Machine Learning</td>
+      <td>A series of lecture notes from Professor Osuna on machine learning. The slides are extremely clear, simple and full of step by step examples.</td>
+      <td>R</td>
+      <td>Online Education</td>
+      <td>Moderate</td>
+      <td>https://psi.engr.tamu.edu/courses/</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Statistical Learning in R - Stanford University</td>
+      <td>Machine Learning</td>
+      <td>An introductory-level course in supervised learning in R. The lectures are not math heavy and focus on explaininhg the concepts behind the algorithms</td>
+      <td>R</td>
+      <td>Online Education</td>
+      <td>Moderate</td>
+      <td>https://lagunita.stanford.edu/courses/HumanitiesSciences/StatLearning/Winter2016/about</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Numerical Linear Algebra</td>
+      <td>Linear Algebra</td>
+      <td>A course that teaches linear algebra using NumPy, PyTorch, and programming.</td>
+      <td>Python</td>
+      <td>Online</td>
+      <td>Advanced</td>
+      <td>https://github.com/fastai/numerical-linear-algebra</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Intro to Deep Learning with PyTorch</td>
+      <td>Deep Learning</td>
+      <td>An overview course of deep learning taught using PyTorch.</td>
+      <td>Python</td>
+      <td>Online</td>
+      <td>Moderate</td>
+      <td>https://www.udacity.com/course/deep-learning-pytorch--ud188</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Practical Deep Learning for Coders</td>
+      <td>Deep Learning</td>
+      <td>A great course that walks you through how to build state of the art DL models in minutes. It's user friendly API integrates directly with PyTorch and makes building state of the art models extremely easy.</td>
+      <td>Python</td>
+      <td>Online</td>
+      <td>Advanced</td>
+      <td>https://course.fast.ai/</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>University of Washington Machine Learning Specialization</td>
+      <td>Machine Learning</td>
+      <td>This is a Machine Learning specialization through Coursera taught by professors from the University of Washington. IMO this course does a great job of going deeper into the math behind linear and logistic regression.</td>
+      <td>Python</td>
+      <td>Online</td>
+      <td>Moderate</td>
+      <td>https://www.coursera.org/specializations/machine-learning</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
 </div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So now you've just made your first commit, but in order to get it to github you need to do one more thing.</p>
-<ul>
-<li><strong>git push -u origin master</strong> will push it upstream to the origin master branch (which is the only branch we currently have)</li>
-</ul>
-<p><img src="https://i.imgur.com/F6mnW0l.png" alt="push"></p>
+</div>
+
+</div>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Now-let's-go-checkout-out-our-github-repo!!!">Now let's go checkout out our github repo!!!<a class="anchor-link" href="#Now-let's-go-checkout-out-our-github-repo!!!">&#182;</a></h2><p>and look what we have! We have our notebook in our repo with my most recent commit message next to my username.</p>
-<p><img src="https://i.imgur.com/HR4gkFF.png" alt="github"></p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="The-TLDR-version:">The TLDR version:<a class="anchor-link" href="#The-TLDR-version:">&#182;</a></h1><p>Now you have successfully leveraged git and moving forward if you structure all of your projects like this it's as simple as the following four commands in the bash shell after navigating to the directory.</p>
-<ol>
-<li><strong>git status</strong></li>
-<li><strong>git add .</strong></li>
-<li><strong>git commit -m "notes about the commit"</strong></li>
-<li><strong>git push u - origin master</strong></li>
-</ol>
-<p>I hope I communicated how important this is and even if your company does not use github the first 3 commands still work within your local machine and there are ways to go back in history to look at previous versions and changes that have been made to specific files.</p>
-<p>Also, this is literally very basic use of git, it has a ton more features.</p>
-<p>Additional Resources:</p>
-<ul>
-<li><a href="https://medium.freecodecamp.org/what-is-git-and-how-to-use-it-c341b049ae61">Article on intro to git</a></li>
-<li><a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics">Article on git basics</a></li>
-</ul>
-<h1 id="You-are-well-on-your-way-to-becoming-a-technologically-saavy-social-scientist!!">You are well on your way to becoming a technologically saavy social scientist!!<a class="anchor-link" href="#You-are-well-on-your-way-to-becoming-a-technologically-saavy-social-scientist!!">&#182;</a></h1>
-</div>
-</div>
 </div>
  
 
@@ -1227,7 +1514,7 @@ h6:hover .anchor-link {
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'Basics of Git for a Social/Data Scientist';
+    var disqus_title = 'SIOP 2019 Data Science Resources';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

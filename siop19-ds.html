@@ -1033,7 +1033,7 @@ h6:hover .anchor-link {
 <p>While they don't often teach us about random forests, linear algebra, or programming what they do teach us in my experience is more fundamental and more rare in the practice of data science. I will list and describe two specific areas I think I/O does a great job of teaching that are often forgotten by many.</p>
 <ol>
 <li>Critical Thinking: The idea that as data scientists we might not have all the data to fully answer the question asked is a difficult concept for many people with more pure computer science and statistics backgrounds to grasp at first. I/Os tend to understand that the data is what was thought to be important by one decision maker and at one point in time and may not even be appropriate given the question being asked. We can leverage this more holistic view of the problem to identify if we are asking the right questions, have the right data to answer the question(s) and as a lead into the second area whether we are using the right methodology and/or algorithms to answer the question(s).</li>
-<li>Research Methods: I/Os typically have strong training in research methods. <a href="https://www.amazon.com/Experimental-Quasi-Experimental-Designs-Generalized-Inference/dp/0395615569">Our holy grail for years in grad school</a> taught us all about the many experimental and quasi-experimental designs, along with the pros and cons of each. This allows us to view each research question in the context of the quasi-experimental design the data was collected in. On the other hand CS and Stats trained professionals might have only heard of A/B testing. We also typically have a strong understanding of the pros and cons of most of the mores standard machine learning algorithms (linear vs. logistic regression, ANOVAs, etc.) for this reason the image below wasn't as mind blowing to me as it was to many of the more pure data scientists I saw posting it all over the internet. </li>
+<li>Research Methods: I/Os typically have strong training in research methods. <a href="https://www.amazon.com/Experimental-Quasi-Experimental-Designs-Generalized-Inference/dp/0395615569">Our holy grail for years in grad school</a> taught us all about the many experimental and quasi-experimental designs, along with the pros and cons of each. This allows us to view each research question in the context of the quasi-experimental design the data was collected in. On the other hand CS and Stats trained professionals might have only heard of A/B testing. We also typically have a strong understanding of the pros and cons of most of the more standard machine learning algorithms (linear vs. logistic regression, ANOVAs, etc.) for this reason the image below wasn't as mind blowing to me as it was to many of the more pure data scientists I saw posting it all over the internet. </li>
 </ol>
 <p><img src="https://i.imgur.com/fY8uQ41.png" alt="Imgur"></p>
 <p><strong>AND</strong> given the fact that most programming needs to happen by repetitive practice on your own time, learning by yourself through trial and error is honestly a great way to go about it. Plus, unlike learning critical thinking and research methods, there are an abundance of free or near free resources online to learn programming, linear algebra, and machine learning.</p>
@@ -1174,12 +1174,11 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">All_Resources</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/All_Resources.csv&#39;</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">All_Resources</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">All_Resources</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1192,7 +1191,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[41]:</div>
+<div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -1234,7 +1233,7 @@ h6:hover .anchor-link {
       <td>Python</td>
       <td>Online Education</td>
       <td>Moderate</td>
-      <td>https://www.edx.org/course/introduction-to-computer-science-and-programming-using-python-0</td>
+      <td>https://bit.ly/2IvLZd4</td>
       <td>This course can be audited for free or you can pay 75 for the certificate.</td>
     </tr>
     <tr>
@@ -1245,7 +1244,7 @@ h6:hover .anchor-link {
       <td>Python</td>
       <td>Online Education</td>
       <td>Beginner</td>
-      <td>https://www.udemy.com/complete-python-bootcamp/?couponCode=CURRENT_STU_COMPY</td>
+      <td>https://bit.ly/2UlHqXv</td>
       <td>The link provided should allow you to get the course for 11</td>
     </tr>
     <tr>
@@ -1256,7 +1255,7 @@ h6:hover .anchor-link {
       <td>Python</td>
       <td>Online Education</td>
       <td>Moderate</td>
-      <td>https://www.udemy.com/python-for-data-science-and-machine-learning-bootcamp/?couponCode=CURRENT_PY_DS_ML</td>
+      <td>https://bit.ly/2VfuijJ</td>
       <td>This link should come attached with a coupon to pay 11 for the course.</td>
     </tr>
     <tr>
@@ -1322,7 +1321,7 @@ h6:hover .anchor-link {
       <td>Python</td>
       <td>Book</td>
       <td>Moderate</td>
-      <td>https://www.amazon.com/dp/1617294438/ref=cm_sw_em_r_mt_dp_U_0b5MCbCJACFX6</td>
+      <td>Available on Amazon</td>
       <td>The quality of the physical book is poor, pages started ripping out of my book within two weeks of use.  However, the book comes with a free PDF version as well after you purchase.</td>
     </tr>
     <tr>
@@ -1333,7 +1332,7 @@ h6:hover .anchor-link {
       <td>Python</td>
       <td>Book</td>
       <td>Moderate</td>
-      <td>https://github.com/devakar/deep-learning-books/blob/master/Hands%20on%20Machine%20Learning%20with%20Scikit%20Learn%20and%20TensorFlow.pdf</td>
+      <td>https://bit.ly/2FT5FUA</td>
       <td>The PDF of the books is free online, but you can also support the author and buy the book on Amazon.</td>
     </tr>
     <tr>
@@ -1399,7 +1398,7 @@ h6:hover .anchor-link {
       <td>R</td>
       <td>Book</td>
       <td>Moderate</td>
-      <td>https://www.amazon.com/Pattern-Classification-Pt-1-Richard-Duda/dp/0471056693</td>
+      <td>https://amzn.to/2uJncrW</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -1421,7 +1420,7 @@ h6:hover .anchor-link {
       <td>R</td>
       <td>Online Education</td>
       <td>Moderate</td>
-      <td>https://lagunita.stanford.edu/courses/HumanitiesSciences/StatLearning/Winter2016/about</td>
+      <td>https://stanford.io/1Ry9D60</td>
       <td>NaN</td>
     </tr>
     <tr>

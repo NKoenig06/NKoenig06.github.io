@@ -981,7 +981,7 @@ h6:hover .anchor-link {
 &lt;p&gt;While they don't often teach us about random forests, linear algebra, or programming what they do teach us in my experience is more fundamental and more rare in the practice of data science. I will list and describe two specific areas I think I/O does a great job of teaching that are often forgotten by many.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Critical Thinking: The idea that as data scientists we might not have all the data to fully answer the question asked is a difficult concept for many people with more pure computer science and statistics backgrounds to grasp at first. I/Os tend to understand that the data is what was thought to be important by one decision maker and at one point in time and may not even be appropriate given the question being asked. We can leverage this more holistic view of the problem to identify if we are asking the right questions, have the right data to answer the question(s) and as a lead into the second area whether we are using the right methodology and/or algorithms to answer the question(s).&lt;/li&gt;
-&lt;li&gt;Research Methods: I/Os typically have strong training in research methods. &lt;a href="https://www.amazon.com/Experimental-Quasi-Experimental-Designs-Generalized-Inference/dp/0395615569"&gt;Our holy grail for years in grad school&lt;/a&gt; taught us all about the many experimental and quasi-experimental designs, along with the pros and cons of each. This allows us to view each research question in the context of the quasi-experimental design the data was collected in. On the other hand CS and Stats trained professionals might have only heard of A/B testing. We also typically have a strong understanding of the pros and cons of most of the mores standard machine learning algorithms (linear vs. logistic regression, ANOVAs, etc.) for this reason the image below wasn't as mind blowing to me as it was to many of the more pure data scientists I saw posting it all over the internet. &lt;/li&gt;
+&lt;li&gt;Research Methods: I/Os typically have strong training in research methods. &lt;a href="https://www.amazon.com/Experimental-Quasi-Experimental-Designs-Generalized-Inference/dp/0395615569"&gt;Our holy grail for years in grad school&lt;/a&gt; taught us all about the many experimental and quasi-experimental designs, along with the pros and cons of each. This allows us to view each research question in the context of the quasi-experimental design the data was collected in. On the other hand CS and Stats trained professionals might have only heard of A/B testing. We also typically have a strong understanding of the pros and cons of most of the more standard machine learning algorithms (linear vs. logistic regression, ANOVAs, etc.) for this reason the image below wasn't as mind blowing to me as it was to many of the more pure data scientists I saw posting it all over the internet. &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/fY8uQ41.png" alt="Imgur"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;AND&lt;/strong&gt; given the fact that most programming needs to happen by repetitive practice on your own time, learning by yourself through trial and error is honestly a great way to go about it. Plus, unlike learning critical thinking and research methods, there are an abundance of free or near free resources online to learn programming, linear algebra, and machine learning.&lt;/p&gt;
@@ -1122,12 +1122,11 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[41]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[18]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;All_Resources&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data/All_Resources.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;display.max_colwidth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;All_Resources&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;All_Resources&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
@@ -1140,7 +1139,7 @@ h6:hover .anchor-link {
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[41]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[18]:&lt;/div&gt;
 
 
 
@@ -1182,7 +1181,7 @@ h6:hover .anchor-link {
       &lt;td&gt;Python&lt;/td&gt;
       &lt;td&gt;Online Education&lt;/td&gt;
       &lt;td&gt;Moderate&lt;/td&gt;
-      &lt;td&gt;https://www.edx.org/course/introduction-to-computer-science-and-programming-using-python-0&lt;/td&gt;
+      &lt;td&gt;https://bit.ly/2IvLZd4&lt;/td&gt;
       &lt;td&gt;This course can be audited for free or you can pay 75 for the certificate.&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
@@ -1193,7 +1192,7 @@ h6:hover .anchor-link {
       &lt;td&gt;Python&lt;/td&gt;
       &lt;td&gt;Online Education&lt;/td&gt;
       &lt;td&gt;Beginner&lt;/td&gt;
-      &lt;td&gt;https://www.udemy.com/complete-python-bootcamp/?couponCode=CURRENT_STU_COMPY&lt;/td&gt;
+      &lt;td&gt;https://bit.ly/2UlHqXv&lt;/td&gt;
       &lt;td&gt;The link provided should allow you to get the course for 11&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
@@ -1204,7 +1203,7 @@ h6:hover .anchor-link {
       &lt;td&gt;Python&lt;/td&gt;
       &lt;td&gt;Online Education&lt;/td&gt;
       &lt;td&gt;Moderate&lt;/td&gt;
-      &lt;td&gt;https://www.udemy.com/python-for-data-science-and-machine-learning-bootcamp/?couponCode=CURRENT_PY_DS_ML&lt;/td&gt;
+      &lt;td&gt;https://bit.ly/2VfuijJ&lt;/td&gt;
       &lt;td&gt;This link should come attached with a coupon to pay 11 for the course.&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
@@ -1270,7 +1269,7 @@ h6:hover .anchor-link {
       &lt;td&gt;Python&lt;/td&gt;
       &lt;td&gt;Book&lt;/td&gt;
       &lt;td&gt;Moderate&lt;/td&gt;
-      &lt;td&gt;https://www.amazon.com/dp/1617294438/ref=cm_sw_em_r_mt_dp_U_0b5MCbCJACFX6&lt;/td&gt;
+      &lt;td&gt;Available on Amazon&lt;/td&gt;
       &lt;td&gt;The quality of the physical book is poor, pages started ripping out of my book within two weeks of use.  However, the book comes with a free PDF version as well after you purchase.&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
@@ -1281,7 +1280,7 @@ h6:hover .anchor-link {
       &lt;td&gt;Python&lt;/td&gt;
       &lt;td&gt;Book&lt;/td&gt;
       &lt;td&gt;Moderate&lt;/td&gt;
-      &lt;td&gt;https://github.com/devakar/deep-learning-books/blob/master/Hands%20on%20Machine%20Learning%20with%20Scikit%20Learn%20and%20TensorFlow.pdf&lt;/td&gt;
+      &lt;td&gt;https://bit.ly/2FT5FUA&lt;/td&gt;
       &lt;td&gt;The PDF of the books is free online, but you can also support the author and buy the book on Amazon.&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
@@ -1347,7 +1346,7 @@ h6:hover .anchor-link {
       &lt;td&gt;R&lt;/td&gt;
       &lt;td&gt;Book&lt;/td&gt;
       &lt;td&gt;Moderate&lt;/td&gt;
-      &lt;td&gt;https://www.amazon.com/Pattern-Classification-Pt-1-Richard-Duda/dp/0471056693&lt;/td&gt;
+      &lt;td&gt;https://amzn.to/2uJncrW&lt;/td&gt;
       &lt;td&gt;NaN&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
@@ -1369,7 +1368,7 @@ h6:hover .anchor-link {
       &lt;td&gt;R&lt;/td&gt;
       &lt;td&gt;Online Education&lt;/td&gt;
       &lt;td&gt;Moderate&lt;/td&gt;
-      &lt;td&gt;https://lagunita.stanford.edu/courses/HumanitiesSciences/StatLearning/Winter2016/about&lt;/td&gt;
+      &lt;td&gt;https://stanford.io/1Ry9D60&lt;/td&gt;
       &lt;td&gt;NaN&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;

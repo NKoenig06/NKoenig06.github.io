@@ -1028,23 +1028,26 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="So-You-Want-To-Be-A-Data-Scientist?-A-Self-Guided-Curriculum">So You Want To Be A Data Scientist? A Self-Guided Curriculum<a class="anchor-link" href="#So-You-Want-To-Be-A-Data-Scientist?-A-Self-Guided-Curriculum">&#182;</a></h1><p><img src="https://i.imgur.com/OVQ33KM.png" alt="Imgur"></p>
-<p>One of the themes that has been becoming more and more popular over the past few years at SIOP has been the area(s) of data science and machine learning. Unfortunately many of our grad programs don't have the time to provide us with both a well rounded education in the core competencies of both I/O and data science.</p>
+<p>One of the themes that has been becoming more and more popular over the past few years at SIOP has been the area(s) of data science and machine learning. Unfortunately many of our grad programs don't have the time to provide us with both a well rounded education in the core competencies of I/O and data science.</p>
 <p>However, <strong>lucky for us</strong> many do provide us with what is in my opinion the most important competencies which can provide a solid foundation for a career in data science.</p>
-<p>While they don't often teach us about random forests, linear algebra, or programming what they do teach us in my experience is more fundamental and more rare in the practice of data science. I will list and describe the areas I think I/O does a great job of teaching.</p>
+<p>While they don't often teach us about random forests, linear algebra, or programming what they do teach us in my experience is more fundamental and more rare in the practice of data science. I will list and describe two specific areas I think I/O does a great job of teaching that are often forgotten by many.</p>
 <ol>
-<li>Critical Thinking: The idea that as data scientists we might not have all the data to fully answer the question asked is a difficult concept for many people with more pure computer science and statistics backgrounds to grasp at first. I/Os tend to understand that the data is what was thought to be important by one decision maker and at one point in time and may not even be appropriate given the question being asked. </li>
-<li>Research Methods: I/Os typically have strong training in research methods. <a href="https://www.amazon.com/Experimental-Quasi-Experimental-Designs-Generalized-Inference/dp/0395615569">Our holy grail for years in grad school</a> taught us all about the many experimental and quasi-experimental designs, along with the pros and cons of each. This allows us to view each research question in the context of the quasi-experimental design the data was collected in. On the other hand CS and Stats trained professionals might have only heard of A/B testing. </li>
+<li>Critical Thinking: The idea that as data scientists we might not have all the data to fully answer the question asked is a difficult concept for many people with more pure computer science and statistics backgrounds to grasp at first. I/Os tend to understand that the data is what was thought to be important by one decision maker and at one point in time and may not even be appropriate given the question being asked. We can leverage this more holistic view of the problem to identify if we are asking the right questions, have the right data to answer the question(s) and as a lead into the second area whether we are using the right methodology and/or algorithms to answer the question(s).</li>
+<li>Research Methods: I/Os typically have strong training in research methods. <a href="https://www.amazon.com/Experimental-Quasi-Experimental-Designs-Generalized-Inference/dp/0395615569">Our holy grail for years in grad school</a> taught us all about the many experimental and quasi-experimental designs, along with the pros and cons of each. This allows us to view each research question in the context of the quasi-experimental design the data was collected in. On the other hand CS and Stats trained professionals might have only heard of A/B testing. We also typically have a strong understanding of the pros and cons of most of the mores standard machine learning algorithms (linear vs. logistic regression, ANOVAs, etc.) for this reason the image below wasn't as mind blowing to me as it was to many of the more pure data scientists I saw posting it all over the internet. </li>
 </ol>
+<p><img src="https://i.imgur.com/fY8uQ41.png" alt="Imgur"></p>
 <p><strong>AND</strong> given the fact that most programming needs to happen by repetitive practice on your own time, learning by yourself through trial and error is honestly a great way to go about it. Plus, unlike learning critical thinking and research methods, there are an abundance of free or near free resources online to learn programming, linear algebra, and machine learning.</p>
 <p>Our hope for this session and this blog post is to provide you with the resources we found helpful. We also reflected back on our journey and the many courses/books we tried and decided if we could do it all over again we'd probably have focused on only a few of them. We provided these courses in a curriculum that any of you can follow to build the skills necessary to make the transition into Data Science.</p>
 <h1 id="The-Debate!">The Debate!<a class="anchor-link" href="#The-Debate!">&#182;</a></h1><p>There is often a debate when it comes to what programming language to learn. For open source the options are typically Python or R. In all honesty I think it's best to be able to use both, but I'd pick one and run with it. It's better to be able to do a lot in one language than a few things in either language. I'll give a few thoughts on each one below that hopefully helps you make a decision on which to focus on and then after that we will lay out our self-guided curriculum for both.</p>
-<h2 id="Python">Python<a class="anchor-link" href="#Python">&#182;</a></h2><ul>
+<h2 id="Python">Python<a class="anchor-link" href="#Python">&#182;</a></h2><p><img src="https://i.imgur.com/qicagVG.png" alt="Imgur"></p>
+<ul>
 <li>A complete programming language. You can build a website, and a deep learning algorithm. This makes it extremely user friendly when it comes to doing traditional programming work that often comes up, like building functions to extract data, etc. </li>
 <li>The preferred programming language by the ML &amp; DL community. This means that the cutting edge stuff in ML &amp; DL will almost always be coming out first on Python and then someone will later build a wrapper or a similar implementation in R.</li>
 <li>All software developers know Python. While it's true most software developers don't prefer Python for the majority of their work they are all familiar with it and typically have an easier time tying Python code into their existing environment if your goal is to put a model into production. </li>
 </ul>
 <p><strong>The old saying is....Python is the second best language for everything.</strong></p>
-<h2 id="R">R<a class="anchor-link" href="#R">&#182;</a></h2><ul>
+<h2 id="R">R<a class="anchor-link" href="#R">&#182;</a></h2><p><img src="https://i.imgur.com/zpUVrqP.png" alt="Imgur"></p>
+<ul>
 <li>A statistical programming language. Developed specifically for working with dataframes. This makes a lot of the commands in base R extremely well suited for the way the I/O community views data analysis. </li>
 <li>Great niche packages, especially for the social sciences. If you can think of a niche implementation of an algorithm or a methodology, someone probably already has a package for it in R. This isn't necessarily true in Python, that's not to say you can't build one for Python, but just that most package devs in Python are focused on software dev, ML, and DL, and a lot less on Item Response Theory and Structural Equation Modeling. </li>
 <li>Data manipulation and management is extremely easy and intuitive (or so I've heard) with dplyr and tidyr. I personally haven't used this, but people familiar with both often complain about the lack of a dplyr and tidyr implementation in Python. </li>
@@ -1125,19 +1128,19 @@ h6:hover .anchor-link {
 <td><a href="https://www.udemy.com/data-science-and-machine-learning-bootcamp-with-r/?couponCode=CURRENT_STU_R">Link</a></td>
 </tr>
 <tr>
-<td>4</td>
+<td>4A</td>
 <td>Pattern Recognition and Machine Learning</td>
 <td>This book, intended for advanced undergraduates, PhD students, researchers and practitioners in the ML field, provides an authoritative presentation of many statistical techniques  in machine learning. The book is as an excellent reference, written very clearly and structured in an excellent way. It is not math heavy and offers plenty of heuristic and intutions.</td>
 <td><a href="http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf">Link</a></td>
 </tr>
 <tr>
-<td>5</td>
+<td>4B</td>
 <td>Pattern Recognition - Lecture Notes, North Carolina University</td>
 <td>A series of lecture notes from Professor Osuna on machine learning. The slides are extremely clear, simple and full of step by step examples.</td>
 <td><a href="https://psi.engr.tamu.edu/courses/">Link</a></td>
 </tr>
 <tr>
-<td>6</td>
+<td>5</td>
 <td>Deep Learning with R</td>
 <td>This book provides a history of deep learning, an introduction to the concepts and topics relevant to understanding deep learning, and then walk throughs of different deep learning methods using Keras.  The book was written by Francois Chollet, the lead developer at Google for Keras.  It's clearly written and a great way to quickly dive into deep learning methods and approaches.  Additionally, Chollet stays away from confusing looking mathematical equations and insteads writes out any relevant equations in R code.  This approach is surprisingly effective as it makes it clear what the equation is doing and how the deep learning method is using that math to develop models from the data.</td>
 <td><a href="https://www.amazon.com/Deep-Learning-R-Francois-Chollet/dp/161729554X">Link</a></td>

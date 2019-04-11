@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>About Me, Focus of the Blog, and Resources — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: About Me, Focus of the Blog, and Resources; Date: 2019-01-16; Author: N. Koenig">
+	<title>Leveraging Google for free GPU Compute — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Leveraging Google for free GPU Compute; Date: 2019-04-11; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,29 +26,29 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">About Me, Focus of the Blog, and Resources</h1>
+		<h1 itemprop="name headline" class="article-title">Leveraging Google for free GPU Compute</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2019-01-16T14:30:00-06:00" itemprop="datePublished">Wed 16 January 2019</time>
+		<time datetime="2019-04-11T09:30:00-05:00" itemprop="datePublished">Thu 11 April 2019</time>
 	</div>
 	<div>
 		Category:
 		<span itemprop="articleSection">
-			<a href="/category/about.html" rel="category">about</a>
+			<a href="/category/programming.html" rel="category">programming</a>
 		</span>
 	</div>
  
 	<div>
 		Tags:
 		<span itemprop="keywords">
-			<a href="/tag/about.html" rel="tag">About</a>
+			<a href="/tag/data-science.html" rel="tag">Data Science</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/purpose.html" rel="tag">Purpose</a>
+			<a href="/tag/python.html" rel="tag">Python</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/resources.html" rel="tag">Resources</a>
+			<a href="/tag/gpu.html" rel="tag">GPU</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1027,15 +1027,9 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="About-Me-&amp;-Resources-I've-Found-Useful">About Me &amp; Resources I've Found Useful<a class="anchor-link" href="#About-Me-&amp;-Resources-I've-Found-Useful">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/F4kIR7w.jpg" alt="STL"></p>
+<h1 id="So-You-Think-You-Need-A-GPU?-Google-Colab-Can-Help!">So You Think You Need A GPU? Google Colab Can Help!<a class="anchor-link" href="#So-You-Think-You-Need-A-GPU?-Google-Colab-Can-Help!">&#182;</a></h1><p>I Hope everyone that got a chance to go to SIOP last week enjoyed it. I liked all the discussions around AI in our field, but I'd like people to move beyond using it as a buzzword and start to discuss what they mean by AI when it comes to their tools. I don't think asking them to explain that they are using an LSTM, or Random Forests is giving away too much of their "secret sauce". But, one question or statement I got a few times is along the lines of "...one of our biggest issues was hardware....we just didn't have the compute power necessary to do a lot of the calculations, so it took a long time" Or in the Data Science Panel "....Don't I need an expensive computer to start doing REAL data science work?". So I thought I'd write a few articles showing how to get access to great compute hardware for free!</p>
+<h2 id="GPUs">GPUs<a class="anchor-link" href="#GPUs">&#182;</a></h2><p>First of all look at them, they are thing of beauty! If processing power is a bottleneck clearly a bad boy like this will solve your problems. In this article I'll walk you through how to get free access to this bad boy or one just like it. Then in a follow up article I'll walk through when a GPU can help and when it might not be very valuable.</p>
+<p><img src="https://i.imgur.com/3LHm3Hg.jpg" alt="Imgur"></p>
 
 </div>
 </div>
@@ -1044,23 +1038,36 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Where-I'm-From:">Where I'm From:<a class="anchor-link" href="#Where-I'm-From:">&#182;</a></h2><p>I grew up in Saint Louis, Go Cardinals and Go Blues!!</p>
-<h2 id="My-Background:">My Background:<a class="anchor-link" href="#My-Background:">&#182;</a></h2><p>I have my Ph.D. in Industrial and Organizational Psychology and within the past 3 years have become increasingly interested in Python, Machine Learning, and Deep Learning. I've taught myself how to program, use advanced machine learning algorithms and techniques, manipulate data, and even leverage Tensorflow and PyTorch for deep learning. I constantly like to learn new things, so I always have something I am working on.</p>
-<h2 id="The-Purpose-of-This-Blog:">The Purpose of This Blog:<a class="anchor-link" href="#The-Purpose-of-This-Blog:">&#182;</a></h2><p>A lot of the language in programming and Data Science is very foreign to the language we were taught as social scientists. It took me a lot of time and research to start to tie everything together. I hope this site can help other social scientists because I will try to tie what I am doing back to it's purpose for work we are likely to do.</p>
-<p>I think programming is extremely important for everyone. I see a lot of people ask if there are packages or pre-built resources to do certain things when it comes to data. The beauty of being able to program is you can build them.</p>
-<p>As of now I will likely post about the following in reference to what/how I've learned and what I've found useful/important.</p>
-<ul>
-<li>Python/Programming</li>
-<li>Machine Learning</li>
-<li>Data Wrangling/Manipulation</li>
-<li>Deep Learning</li>
-<li>Version Control (Git)</li>
-<li>Math</li>
-<li>I/O relevant topics I think are important as they come up</li>
-<li>The integration of AI and I/O</li>
-</ul>
-<p><strong>From my experience reading other resources many assume a basic familiarity with the computer that honestly many of us in the social sciences don't have. They assume you are coming from a developer type background. For this reason I will likely focus on some of the very basics, like how to install stuff step-by-step. I will also focus on certain packages and certain functions within them that I believe are valuable and useful for social science type research and data analysis. However, because there are a plethora of resources (that are free or extremely affordable) I won't teach you how to write python or how to use every single feature in a particular package. However, I will do my best to point you to resources to learn more. But the resources I provided below should be adequate</strong></p>
-<p><img src="https://i.imgur.com/xPplwkq.jpg" alt="programmer_joke"></p>
+<h1 id="Are-GPUs-Powerful?">Are GPUs Powerful?<a class="anchor-link" href="#Are-GPUs-Powerful?">&#182;</a></h1><p>The short answer is......Absolutely YES!!</p>
+<p>Below is a comparison of speedup over an Intel E5 CPU.</p>
+<p><img src="https://i.imgur.com/YiYCOYi.png" alt="Imgur"></p>
+<p>And this shows the # of training examples per second each can handle. Also realize that the top GPU mentioned here is only about 10x faster than a CPU, so the Tesla K80 is another 14x faster than that.</p>
+<p><img src="https://i.imgur.com/5b9Bb2u.png" alt="Imgur"></p>
+<p>So the bottom line is yes, they can greatly impact compute time on very large datasets.</p>
+<h4 id="So....">So....<a class="anchor-link" href="#So....">&#182;</a></h4><p>If your immediate thought is...I don't have a gaming computer, I don't want to pay to spin up an AWS or Azure instance, so I guess this isn't available to me, right?</p>
+<p>Short answr is no, both Google and Kaggle are very generous and provide you with free instances of GPUs on their platforms. In this article I'll walk you through how to get access to Google's free offering and run some quick code on Colab.</p>
+<p><strong>In this article I'll show you how to set it up in Google and in a follow up I'll show you how to do it in Kaggle Kernels.</strong></p>
+<h1 id="Google-Colab">Google Colab<a class="anchor-link" href="#Google-Colab">&#182;</a></h1><p>Google has an app in Drive that is actually called Google Colaboratory. It's designed to be a colaboratory hub where you can share code and work on notebooks in a similar way as sldies or docs.</p>
+<h2 id="Step-1:-Go-to-Google-Drive-and-click-&quot;New&quot;-and-&quot;More&quot;-Like-This:">Step 1: Go to Google Drive and click "New" and "More" Like This:<a class="anchor-link" href="#Step-1:-Go-to-Google-Drive-and-click-&quot;New&quot;-and-&quot;More&quot;-Like-This:">&#182;</a></h2><p><img src="https://i.imgur.com/asgvNfr.png" alt="Imgur"></p>
+<h2 id="Step-2:-Name-Your-Notebook.-I-named-mine-&quot;GPU_in_Colab">Step 2: Name Your Notebook. I named mine "GPU_in_Colab<a class="anchor-link" href="#Step-2:-Name-Your-Notebook.-I-named-mine-&quot;GPU_in_Colab">&#182;</a></h2><h2 id="Step-3:-Let's-find-out-what-system-of-Python-it's-running.">Step 3: Let's find out what system of Python it's running.<a class="anchor-link" href="#Step-3:-Let's-find-out-what-system-of-Python-it's-running.">&#182;</a></h2><p><img src="https://i.imgur.com/7FZrmc0.png" alt="Imgur"></p>
+<p>Now we will just install a few packages that allow us to test out the use of the GPU. fastai automatically installs PyTorch, Pandas, Matplotlib, etc.</p>
+<p><img src="https://i.imgur.com/r6OJ4x6.png" alt="Imgur"></p>
+<p>Now let's look at the device name that we have available to us on Colab.</p>
+<p><img src="https://i.imgur.com/LvFflcb.png" alt="Imgur"></p>
+<p>....Oops we got a runtime error, it says we don't have a Cuda capable device. So...did I lie to you? Does Colab not have GPU accessibility?</p>
+<p><strong>It does</strong>, but you need to turn it on, so how do we do that? Simply go to the runtime dropdown and click on the change runtime type.</p>
+<p><img src="https://i.imgur.com/CF7sapf.png" alt="Imgur"></p>
+<p>You will then be prompted with the runtime type and have an option for a hardware selector. It's defaulted to None, but you have a GPU or a TPU option available.</p>
+<p>So, let's turn on the GPU and hit <strong>Save</strong></p>
+<p><img src="https://i.imgur.com/xEaC3Rd.png" alt="Imgur"></p>
+<p>Now, let's go try that same code again.</p>
+<p><img src="https://i.imgur.com/WbEwnW5.png" alt="Imgur"></p>
+<p>Now we have access to a Tesla K80, which costs about $2k alone.</p>
+<p>So, let's do some quick stuff to show it in action.</p>
+<p>First let's run one epoch on the CPU to show how long it takes and let's compare that to one epoch on the GPU.</p>
+<p>For the purposes of this comparison I'm going to use a notebook that walks you through how to do state of the art image recognition on the dogs vs. cats dataset. <a href="https://github.com/fastai/course-v3/blob/master/nbs/dl1/lesson1-pets.ipynb">You can find the full notebook here</a></p>
+<h1 id="Why-does-GPU-work-so-well-in-Deep-Learning?">Why does GPU work so well in Deep Learning?<a class="anchor-link" href="#Why-does-GPU-work-so-well-in-Deep-Learning?">&#182;</a></h1><p>Before we get into the comparison of a CPU vs. a GPU on an image classiciation problem I think it's important to highlight why it works so well. Essentially GPUs are very good at doing parallel compute. This is extremely helpful in matrix algebra calculations. So, anything where you are doing matrix multiplication and/or calculating derivatives the GPU will be extremely helpful.</p>
+<p>Now, back to the example:</p>
 
 </div>
 </div>
@@ -1069,108 +1076,14 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Resources">Resources<a class="anchor-link" href="#Resources">&#182;</a></h1><p>I don't intend for this blog to teach you how to use Python and/or R from scratch. I will show features and packages I think are important, but as many people have mentioned, most intro stuff has already been done 100+ times, so what I'll do is link you to resources I've found useful. Hopefully that helps you build your mental model around DS. I'm thinking if we came from similar backgrounds the resources that resonated with me will hopefully resonate with you as well.</p>
-<h2 id="Introduction-to-Python:">Introduction to Python:<a class="anchor-link" href="#Introduction-to-Python:">&#182;</a></h2><ul>
-<li><a href="https://www.edx.org/course/introduction-to-computer-science-and-programming-using-python-">Intro to CS with Python</a><ul>
-<li>This course is provided by MIT and is fairly difficult for a MOOC, but it provides you with a great intro background to Python and basic concepts in Computer Science. It's free to audit. </li>
-</ul>
-</li>
-<li><a href="https://www.udemy.com/complete-python-bootcamp/?couponCode=CURRENT_STU_COMPY">Complete Python Bootcamp</a><ul>
-<li>A great intro to Python course from Udemy taught by Jose Portilla, who IMO is a great instructor when it comes to teaching the basics. I included a coupon code that gets the price down to 11 dollars. </li>
-</ul>
-</li>
-</ul>
-<h2 id="Python-Podcasts">Python Podcasts<a class="anchor-link" href="#Python-Podcasts">&#182;</a></h2><p>I like to listen to podcasts when I'm lifting/running/driving, etc. I think it's a really good way to keep up-to-date and pick up on the langauge used. Here are a couple that I've found useful focused on Python</p>
-<ul>
-<li>Talk Python to Me</li>
-<li>Python Bytes</li>
-<li>Podcast.<strong>init</strong></li>
-</ul>
-<h2 id="Datascience/ML-Focused-Courses:">Datascience/ML Focused Courses:<a class="anchor-link" href="#Datascience/ML-Focused-Courses:">&#182;</a></h2><p>I would recommend these next resources for data science and machine learning in the order provided below as the first courses hold your hand a bit more than some of the other resources. Some of my basic thoughts when it comes to learning.</p>
-<ul>
-<li><p>I recommend using Jupyter Notebooks. It allows you to iterate through code quickly and fix broken code. When you are learning this is great.</p>
-</li>
-<li><p>One of the things I struggled with early on was getting frustrated when my code wouldn't run. Maybe this is just me, but when you are coding you will almost certainly screw up, lol. You can't always get it right the first time.</p>
-</li>
-<li><p>Google and Stackoverflow are your friend. The great thing about Python (and R) compared to SPSS and/or SAS is that there are tons of resources out there. If you have a question about something it's almost a gaurantee that someone else has had the same question and it has been answered on stackoverflow. Take advantage of that. As you get more familiar with Pandas, Numpy, etc. you will start to understand the lingo a bit better and your searches will yield you the results you are looking for much more quickly. At first for me it was searching something 4-5 different ways to find an answer, now I can usually find the information I am looking for on the first search.</p>
-</li>
-<li><p><a href="https://www.udemy.com/python-for-data-science-and-machine-learning-bootcamp/?couponCode=CURRENT_PY_DS_ML">Python for Data Science and Machine Learning Bootcamp</a></p>
-<ul>
-<li>Again I included a coupon so you can get the course for 11 dollars. I highly recommend this course, which is also taught by Jose Portilla. It goes over the basics of NumPy, Pandas, Matplotlib, Bokeh, and Scikit Learn. He uses actual datasets and provides you with challenges at the end of each section to help the topics sink in. </li>
-</ul>
-</li>
-<li><p><a href="https://www.udemy.com/machinelearning/">Machine Learning A-Z</a></p>
-<ul>
-<li>This course isn't as engaging as Jose's, but it does a really good job of showing you what a data pipeline process looks like. It really helps you understand how similar most of the commands are across algorithms. I.e. initialize the model as a python object, fit the model, then predict.</li>
-</ul>
-</li>
-<li><p><a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a></p>
-<ul>
-<li>Jake made his entire book available for free on his github page and I think it's a great resource. I would highly encourage you to purchase the book as well to support more experts like this helping to teach. After you get the basics down Jake's book does a great job of helping walk you through more complex topics and code.</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/rasbt/python-machine-learning-book-2nd-edition#whats-new-in-the-second-edition-from-the-first-edition">Python Machine Learning</a></p>
-<ul>
-<li>Sebastian's book is great and starts to get into some more advanced topic and code. This is one I personally own and reference very often. I would highly recommend.</li>
-</ul>
-</li>
-<li><p><a href="https://www.coursera.org/specializations/machine-learning">Machine Learning Specialization</a></p>
-<ul>
-<li>This is a Machine Learning specialization through Coursera taught by professors from the University of Washington. IMO this course does a great job of going deeper into the math behind linear and logistic regression. For those of you, like me, your grad program didn't really go into much detail about how the algorithms work, so this was a very interesting specialization for me. </li>
-<li>My only issue with the course was that it used an ML API different than scikit learn that actually costs money (although they provide it to students for free for one year). Early on when I was taking it I decided to do the assignments twice. Once with their API and then again with scikit learn, but I started to speed it up towards the end and didn't do it for the last 2 courses.</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><a href="https://www.udemy.com/data-science-and-machine-learning-bootcamp-with-r/?couponCode=CURRENT_STU_R">Data Science and Machine Learning Bootcamp with R</a><ul>
-<li>Very similar to the Python course, but using the R language instead.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Datascience-Focused-Podcasts:">Datascience Focused Podcasts:<a class="anchor-link" href="#Datascience-Focused-Podcasts:">&#182;</a></h2><p>I probably listen to DS podcasts more than Python podcasts and here are ones I've found useful:</p>
-<ul>
-<li>Machine Learning Guide</li>
-<li>SuperDataScience Podcast</li>
-<li>DataFramed</li>
-<li>This Week in Machine Learning &amp; AI</li>
-<li>Linear Degressions</li>
-<li>Data Journeys</li>
-<li>Practical AI</li>
-<li>O'Reilly Data Show</li>
-<li>Not So Standard Deviations</li>
-<li>Data Stories</li>
-</ul>
-<h1 id="Deep-Learning">Deep Learning<a class="anchor-link" href="#Deep-Learning">&#182;</a></h1><ul>
-<li><p><a href="https://www.coursera.org/specializations/deep-learning">Andrew Ng's Deep Learning Specialization</a></p>
-<ul>
-<li>Andrew did a lot over the last decade to make machine learning and deep learning a household name. He is one of the founders of Coursera and his Machine Learning course on Coursera is still probably one of the most popular courses ever on the platform. This specialization does a great job of breaking down the math and walking you through the code step by step for neural networks, CNNs, and RNNs. It's a great overview of everything deep learning has to offer.</li>
-</ul>
-</li>
-<li><p><a href="https://www.udemy.com/deeplearning/">Deep Learning A-Z</a></p>
-</li>
-<li><p><a href="https://www.udemy.com/chatbot/">Deep Learning and NLP A-Z</a></p>
-</li>
-<li><p><a href="https://www.udemy.com/practical-deep-learning-with-pytorch/">Practical Deep Learning with PyTorch</a></p>
-</li>
-<li><p><a href="https://www.udemy.com/complete-guide-to-tensorflow-for-deep-learning-with-python/">Complete Guide to Tensorflow for Deep Learning</a></p>
-</li>
-</ul>
-<p><strong>One thing I want to mention about all of the Udemy courses. For many of them I do not have a coupon code. Udemy's prices fluctuate like crazy. So if there is a course I listed or another one on the site you find interesting if it's like 99 dollars (like the PyTorch one when I just looked) wait a few weeks and you can probably get it on a sale for 10-12 dollars. I paid 10 dollars for that same PyTorch course a few weeks ago for example.</strong></p>
-<p>Sidenote: I had to use the word dollars instead of the dollar sign because in markdown the dollar sign is the start of mathemtical writing :)</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="My-Advice-for-Python">My Advice for Python<a class="anchor-link" href="#My-Advice-for-Python">&#182;</a></h1><p>If I were trying to learn how to be a data science type person and had to start over I would take the following two courses:</p>
-<ol>
-<li><a href="https://www.udemy.com/complete-python-bootcamp/?couponCode=CURRENT_STU_COMPY">Complete Python Bootcamp</a></li>
-<li><a href="https://www.udemy.com/python-for-data-science-and-machine-learning-bootcamp/?couponCode=CURRENT_PY_DS_ML">Python for Data Science and Machine Learning Bootcamp</a></li>
-</ol>
-<p>In that order.</p>
+<p><strong>Here is an example of some of the images</strong></p>
+<p><img src="https://i.imgur.com/st3AmTT.png" alt="Imgur"></p>
+<h1 id="CPU">CPU<a class="anchor-link" href="#CPU">&#182;</a></h1><p>Here are the results of 1 epoch, or pass through the data, using the CPU from Google Colab.</p>
+<p><img src="https://i.imgur.com/CKilS6R.png" alt="Imgur"></p>
+<p>It took us just under 40 minutes to complete and as you can see by looking at the training vs. the validation loss, we still need to do a few more epochs as the common rule of thumb is you want the training loss to be slightly lower than the validation loss.</p>
+<h1 id="GPU">GPU<a class="anchor-link" href="#GPU">&#182;</a></h1><p><img src="https://i.imgur.com/BsgJbyI.png" alt="Imgur"></p>
+<p>It took just under 2 minutes to do the exact same calculation on the exact same dataset using the K80 GPU.</p>
+<h1 id="Takeaway">Takeaway<a class="anchor-link" href="#Takeaway">&#182;</a></h1><p>GPUs have the capability to increase your compute efficiency many times over and Google Colab is one easy way to do that. Hopefully this article helps you to set up your own Colab environment and perhaps replicate the Cats and Dogs notebook I touched on here today.</p>
 
 </div>
 </div>
@@ -1213,7 +1126,7 @@ h6:hover .anchor-link {
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'About Me, Focus of the Blog, and Resources';
+    var disqus_title = 'Leveraging Google for free GPU Compute';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

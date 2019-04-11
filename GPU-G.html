@@ -1078,7 +1078,9 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Here is an example of some of the images</strong></p>
 <p><img src="https://i.imgur.com/st3AmTT.png" alt="Imgur"></p>
-<h1 id="Step-7:-Run-A-CNN,-specifically-Resnet-34-in-this-example">Step 7: Run A CNN, specifically <a href="https://medium.com/@14prakash/understanding-and-implementing-architectures-of-resnet-and-resnext-for-state-of-the-art-image-cf51669e1624">Resnet 34</a> in this example<a class="anchor-link" href="#Step-7:-Run-A-CNN,-specifically-Resnet-34-in-this-example">&#182;</a></h1><h1 id="CPU">CPU<a class="anchor-link" href="#CPU">&#182;</a></h1><p>Here are the results of 1 epoch, or pass through the data, using the CPU from Google Colab.</p>
+<h1 id="Step-7:-Run-A-CNN">Step 7: Run A CNN<a class="anchor-link" href="#Step-7:-Run-A-CNN">&#182;</a></h1><p>In this example we will use the <a href="https://arxiv.org/abs/1512.03385">Resnet</a> architecture. This architecture was developed to handle many of the difficult problems of training extremely deep neural networks. One of the biggest issues is the <a href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem">vanishing gradient</a> which Resnet addressed.</p>
+<p>This specific implementation is Resnet 34, which contains 34 layers. You can read more about <a href="https://medium.com/@14prakash/understanding-and-implementing-architectures-of-resnet-and-resnext-for-state-of-the-art-image-cf51669e1624">Resnet here if you are interested.</a></p>
+<h1 id="CPU">CPU<a class="anchor-link" href="#CPU">&#182;</a></h1><p>Here are the results of 1 epoch, or pass through the data, using the CPU from Google Colab.</p>
 <p><img src="https://i.imgur.com/CKilS6R.png" alt="Imgur"></p>
 <p>It took us just under 40 minutes to complete and as you can see by looking at the training vs. the validation loss, we still need to do a few more epochs as the common rule of thumb is you want the training loss to be slightly lower than the validation loss.</p>
 <h1 id="GPU">GPU<a class="anchor-link" href="#GPU">&#182;</a></h1><p><img src="https://i.imgur.com/BsgJbyI.png" alt="Imgur"></p>

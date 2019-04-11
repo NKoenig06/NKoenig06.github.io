@@ -1049,14 +1049,13 @@ h6:hover .anchor-link {
 <p><strong>In this article I'll show you how to set it up in Google and in a follow up I'll show you how to do it in Kaggle Kernels.</strong></p>
 <h1 id="Google-Colab">Google Colab<a class="anchor-link" href="#Google-Colab">&#182;</a></h1><p>Google has an app in Drive that is actually called Google Colaboratory. It's designed to be a colaboratory hub where you can share code and work on notebooks in a similar way as slides or docs.</p>
 <h2 id="Step-1:-Go-to-Google-Drive-and-click-&quot;New&quot;-and-&quot;More&quot;-Like-This:">Step 1: Go to Google Drive and click "New" and "More" Like This:<a class="anchor-link" href="#Step-1:-Go-to-Google-Drive-and-click-&quot;New&quot;-and-&quot;More&quot;-Like-This:">&#182;</a></h2><p><img src="https://i.imgur.com/asgvNfr.png" alt="Imgur"></p>
-<h2 id="Step-2:-Name-Your-Notebook.-I-named-mine-&quot;GPU_in_Colab">Step 2: Name Your Notebook. I named mine "GPU_in_Colab<a class="anchor-link" href="#Step-2:-Name-Your-Notebook.-I-named-mine-&quot;GPU_in_Colab">&#182;</a></h2><h2 id="Step-3:-Let's-find-out-what-system-of-Python-it's-running.">Step 3: Let's find out what system of Python it's running.<a class="anchor-link" href="#Step-3:-Let's-find-out-what-system-of-Python-it's-running.">&#182;</a></h2><p><img src="https://i.imgur.com/7FZrmc0.png" alt="Imgur"></p>
-<p>Now we will just install a few packages that allow us to test out the use of the GPU. fastai automatically installs PyTorch, Pandas, Matplotlib, etc.</p>
+<h2 id="Step-2:-Name-Your-Notebook.-I-named-mine-&quot;GPU_in_Colab&quot;">Step 2: Name Your Notebook. I named mine "GPU_in_Colab"<a class="anchor-link" href="#Step-2:-Name-Your-Notebook.-I-named-mine-&quot;GPU_in_Colab&quot;">&#182;</a></h2><h2 id="Step-3:-Let's-find-out-what-system-of-Python-it's-running.">Step 3: Let's find out what system of Python it's running.<a class="anchor-link" href="#Step-3:-Let's-find-out-what-system-of-Python-it's-running.">&#182;</a></h2><p><img src="https://i.imgur.com/7FZrmc0.png" alt="Imgur"></p>
+<h2 id="Step-4:-Install-a-few-packages-that-allow-us-to-test-out-the-use-of-the-GPU.">Step 4: Install a few packages that allow us to test out the use of the GPU.<a class="anchor-link" href="#Step-4:-Install-a-few-packages-that-allow-us-to-test-out-the-use-of-the-GPU.">&#182;</a></h2><p>fastai automatically installs PyTorch, Pandas, Matplotlib, etc.</p>
 <p><img src="https://i.imgur.com/r6OJ4x6.png" alt="Imgur"></p>
-<p>Now let's look at the device name that we have available to us on Colab.</p>
-<p><img src="https://i.imgur.com/LvFflcb.png" alt="Imgur"></p>
+<h2 id="Step-5:-Let's-look-at-the-device-name-that-we-have-available-to-us-on-Colab.">Step 5: Let's look at the device name that we have available to us on Colab.<a class="anchor-link" href="#Step-5:-Let's-look-at-the-device-name-that-we-have-available-to-us-on-Colab.">&#182;</a></h2><p><img src="https://i.imgur.com/LvFflcb.png" alt="Imgur"></p>
 <p>....Oops we got a runtime error, it says we don't have a Cuda capable device. So...did I lie to you? Does Colab not have GPU accessibility?</p>
 <p><strong>It does</strong>, but you need to turn it on, so how do we do that? Simply go to the runtime dropdown and click on the change runtime type.</p>
-<p><img src="https://i.imgur.com/CF7sapf.png" alt="Imgur"></p>
+<h2 id="Step-6:-Turn-on-the-GPU">Step 6: Turn on the GPU<a class="anchor-link" href="#Step-6:-Turn-on-the-GPU">&#182;</a></h2><p><img src="https://i.imgur.com/CF7sapf.png" alt="Imgur"></p>
 <p>You will then be prompted with the runtime type and have an option for a hardware selector. It's defaulted to None, but you have a GPU or a TPU option available.</p>
 <p>So, let's turn on the GPU and hit <strong>Save</strong></p>
 <p><img src="https://i.imgur.com/xEaC3Rd.png" alt="Imgur"></p>
@@ -1078,7 +1077,7 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Here is an example of some of the images</strong></p>
 <p><img src="https://i.imgur.com/st3AmTT.png" alt="Imgur"></p>
-<h1 id="CPU">CPU<a class="anchor-link" href="#CPU">&#182;</a></h1><p>Here are the results of 1 epoch, or pass through the data, using the CPU from Google Colab.</p>
+<h1 id="Step-7:-Run-A-CNN,-specifically-Resnet-34-in-this-example">Step 7: Run A CNN, specifically <a href="https://medium.com/@14prakash/understanding-and-implementing-architectures-of-resnet-and-resnext-for-state-of-the-art-image-cf51669e1624">Resnet 34</a> in this example<a class="anchor-link" href="#Step-7:-Run-A-CNN,-specifically-Resnet-34-in-this-example">&#182;</a></h1><h1 id="CPU">CPU<a class="anchor-link" href="#CPU">&#182;</a></h1><p>Here are the results of 1 epoch, or pass through the data, using the CPU from Google Colab.</p>
 <p><img src="https://i.imgur.com/CKilS6R.png" alt="Imgur"></p>
 <p>It took us just under 40 minutes to complete and as you can see by looking at the training vs. the validation loss, we still need to do a few more epochs as the common rule of thumb is you want the training loss to be slightly lower than the validation loss.</p>
 <h1 id="GPU">GPU<a class="anchor-link" href="#GPU">&#182;</a></h1><p><img src="https://i.imgur.com/BsgJbyI.png" alt="Imgur"></p>

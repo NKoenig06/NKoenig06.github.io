@@ -1014,6 +1014,8 @@ h6:hover .anchor-link {
 &lt;p&gt;So, let's do some quick stuff to show it in action.&lt;/p&gt;
 &lt;p&gt;First let's run one epoch on the CPU to show how long it takes and let's compare that to one epoch on the GPU.&lt;/p&gt;
 &lt;p&gt;For the purposes of this comparison I'm going to use a notebook that walks you through how to do state of the art image recognition on the dogs vs. cats dataset. &lt;a href="https://github.com/fastai/course-v3/blob/master/nbs/dl1/lesson1-pets.ipynb"&gt;You can find the full notebook here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Edited to add&lt;/strong&gt; that shortly after publishing this blog post Google again upgraded their GPUs to the Tesla T4 (see image below). I also provide an example of one epoch training using the T4 below, which speeds up the training by an additional 20%.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/KMEoiLL.png" alt="Imgur"&gt;&lt;/p&gt;
 &lt;h1 id="Why-does-GPU-work-so-well-in-Deep-Learning?"&gt;Why does GPU work so well in Deep Learning?&lt;a class="anchor-link" href="#Why-does-GPU-work-so-well-in-Deep-Learning?"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Before we get into the comparison of a CPU vs. a GPU on an image classiciation problem I think it's important to highlight why it works so well. Essentially GPUs are very good at doing parallel compute. This is extremely helpful in matrix algebra calculations. So, anything where you are doing matrix multiplication and/or calculating derivatives the GPU will be extremely helpful.&lt;/p&gt;
 &lt;p&gt;Now, back to the example:&lt;/p&gt;
 
@@ -1033,6 +1035,7 @@ h6:hover .anchor-link {
 &lt;p&gt;It took us just under 40 minutes to complete and as you can see by looking at the training vs. the validation loss, we still need to do a few more epochs as the common rule of thumb is you want the training loss to be slightly lower than the validation loss.&lt;/p&gt;
 &lt;h1 id="GPU"&gt;GPU&lt;a class="anchor-link" href="#GPU"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;img src="https://i.imgur.com/BsgJbyI.png" alt="Imgur"&gt;&lt;/p&gt;
 &lt;p&gt;It took just under 2 minutes to do the exact same calculation on the exact same dataset using the K80 GPU.&lt;/p&gt;
+&lt;h1 id="GPU-using-the-Tesla-T4"&gt;GPU using the Tesla T4&lt;a class="anchor-link" href="#GPU-using-the-Tesla-T4"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;img src="https://i.imgur.com/IJQTEyV.png" alt="Imgur"&gt;&lt;/p&gt;
 &lt;h1 id="Takeaway"&gt;Takeaway&lt;a class="anchor-link" href="#Takeaway"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;GPUs have the capability to increase your compute efficiency many times over and Google Colab is one easy way to do that. Hopefully this article helps you to set up your own Colab environment and perhaps replicate the Cats and Dogs notebook I touched on here today.&lt;/p&gt;
 
 &lt;/div&gt;

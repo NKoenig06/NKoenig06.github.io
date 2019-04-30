@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Why should you care about learning Python or R? — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: Why should you care about learning Python or R?; Date: 2019-01-21; Author: N. Koenig">
+	<title>Leveraging Kaggle for free GPU Compute — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Leveraging Kaggle for free GPU Compute; Date: 2019-04-30; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,11 +26,11 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">Why should you care about learning Python or R?</h1>
+		<h1 itemprop="name headline" class="article-title">Leveraging Kaggle for free GPU Compute</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2019-01-21T08:00:00-06:00" itemprop="datePublished">Mon 21 January 2019</time>
+		<time datetime="2019-04-30T12:30:00-05:00" itemprop="datePublished">Tue 30 April 2019</time>
 	</div>
 	<div>
 		Category:
@@ -48,10 +48,7 @@
 			<a href="/tag/python.html" rel="tag">Python</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/r.html" rel="tag">R</a>
-		</span>
-		<span itemprop="keywords">
-			<a href="/tag/open-source.html" rel="tag">Open Source</a>
+			<a href="/tag/gpu.html" rel="tag">GPU</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1030,9 +1027,8 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Why-should-you-care-about-this-stuff-as-a-social-scientist?">Why should you care about this stuff as a social scientist?<a class="anchor-link" href="#Why-should-you-care-about-this-stuff-as-a-social-scientist?">&#182;</a></h1><p>I still think I've done a poor job of communicating why you should care about learning this stuff as a social scientist, so I'll try to write a quick article giving you my thoughts on why.</p>
-<p><strong>Popularity</strong>; Python (and R) are quickly becoming some of the <a href="https://www.economist.com/graphic-detail/2018/07/26/python-is-becoming-the-worlds-most-popular-coding-language">most popular</a> programming languages. This means that anyone in technology you are working with is likely to know at least one of them, but very unlikely to know SPSS or SAS.</p>
-<p><img src="https://i.imgur.com/ElEduu4.png" alt="python_popularity"></p>
+<h1 id="So-You-Think-You-Need-A-GPU-Part-2?-Kaggle-Kernels-Can-Also-Help!">So You Think You Need A GPU Part 2? Kaggle Kernels Can Also Help!<a class="anchor-link" href="#So-You-Think-You-Need-A-GPU-Part-2?-Kaggle-Kernels-Can-Also-Help!">&#182;</a></h1><p>In this first article of this series I showed how you can use Google Colaboratory to access free GPU compute. In this article I will show you how to do the same thing in Kaggle. Kaggle originated as a platform to host machine learning competitions, but quickly became a go-to site for data scientists to discuss methods, programming, and machine learning strategies as well. It hosts hundreds of publicly available datasets as well as open machine learning competitions. In an effort to become a more holistic data science site they also recently began allowing people to host and run code on their site through the use of their kernels.</p>
+<p><img src="https://smist08.files.wordpress.com/2017/03/kaggle.jpg" alt="Imgur"></p>
 
 </div>
 </div>
@@ -1041,31 +1037,26 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>As I mentioned earlier GPUs do provide a drastic speed up on compute time when it comes to problems that require a lot of matrix algebra computation. So, let's walk through how to access and use Kaggle kernels.</p>
+<h1 id="Kaggle-Kernels">Kaggle Kernels<a class="anchor-link" href="#Kaggle-Kernels">&#182;</a></h1><h3 id="Step-1:-Create-a-Kaggle-account-by-signing-up-at-Kaggle">Step 1: Create a Kaggle account by signing up at <a href="https://www.kaggle.com/">Kaggle</a><a class="anchor-link" href="#Step-1:-Create-a-Kaggle-account-by-signing-up-at-Kaggle">&#182;</a></h3><h3 id="Step-2:-Go-to-your-your-profile">Step 2: Go to your your profile<a class="anchor-link" href="#Step-2:-Go-to-your-your-profile">&#182;</a></h3><p>In the top right of the site you will see your profile. You can click on it and go to <strong>"my profile"</strong></p>
+<p>Within this page you will see several tabs. One of them is titled <strong>Kernels</strong>. You will click this tab and then click <strong>New Kernel</strong></p>
+<p><img src="https://i.imgur.com/R7LSHIa.png" alt="Imgur"></p>
+<p>You'll then choose notebook and it will launch a Jupyter Notebook for you.</p>
+<h3 id="Step-3:-Walk-through-the-code-from-the-previous-notebook">Step 3: Walk through the code from the previous notebook<a class="anchor-link" href="#Step-3:-Walk-through-the-code-from-the-previous-notebook">&#182;</a></h3><p><img src="https://i.imgur.com/EPHHuZV.png" alt="Imgur"></p>
 <ul>
-<li><p><strong>Open Source</strong>; is becoming the way of life for everything from development to data science. Software like SPSS and SAS are quickly falling behind because the types of functions and algorithms they can offer will always be behind open source, in most cases by 5-10 years. There are likely a few reasons for this, some that readily come to mind are bureaucracy; find a place in line on the next production cycle, resources; IBM and SAS are going to have a hard time competing with the tens of thousands of people contributing to open source software, innovation; programmers at these large companies aren't developing the XGBoosts, CATBoosts, CNNs, RNNs, etc. The one's that are need a place to build that architecture as they create it. They almost always choose open source for this.</p>
-</li>
-<li><p><strong>Reproducibility</strong>; as both a practitioner and an academic reproducible research and work is quickly becoming a necessity. Just look at the popularity of the site <a href="https://en.wikipedia.org/wiki/ArXiv">arXiv</a> and github. The expectation is becoming that you show your work. Just as a study's methodology and participant population is expected to be meticulously documented, in a peer reviewed journal article it is becoming more common that the same process be followed for one's analysis. Proprietary software makes this difficult, as it requires a user license to replicate it even if you were given the syntax, whereas with open source if the requirements are well documented anyone can reproduce it.</p>
-</li>
-<li><p><strong>Scalability</strong>; with the invasion of cloud computing the expectation is that code can be scalable, sometimes to multiple computers. SPSS and SAS can't offer this. By this I mean that it can run instantaneously. Instead of analytics reports being completed on a timeline the expectation is they are automatically created as new data becomes available.</p>
-</li>
-<li><p><strong>Cost</strong>; licenses for SPSS and SAS may seem expensive for individuals, but that cost is nothing compared to what corporate licenses can cost. I've worked for several companies where you can't access SPSS because two many people are taking up all of the licenses.</p>
-<ul>
-<li>I've worked for a fortune 10 company that almost stopped paying for licenses because of all of the alternatives (Python, R, Alteryx, SAS, Scala, Spark, etc.). You definitely don't want to be caught not being able to do your job anymore because your company stopped paying for your software. </li>
+<li>Note fastai comes pre-installed on Kaggle kernels, so you don't need to install it. </li>
 </ul>
-</li>
-</ul>
-<ul>
-<li><strong>Community</strong>; I'm not sure why, but the community around open-source languages is so helpful and collaborative. They have tons of meetups, groups, even their own conferences (e.g. <a href="https://www.rstudio.com/conference/">rstudio::conf</a>, <a href="https://pydata.org/miami2019/">PyData</a>).<ul>
-<li>You have a question about Python or R? You can basically just google it because your first couple pages will almost certainly be from <a href="https://stackoverflow.com/">Stackoverflow</a>, which is a community forum designed for people to post programming questions, which allows other users to provide solutions that can be voted (think Reddit for actual relevant questions/topics).</li>
-<li>You have a question about SPSS? That's what the Syntax Guide is for, right? If you are great with your control+F skills you can probably find your answer after a few hours...errr days. After all <strong>it's only 2500 pages</strong>!!</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><strong>Keeping up with technology</strong>; it's just keeping up with the Joneses at this point. Everyone outside of the social sciences is learning to program in Python or R, so it will soon become an expectation when hiring. Even my previous boss, who's a wizard at SPSS and is likely only a few years away from retirement has spent time dabbling in Python and R (he heavily prefers R, and I think that's blasphemy!! but at least he's learning one).</li>
-</ul>
-<h2 id="And-finally-and-most-importantly,-because-you-sound-so-smart-and-cool-when-you-talk-about-it!!">And finally and most <strong>importantly</strong>, because you sound so smart and cool when you talk about it!!<a class="anchor-link" href="#And-finally-and-most-importantly,-because-you-sound-so-smart-and-cool-when-you-talk-about-it!!">&#182;</a></h2><p><img src="https://i.imgur.com/BpGV7AZ.jpg" alt="python_meme"></p>
-<p>Ok, ok, this last one might be in my own head. The image below is more along the lines of the way my wife looks at me when I talk about it :)</p>
+<p>So, let's import the specifics that we are going to use.</p>
+<p><img src="https://i.imgur.com/EPHHuZV.png" alt="Imgur"></p>
+<p>Next let's again try to check our cuda device:</p>
+<p><img src="https://i.imgur.com/1jcm64M.png" alt="Imgur"></p>
+<p>Just like last time we get an error telling us GPU is not enabled. Similar to Colab, we have to turn on GPU.</p>
+<h3 id="Step-4:-Enable-the-GPU">Step 4: Enable the GPU<a class="anchor-link" href="#Step-4:-Enable-the-GPU">&#182;</a></h3><p>Over to the right over your kaggle kernel you will see a couple of dropdowns, like <strong>session, workspace, versions, and settings</strong>. Click down the <strong>settings</strong> tab and you will see a toggle switch for <strong>GPU and Internet</strong> toggle both of those on (GPU for GPU and Internet to download the Pets dataset).</p>
+<p><img src="https://i.imgur.com/riF9URb.png" alt="Imgur"></p>
+<h3 id="Step-5:-Rerun-torch.cuda">Step 5: Rerun torch.cuda<a class="anchor-link" href="#Step-5:-Rerun-torch.cuda">&#182;</a></h3><p>You should now see the name of the device, like below.</p>
+<p><img src="https://i.imgur.com/wi4Gc97.png" alt="Imgur"></p>
+<p>Now we can re-run the same code we ran in the Colab notebook to setup the images for our resnet 34 and see some of the adorable dogs and cats :)</p>
+<p><img src="https://i.imgur.com/YeRHl3h.png" alt="Imgur"></p>
 
 </div>
 </div>
@@ -1074,7 +1065,10 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="These-are-the-reasons-I-feel-are-most-important,-feel-free-to-add-more-below-in-the-comments-and-I-can-make-edits-to-this-article-to-add-more">These are the reasons I feel are most important, feel free to add more below in the comments and I can make edits to this article to add more<a class="anchor-link" href="#These-are-the-reasons-I-feel-are-most-important,-feel-free-to-add-more-below-in-the-comments-and-I-can-make-edits-to-this-article-to-add-more">&#182;</a></h4>
+<h3 id="Step-6:-Run-our-model">Step 6: Run our model<a class="anchor-link" href="#Step-6:-Run-our-model">&#182;</a></h3><p><img src="https://i.imgur.com/YtRDdEY.png" alt="Imgur"></p>
+<p>and as you can see the kaggle kernel ran an epoch on the dogs and cats data in 1:30, which is actually 5 seconds faster than the Tesla T4 being used by Google. I think this has to do with throttling the Tesla T4 because the T4 is a much larger and more expensive GPU, but either way each are roughly 25x faster than the CPU implementation on Colab.</p>
+<h1 id="2-Free-Options">2 Free Options<a class="anchor-link" href="#2-Free-Options">&#182;</a></h1><p>These most recent articles have provided you with 2 free options for your GPU compute needs.</p>
+
 </div>
 </div>
 </div>
@@ -1116,7 +1110,7 @@ h6:hover .anchor-link {
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'Why should you care about learning Python or R?';
+    var disqus_title = 'Leveraging Kaggle for free GPU Compute';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

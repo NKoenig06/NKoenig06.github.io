@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Leveraging Google for free GPU Compute — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: Leveraging Google for free GPU Compute; Date: 2019-04-11; Author: N. Koenig">
+	<title>Tabular Analysis of Glassdoor Data — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Tabular Analysis of Glassdoor Data; Date: 2019-02-06; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,11 +26,11 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">Leveraging Google for free GPU Compute</h1>
+		<h1 itemprop="name headline" class="article-title">Tabular Analysis of Glassdoor Data</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2019-04-11T09:30:00-05:00" itemprop="datePublished">Thu 11 April 2019</time>
+		<time datetime="2019-02-06T08:45:00-06:00" itemprop="datePublished">Wed 06 February 2019</time>
 	</div>
 	<div>
 		Category:
@@ -46,9 +46,6 @@
 		</span>
 		<span itemprop="keywords">
 			<a href="/tag/python.html" rel="tag">Python</a>
-		</span>
-		<span itemprop="keywords">
-			<a href="/tag/gpu.html" rel="tag">GPU</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1023,76 +1020,6 @@ h6:hover .anchor-link {
 
 .ansi-bold { font-weight: bold; }
 </style>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="So-You-Think-You-Need-A-GPU?-Google-Colab-Can-Help!">So You Think You Need A GPU? Google Colab Can Help!<a class="anchor-link" href="#So-You-Think-You-Need-A-GPU?-Google-Colab-Can-Help!">&#182;</a></h1><p>I Hope everyone that got a chance to go to SIOP last week enjoyed it. I liked all the discussions around AI in our field, but I'd like people to move beyond using it as a buzzword and start to discuss what they mean by AI when it comes to their tools. I don't think asking them to explain that they are using an LSTM, or Random Forests is giving away too much of their "secret sauce". But, one question or statement I got a few times is along the lines of "...one of our biggest issues was hardware....we just didn't have the compute power necessary to do a lot of the calculations, so it took a long time" Or in the Data Science Panel "....Don't I need an expensive computer to start doing REAL data science work?". So I thought I'd write a few articles showing how to get access to great compute hardware for free!</p>
-<h2 id="GPUs">GPUs<a class="anchor-link" href="#GPUs">&#182;</a></h2><p>First of all look at them, they are thing of beauty! If processing power is a bottleneck clearly a bad boy like this will solve your problems. In this article I'll walk you through how to get free access to this bad boy or one just like it. Then in a follow up article I'll walk through when a GPU can help and when it might not be very valuable.</p>
-<p><img src="https://i.imgur.com/3LHm3Hg.jpg" alt="Imgur"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Are-GPUs-Powerful?">Are GPUs Powerful?<a class="anchor-link" href="#Are-GPUs-Powerful?">&#182;</a></h1><p>The short answer is......Absolutely YES!!</p>
-<p>Below is a comparison of speedup over an Intel E5 CPU.</p>
-<p><img src="https://i.imgur.com/YiYCOYi.png" alt="Imgur"></p>
-<p>And this shows the # of training examples per second each can handle. Also realize that the top GPU mentioned here is only about 10x faster than a CPU, so the Tesla K80 is another 14x faster than that.</p>
-<p><img src="https://i.imgur.com/5b9Bb2u.png" alt="Imgur"></p>
-<p>So the bottom line is yes, they can greatly impact compute time on very large datasets.</p>
-<h4 id="So....">So....<a class="anchor-link" href="#So....">&#182;</a></h4><p>If your immediate thought is...I don't have a gaming computer, I don't want to pay to spin up an AWS or Azure instance, so I guess this isn't available to me, right?</p>
-<p>Short answr is no, both Google and Kaggle are very generous and provide you with free instances of GPUs on their platforms. In this article I'll walk you through how to get access to Google's free offering and run some quick code on Colab.</p>
-<p><strong>In this article I'll show you how to set it up in Google and in a follow up I'll show you how to do it in Kaggle Kernels.</strong></p>
-<h1 id="Google-Colab">Google Colab<a class="anchor-link" href="#Google-Colab">&#182;</a></h1><p>Google has an app in Drive that is actually called Google Colaboratory. It's designed to be a colaboratory hub where you can share code and work on notebooks in a similar way as slides or docs.</p>
-<h2 id="Step-1:-Go-to-Google-Drive-and-click-&quot;New&quot;-and-&quot;More&quot;-Like-This:">Step 1: Go to Google Drive and click "New" and "More" Like This:<a class="anchor-link" href="#Step-1:-Go-to-Google-Drive-and-click-&quot;New&quot;-and-&quot;More&quot;-Like-This:">&#182;</a></h2><p><img src="https://i.imgur.com/asgvNfr.png" alt="Imgur"></p>
-<h2 id="Step-2:-Name-Your-Notebook.-I-named-mine-&quot;GPU_in_Colab&quot;">Step 2: Name Your Notebook. I named mine "GPU_in_Colab"<a class="anchor-link" href="#Step-2:-Name-Your-Notebook.-I-named-mine-&quot;GPU_in_Colab&quot;">&#182;</a></h2><h2 id="Step-3:-Let's-find-out-what-system-of-Python-it's-running.">Step 3: Let's find out what system of Python it's running.<a class="anchor-link" href="#Step-3:-Let's-find-out-what-system-of-Python-it's-running.">&#182;</a></h2><p><img src="https://i.imgur.com/7FZrmc0.png" alt="Imgur"></p>
-<h2 id="Step-4:-Install-a-few-packages-that-allow-us-to-test-out-the-use-of-the-GPU.">Step 4: Install a few packages that allow us to test out the use of the GPU.<a class="anchor-link" href="#Step-4:-Install-a-few-packages-that-allow-us-to-test-out-the-use-of-the-GPU.">&#182;</a></h2><p>fastai automatically installs PyTorch, Pandas, Matplotlib, etc.</p>
-<p><strong>Quick note:</strong> If you are in a notebook and you use "!" at the beginning of a cell the cell acts as a terminal and executes terminal commands.</p>
-<p><img src="https://i.imgur.com/r6OJ4x6.png" alt="Imgur"></p>
-<h2 id="Step-5:-Let's-look-at-the-device-name-that-we-have-available-to-us-on-Colab.">Step 5: Let's look at the device name that we have available to us on Colab.<a class="anchor-link" href="#Step-5:-Let's-look-at-the-device-name-that-we-have-available-to-us-on-Colab.">&#182;</a></h2><p><img src="https://i.imgur.com/LvFflcb.png" alt="Imgur"></p>
-<p>....Oops we got a runtime error, it says we don't have a Cuda capable device. So...did I lie to you? Does Colab not have GPU accessibility?</p>
-<p><strong>It does</strong>, but you need to turn it on, so how do we do that? Simply go to the runtime dropdown and click on the change runtime type.</p>
-<h2 id="Step-6:-Turn-on-the-GPU">Step 6: Turn on the GPU<a class="anchor-link" href="#Step-6:-Turn-on-the-GPU">&#182;</a></h2><p><img src="https://i.imgur.com/CF7sapf.png" alt="Imgur"></p>
-<p>You will then be prompted with the runtime type and have an option for a hardware selector. It's defaulted to None, but you have a GPU or a TPU option available.</p>
-<p>So, let's turn on the GPU and hit <strong>Save</strong></p>
-<p><img src="https://i.imgur.com/xEaC3Rd.png" alt="Imgur"></p>
-<p>Now, let's go try that same code again.</p>
-<p><img src="https://i.imgur.com/WbEwnW5.png" alt="Imgur"></p>
-<p>Now we have access to a Tesla K80, which costs about $2k alone.</p>
-<p>So, let's do some quick stuff to show it in action.</p>
-<p>First let's run one epoch on the CPU to show how long it takes and let's compare that to one epoch on the GPU.</p>
-<p>For the purposes of this comparison I'm going to use a notebook that walks you through how to do state of the art image recognition on the dogs vs. cats dataset. <a href="https://github.com/fastai/course-v3/blob/master/nbs/dl1/lesson1-pets.ipynb">You can find the full notebook here</a></p>
-<p><strong>Edited to add</strong> that shortly after publishing this blog post Google again upgraded their GPUs to the Tesla T4 (see image below). I also provide an example of one epoch training using the T4 below, which speeds up the training by an additional 20%.</p>
-<p><img src="https://i.imgur.com/KMEoiLL.png" alt="Imgur"></p>
-<h1 id="Why-does-GPU-work-so-well-in-Deep-Learning?">Why does GPU work so well in Deep Learning?<a class="anchor-link" href="#Why-does-GPU-work-so-well-in-Deep-Learning?">&#182;</a></h1><p>Before we get into the comparison of a CPU vs. a GPU on an image classiciation problem I think it's important to highlight why it works so well. Essentially GPUs are very good at doing parallel compute. This is extremely helpful in matrix algebra calculations. So, anything where you are doing matrix multiplication and/or calculating derivatives the GPU will be extremely helpful.</p>
-<p>Now, back to the example:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Here is an example of some of the images</strong></p>
-<p><img src="https://i.imgur.com/st3AmTT.png" alt="Imgur"></p>
-<h1 id="Step-7:-Run-A-CNN">Step 7: Run A CNN<a class="anchor-link" href="#Step-7:-Run-A-CNN">&#182;</a></h1><p>In this example we will use the <a href="https://arxiv.org/abs/1512.03385">Resnet</a> architecture. This architecture was developed to handle many of the difficult problems of training extremely deep neural networks. One of the biggest issues is the <a href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem">vanishing gradient</a> which Resnet addressed.</p>
-<p>This specific implementation is Resnet 34, which contains 34 layers. You can read more about <a href="https://medium.com/@14prakash/understanding-and-implementing-architectures-of-resnet-and-resnext-for-state-of-the-art-image-cf51669e1624">Resnet here if you are interested.</a></p>
-<h1 id="CPU">CPU<a class="anchor-link" href="#CPU">&#182;</a></h1><p>Here are the results of 1 epoch, or pass through the data, using the CPU from Google Colab.</p>
-<p><img src="https://i.imgur.com/CKilS6R.png" alt="Imgur"></p>
-<p>It took us just under 40 minutes to complete and as you can see by looking at the training vs. the validation loss, we still need to do a few more epochs as the common rule of thumb is you want the training loss to be slightly lower than the validation loss.</p>
-<h1 id="GPU">GPU<a class="anchor-link" href="#GPU">&#182;</a></h1><p><img src="https://i.imgur.com/BsgJbyI.png" alt="Imgur"></p>
-<p>It took just under 2 minutes to do the exact same calculation on the exact same dataset using the K80 GPU.</p>
-<h1 id="GPU-using-the-Tesla-T4">GPU using the Tesla T4<a class="anchor-link" href="#GPU-using-the-Tesla-T4">&#182;</a></h1><p><img src="https://i.imgur.com/IJQTEyV.png" alt="Imgur"></p>
-<h1 id="Takeaway">Takeaway<a class="anchor-link" href="#Takeaway">&#182;</a></h1><p>GPUs have the capability to increase your compute efficiency many times over and Google Colab is one easy way to do that. Hopefully this article helps you to set up your own Colab environment and perhaps replicate the Cats and Dogs notebook I touched on here today.</p>
-
-</div>
-</div>
-</div>
  
 
 
@@ -1131,7 +1058,7 @@ h6:hover .anchor-link {
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'Leveraging Google for free GPU Compute';
+    var disqus_title = 'Tabular Analysis of Glassdoor Data';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

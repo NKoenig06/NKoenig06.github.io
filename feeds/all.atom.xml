@@ -1517,75 +1517,13 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[15]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;iplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;choromap&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;
-
-&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-
-&lt;div class="output_html rendered_html output_subarea "&gt;
-&lt;div&gt;
-        
-        
-            &lt;div id="1b59c06d-bd38-4949-9842-2fd807c0632d" class="plotly-graph-div" style="height:525px; width:100%;"&gt;&lt;/div&gt;
-            &lt;script type="text/javascript"&gt;
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-                    window.PLOTLYENV.BASE_URL='https://plot.ly';
-                    
-                if (document.getElementById("1b59c06d-bd38-4949-9842-2fd807c0632d")) {
-                    Plotly.newPlot(
-                        '1b59c06d-bd38-4949-9842-2fd807c0632d',
-                        [{"colorbar": {"title": {"text": "Reviews Count"}}, "colorscale": "Viridis", "locationmode": "USA-states", "locations": ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"], "type": "choropleth", "uid": "d4c4b3d3-d281-42ca-b0ed-9b175478f4f0", "z": [15, 162, 241, 186, 960, 170, 37, 12, 13, 1214, 679, 34, 47, 32, 338, 256, 77, 164, 122, 55, 117, 15, 312, 211, 173, 60, 18, 243, 17, 43, 26, 141, 42, 82, 273, 806, 95, 95, 585, 11, 171, 13, 292, 880, 109, 264, 4, 315, 118, 47, 9]}],
-                        {"geo": {"lakecolor": "rgb(85,173,240)", "scope": "usa", "showlakes": true}, "title": {"text": "Reviews by State"}},
-                        {"showLink": false, "linkText": "Export to plot.ly", "plotlyServerURL": "https://plot.ly", "responsive": true}
-                    ).then(function(){
-                            
-var gd = document.getElementById('1b59c06d-bd38-4949-9842-2fd807c0632d');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            &lt;/script&gt;
-        &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1663,7 +1601,7 @@ if (outputEl) {{
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[19]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;choromap&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;go&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;layout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;layout&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1671,68 +1609,6 @@ if (outputEl) {{
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;
-
-&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-
-&lt;div class="output_html rendered_html output_subarea "&gt;
-&lt;div&gt;
-        
-        
-            &lt;div id="bbc320c2-f434-4bc0-b2ad-2bc2f6e130d4" class="plotly-graph-div" style="height:525px; width:100%;"&gt;&lt;/div&gt;
-            &lt;script type="text/javascript"&gt;
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-                    window.PLOTLYENV.BASE_URL='https://plot.ly';
-                    
-                if (document.getElementById("bbc320c2-f434-4bc0-b2ad-2bc2f6e130d4")) {
-                    Plotly.newPlot(
-                        'bbc320c2-f434-4bc0-b2ad-2bc2f6e130d4',
-                        [{"colorbar": {"title": {"text": "Walmart Reviews Count"}}, "colorscale": "Viridis", "locationmode": "USA-states", "locations": ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV"], "type": "choropleth", "uid": "751cb489-e8c5-469f-a432-b0d5ae4ccc88", "z": [3, 14, 129, 21, 89, 18, 6, 3, 2, 72, 67, 2, 8, 10, 51, 37, 15, 14, 29, 5, 12, 3, 22, 19, 29, 9, 2, 40, 5, 9, 9, 21, 5, 13, 23, 35, 17, 7, 37, 2, 24, 3, 32, 117, 17, 31, 2, 13, 26, 5]}],
-                        {"geo": {"lakecolor": "rgb(85,173,240)", "scope": "usa", "showlakes": true}, "title": {"text": "Walmart Reviews by State"}},
-                        {"showLink": false, "linkText": "Export to plot.ly", "plotlyServerURL": "https://plot.ly", "responsive": true}
-                    ).then(function(){
-                            
-var gd = document.getElementById('bbc320c2-f434-4bc0-b2ad-2bc2f6e130d4');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            &lt;/script&gt;
-        &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1789,7 +1665,7 @@ if (outputEl) {{
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[22]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;choromap&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;go&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;layout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;layout&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1797,68 +1673,6 @@ if (outputEl) {{
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;
-
-&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-
-&lt;div class="output_html rendered_html output_subarea "&gt;
-&lt;div&gt;
-        
-        
-            &lt;div id="d4527afa-c916-4fef-9eda-c27939f202c3" class="plotly-graph-div" style="height:525px; width:100%;"&gt;&lt;/div&gt;
-            &lt;script type="text/javascript"&gt;
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-                    window.PLOTLYENV.BASE_URL='https://plot.ly';
-                    
-                if (document.getElementById("d4527afa-c916-4fef-9eda-c27939f202c3")) {
-                    Plotly.newPlot(
-                        'd4527afa-c916-4fef-9eda-c27939f202c3',
-                        [{"colorbar": {"title": {"text": "Target Reviews Count"}}, "colorscale": "Viridis", "locationmode": "USA-states", "locations": ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "WA", "WI", "WV"], "type": "choropleth", "uid": "550c930b-58ce-477d-a55d-758099dba62e", "z": [1, 3, 4, 25, 162, 21, 12, 1, 2, 53, 38, 8, 8, 2, 41, 12, 8, 8, 9, 22, 22, 1, 21, 106, 21, 6, 1, 11, 4, 8, 19, 4, 14, 65, 20, 14, 8, 35, 2, 11, 2, 8, 82, 8, 37, 20, 22, 3]}],
-                        {"geo": {"lakecolor": "rgb(85,173,240)", "scope": "usa", "showlakes": true}, "title": {"text": "Target Reviews by State"}},
-                        {"showLink": false, "linkText": "Export to plot.ly", "plotlyServerURL": "https://plot.ly", "responsive": true}
-                    ).then(function(){
-                            
-var gd = document.getElementById('d4527afa-c916-4fef-9eda-c27939f202c3');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            &lt;/script&gt;
-        &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1916,7 +1730,7 @@ if (outputEl) {{
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[42]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;choromap&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;go&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;layout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;layout&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1924,68 +1738,6 @@ if (outputEl) {{
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;
-
-&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-
-&lt;div class="output_html rendered_html output_subarea "&gt;
-&lt;div&gt;
-        
-        
-            &lt;div id="2e7af5ea-d0a6-4bb4-8136-3083456a987c" class="plotly-graph-div" style="height:525px; width:100%;"&gt;&lt;/div&gt;
-            &lt;script type="text/javascript"&gt;
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-                    window.PLOTLYENV.BASE_URL='https://plot.ly';
-                    
-                if (document.getElementById("2e7af5ea-d0a6-4bb4-8136-3083456a987c")) {
-                    Plotly.newPlot(
-                        '2e7af5ea-d0a6-4bb4-8136-3083456a987c',
-                        [{"colorbar": {"title": {"text": "Publix Reviews Count"}}, "colorscale": "Viridis", "locationmode": "USA-states", "locations": ["AL", "CA", "FL", "GA", "KS", "NC", "NY", "SC", "TN", "TX", "VA"], "type": "choropleth", "uid": "3b89d2b5-d422-4b8f-9167-ca6008ce6fd5", "z": [70, 2, 796, 232, 1, 38, 1, 57, 49, 4, 4]}],
-                        {"geo": {"lakecolor": "rgb(85,173,240)", "scope": "usa", "showlakes": true}, "title": {"text": "Publix Reviews by State"}},
-                        {"showLink": false, "linkText": "Export to plot.ly", "plotlyServerURL": "https://plot.ly", "responsive": true}
-                    ).then(function(){
-                            
-var gd = document.getElementById('2e7af5ea-d0a6-4bb4-8136-3083456a987c');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            &lt;/script&gt;
-        &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 

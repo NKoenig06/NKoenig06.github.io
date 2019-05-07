@@ -1493,6 +1493,15 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Quick note; the website builder I am using to build my plots is giving me trouble on producing the maps. You should be able to produce interactive maps by following the method I used above within your own Jupyter Notebooks. I'm currently looking into how I can get them to publish as well. For the time being I am going to leverage images of the maps though.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[14]:&lt;/div&gt;
@@ -1585,6 +1594,7 @@ if (outputEl) {{
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/NoeD0IG.png" alt="Imgur"&gt;&lt;/p&gt;
 &lt;p&gt;Now we can see that up in the northeast and northwest areas of the country we have very few reviews. In California, Texas, and Florida we have the most reviews.&lt;/p&gt;
 &lt;p&gt;Next let's look at some different companies pretty quickly to see if we can see some trends. Let's compare Walmart and Target.&lt;/p&gt;
 
@@ -1731,6 +1741,7 @@ if (outputEl) {{
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/eNSgVN2.png" alt="Imgur"&gt;&lt;/p&gt;
 &lt;p&gt;as you can see from this most of our reviews come from Arkansas (129), Texas (117), and California (89). This makes sense as Arkansas is home to Walmart HQ and both AR and TX have a large quantity of Walmart locations.&lt;/p&gt;
 &lt;h1 id="Target-Map"&gt;Target Map&lt;a class="anchor-link" href="#Target-Map"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
 &lt;/div&gt;
@@ -1856,6 +1867,7 @@ if (outputEl) {{
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/J4WLXTp.png" alt="Imgur"&gt;&lt;/p&gt;
 &lt;p&gt;For target the most reviews come from California (162), Minnesota (106), and Texas (82). Again this makes sense as Target's HQ is in Minny.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Now how about more of a regional player, like Publix?&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id="Publix-Map"&gt;Publix Map&lt;a class="anchor-link" href="#Publix-Map"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
@@ -1879,7 +1891,7 @@ if (outputEl) {{
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[24]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[41]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;choropleth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -1887,10 +1899,10 @@ if (outputEl) {{
             &lt;span class="n"&gt;locationmode&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;USA-states&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
             &lt;span class="n"&gt;colorscale&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Viridis&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
             &lt;span class="n"&gt;z&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;push_grpby&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-            &lt;span class="n"&gt;colorbar&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Target Reviews Count&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="n"&gt;colorbar&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Publix Reviews Count&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
             &lt;span class="p"&gt;)&lt;/span&gt; 
 
-&lt;span class="n"&gt;layout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Target Reviews by State&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="n"&gt;layout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Publix Reviews by State&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
               &lt;span class="n"&gt;geo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scope&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;usa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                          &lt;span class="n"&gt;showlakes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                          &lt;span class="n"&gt;lakecolor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;rgb(85,173,240)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1904,7 +1916,7 @@ if (outputEl) {{
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[25]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[42]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;choromap&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;go&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;layout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;layout&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1929,21 +1941,21 @@ if (outputEl) {{
 &lt;div&gt;
         
         
-            &lt;div id="16e8ac8a-03a3-4845-8477-a7062592d539" class="plotly-graph-div" style="height:525px; width:100%;"&gt;&lt;/div&gt;
+            &lt;div id="2e7af5ea-d0a6-4bb4-8136-3083456a987c" class="plotly-graph-div" style="height:525px; width:100%;"&gt;&lt;/div&gt;
             &lt;script type="text/javascript"&gt;
                 require(["plotly"], function(Plotly) {
                     window.PLOTLYENV=window.PLOTLYENV || {};
                     window.PLOTLYENV.BASE_URL='https://plot.ly';
                     
-                if (document.getElementById("16e8ac8a-03a3-4845-8477-a7062592d539")) {
+                if (document.getElementById("2e7af5ea-d0a6-4bb4-8136-3083456a987c")) {
                     Plotly.newPlot(
-                        '16e8ac8a-03a3-4845-8477-a7062592d539',
-                        [{"colorbar": {"title": {"text": "Target Reviews Count"}}, "colorscale": "Viridis", "locationmode": "USA-states", "locations": ["AL", "CA", "FL", "GA", "KS", "NC", "NY", "SC", "TN", "TX", "VA"], "type": "choropleth", "uid": "185a1d78-54d8-4043-a2c4-100298bbb4fd", "z": [70, 2, 796, 232, 1, 38, 1, 57, 49, 4, 4]}],
-                        {"geo": {"lakecolor": "rgb(85,173,240)", "scope": "usa", "showlakes": true}, "title": {"text": "Target Reviews by State"}},
+                        '2e7af5ea-d0a6-4bb4-8136-3083456a987c',
+                        [{"colorbar": {"title": {"text": "Publix Reviews Count"}}, "colorscale": "Viridis", "locationmode": "USA-states", "locations": ["AL", "CA", "FL", "GA", "KS", "NC", "NY", "SC", "TN", "TX", "VA"], "type": "choropleth", "uid": "3b89d2b5-d422-4b8f-9167-ca6008ce6fd5", "z": [70, 2, 796, 232, 1, 38, 1, 57, 49, 4, 4]}],
+                        {"geo": {"lakecolor": "rgb(85,173,240)", "scope": "usa", "showlakes": true}, "title": {"text": "Publix Reviews by State"}},
                         {"showLink": false, "linkText": "Export to plot.ly", "plotlyServerURL": "https://plot.ly", "responsive": true}
                     ).then(function(){
                             
-var gd = document.getElementById('16e8ac8a-03a3-4845-8477-a7062592d539');
+var gd = document.getElementById('2e7af5ea-d0a6-4bb4-8136-3083456a987c');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -1982,6 +1994,7 @@ if (outputEl) {{
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/WOTiN1r.png" alt="Imgur"&gt;&lt;/p&gt;
 &lt;p&gt;For the most part this makes sense. We know that Publix was founded outside of Orlando, Florida and the majority of their footprint is in Florida, with a few locations in surrounding states. What is interesting to see is that there are a few reviews coming from states that don't have a Publix. Let's see what the individuals from California had to say.&lt;/p&gt;
 
 &lt;/div&gt;

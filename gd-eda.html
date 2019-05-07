@@ -1542,6 +1542,15 @@ h6:hover .anchor-link {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Quick note; the website builder I am using to build my plots is giving me trouble on producing the maps. You should be able to produce interactive maps by following the method I used above within your own Jupyter Notebooks. I'm currently looking into how I can get them to publish as well. For the time being I am going to leverage images of the maps though.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
@@ -1634,6 +1643,7 @@ if (outputEl) {{
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="https://i.imgur.com/NoeD0IG.png" alt="Imgur"></p>
 <p>Now we can see that up in the northeast and northwest areas of the country we have very few reviews. In California, Texas, and Florida we have the most reviews.</p>
 <p>Next let's look at some different companies pretty quickly to see if we can see some trends. Let's compare Walmart and Target.</p>
 
@@ -1780,6 +1790,7 @@ if (outputEl) {{
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="https://i.imgur.com/eNSgVN2.png" alt="Imgur"></p>
 <p>as you can see from this most of our reviews come from Arkansas (129), Texas (117), and California (89). This makes sense as Arkansas is home to Walmart HQ and both AR and TX have a large quantity of Walmart locations.</p>
 <h1 id="Target-Map">Target Map<a class="anchor-link" href="#Target-Map">&#182;</a></h1>
 </div>
@@ -1905,6 +1916,7 @@ if (outputEl) {{
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="https://i.imgur.com/J4WLXTp.png" alt="Imgur"></p>
 <p>For target the most reviews come from California (162), Minnesota (106), and Texas (82). Again this makes sense as Target's HQ is in Minny.</p>
 <p><strong>Now how about more of a regional player, like Publix?</strong></p>
 <h1 id="Publix-Map">Publix Map<a class="anchor-link" href="#Publix-Map">&#182;</a></h1>
@@ -1928,7 +1940,7 @@ if (outputEl) {{
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;choropleth&#39;</span><span class="p">,</span>
@@ -1936,10 +1948,10 @@ if (outputEl) {{
             <span class="n">locationmode</span> <span class="o">=</span> <span class="s1">&#39;USA-states&#39;</span><span class="p">,</span>
             <span class="n">colorscale</span><span class="o">=</span> <span class="s1">&#39;Viridis&#39;</span><span class="p">,</span>
             <span class="n">z</span> <span class="o">=</span> <span class="n">push_grpby</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">],</span>
-            <span class="n">colorbar</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s2">&quot;Target Reviews Count&quot;</span><span class="p">}</span>
+            <span class="n">colorbar</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s2">&quot;Publix Reviews Count&quot;</span><span class="p">}</span>
             <span class="p">)</span> 
 
-<span class="n">layout</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Target Reviews by State&#39;</span><span class="p">,</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Publix Reviews by State&#39;</span><span class="p">,</span>
               <span class="n">geo</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;usa&#39;</span><span class="p">,</span>
                          <span class="n">showlakes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
                          <span class="n">lakecolor</span> <span class="o">=</span> <span class="s1">&#39;rgb(85,173,240)&#39;</span><span class="p">)</span>
@@ -1953,7 +1965,7 @@ if (outputEl) {{
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">choromap</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">],</span><span class="n">layout</span> <span class="o">=</span> <span class="n">layout</span><span class="p">)</span>
@@ -1978,21 +1990,21 @@ if (outputEl) {{
 <div>
         
         
-            <div id="16e8ac8a-03a3-4845-8477-a7062592d539" class="plotly-graph-div" style="height:525px; width:100%;"></div>
+            <div id="2e7af5ea-d0a6-4bb4-8136-3083456a987c" class="plotly-graph-div" style="height:525px; width:100%;"></div>
             <script type="text/javascript">
                 require(["plotly"], function(Plotly) {
                     window.PLOTLYENV=window.PLOTLYENV || {};
                     window.PLOTLYENV.BASE_URL='https://plot.ly';
                     
-                if (document.getElementById("16e8ac8a-03a3-4845-8477-a7062592d539")) {
+                if (document.getElementById("2e7af5ea-d0a6-4bb4-8136-3083456a987c")) {
                     Plotly.newPlot(
-                        '16e8ac8a-03a3-4845-8477-a7062592d539',
-                        [{"colorbar": {"title": {"text": "Target Reviews Count"}}, "colorscale": "Viridis", "locationmode": "USA-states", "locations": ["AL", "CA", "FL", "GA", "KS", "NC", "NY", "SC", "TN", "TX", "VA"], "type": "choropleth", "uid": "185a1d78-54d8-4043-a2c4-100298bbb4fd", "z": [70, 2, 796, 232, 1, 38, 1, 57, 49, 4, 4]}],
-                        {"geo": {"lakecolor": "rgb(85,173,240)", "scope": "usa", "showlakes": true}, "title": {"text": "Target Reviews by State"}},
+                        '2e7af5ea-d0a6-4bb4-8136-3083456a987c',
+                        [{"colorbar": {"title": {"text": "Publix Reviews Count"}}, "colorscale": "Viridis", "locationmode": "USA-states", "locations": ["AL", "CA", "FL", "GA", "KS", "NC", "NY", "SC", "TN", "TX", "VA"], "type": "choropleth", "uid": "3b89d2b5-d422-4b8f-9167-ca6008ce6fd5", "z": [70, 2, 796, 232, 1, 38, 1, 57, 49, 4, 4]}],
+                        {"geo": {"lakecolor": "rgb(85,173,240)", "scope": "usa", "showlakes": true}, "title": {"text": "Publix Reviews by State"}},
                         {"showLink": false, "linkText": "Export to plot.ly", "plotlyServerURL": "https://plot.ly", "responsive": true}
                     ).then(function(){
                             
-var gd = document.getElementById('16e8ac8a-03a3-4845-8477-a7062592d539');
+var gd = document.getElementById('2e7af5ea-d0a6-4bb4-8136-3083456a987c');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -2031,6 +2043,7 @@ if (outputEl) {{
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="https://i.imgur.com/WOTiN1r.png" alt="Imgur"></p>
 <p>For the most part this makes sense. We know that Publix was founded outside of Orlando, Florida and the majority of their footprint is in Florida, with a few locations in surrounding states. What is interesting to see is that there are a few reviews coming from states that don't have a Publix. Let's see what the individuals from California had to say.</p>
 
 </div>

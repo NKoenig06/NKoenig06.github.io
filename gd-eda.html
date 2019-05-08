@@ -1025,6 +1025,7 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Glassdoor-Exploratory-Analysis">Glassdoor Exploratory Analysis<a class="anchor-link" href="#Glassdoor-Exploratory-Analysis">&#182;</a></h1><p>A few months ago I <a href="https://nkoenig06.github.io/scrape-gd.html">scraped Glassdoor</a> for roughly 2.5k reviews across 9 companies. In this article I'm going to do some exploratory data analysis (EDA). In future articles I'll build ML models to try to predict ratings and explore NLP models as well.</p>
+<h2 id="What-is-EDA-and-why-do-we-do-it?">What is EDA and why do we do it?<a class="anchor-link" href="#What-is-EDA-and-why-do-we-do-it?">&#182;</a></h2><p>Often times we will be given data and have a rough understanding of what is included, but not know much about the data. <a href="https://en.wikipedia.org/wiki/Exploratory_data_analysis">EDA</a> is the step where we explore the data. This typically includes looking at the descriptive statistics for your numnerical data as well as exploring response types and patterns in your categorical data. It also might involve creating plots and charts to explore and find nuggets hidden within the data.</p>
 
 </div>
 </div>
@@ -1071,7 +1072,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -1087,7 +1088,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+<div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -1127,6 +1128,8 @@ h6:hover .anchor-link {
       <th>rating_comp</th>
       <th>rating_mgmt</th>
       <th>company</th>
+      <th>city</th>
+      <th>state</th>
     </tr>
   </thead>
   <tbody>
@@ -1149,6 +1152,8 @@ h6:hover .anchor-link {
       <td>2.5</td>
       <td>NaN</td>
       <td>geagle</td>
+      <td>Fairlawn</td>
+      <td>OH</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1169,6 +1174,8 @@ h6:hover .anchor-link {
       <td>3.5</td>
       <td>NaN</td>
       <td>geagle</td>
+      <td>Pittsburgh</td>
+      <td>PA</td>
     </tr>
   </tbody>
 </table>
@@ -1218,7 +1225,7 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="c1"># ensure all inputs into this column are in the string format</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
@@ -1320,7 +1327,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's remove the data that has the "no state" designation as that won't be useful for the next part.</p>
+<p>Let's remove the data that has the "no state" designation by creating a new dataframe to examine the counts by state.</p>
 
 </div>
 </div>
@@ -1451,7 +1458,8 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you can see this gets us exactly what we want. Now we can make a map looking at the number of reviews by state.</p>
-<h1 id="Map-of-Reviews">Map of Reviews<a class="anchor-link" href="#Map-of-Reviews">&#182;</a></h1>
+<h1 id="Map-of-Reviews">Map of Reviews<a class="anchor-link" href="#Map-of-Reviews">&#182;</a></h1><p>When it comes to developing interactive plots some packages provide better support than others. In developing interactive maps one great package is known as <a href="https://github.com/plotly/plotly.py">Plotly</a> is actually both a company and package. They provide both pay solutions as well as open source solutions for interactive graphing. If you are using it at an individual level in most instances the open source options provided by them will be more than sufficient.</p>
+
 </div>
 </div>
 </div>
@@ -1507,13 +1515,14 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;choropleth&#39;</span><span class="p">,</span>
             <span class="n">locations</span> <span class="o">=</span> <span class="n">new_df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">],</span>
             <span class="n">locationmode</span> <span class="o">=</span> <span class="s1">&#39;USA-states&#39;</span><span class="p">,</span>
             <span class="n">colorscale</span><span class="o">=</span> <span class="s1">&#39;Viridis&#39;</span><span class="p">,</span>
+            <span class="n">reversescale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">z</span> <span class="o">=</span> <span class="n">new_df</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">],</span>
             <span class="n">colorbar</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s2">&quot;Reviews Count&quot;</span><span class="p">}</span>
             <span class="p">)</span> 
@@ -1526,7 +1535,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Reviews by State&#39;</span><span class="p">,</span>
@@ -1552,7 +1561,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">choromap</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">],</span><span class="n">layout</span> <span class="o">=</span> <span class="n">layout</span><span class="p">)</span>
@@ -1565,7 +1574,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#iplot(choromap)</span>
@@ -1580,7 +1589,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/NoeD0IG.png" alt="Imgur"></p>
+<p><img src="https://i.imgur.com/5jINKz9.png" alt="Imgur"></p>
 <p>Now we can see that up in the northeast and northwest areas of the country we have very few reviews. In California, Texas, and Florida we have the most reviews.</p>
 <p>Next let's look at some different companies pretty quickly to see if we can see some trends. Let's compare Walmart and Target.</p>
 
@@ -1597,7 +1606,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wmt</span> <span class="o">=</span> <span class="n">states_only</span><span class="p">[</span><span class="n">states_only</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;wmt&#39;</span><span class="p">]</span>
@@ -1610,7 +1619,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wmt_grpby</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;count&#39;</span> <span class="p">:</span> <span class="n">wmt</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
@@ -1624,13 +1633,14 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;choropleth&#39;</span><span class="p">,</span>
             <span class="n">locations</span> <span class="o">=</span> <span class="n">wmt_grpby</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">],</span>
             <span class="n">locationmode</span> <span class="o">=</span> <span class="s1">&#39;USA-states&#39;</span><span class="p">,</span>
             <span class="n">colorscale</span><span class="o">=</span> <span class="s1">&#39;Viridis&#39;</span><span class="p">,</span>
+            <span class="n">reversescale</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
             <span class="n">z</span> <span class="o">=</span> <span class="n">wmt_grpby</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">],</span>
             <span class="n">colorbar</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s2">&quot;Walmart Reviews Count&quot;</span><span class="p">}</span>
             <span class="p">)</span> 
@@ -1649,7 +1659,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">choromap</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">],</span><span class="n">layout</span> <span class="o">=</span> <span class="n">layout</span><span class="p">)</span>
@@ -1665,15 +1675,15 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/eNSgVN2.png" alt="Imgur"></p>
-<p>as you can see from this most of our reviews come from Arkansas (129), Texas (117), and California (89). This makes sense as Arkansas is home to Walmart HQ and both AR and TX have a large quantity of Walmart locations.</p>
+<p><img src="https://i.imgur.com/A8GSP5d.png" alt="Imgur"></p>
+<p>As you can see from this most of our reviews come from Arkansas (129), Texas (117), and California (89). This makes sense as Arkansas is home to Walmart HQ and both AR and TX have a large quantity of Walmart locations.</p>
 <h1 id="Target-Map">Target Map<a class="anchor-link" href="#Target-Map">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tgt</span> <span class="o">=</span> <span class="n">states_only</span><span class="p">[</span><span class="n">states_only</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;tgt&#39;</span><span class="p">]</span>
@@ -1688,13 +1698,14 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;choropleth&#39;</span><span class="p">,</span>
             <span class="n">locations</span> <span class="o">=</span> <span class="n">tgt_grpby</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">],</span>
             <span class="n">locationmode</span> <span class="o">=</span> <span class="s1">&#39;USA-states&#39;</span><span class="p">,</span>
             <span class="n">colorscale</span><span class="o">=</span> <span class="s1">&#39;Viridis&#39;</span><span class="p">,</span>
+            <span class="n">reversescale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">z</span> <span class="o">=</span> <span class="n">tgt_grpby</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">],</span>
             <span class="n">colorbar</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s2">&quot;Target Reviews Count&quot;</span><span class="p">}</span>
             <span class="p">)</span> 
@@ -1713,7 +1724,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">choromap</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">],</span><span class="n">layout</span> <span class="o">=</span> <span class="n">layout</span><span class="p">)</span>
@@ -1729,7 +1740,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/J4WLXTp.png" alt="Imgur"></p>
+<p><img src="https://i.imgur.com/x42sy1L.png" alt="Imgur"></p>
 <p>For target the most reviews come from California (162), Minnesota (106), and Texas (82). Again this makes sense as Target's HQ is in Minny.</p>
 <p><strong>Now how about more of a regional player, like Publix?</strong></p>
 <h1 id="Publix-Map">Publix Map<a class="anchor-link" href="#Publix-Map">&#182;</a></h1>
@@ -1738,7 +1749,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">push</span> <span class="o">=</span> <span class="n">states_only</span><span class="p">[</span><span class="n">states_only</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;push&#39;</span><span class="p">]</span>
@@ -1753,13 +1764,14 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;choropleth&#39;</span><span class="p">,</span>
             <span class="n">locations</span> <span class="o">=</span> <span class="n">push_grpby</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">],</span>
             <span class="n">locationmode</span> <span class="o">=</span> <span class="s1">&#39;USA-states&#39;</span><span class="p">,</span>
             <span class="n">colorscale</span><span class="o">=</span> <span class="s1">&#39;Viridis&#39;</span><span class="p">,</span>
+            <span class="n">reversescale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">z</span> <span class="o">=</span> <span class="n">push_grpby</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">],</span>
             <span class="n">colorbar</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s2">&quot;Publix Reviews Count&quot;</span><span class="p">}</span>
             <span class="p">)</span> 
@@ -1778,7 +1790,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">choromap</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">],</span><span class="n">layout</span> <span class="o">=</span> <span class="n">layout</span><span class="p">)</span>
@@ -1794,7 +1806,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/WOTiN1r.png" alt="Imgur"></p>
+<p><img src="https://i.imgur.com/pMdGR0V.png" alt="Imgur"></p>
 <p>For the most part this makes sense. We know that Publix was founded outside of Orlando, Florida and the majority of their footprint is in Florida, with a few locations in surrounding states. What is interesting to see is that there are a few reviews coming from states that don't have a Publix. Let's see what the individuals from California had to say.</p>
 
 </div>
@@ -2048,6 +2060,14 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see that cashier is the heavy favorite at roughly 3.5x more than crew member, but we can see here that there are a few cashier titles, such as <strong>cashier, front end cashier, and sales associate/cashier</strong>. Can we find out how many people have the word <strong>cashier</strong> in the employee title?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>The first thing we'll want to do is ensure the column is a string, so we can apply the .lower() string function to the titles, to ensure all are in the same case. Then it's as simple as a seeing if the string contains the word cashier and getting a count.</p>
 
 </div>
@@ -2055,7 +2075,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
@@ -2069,7 +2089,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title_low&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title_low&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
@@ -2080,9 +2100,18 @@ h6:hover .anchor-link {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's go ahead and look at all the instances where cashier is included in the job title.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title_low&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;cashier&#39;</span><span class="p">)][</span><span class="s1">&#39;employee_title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
@@ -2098,7 +2127,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[30]:</div>
+<div class="prompt output_prompt">Out[47]:</div>
 
 
 
@@ -2113,11 +2142,127 @@ h6:hover .anchor-link {
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cashier_titles</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="s1">&#39;cashier&#39;</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title_low&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+        <span class="n">cashier_titles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title_low&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let's write a little function that isolates all cases where they use the word cashier in the job title.</p>
+<p>Let's see how many different job titles we have.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cashier_titles</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[57]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>189</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So we have 189 different job titles with the word cashier in them. Let's look at some of them.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cashier_titles</span><span class="p">))[:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[62]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39; customer service cashier&#39;,
+ &#39; front end (cashier assistant)&#39;,
+ &#39; cashier/greeter&#39;,
+ &#39; checkout cashier&#39;,
+ &#39; cashier and crew member&#39;,
+ &#39; cashier and salesperson&#39;,
+ &#39; cashier/front team member&#39;,
+ &#39; costco wholesale cashier assistant (front end assistant)&#39;,
+ &#39; cashier/barista&#39;,
+ &#39; front end cashier(formerly eagles nest attendant)&#39;,
+ &#34; i&#39;m customer service staff cashier and event planner&#34;,
+ &#39; third shift cashier&#39;,
+ &#39; front end cashier assistant&#39;,
+ &#39; overnight cashier/stocker&#39;,
+ &#39; refund cashier&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's write a little function that isolates all cases where they use the word cashier in the job title so we can create an additional column that identifies whether it is a cashier job or not.</p>
 
 </div>
 </div>
@@ -2374,7 +2519,7 @@ Name: company, dtype: int64</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see here that Costco had both the highest mean and the lowest standard deviation, so people in general agree Costco is a good company to work for. On the opposite end Giant Eagle had the lowest mean, with a standard deviation somewhere in the middle.</p>
 <p>Is there a good way to visualize not only the means, but also the distributions?</p>
-<h3 id="Violin-Plots">Violin Plots<a class="anchor-link" href="#Violin-Plots">&#182;</a></h3><p>The beauty of the violin plots is they provide you with the kernel density estimates on the outside of the plot as well as the box plot on the interior. The white dot represents the median value.</p>
+<h3 id="Violin-Plots">Violin Plots<a class="anchor-link" href="#Violin-Plots">&#182;</a></h3><p>The beauty of the <a href="https://en.wikipedia.org/wiki/Violin_plot">violin plots</a> is they provide you with the kernel density estimates on the outside of the plot as well as the box plot on the interior. The white dot represents the median value.</p>
 
 </div>
 </div>
@@ -2419,7 +2564,7 @@ Name: company, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>From this graph I can see that the majority of both Costco and Publix's responses are either a 4 or a 5, while for most other companies the majority of responses are in the 3 range.</p>
+<p>From this graph we can see that the majority of both Costco and Publix's responses are either a 4 or a 5, while for most other companies the majority of responses are in the 3 range.</p>
 
 </div>
 </div>

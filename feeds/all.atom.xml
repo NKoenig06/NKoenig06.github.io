@@ -975,8 +975,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="Glassdoor-Exploratory-Analysis"&gt;Glassdoor Exploratory Analysis&lt;a class="anchor-link" href="#Glassdoor-Exploratory-Analysis"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;A few months ago I scraped Glassdoor for roughly 2.5k reviews across 9 companies. In this article I'm going to do some exploratory data analysis (EDA). In future articles I'll build ML models to try to predict ratings and using NLP to try to predict ratings.&lt;/p&gt;
-&lt;p&gt;If you want to review the article I wrote on scraping glassdoor you can find that &lt;a href="https://nkoenig06.github.io/scrape-gd.html"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="Glassdoor-Exploratory-Analysis"&gt;Glassdoor Exploratory Analysis&lt;a class="anchor-link" href="#Glassdoor-Exploratory-Analysis"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;A few months ago I &lt;a href="https://nkoenig06.github.io/scrape-gd.html"&gt;scraped Glassdoor&lt;/a&gt; for roughly 2.5k reviews across 9 companies. In this article I'm going to do some exploratory data analysis (EDA). In future articles I'll build ML models to try to predict ratings and explore NLP models as well.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

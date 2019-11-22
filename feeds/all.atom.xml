@@ -997,7 +997,7 @@ h6:hover .anchor-link {
 &lt;p&gt;So, if we could get this data, how would we structure it to see if we could predict it, and...can we predict it?&lt;/p&gt;
 &lt;p&gt;introducing &lt;a href="https://en.wikipedia.org/wiki/Statcast"&gt;statcast&lt;/a&gt;....it's powered by AWS :) This new dataset allows us to actually examine parts of the game that are closer to behaviors. It has an amazing amount of pitch data, but it also has things like launch angle, exit velocity, whether or not there was a shift, where the ball was hit on the field, etc. All things that are important to understanding whether or not the ball in play resulted in a hit or an out.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/yLhwuYt.jpg" alt="img"&gt;&lt;/p&gt;
-&lt;p&gt;first thing we need to do is pip install pybaseball, I've already done so, so I'm gonig to comment it out. Then we will import our needed packages.&lt;/p&gt;
+&lt;p&gt;first thing we need to do is pip install pybaseball, I've already done so, so I'm going to comment it out. Then we will import our needed packages.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

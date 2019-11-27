@@ -1044,8 +1044,8 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As I/O Psychologists one of our main functions is to predict job performance. Often we are in search of what job performance means and it means different things for different roles, but often we can get at a decent understanding of what behaviors and competencies differentiate good and poor performers. Our goal is to then use available data to predict whether or not they will be a good performer or a bad performer.</p>
-<p>We can look at the game of baseball as a microcosm for this. A hit is good and an out is bad. For simplicity sake we will treat all hits as equal (single, double, triple, homerun) all are good and an out from a ball in play is bad.</p>
+<p>As I/O Psychologists one of our main functions is to predict job performance. Often we are in search of what job performance means and it means different things for different roles, but often we can get at a decent understanding of what behaviors and competencies differentiate good and poor performers. Our goal is to then use available data to predict whether or not the employee/candidate will be a good performer or a bad performer.</p>
+<p>We can look at the game of baseball as a microcosm for this. A hit is good and an out is bad. For simplicity sake we will treat all hits as equal (single, double, triple, homerun) and an out from a ball in play is bad.</p>
 <p>So, if we could get this data, how would we structure it to see if we could predict it, and...can we predict it?</p>
 <p>introducing <a href="https://en.wikipedia.org/wiki/Statcast">statcast</a>....it's powered by AWS :) This new dataset allows us to actually examine parts of the game that are closer to behaviors. It has an amazing amount of pitch data, but it also has things like launch angle, exit velocity, whether or not there was a shift, where the ball was hit on the field, etc. All things that are important to understanding whether or not the ball in play resulted in a hit or an out.</p>
 <p><img src="https://i.imgur.com/yLhwuYt.jpg" alt="img"></p>
@@ -1103,7 +1103,7 @@ h6:hover .anchor-link {
 <li>hit_location</li>
 <li>p_throws (recode)</li>
 </ul>
-<p>hc_y/hc_x is the location the ball lands. if/of_fielding_assignment is whether there was a shift in the infield or outfield, outs when up could impact how easily a force out is applied, home team allows us to account for park factors, stand is whether the batter is a lefty or a right, hit location is the position of the first player to touch the ball and p_throws is the hand of the pitcher. that should be a good start.</p>
+<p>hc_y/hc_x is the location the ball lands. if/of_fielding_assignment is whether there was a shift in the infield or outfield, outs when up could impact how easily a force out is applied, home team allows us to account for park factors, stand is whether the batter is a lefty or a righty, hit location is the position of the first player to touch the ball and p_throws is the hand of the pitcher. that should be a good start.</p>
 <p>This simple query allows us to download all data from a specific time period. I chose the length of the 2019 MLB regular season for the purposes of this.</p>
 
 </div>
@@ -2001,9 +2001,10 @@ softest hit ball:  7.6
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is interesting, because at first the .334 batting average seems a bit high, but in reality it's the batting average only for balls that were put in play. So we now know that by predicting an out every time we'd have a classification model that is 66.6% accurate.</p>
-<h2 id="Area-Under-the-Curve">Area Under the Curve<a class="anchor-link" href="#Area-Under-the-Curve">&#182;</a></h2><p><a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5">This</a> is a good introduction to area under the curve, but basically when evaluating model performance, when the target is imbalanced accuracy can often times be less important than the order of the probabilities assigned.</p>
+<h2 id="Area-Under-the-Curve">Area Under the Curve<a class="anchor-link" href="#Area-Under-the-Curve">&#182;</a></h2><p><a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5">This</a> is a good introduction to area under the curve, but basically when evaluating model performance, when the target is imbalanced, accuracy can often times be less important than the order of the probabilities assigned.</p>
 <p><img src="https://i.imgur.com/UQRbVSq.png" alt="img"></p>
-<h2 id="Logistic-Regression-as-our-baseline">Logistic Regression as our baseline<a class="anchor-link" href="#Logistic-Regression-as-our-baseline">&#182;</a></h2><p>Let's first build a baseline model. I like to start simple, so for this let's use a logistic regression.</p>
+<h1 id="Logistic-Regression-as-our-baseline">Logistic Regression as our baseline<a class="anchor-link" href="#Logistic-Regression-as-our-baseline">&#182;</a></h1><p><img src="https://i.imgur.com/GJO3I1Y.png" alt="img"></p>
+<p>Let's start by considering a more traditional model, the Logistic Regression. For more information on the mathematics behind LR <a href="https://machinelearningmastery.com/logistic-regression-for-machine-learning/">this article</a> may be useful.</p>
 <p>We'll start off with a fairly simple k-fold cross-validation and we'll use 10 folds. We'll then average the area under the curve together to get our AUC across the 10 folds.</p>
 
 </div>
@@ -2058,7 +2059,7 @@ softest hit ball:  7.6
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="K-Nearest-Neigbors">K-Nearest Neigbors<a class="anchor-link" href="#K-Nearest-Neigbors">&#182;</a></h2><p>let's try K-Nearest Neighbors for something a bit different. It makes sense that balls in play most like other balls in play will have a similar result, but the problem is identifying the ideal number of neighbors. Let's write a for loop to identify this.</p>
+<h2 id="K-Nearest-Neigbors">K-Nearest Neigbors<a class="anchor-link" href="#K-Nearest-Neigbors">&#182;</a></h2><p>K-Nearest Neigbors is another algorithm that may be useful. It uses Euclidean Distance and a set of neigbors (nearest data points) to label a target. The basic premise is that if the features are similar to features we know were a hit then it's likely to be a hit, etc. For more specifics on the KNN algorithm check out this <a href="https://machinelearningmastery.com/k-nearest-neighbors-for-machine-learning/">article</a>. It makes sense that balls in play most like other balls in play will have a similar result, but the problem is identifying the ideal number of neighbors. Let's write a for loop to identify this.</p>
 
 </div>
 </div>
@@ -2216,7 +2217,10 @@ softest hit ball:  7.6
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>An AUC of 0.96113 is pretty impressive for such a simple algorithm, but now it's time to bring in the big boys. Random Forests and Gradient Boosted Trees.</p>
-<h2 id="Random-Forests">Random Forests<a class="anchor-link" href="#Random-Forests">&#182;</a></h2>
+<h2 id="Random-Forests">Random Forests<a class="anchor-link" href="#Random-Forests">&#182;</a></h2><p><img src="https://i.imgur.com/ib25WBR.png" alt="img"></p>
+<p>Next, let's look at one of the more popular "Machine Learning" algorithms today the Random Forests algorithm. In fairly simple terms the Random Forests algorithm uses bagging where it takes random subsets of both data and features and creates a tree-based model to predict the label. All of these "trees" are then aggregated together to form an <strong>ensemble</strong> model using the <a href="https://en.wikipedia.org/wiki/Wisdom_of_the_crowd">wisdom of the crowds</a> theory. For more specifics I refer you to <a href="https://machinelearningmastery.com/bagging-and-random-forest-ensemble-algorithms-for-machine-learning/">this article</a>.</p>
+<p>We will implement <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">sklearn</a> version of the algorithm.</p>
+
 </div>
 </div>
 </div>
@@ -2259,7 +2263,8 @@ softest hit ball:  7.6
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="XGBoosts-implementation-of-Gradient-Boosted-Trees">XGBoosts implementation of Gradient Boosted Trees<a class="anchor-link" href="#XGBoosts-implementation-of-Gradient-Boosted-Trees">&#182;</a></h2><p>There are several implementations of gradient boosted trees, but in my experience XGBoost and LightGBM have performed the best. Let's take a look at XGBoost</p>
+<h2 id="XGBoosts-implementation-of-Gradient-Boosted-Trees">XGBoosts implementation of Gradient Boosted Trees<a class="anchor-link" href="#XGBoosts-implementation-of-Gradient-Boosted-Trees">&#182;</a></h2><p>The final algorithm we will try is typically considered the most powerful. Unlike random forests which randomly develops trees via bagging, gradient boosting takes a purposeful approach and focuses on improving the <strong>weak learners</strong> or the trees that are performing relatively poorly. By doing this it boosts the overall success of the combination of trees at the end. For more specifics I refer you to <a href="https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/">this article</a>.</p>
+<p>We will actually not be using sklearn for the gradient boosting algorithm (although I have heard that the most recent version of sklearn does have a gradient boosting algorithm on par with XGboost and LightGBM. For this we will focus on <a href="https://xgboost.readthedocs.io/en/latest/python/python_intro.html">XGBoost</a>. Luckily for us the developers built the API to reflect the sklearn implementation, which makes it almost exactly the same.</p>
 
 </div>
 </div>

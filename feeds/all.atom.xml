@@ -992,8 +992,8 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;As I/O Psychologists one of our main functions is to predict job performance. Often we are in search of what job performance means and it means different things for different roles, but often we can get at a decent understanding of what behaviors and competencies differentiate good and poor performers. Our goal is to then use available data to predict whether or not they will be a good performer or a bad performer.&lt;/p&gt;
-&lt;p&gt;We can look at the game of baseball as a microcosm for this. A hit is good and an out is bad. For simplicity sake we will treat all hits as equal (single, double, triple, homerun) all are good and an out from a ball in play is bad.&lt;/p&gt;
+&lt;p&gt;As I/O Psychologists one of our main functions is to predict job performance. Often we are in search of what job performance means and it means different things for different roles, but often we can get at a decent understanding of what behaviors and competencies differentiate good and poor performers. Our goal is to then use available data to predict whether or not the employee/candidate will be a good performer or a bad performer.&lt;/p&gt;
+&lt;p&gt;We can look at the game of baseball as a microcosm for this. A hit is good and an out is bad. For simplicity sake we will treat all hits as equal (single, double, triple, homerun) and an out from a ball in play is bad.&lt;/p&gt;
 &lt;p&gt;So, if we could get this data, how would we structure it to see if we could predict it, and...can we predict it?&lt;/p&gt;
 &lt;p&gt;introducing &lt;a href="https://en.wikipedia.org/wiki/Statcast"&gt;statcast&lt;/a&gt;....it's powered by AWS :) This new dataset allows us to actually examine parts of the game that are closer to behaviors. It has an amazing amount of pitch data, but it also has things like launch angle, exit velocity, whether or not there was a shift, where the ball was hit on the field, etc. All things that are important to understanding whether or not the ball in play resulted in a hit or an out.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/yLhwuYt.jpg" alt="img"&gt;&lt;/p&gt;
@@ -1051,7 +1051,7 @@ h6:hover .anchor-link {
 &lt;li&gt;hit_location&lt;/li&gt;
 &lt;li&gt;p_throws (recode)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;hc_y/hc_x is the location the ball lands. if/of_fielding_assignment is whether there was a shift in the infield or outfield, outs when up could impact how easily a force out is applied, home team allows us to account for park factors, stand is whether the batter is a lefty or a right, hit location is the position of the first player to touch the ball and p_throws is the hand of the pitcher. that should be a good start.&lt;/p&gt;
+&lt;p&gt;hc_y/hc_x is the location the ball lands. if/of_fielding_assignment is whether there was a shift in the infield or outfield, outs when up could impact how easily a force out is applied, home team allows us to account for park factors, stand is whether the batter is a lefty or a righty, hit location is the position of the first player to touch the ball and p_throws is the hand of the pitcher. that should be a good start.&lt;/p&gt;
 &lt;p&gt;This simple query allows us to download all data from a specific time period. I chose the length of the 2019 MLB regular season for the purposes of this.&lt;/p&gt;
 
 &lt;/div&gt;
@@ -1949,9 +1949,10 @@ softest hit ball:  7.6
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;This is interesting, because at first the .334 batting average seems a bit high, but in reality it's the batting average only for balls that were put in play. So we now know that by predicting an out every time we'd have a classification model that is 66.6% accurate.&lt;/p&gt;
-&lt;h2 id="Area-Under-the-Curve"&gt;Area Under the Curve&lt;a class="anchor-link" href="#Area-Under-the-Curve"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5"&gt;This&lt;/a&gt; is a good introduction to area under the curve, but basically when evaluating model performance, when the target is imbalanced accuracy can often times be less important than the order of the probabilities assigned.&lt;/p&gt;
+&lt;h2 id="Area-Under-the-Curve"&gt;Area Under the Curve&lt;a class="anchor-link" href="#Area-Under-the-Curve"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5"&gt;This&lt;/a&gt; is a good introduction to area under the curve, but basically when evaluating model performance, when the target is imbalanced, accuracy can often times be less important than the order of the probabilities assigned.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/UQRbVSq.png" alt="img"&gt;&lt;/p&gt;
-&lt;h2 id="Logistic-Regression-as-our-baseline"&gt;Logistic Regression as our baseline&lt;a class="anchor-link" href="#Logistic-Regression-as-our-baseline"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Let's first build a baseline model. I like to start simple, so for this let's use a logistic regression.&lt;/p&gt;
+&lt;h1 id="Logistic-Regression-as-our-baseline"&gt;Logistic Regression as our baseline&lt;a class="anchor-link" href="#Logistic-Regression-as-our-baseline"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;img src="https://i.imgur.com/GJO3I1Y.png" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;Let's start by considering a more traditional model, the Logistic Regression. For more information on the mathematics behind LR &lt;a href="https://machinelearningmastery.com/logistic-regression-for-machine-learning/"&gt;this article&lt;/a&gt; may be useful.&lt;/p&gt;
 &lt;p&gt;We'll start off with a fairly simple k-fold cross-validation and we'll use 10 folds. We'll then average the area under the curve together to get our AUC across the 10 folds.&lt;/p&gt;
 
 &lt;/div&gt;
@@ -2006,7 +2007,7 @@ softest hit ball:  7.6
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="K-Nearest-Neigbors"&gt;K-Nearest Neigbors&lt;a class="anchor-link" href="#K-Nearest-Neigbors"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;let's try K-Nearest Neighbors for something a bit different. It makes sense that balls in play most like other balls in play will have a similar result, but the problem is identifying the ideal number of neighbors. Let's write a for loop to identify this.&lt;/p&gt;
+&lt;h2 id="K-Nearest-Neigbors"&gt;K-Nearest Neigbors&lt;a class="anchor-link" href="#K-Nearest-Neigbors"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;K-Nearest Neigbors is another algorithm that may be useful. It uses Euclidean Distance and a set of neigbors (nearest data points) to label a target. The basic premise is that if the features are similar to features we know were a hit then it's likely to be a hit, etc. For more specifics on the KNN algorithm check out this &lt;a href="https://machinelearningmastery.com/k-nearest-neighbors-for-machine-learning/"&gt;article&lt;/a&gt;. It makes sense that balls in play most like other balls in play will have a similar result, but the problem is identifying the ideal number of neighbors. Let's write a for loop to identify this.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2164,7 +2165,10 @@ softest hit ball:  7.6
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;An AUC of 0.96113 is pretty impressive for such a simple algorithm, but now it's time to bring in the big boys. Random Forests and Gradient Boosted Trees.&lt;/p&gt;
-&lt;h2 id="Random-Forests"&gt;Random Forests&lt;a class="anchor-link" href="#Random-Forests"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Random-Forests"&gt;Random Forests&lt;a class="anchor-link" href="#Random-Forests"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src="https://i.imgur.com/ib25WBR.png" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;Next, let's look at one of the more popular "Machine Learning" algorithms today the Random Forests algorithm. In fairly simple terms the Random Forests algorithm uses bagging where it takes random subsets of both data and features and creates a tree-based model to predict the label. All of these "trees" are then aggregated together to form an &lt;strong&gt;ensemble&lt;/strong&gt; model using the &lt;a href="https://en.wikipedia.org/wiki/Wisdom_of_the_crowd"&gt;wisdom of the crowds&lt;/a&gt; theory. For more specifics I refer you to &lt;a href="https://machinelearningmastery.com/bagging-and-random-forest-ensemble-algorithms-for-machine-learning/"&gt;this article&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We will implement &lt;a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html"&gt;sklearn&lt;/a&gt; version of the algorithm.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2207,7 +2211,8 @@ softest hit ball:  7.6
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="XGBoosts-implementation-of-Gradient-Boosted-Trees"&gt;XGBoosts implementation of Gradient Boosted Trees&lt;a class="anchor-link" href="#XGBoosts-implementation-of-Gradient-Boosted-Trees"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There are several implementations of gradient boosted trees, but in my experience XGBoost and LightGBM have performed the best. Let's take a look at XGBoost&lt;/p&gt;
+&lt;h2 id="XGBoosts-implementation-of-Gradient-Boosted-Trees"&gt;XGBoosts implementation of Gradient Boosted Trees&lt;a class="anchor-link" href="#XGBoosts-implementation-of-Gradient-Boosted-Trees"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The final algorithm we will try is typically considered the most powerful. Unlike random forests which randomly develops trees via bagging, gradient boosting takes a purposeful approach and focuses on improving the &lt;strong&gt;weak learners&lt;/strong&gt; or the trees that are performing relatively poorly. By doing this it boosts the overall success of the combination of trees at the end. For more specifics I refer you to &lt;a href="https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/"&gt;this article&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We will actually not be using sklearn for the gradient boosting algorithm (although I have heard that the most recent version of sklearn does have a gradient boosting algorithm on par with XGboost and LightGBM. For this we will focus on &lt;a href="https://xgboost.readthedocs.io/en/latest/python/python_intro.html"&gt;XGBoost&lt;/a&gt;. Luckily for us the developers built the API to reflect the sklearn implementation, which makes it almost exactly the same.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

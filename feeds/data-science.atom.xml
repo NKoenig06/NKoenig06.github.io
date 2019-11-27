@@ -3041,9 +3041,10 @@ Saint Louis batting average of balls in play: 0.311
 &lt;p&gt;When we removed both of those features we were still able to achieve an impressive &lt;strong&gt;88% accuracy and 94% area under the curve.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Next steps?&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Build a model that includes who was on defense&lt;/li&gt;
+&lt;li&gt;Build a model that includes who was on defense as certain teams are better defensively than others. &lt;/li&gt;
 &lt;li&gt;Build a model to predict what type of hit it will be...perhaps a multi-label approach would make sense here.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h1 id="Takeaways-for-the-I/O-world"&gt;Takeaways for the I/O world&lt;a class="anchor-link" href="#Takeaways-for-the-I/O-world"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;At the surface level this may not seem of value to an I/O practitioner trying to predict job performance or job satisfaction, but the preprocessing, data manipulation, and model building are all identical steps to what you will want to do to ensure you build a good and accurate model, and as I mentioned above, baseball data isn't all that different from organizational data. At the end of the data we are using inputs to predict job performance.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

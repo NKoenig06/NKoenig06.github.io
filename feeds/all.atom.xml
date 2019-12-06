@@ -1,5 +1,2302 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>AIO: Bridging the Gap Between Data Science and IO</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2019-11-22T12:30:00-06:00</updated><entry><title>Predicting Performance Using Baseball Data</title><link href="/performance-baseball.html" rel="alternate"></link><published>2019-11-22T12:30:00-06:00</published><updated>2019-11-22T12:30:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-11-22:performance-baseball.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>AIO: Bridging the Gap Between Data Science and IO</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2019-12-06T03:00:00-06:00</updated><entry><title>Topic Modeling Glassdoor Reviews with SVD</title><link href="/gd-tm-svd.html" rel="alternate"></link><published>2019-12-06T03:00:00-06:00</published><updated>2019-12-06T03:00:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-12-06:gd-tm-svd.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI colors. */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected {
+  border-color: #ababab;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  div.cell.selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area &gt; div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area &gt; div.highlight &gt; pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the &lt;head&gt; if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+.rendered_html pre,
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+.rendered_html td,
+
+
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+&lt;/style&gt;
+&lt;style type="text/css"&gt;.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
+&lt;style type="text/css"&gt;
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Topic-Modeling-Company-Reviews-with-SVD"&gt;Topic Modeling Company Reviews with SVD&lt;a class="anchor-link" href="#Topic-Modeling-Company-Reviews-with-SVD"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;img src="https://i.imgur.com/BfNDjvf.png" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;Surveys and open-ended feedback are among many of the data types and datasets that we may come into contact with as I/Os. Whether it's the open-ended section of an annual engagement survey, feedback from annual reviews, or customer feedback, the text that is provided is often difficult to do much with at scale.&lt;/p&gt;
+&lt;p&gt;However, there are unsupervised machine learning methods that have provided us glimpses into how to make sense of this data. In the next 3 articles I'll outline 3 different unsupervised techniques for topic modeling. This first article will focus on the technique of Singular Value Decomposition (SVD).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Singular Value Decomposition (SVD), which Latent Semantic Analysis (LSA) is based off of.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Latent Dirichlet Allocation (LDA)&lt;/li&gt;
+&lt;li&gt;Cluster Analysis (K-Means)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We will examine the &lt;strong&gt;Cons&lt;/strong&gt; from the Glassdoor Reviews of retailers we extracted in an &lt;a href="https://nkoenig06.github.io/scrape-gd.html"&gt;earlier article&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="Unsupervised-Learning"&gt;Unsupervised Learning&lt;a class="anchor-link" href="#Unsupervised-Learning"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Before we start let's quickly define what unsupervised learning is. In most machine learning problems their is something you are trying to predict or a target. This may be job performance, job satisfaction, customer satisfaction, a hit in baseball, or a goal in hockey/soccer. We refer to these as supervised learning problems because the features can be used to optimize for a specific target. In many other instances we do not have a specific target, we are just trying to make sense of some data. When you have a set of features without a target or outcome variable this is known as &lt;strong&gt;unsupervised learning&lt;/strong&gt;. While this isn't often as common in our psychology stats courses most people should be familiar with factor analysis, which is actually an unsupervised learning method. For the purpose of this article we won't be using a target, we'll be trying to structure the responses to the cons that were listed by the respondents into something that is interpretable at scale.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/HkXDRu5.png" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;So....let's get started!!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;decomposition&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;linalg&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;warnings&lt;/span&gt;
+&lt;span class="n"&gt;warnings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filterwarnings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ignore&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;seaborn&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;sns&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.feature_extraction&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;stop_words&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.feature_extraction.text&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;CountVectorizer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TfidfVectorizer&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# load the data&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data/glassdoor_data.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Let's briefly look at the data we'll be using.&lt;/p&gt;
+&lt;p&gt;We can first calculate the length of each response to get an idea of how long most of the responses to this question actually are.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons_len&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[5]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons_len&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;describe&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[5]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;count    21453.000000
+mean        22.890272
+std         46.628156
+min          1.000000
+25%          6.000000
+50%         10.000000
+75%         23.000000
+max       1508.000000
+Name: cons_len, dtype: float64&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[6]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons_len&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;bins&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class="output_png output_subarea "&gt;
+&lt;img src="data:image/png;base64,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
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;We can see that the longest response is 1508 words while the shortest is 1 word and the length is heavily skewed towards less than 25 words, with a few outliers, including the 1508 word response. Let's look at how many responses we have with over 100 words.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons_len&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[7]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;672&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;So, while it is heavily skewed we do have 672 reviews with more than 100 words, but that only makes up ~ 3% of the total reviews.&lt;/p&gt;
+&lt;p&gt;Let's look at a few random responses. I'd show you the max one as well, but it would end up being a wall of text :)&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;755&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;&amp;#34;If you are not one of the chosen or have family in corporate level, there is no advancement. I had 5 different District Leaders in the 3 years at my location. The last three got worse and the last one didn&amp;#39;t have a clue without being told. There were other applicants with more experience that were past over. Many were surprised she received the position. Got shafted on the previous years bonus by discharging me 5 days before it was scheduled to be payed.&amp;#34;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1435&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[9]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;&amp;#34;Almost all of the pros to working for Sams have diminished. Hours are inconsistent. Management doesn&amp;#39;t listen and only cares about getting their bonus. They fire employees for members not wanting their upgrade to a plus membership. The only people that the plus membership benefits are businesses. They push and push for these upgrades and credits.\nHere is the big downer...the pay. recently everyone went up to 10.50...in our store at least. As for associates that have been there for years, they got the same raise. The thing that really sucks now is that new people who just stared make as much as the people before them. The pay raises being 2-3% every year for everyone at the same time is flat out ridiculous. I have put almost two years of my life into this place and I wanted to achieve more but not if I am now being treated as a new hire.&amp;#34;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[10]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;&amp;#39;Boring and tedious work. Not real good other than for a summer job, for a college or high school student.&amp;#39;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="So,-as-we-can-see-we-have-some-common-cons,-but-it-looks-like-we-have-unique-responses-as-well-around-no-advancement,-etc.-Let's-see-if-we-can-use-data-decomposition-strategies-to-make-some-logical-sense-of-all-of-these."&gt;So, as we can see we have some common cons, but it looks like we have unique responses as well around no advancement, etc. Let's see if we can use data decomposition strategies to make some logical sense of all of these.&lt;a class="anchor-link" href="#So,-as-we-can-see-we-have-some-common-cons,-but-it-looks-like-we-have-unique-responses-as-well-around-no-advancement,-etc.-Let's-see-if-we-can-use-data-decomposition-strategies-to-make-some-logical-sense-of-all-of-these."&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;h1 id="Turning-Words-into-Data"&gt;Turning Words into Data&lt;a class="anchor-link" href="#Turning-Words-into-Data"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Before we begin topic modeling let's briefly cover a couple of ways we can turn words into data to analyze in the first place. When it comes to differentiating responses we care about the uniqueness of the words used. Because of this, common words like &lt;em&gt;the&lt;/em&gt;, &lt;em&gt;and&lt;/em&gt;, &lt;em&gt;a&lt;/em&gt;, etc. aren't valuable. Think of it as similar to an item in an assessment where everyone answers &lt;strong&gt;strongly agree&lt;/strong&gt; if there is no variance in an item often times it doesn't make sense to include it. Similarly, if the words are too common across responses it doesn't make sense to include them.&lt;/p&gt;
+&lt;p&gt;Now, one caveat I want to call out is that this is really only true when using a bag of words NLP method where the order of the words isn't really relevant(which we will be using in this article). When you start using deep learning models the order of the words and all words can add value. We'll discuss deep learning models for NLP in depth at a later time.&lt;/p&gt;
+&lt;p&gt;For now let's look at a few of the stop words from scikit-learn's stop_words.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[11]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stop_words&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ENGLISH_STOP_WORDS&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[11]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;318&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;So we can see that scikit-learn's list of stopwords includes 318 of them. Let's quickly look at the first 12 to get an idea of the type of words included.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[12]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stop_words&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ENGLISH_STOP_WORDS&lt;/span&gt;&lt;span class="p"&gt;))[:&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[12]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;[&amp;#39;a&amp;#39;,
+ &amp;#39;about&amp;#39;,
+ &amp;#39;above&amp;#39;,
+ &amp;#39;across&amp;#39;,
+ &amp;#39;after&amp;#39;,
+ &amp;#39;afterwards&amp;#39;,
+ &amp;#39;again&amp;#39;,
+ &amp;#39;against&amp;#39;,
+ &amp;#39;all&amp;#39;,
+ &amp;#39;almost&amp;#39;,
+ &amp;#39;alone&amp;#39;,
+ &amp;#39;along&amp;#39;]&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;We will remove the stopwords from all of our vectors moving forward to avoid including data that doesn't differentiate responses.&lt;/p&gt;
+&lt;p&gt;Now let's talk about ways to structure this data so we can run machine learning algorithms on it.&lt;/p&gt;
+&lt;h2 id="Dummy-Coding/One-Hot-Encoding"&gt;Dummy-Coding/One-Hot Encoding&lt;a class="anchor-link" href="#Dummy-Coding/One-Hot-Encoding"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The simplest way to look at words is to basically one-hot encode each word where a variable/column is added for each word in all the responses.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/1LAYbRm.png" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;so in this instance any response with the word cat in it would have a 1 in the cat column all other responses without cat would have a zero.&lt;/p&gt;
+&lt;p&gt;We can do this in scikit learn using &lt;a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html"&gt;CountVectorizer&lt;/a&gt;. It might look something like this.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[13]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[14]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vectorizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CountVectorizer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stop_words&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;english&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;vectors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vectorizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit_transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;todense&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;vectors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[14]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;(3, 62)&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[20]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vectorizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_feature_names&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;[&amp;#39;fee&amp;#39; &amp;#39;felt&amp;#39; &amp;#39;good&amp;#39; &amp;#39;growth&amp;#39; &amp;#39;hard&amp;#39;]
+good
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[16]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vectors&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;matrix([[1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1,
+         0, 3, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 2, 0, 0,
+         1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 2, 0, 2, 0, 1, 2, 0],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+         2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0,
+         0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+        [0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0,
+         0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+         0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1]],
+       dtype=int64)&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[19]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vectors&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[19]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;3&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;We can see the 22nd word is &lt;strong&gt;good&lt;/strong&gt; and the first response has a &lt;strong&gt;3&lt;/strong&gt; in that column, so let's take a look at that response and confirm the response includes the word good 3 times.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[64]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[64]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;&amp;#39;no respect for employees, minimum wages for a whole lot of physical work which includes lifting 50pounds, no appreciation for good work, chances are the manager of your dept. would be a high school drop-out so no room for intellectual growth. They will pay you minimum wages and a good portion of it would be deducted for the union which will take away 50 bucks as initiation fee and 7$ every week, the union is good for nothing &amp;amp; will never help you.&amp;#39;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;As we can see this is indeed accurate.&lt;/p&gt;
+&lt;p&gt;If you'd like to read more about representing word counts as vectors &lt;a href="https://towardsdatascience.com/natural-language-processing-count-vectorization-with-scikit-learn-e7804269bb5e"&gt;this article&lt;/a&gt; goes into more depth on the subject but, &lt;strong&gt;we can immediately see concerns with this methodology as it doesn't tell us much about the uniqueness of the words used in specific responses.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;To help us with this we have what is known as &lt;strong&gt;Term Frequency Inverse Document Frequency&lt;/strong&gt; or TF-IDF. The math behind this is fairly straight-forward. The &lt;strong&gt;TF&lt;/strong&gt; is the # of times a term appears in a document divided by the total number of terms in the document and the &lt;strong&gt;IDF&lt;/strong&gt; is calculated by taking the log(N/n) where N is the total number of documents and n is the number of documents the term in question is present in. You can see how this effectively makes common words less important and more rare words more important. We'll walk through the same example above using TF-IDF and we will use &lt;a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"&gt;scikit-learn's TfidfVectorizer&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/ftlVdh9.png" alt="img"&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[65]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vectorizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TfidfVectorizer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stop_words&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;english&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[66]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vectors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vectorizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit_transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;todense&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;vectors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[66]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;(3, 62)&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[72]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vectors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argmax&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[72]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;83&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The argmax is at position 83, which is the second array and the 21st word within that array. We can figure this out because each array is 62 columns wrong...83-62 = 21 :)&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[88]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vectors&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[88]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;0.5067206204978569&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[89]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[89]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;&amp;#39;felt&amp;#39;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[90]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[90]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;&amp;#39;Sometime I felt like it was hard to work your way up, especially starting at such a low position. I often felt that the upper management thought they were better than me.&amp;#39;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;so we can see by looking at the argmax and the same index in the vocabulary that the word with the highest tf-idf value of the first 3 responses in the cons column is the word &lt;strong&gt;felt&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Now let's get into how we can use &lt;strong&gt;TF-IDF&lt;/strong&gt; for the purposes of &lt;strong&gt;topic modeling&lt;/strong&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Singular-Value-Decomposition-(SVD)"&gt;Singular Value Decomposition (SVD)&lt;a class="anchor-link" href="#Singular-Value-Decomposition-(SVD)"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;A quick note....much of what I will talk about regarding SVD can be found in &lt;a href="https://www.fast.ai/2019/07/08/fastai-nlp/"&gt;this great course by Rachel Thomas on NLP&lt;/a&gt; and in some cases she has provided examples and resources that I will just reiterate in this article.&lt;/p&gt;
+&lt;p&gt;The SVD algorithm factorizes a matrix into one matrix with &lt;strong&gt;orthogonal columns&lt;/strong&gt; (U) and one with &lt;strong&gt;orthogonal rows&lt;/strong&gt; (V) (along with a diagonal matrix, which contains the &lt;strong&gt;relative importance&lt;/strong&gt; of each factor).&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/9Mcwj3L.png" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;source: &lt;a href="https://research.fb.com/fast-randomized-svd/"&gt;Facebook Research: Fast Randomized SVD&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SVD is an &lt;strong&gt;exact decomposition&lt;/strong&gt;, since the matrices it creates are big enough to fully cover the original matrix. SVD is extremely widely used in linear algebra, and specifically in data science, including the following problem types:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;semantic analysis&lt;/li&gt;
+&lt;li&gt;collaborative filtering/recommendations (&lt;a href="https://datajobs.com/data-science-repo/Recommender-Systems-%5BNetflix%5D.pdf"&gt;winning entry for Netflix Prize&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;data compression&lt;/li&gt;
+&lt;li&gt;principal component analysis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://medium.com/sho-jp/linear-algebra-101-part-9-singular-value-decomposition-svd-a6c53ed2319e"&gt;This article&lt;/a&gt; goes into much more depth regarding SVD for those interested.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Latent Semantic Analysis (LSA) uses SVD&lt;/strong&gt;.  You will sometimes hear topic modeling referred to as LSA.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[94]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vectorizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TfidfVectorizer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stop_words&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;english&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[95]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vectors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vectorizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit_transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;todense&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;vectors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[95]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;(21453, 11986)&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;You can see here that we have 21,453 responses and 11,986 unique tokens or words that were used across the responses.&lt;/p&gt;
+&lt;p&gt;Let's next create a vocab object and examine a subset of the vocab.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[96]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vectorizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_feature_names&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[97]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3000&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3020&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[97]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;array([&amp;#39;deployment&amp;#39;, &amp;#39;deposit&amp;#39;, &amp;#39;deposited&amp;#39;, &amp;#39;depot&amp;#39;, &amp;#39;depressed&amp;#39;,
+       &amp;#39;depressing&amp;#39;, &amp;#39;depression&amp;#39;, &amp;#39;dept&amp;#39;, &amp;#39;depth&amp;#39;, &amp;#39;depths&amp;#39;,
+       &amp;#39;deptpartments&amp;#39;, &amp;#39;depts&amp;#39;, &amp;#39;derogatory&amp;#39;, &amp;#39;described&amp;#39;, &amp;#39;describes&amp;#39;,
+       &amp;#39;describing&amp;#39;, &amp;#39;description&amp;#39;, &amp;#39;desensitized&amp;#39;, &amp;#39;deserve&amp;#39;, &amp;#39;deserved&amp;#39;],
+      dtype=&amp;#39;&amp;lt;U17&amp;#39;)&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="SVD"&gt;SVD&lt;a class="anchor-link" href="#SVD"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;For the purposes of this first implementation we will use &lt;a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.svd.html"&gt;SciPy's SVD&lt;/a&gt; and we will time it to show exactly how long it takes.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[46]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;time&lt;/span&gt; U, s, Vh = linalg.svd(vectors, full_matrices=False)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;CPU times: user 45min 13s, sys: 44.6 s, total: 45min 57s
+Wall time: 12min 4s
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[47]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;U&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Vh&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;(21453, 11986) (11986,) (11986, 11986)
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;We can clearly see that SVD takes a long time. But let's create a function that can extract the top words for the topics created and examine what the top 10 topics look like.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[48]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;num_top_words&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;show_topics&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;top_words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argsort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)[:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;num_top_words&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+    &lt;span class="n"&gt;topic_words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;top_words&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;topic_words&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[49]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[49]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;[&amp;lt;matplotlib.lines.Line2D at 0x7f3e8cf5d278&amp;gt;]&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class="output_png output_subarea "&gt;
+&lt;img src="data:image/png;base64,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
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[50]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;show_topics&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vh&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[50]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;[&amp;#39;hours work pay management time low long hard&amp;#39;,
+ &amp;#39;work hours time long life balance hard cons&amp;#39;,
+ &amp;#39;hours long pay low week cut standing holidays&amp;#39;,
+ &amp;#39;work pay balance life low hard great weekends&amp;#39;,
+ &amp;#39;customers rude management work life balance poor bad&amp;#39;,
+ &amp;#39;management time poor bad employees hard benefits communication&amp;#39;,
+ &amp;#39;management bad cons hours poor think balance life&amp;#39;,
+ &amp;#39;cons job working really don great company good&amp;#39;,
+ &amp;#39;bad time say hard really work good balance&amp;#39;,
+ &amp;#39;people don managers job employees good like lot&amp;#39;]&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;If you look at the words in the topics they make sense. We see topics around management, pay, customers, hours, etc. These all make sense and this is despite the fact that this is an &lt;strong&gt;unsupervised algorithm&lt;/strong&gt; - which is to say, we never actually told the algorithm how our documents are grouped.&lt;/p&gt;
+&lt;p&gt;But, part of the problem with this is the standard implementation of SVD takes too long. Is there another option? Yes, there is and it is known as &lt;strong&gt;Truncated SVD&lt;/strong&gt;. Instead of calculating all of the columns let's just calculate the vectors corresponding to the &lt;strong&gt;largest&lt;/strong&gt; singular values.&lt;/p&gt;
+&lt;h3 id="Shortcomings-of-classical-algorithms-for-decomposition:"&gt;Shortcomings of classical algorithms for decomposition:&lt;a class="anchor-link" href="#Shortcomings-of-classical-algorithms-for-decomposition:"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Matrices are "stupendously big"&lt;/li&gt;
+&lt;li&gt;Data are often &lt;strong&gt;missing or inaccurate&lt;/strong&gt;.  Why spend extra computational resources when imprecision of input limits precision of the output?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data transfer&lt;/strong&gt; now plays a major role in time of algorithms.  Techniques the require fewer passes over the data may be substantially faster, even if they require more flops (flops = floating point operations).&lt;/li&gt;
+&lt;li&gt;Important to take advantage of &lt;strong&gt;GPUs&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(source: &lt;a href="https://arxiv.org/abs/0909.4061"&gt;Halko&lt;/a&gt;)&lt;/p&gt;
+&lt;h3 id="Advantages-of-randomized-algorithms:"&gt;Advantages of randomized algorithms:&lt;a class="anchor-link" href="#Advantages-of-randomized-algorithms:"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;inherently stable&lt;/li&gt;
+&lt;li&gt;performance guarantees do not depend on subtle spectral properties&lt;/li&gt;
+&lt;li&gt;needed matrix-vector products can be done in parallel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(source: &lt;a href="https://arxiv.org/abs/0909.4061"&gt;Halko&lt;/a&gt;)&lt;/p&gt;
+&lt;h2 id="Truncated-SVD"&gt;Truncated SVD&lt;a class="anchor-link" href="#Truncated-SVD"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[91]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;decomposition&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[100]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;time&lt;/span&gt; u, s, v = decomposition.randomized_svd(vectors, 10)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;CPU times: user 7.87 s, sys: 35.8 ms, total: 7.9 s
+Wall time: 2.02 s
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[101]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;show_topics&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[101]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;[&amp;#39;hours work pay management time low long hard&amp;#39;,
+ &amp;#39;pay low management rude customers bad poor better&amp;#39;,
+ &amp;#39;hours long pay low week cut standing holidays&amp;#39;,
+ &amp;#39;work pay balance life low hard great weekends&amp;#39;,
+ &amp;#39;cons think time pay really job low great&amp;#39;,
+ &amp;#39;customers rude cons work think balance life long&amp;#39;,
+ &amp;#39;time hard customers rude pay low benefits busy&amp;#39;,
+ &amp;#39;think time management balance life poor bad work&amp;#39;,
+ &amp;#39;bad time say hard really work good customers&amp;#39;,
+ &amp;#39;people don managers job employees like good lot&amp;#39;]&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;so, we went from a Wall time of 724 seconds to a Wall time of 2 seconds by using Truncated SVD.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Recap:"&gt;Recap:&lt;a class="anchor-link" href="#Recap:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;One option of topic modeling is to leverage an oldie but a goodie from linear algebra in SVD. As Gilbert Strang says..&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;"SVD is not nearly as famous as it should be." - Gilbert Strang&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;we can clearly see that by leveraging these linear algebra concepts we can derive topics that make conceptual sense given the types of responses we examined.&lt;/p&gt;
+&lt;p&gt;Another few options to consider for future research:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use &lt;a href="https://en.wikipedia.org/wiki/Lemmatisation"&gt;Lemmatization&lt;/a&gt; to further standardize the word vectors.&lt;/li&gt;
+&lt;li&gt;Look at topics for specific companies as it's likely that some of these companies have unique pros and cons for working for them. &lt;/li&gt;
+&lt;li&gt;Examine other text columns like "pros" and "advice for management". &lt;/li&gt;
+&lt;li&gt;Topic modeling works the best when topics are fairly distinct. It would be interesting to stack the columns together (i.e. pros, cons, and advice to management) and see if 3 basic topics come out that align with the label of the column. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the next article we will examine topic modeling through the lens of &lt;strong&gt;&lt;a href="http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf"&gt;LDA&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ 
+
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;
+</summary><category term="Data Science"></category><category term="Python"></category></entry><entry><title>Predicting Performance Using Baseball Data</title><link href="/performance-baseball.html" rel="alternate"></link><published>2019-11-22T12:30:00-06:00</published><updated>2019-11-22T12:30:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-11-22:performance-baseball.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *

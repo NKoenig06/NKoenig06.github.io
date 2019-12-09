@@ -1443,8 +1443,8 @@ Name: cons_len, dtype: float64</pre>
 <p>We will remove the stopwords from all of our vectors moving forward to avoid including data that doesn't differentiate responses.</p>
 <p>Now let's talk about ways to structure this data so we can run machine learning algorithms on it.</p>
 <h2 id="Dummy-Coding/One-Hot-Encoding">Dummy-Coding/One-Hot Encoding<a class="anchor-link" href="#Dummy-Coding/One-Hot-Encoding">&#182;</a></h2><p>The simplest way to look at words is to basically one-hot encode each word where a variable/column is added for each word in all the responses.</p>
-<p><img src="https://i.imgur.com/1LAYbRm.png" alt="img"></p>
-<p>so in this instance any response with the word cat in it would have a 1 in the cat column all other responses without cat would have a zero.</p>
+<p><img src="https://i.imgur.com/5Z5RIWZ.png" alt="img"></p>
+<p>As an example, using the first 3 responses from this dataset we can see that the first respondent used the terms appreciation, away, bucks, and chances. These are all encoded with a 1 under that vocabulary word using one-hot encoding. The second respondent did not use appear, appreciation, and away, so all of those are encoded as a zero, but they did use the term better and so on.</p>
 <p>We can do this in scikit learn using <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html">CountVectorizer</a>. It might look something like this.</p>
 
 </div>

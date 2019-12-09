@@ -1343,7 +1343,7 @@ Name: cons_len, dtype: float64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="So,-as-we-can-see-we-have-some-common-cons,-but-it-looks-like-we-have-unique-responses-as-well-around-no-advancement,-etc.-Let's-see-if-we-can-use-data-decomposition-strategies-to-make-some-logical-sense-of-all-of-these.">So, as we can see we have some common cons, but it looks like we have unique responses as well around no advancement, etc. Let's see if we can use data decomposition strategies to make some logical sense of all of these.<a class="anchor-link" href="#So,-as-we-can-see-we-have-some-common-cons,-but-it-looks-like-we-have-unique-responses-as-well-around-no-advancement,-etc.-Let's-see-if-we-can-use-data-decomposition-strategies-to-make-some-logical-sense-of-all-of-these.">&#182;</a></h3><h1 id="Turning-Words-into-Data">Turning Words into Data<a class="anchor-link" href="#Turning-Words-into-Data">&#182;</a></h1><p>Before we begin topic modeling let's briefly cover a couple of ways we can turn words into data to analyze in the first place. When it comes to differentiating responses we care about the uniqueness of the words used. Because of this, common words like <em>the</em>, <em>and</em>, <em>a</em>, etc. aren't valuable. Think of it as similar to an item in an assessment where everyone answers <strong>strongly agree</strong> if there is no variance in an item often times it doesn't make sense to include it. Similarly, if the words are too common across responses it doesn't make sense to include them.</p>
+<h3 id="So,-as-we-can-see-we-have-some-common-cons,-but-it-looks-like-we-have-unique-responses-as-well-around-no-advancement,-etc.-Let's-see-if-we-can-use-data-decomposition-strategies-to-make-some-logical-sense-of-all-of-these.">So, as we can see we have some common cons, but it looks like we have unique responses as well around no advancement, etc. Let's see if we can use data decomposition strategies to make some logical sense of all of these.<a class="anchor-link" href="#So,-as-we-can-see-we-have-some-common-cons,-but-it-looks-like-we-have-unique-responses-as-well-around-no-advancement,-etc.-Let's-see-if-we-can-use-data-decomposition-strategies-to-make-some-logical-sense-of-all-of-these.">&#182;</a></h3><h1 id="Turning-Words-into-Data">Turning Words into Data<a class="anchor-link" href="#Turning-Words-into-Data">&#182;</a></h1><p>Before we begin topic modeling let's briefly cover a couple of ways we can turn words into data to analyze in the first place. When it comes to differentiating responses we care about the uniqueness of the words used. Because of this, common words like <em>the</em>, <em>and</em>, <em>a</em>, etc. aren't valuable. Think of it as similar to an item in an assessment where everyone answers <strong>strongly agree</strong>. If there is no variance in an item often times it doesn't make sense to include it. Similarly, if the words are too common across responses it doesn't make sense to include them.</p>
 <p>Now, one caveat I want to call out is that this is really only true when using a bag of words NLP method where the order of the words isn't really relevant(which we will be using in this article). When you start using deep learning models the order of the words and all words can add value. We'll discuss deep learning models for NLP in depth at a later time.</p>
 <p>For now let's look at a few of the stop words from scikit-learn's stop_words.</p>
 
@@ -1655,7 +1655,7 @@ good
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As we can see this is indeed accurate.</p>
 <p>If you'd like to read more about representing word counts as vectors <a href="https://towardsdatascience.com/natural-language-processing-count-vectorization-with-scikit-learn-e7804269bb5e">this article</a> goes into more depth on the subject but, <strong>we can immediately see concerns with this methodology as it doesn't tell us much about the uniqueness of the words used in specific responses.</strong></p>
-<p>To help us with this we have what is known as <strong>Term Frequency Inverse Document Frequency</strong> or TF-IDF. The math behind this is fairly straight-forward. The <strong>TF</strong> is the # of times a term appears in a document divided by the total number of terms in the document and the <strong>IDF</strong> is calculated by taking the log(N/n) where N is the total number of documents and n is the number of documents the term in question is present in. You can see how this effectively makes common words less important and more rare words more important. We'll walk through the same example above using TF-IDF and we will use <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">scikit-learn's TfidfVectorizer</a>.</p>
+<p>To help us with this we have what is known as <strong>Term Frequency Inverse Document Frequency</strong> or TF-IDF. The math behind this is fairly straight-forward. The <strong>TF</strong> is the # of times a term appears in a document divided by the total number of terms in the document and the <strong>IDF</strong> is calculated by taking the log(N/n) where N is the total number of documents and n is the number of documents the term in question is present in. You can see how this effectively makes common words less important and rare words more important. We'll walk through the same example above using TF-IDF and we will use <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">scikit-learn's TfidfVectorizer</a>.</p>
 <p><img src="https://i.imgur.com/ftlVdh9.png" alt="img"></p>
 
 </div>
@@ -1745,7 +1745,7 @@ good
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The argmax is at position 83, which is the second array and the 21st word within that array. We can figure this out because each array is 62 columns wrong...83-62 = 21 :)</p>
+<p>The argmax is at position 83, which is the second array and the 21st word within that array. We can figure this out because each array is 62 columns long...83-62 = 21 :)</p>
 
 </div>
 </div>
@@ -2183,16 +2183,16 @@ Wall time: 12min 4s
 <p>If you look at the words in the topics they make sense. We see topics around management, pay, customers, hours, etc. These all make sense and this is despite the fact that this is an <strong>unsupervised algorithm</strong> - which is to say, we never actually told the algorithm how our documents are grouped.</p>
 <p>But, part of the problem with this is the standard implementation of SVD takes too long. Is there another option? Yes, there is and it is known as <strong>Truncated SVD</strong>. Instead of calculating all of the columns let's just calculate the vectors corresponding to the <strong>largest</strong> singular values.</p>
 <h3 id="Shortcomings-of-classical-algorithms-for-decomposition:">Shortcomings of classical algorithms for decomposition:<a class="anchor-link" href="#Shortcomings-of-classical-algorithms-for-decomposition:">&#182;</a></h3><ul>
-<li>Matrices are "stupendously big"</li>
+<li>Matrices are often "stupendously big"</li>
 <li>Data are often <strong>missing or inaccurate</strong>.  Why spend extra computational resources when imprecision of input limits precision of the output?</li>
-<li><strong>Data transfer</strong> now plays a major role in time of algorithms.  Techniques the require fewer passes over the data may be substantially faster, even if they require more flops (flops = floating point operations).</li>
+<li><strong>Data transfer</strong> now plays a major role in time of algorithms.  Techniques that require fewer passes over the data may be substantially faster, even if they require more flops (flops = floating point operations).</li>
 <li>Important to take advantage of <strong>GPUs</strong>.</li>
 </ul>
 <p>(source: <a href="https://arxiv.org/abs/0909.4061">Halko</a>)</p>
 <h3 id="Advantages-of-randomized-algorithms:">Advantages of randomized algorithms:<a class="anchor-link" href="#Advantages-of-randomized-algorithms:">&#182;</a></h3><ul>
-<li>inherently stable</li>
-<li>performance guarantees do not depend on subtle spectral properties</li>
-<li>needed matrix-vector products can be done in parallel</li>
+<li>Inherently stable</li>
+<li>Performance guarantees do not depend on subtle spectral properties</li>
+<li>Needed matrix-vector products can be done in parallel</li>
 </ul>
 <p>(source: <a href="https://arxiv.org/abs/0909.4061">Halko</a>)</p>
 <h2 id="Truncated-SVD">Truncated SVD<a class="anchor-link" href="#Truncated-SVD">&#182;</a></h2>
@@ -2300,8 +2300,8 @@ Wall time: 2.02 s
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Recap:">Recap:<a class="anchor-link" href="#Recap:">&#182;</a></h2><p><img src="https://i.imgur.com/dFaRN4P.jpg" alt="img"></p>
-<p>One option of topic modeling is to leverage an oldie but a goodie from linear algebra in SVD. As Gilbert Strang says..</p>
-<p><strong>"SVD is not nearly as famous as it should be." - Gilbert Strang</strong></p>
+<p>One option of topic modeling is to leverage an oldie but a goodie from linear algebra in SVD. As <a href="http://www-math.mit.edu/~gs/">Gilbert Strang</a>, the MIT  mathematics professor, made "internet" famous from his Linear Algebra OCW course, says..</p>
+<p><strong>"SVD is not nearly as famous as it should be."</strong></p>
 <p>we can clearly see that by leveraging linear algebra concepts we can derive topics that make conceptual sense given the types of responses we examined.</p>
 <p>Another few options to consider for future research:</p>
 <ul>

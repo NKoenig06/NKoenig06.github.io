@@ -1294,7 +1294,7 @@ Name: cons_len, dtype: float64&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="So,-as-we-can-see-we-have-some-common-cons,-but-it-looks-like-we-have-unique-responses-as-well-around-no-advancement,-etc.-Let's-see-if-we-can-use-data-decomposition-strategies-to-make-some-logical-sense-of-all-of-these."&gt;So, as we can see we have some common cons, but it looks like we have unique responses as well around no advancement, etc. Let's see if we can use data decomposition strategies to make some logical sense of all of these.&lt;a class="anchor-link" href="#So,-as-we-can-see-we-have-some-common-cons,-but-it-looks-like-we-have-unique-responses-as-well-around-no-advancement,-etc.-Let's-see-if-we-can-use-data-decomposition-strategies-to-make-some-logical-sense-of-all-of-these."&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;h1 id="Turning-Words-into-Data"&gt;Turning Words into Data&lt;a class="anchor-link" href="#Turning-Words-into-Data"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Before we begin topic modeling let's briefly cover a couple of ways we can turn words into data to analyze in the first place. When it comes to differentiating responses we care about the uniqueness of the words used. Because of this, common words like &lt;em&gt;the&lt;/em&gt;, &lt;em&gt;and&lt;/em&gt;, &lt;em&gt;a&lt;/em&gt;, etc. aren't valuable. Think of it as similar to an item in an assessment where everyone answers &lt;strong&gt;strongly agree&lt;/strong&gt; if there is no variance in an item often times it doesn't make sense to include it. Similarly, if the words are too common across responses it doesn't make sense to include them.&lt;/p&gt;
+&lt;h3 id="So,-as-we-can-see-we-have-some-common-cons,-but-it-looks-like-we-have-unique-responses-as-well-around-no-advancement,-etc.-Let's-see-if-we-can-use-data-decomposition-strategies-to-make-some-logical-sense-of-all-of-these."&gt;So, as we can see we have some common cons, but it looks like we have unique responses as well around no advancement, etc. Let's see if we can use data decomposition strategies to make some logical sense of all of these.&lt;a class="anchor-link" href="#So,-as-we-can-see-we-have-some-common-cons,-but-it-looks-like-we-have-unique-responses-as-well-around-no-advancement,-etc.-Let's-see-if-we-can-use-data-decomposition-strategies-to-make-some-logical-sense-of-all-of-these."&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;h1 id="Turning-Words-into-Data"&gt;Turning Words into Data&lt;a class="anchor-link" href="#Turning-Words-into-Data"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Before we begin topic modeling let's briefly cover a couple of ways we can turn words into data to analyze in the first place. When it comes to differentiating responses we care about the uniqueness of the words used. Because of this, common words like &lt;em&gt;the&lt;/em&gt;, &lt;em&gt;and&lt;/em&gt;, &lt;em&gt;a&lt;/em&gt;, etc. aren't valuable. Think of it as similar to an item in an assessment where everyone answers &lt;strong&gt;strongly agree&lt;/strong&gt;. If there is no variance in an item often times it doesn't make sense to include it. Similarly, if the words are too common across responses it doesn't make sense to include them.&lt;/p&gt;
 &lt;p&gt;Now, one caveat I want to call out is that this is really only true when using a bag of words NLP method where the order of the words isn't really relevant(which we will be using in this article). When you start using deep learning models the order of the words and all words can add value. We'll discuss deep learning models for NLP in depth at a later time.&lt;/p&gt;
 &lt;p&gt;For now let's look at a few of the stop words from scikit-learn's stop_words.&lt;/p&gt;
 
@@ -1606,7 +1606,7 @@ good
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;As we can see this is indeed accurate.&lt;/p&gt;
 &lt;p&gt;If you'd like to read more about representing word counts as vectors &lt;a href="https://towardsdatascience.com/natural-language-processing-count-vectorization-with-scikit-learn-e7804269bb5e"&gt;this article&lt;/a&gt; goes into more depth on the subject but, &lt;strong&gt;we can immediately see concerns with this methodology as it doesn't tell us much about the uniqueness of the words used in specific responses.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;To help us with this we have what is known as &lt;strong&gt;Term Frequency Inverse Document Frequency&lt;/strong&gt; or TF-IDF. The math behind this is fairly straight-forward. The &lt;strong&gt;TF&lt;/strong&gt; is the # of times a term appears in a document divided by the total number of terms in the document and the &lt;strong&gt;IDF&lt;/strong&gt; is calculated by taking the log(N/n) where N is the total number of documents and n is the number of documents the term in question is present in. You can see how this effectively makes common words less important and more rare words more important. We'll walk through the same example above using TF-IDF and we will use &lt;a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"&gt;scikit-learn's TfidfVectorizer&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To help us with this we have what is known as &lt;strong&gt;Term Frequency Inverse Document Frequency&lt;/strong&gt; or TF-IDF. The math behind this is fairly straight-forward. The &lt;strong&gt;TF&lt;/strong&gt; is the # of times a term appears in a document divided by the total number of terms in the document and the &lt;strong&gt;IDF&lt;/strong&gt; is calculated by taking the log(N/n) where N is the total number of documents and n is the number of documents the term in question is present in. You can see how this effectively makes common words less important and rare words more important. We'll walk through the same example above using TF-IDF and we will use &lt;a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"&gt;scikit-learn's TfidfVectorizer&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/ftlVdh9.png" alt="img"&gt;&lt;/p&gt;
 
 &lt;/div&gt;
@@ -1696,7 +1696,7 @@ good
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The argmax is at position 83, which is the second array and the 21st word within that array. We can figure this out because each array is 62 columns wrong...83-62 = 21 :)&lt;/p&gt;
+&lt;p&gt;The argmax is at position 83, which is the second array and the 21st word within that array. We can figure this out because each array is 62 columns long...83-62 = 21 :)&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2134,16 +2134,16 @@ Wall time: 12min 4s
 &lt;p&gt;If you look at the words in the topics they make sense. We see topics around management, pay, customers, hours, etc. These all make sense and this is despite the fact that this is an &lt;strong&gt;unsupervised algorithm&lt;/strong&gt; - which is to say, we never actually told the algorithm how our documents are grouped.&lt;/p&gt;
 &lt;p&gt;But, part of the problem with this is the standard implementation of SVD takes too long. Is there another option? Yes, there is and it is known as &lt;strong&gt;Truncated SVD&lt;/strong&gt;. Instead of calculating all of the columns let's just calculate the vectors corresponding to the &lt;strong&gt;largest&lt;/strong&gt; singular values.&lt;/p&gt;
 &lt;h3 id="Shortcomings-of-classical-algorithms-for-decomposition:"&gt;Shortcomings of classical algorithms for decomposition:&lt;a class="anchor-link" href="#Shortcomings-of-classical-algorithms-for-decomposition:"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;Matrices are "stupendously big"&lt;/li&gt;
+&lt;li&gt;Matrices are often "stupendously big"&lt;/li&gt;
 &lt;li&gt;Data are often &lt;strong&gt;missing or inaccurate&lt;/strong&gt;.  Why spend extra computational resources when imprecision of input limits precision of the output?&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Data transfer&lt;/strong&gt; now plays a major role in time of algorithms.  Techniques the require fewer passes over the data may be substantially faster, even if they require more flops (flops = floating point operations).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data transfer&lt;/strong&gt; now plays a major role in time of algorithms.  Techniques that require fewer passes over the data may be substantially faster, even if they require more flops (flops = floating point operations).&lt;/li&gt;
 &lt;li&gt;Important to take advantage of &lt;strong&gt;GPUs&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;(source: &lt;a href="https://arxiv.org/abs/0909.4061"&gt;Halko&lt;/a&gt;)&lt;/p&gt;
 &lt;h3 id="Advantages-of-randomized-algorithms:"&gt;Advantages of randomized algorithms:&lt;a class="anchor-link" href="#Advantages-of-randomized-algorithms:"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;inherently stable&lt;/li&gt;
-&lt;li&gt;performance guarantees do not depend on subtle spectral properties&lt;/li&gt;
-&lt;li&gt;needed matrix-vector products can be done in parallel&lt;/li&gt;
+&lt;li&gt;Inherently stable&lt;/li&gt;
+&lt;li&gt;Performance guarantees do not depend on subtle spectral properties&lt;/li&gt;
+&lt;li&gt;Needed matrix-vector products can be done in parallel&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;(source: &lt;a href="https://arxiv.org/abs/0909.4061"&gt;Halko&lt;/a&gt;)&lt;/p&gt;
 &lt;h2 id="Truncated-SVD"&gt;Truncated SVD&lt;a class="anchor-link" href="#Truncated-SVD"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
@@ -2251,8 +2251,8 @@ Wall time: 2.02 s
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="Recap:"&gt;Recap:&lt;a class="anchor-link" href="#Recap:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src="https://i.imgur.com/dFaRN4P.jpg" alt="img"&gt;&lt;/p&gt;
-&lt;p&gt;One option of topic modeling is to leverage an oldie but a goodie from linear algebra in SVD. As Gilbert Strang says..&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;"SVD is not nearly as famous as it should be." - Gilbert Strang&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;One option of topic modeling is to leverage an oldie but a goodie from linear algebra in SVD. As &lt;a href="http://www-math.mit.edu/~gs/"&gt;Gilbert Strang&lt;/a&gt;, the MIT  mathematics professor, made "internet" famous from his Linear Algebra OCW course, says..&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;"SVD is not nearly as famous as it should be."&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;we can clearly see that by leveraging linear algebra concepts we can derive topics that make conceptual sense given the types of responses we examined.&lt;/p&gt;
 &lt;p&gt;Another few options to consider for future research:&lt;/p&gt;
 &lt;ul&gt;

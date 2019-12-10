@@ -2355,7 +2355,7 @@ Wall time: 2.02 s
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="Data Science"></category><category term="Python"></category></entry><entry><title>Predicting Performance Using Baseball Data</title><link href="/performance-baseball.html" rel="alternate"></link><published>2019-11-22T12:30:00-06:00</published><updated>2019-11-22T12:30:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-11-22:performance-baseball.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="Data Science"></category><category term="Python"></category><category term="NLP"></category></entry><entry><title>Predicting Performance Using Baseball Data</title><link href="/performance-baseball.html" rel="alternate"></link><published>2019-11-22T12:30:00-06:00</published><updated>2019-11-22T12:30:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-11-22:performance-baseball.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *

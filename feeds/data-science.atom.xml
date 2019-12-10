@@ -1825,7 +1825,15 @@ good
 &lt;li&gt;data compression&lt;/li&gt;
 &lt;li&gt;principal component analysis&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;a href="https://medium.com/sho-jp/linear-algebra-101-part-9-singular-value-decomposition-svd-a6c53ed2319e"&gt;This article&lt;/a&gt; goes into much more depth regarding SVD for those interested.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://medium.com/sho-jp/linear-algebra-101-part-9-singular-value-decomposition-svd-a6c53ed2319e"&gt;This article&lt;/a&gt; goes into much more depth regarding the math behind SVD for those interested.&lt;/p&gt;
+&lt;p&gt;But, to quickly summarize:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;U&lt;/strong&gt; is the matrix that represents the documents/responses X the topics. Which would look a bit like this.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/OJQyDf5.png" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;S&lt;/strong&gt; is the diagonal topic X topic matrix. Which would look a bit like this.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/9nYpNXl.png" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;V&lt;/strong&gt; is the topic X term matrix. Which would look a bit like this.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/KV7NEA1.png" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;By leveraging the vectors of these matrices we can identify similar words and similar docuemnts, which creates topics.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Latent Semantic Analysis (LSA) uses SVD&lt;/strong&gt;.  You will sometimes hear topic modeling referred to as LSA.&lt;/p&gt;
 
 &lt;/div&gt;
@@ -2014,7 +2022,8 @@ Wall time: 12min 4s
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;We can clearly see that SVD takes a long time. But let's create a function that can extract the top words for the topics created and examine what the top 10 topics look like.&lt;/p&gt;
+&lt;p&gt;We can clearly see that SVD takes a long time. The reason for this is because a full decomposition of the original matrix creates k topics based on the # of documents or respondents. Because U is 21,453 long rull SVD creates 21,453 topics hence the reference to exact decomposition above.&lt;/p&gt;
+&lt;p&gt;But let's create a function that can extract the top words for the topics created and examine what the top 10 topics look like and we'll discuss a more efficient way to use SVD a little later.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

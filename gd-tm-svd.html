@@ -1500,7 +1500,7 @@ Name: cons_len, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
@@ -1576,7 +1576,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectors</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">22</span><span class="p">]</span>
@@ -1592,7 +1592,7 @@ good
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[19]:</div>
+<div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -1618,7 +1618,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cons&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -1634,7 +1634,7 @@ good
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[64]:</div>
+<div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -1663,7 +1663,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
@@ -1676,7 +1676,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectors</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
@@ -1693,7 +1693,7 @@ good
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[66]:</div>
+<div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -1710,7 +1710,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectors</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
@@ -1726,7 +1726,7 @@ good
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[72]:</div>
+<div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -1752,7 +1752,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[88]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectors</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">]</span>
@@ -1768,7 +1768,7 @@ good
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[88]:</div>
+<div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -1785,7 +1785,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[89]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span><span class="p">[</span><span class="mi">21</span><span class="p">]</span>
@@ -1801,7 +1801,7 @@ good
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[89]:</div>
+<div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -1818,7 +1818,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cons&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
@@ -1834,7 +1834,7 @@ good
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[90]:</div>
+<div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -1882,7 +1882,7 @@ good
 <p><img src="https://i.imgur.com/9nYpNXl.png" alt="img"></p>
 <p><strong>V</strong> is the topic X term matrix. Which would look a bit like this.</p>
 <p><img src="https://i.imgur.com/KV7NEA1.png" alt="img"></p>
-<p>By leveraging the vectors of these matrices we can identify similar words and similar docuemnts, which creates topics.</p>
+<p>By leveraging the vectors of these matrices we can identify similar words and similar docuemnts and if we focus exclusively on the <strong>V</strong> matrix we can identify the words with the largest weights associated with each topic.</p>
 <p><strong>Latent Semantic Analysis (LSA) uses SVD</strong>.  You will sometimes hear topic modeling referred to as LSA.</p>
 
 </div>
@@ -1890,7 +1890,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[94]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
@@ -1903,7 +1903,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[95]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectors</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cons&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
@@ -1920,7 +1920,7 @@ good
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[95]:</div>
+<div class="prompt output_prompt">Out[26]:</div>
 
 
 
@@ -1947,7 +1947,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[96]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
@@ -1960,7 +1960,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[97]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span><span class="p">[</span><span class="mi">3000</span><span class="p">:</span><span class="mi">3020</span><span class="p">]</span>
@@ -1976,7 +1976,7 @@ good
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[97]:</div>
+<div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -2006,7 +2006,7 @@ good
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> U, s, Vh = linalg.svd(vectors, full_matrices=False)
@@ -2026,8 +2026,8 @@ good
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 45min 13s, sys: 44.6 s, total: 45min 57s
-Wall time: 12min 4s
+<pre>CPU times: user 39min 1s, sys: 16.3 s, total: 39min 17s
+Wall time: 9min 53s
 </pre>
 </div>
 </div>
@@ -2038,7 +2038,7 @@ Wall time: 12min 4s
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">Vh</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -2071,8 +2071,56 @@ Wall time: 12min 4s
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can clearly see that SVD takes a long time. The reason for this is because a full decomposition of the original matrix creates k topics based on the # of documents or respondents. Because U is 21,453 long rull SVD creates 21,453 topics hence the reference to exact decomposition above.</p>
-<p>But let's create a function that can extract the top words for the topics created and examine what the top 10 topics look like and we'll discuss a more efficient way to use SVD a little later.</p>
+<p>We can clearly see that SVD takes a long time. The reason for this is because a full decomposition of the original matrix creates k topics based on the # of documents or respondents. Because U is 21,453 long SVD creates 21,453 topics hence the reference to exact decomposition above.</p>
+<p>Let's actually confirm that these matrices are an exact decomposition.</p>
+<ul>
+<li>We can first create an array of the reconstructed vectors by matrix multiplying U the diagonal of s and Vh</li>
+<li>Then let's confirm that the reconstructed vectors and the original vectors are equal by using the <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.allclose.html">numpy allclose</a> method</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">reconstructed_vectors</span> <span class="o">=</span> <span class="n">U</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="nd">@Vh</span>
+<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">reconstructed_vectors</span><span class="p">,</span><span class="n">vectors</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[31]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The result of np.allclose evaluated to true, which proves that both vectors are identical.</p>
+<p>Now that we've confirmed SVD is an exact decomposition and we've run SVD let's create a function that can extract the top words for the topics created and examine what the top 10 topics look like and we'll discuss a more efficient way to use SVD a little later.</p>
 
 </div>
 </div>
@@ -2189,6 +2237,7 @@ Wall time: 12min 4s
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>As you can see we used the show_topics function with the <strong>V</strong> matrix and we asked for the top 10 topics.</p>
 <p>If you look at the words in the topics they make sense. We see topics around management, pay, customers, hours, etc. These all make sense and this is despite the fact that this is an <strong>unsupervised algorithm</strong> - which is to say, we never actually told the algorithm how our documents are grouped.</p>
 <p>But, part of the problem with this is the standard implementation of SVD takes too long. Is there another option? Yes, there is and it is known as <strong>Truncated SVD</strong>. Instead of calculating all of the columns let's just calculate the vectors corresponding to the <strong>largest</strong> singular values.</p>
 <h3 id="Shortcomings-of-classical-algorithms-for-decomposition:">Shortcomings of classical algorithms for decomposition:<a class="anchor-link" href="#Shortcomings-of-classical-algorithms-for-decomposition:">&#182;</a></h3><ul>
@@ -2299,7 +2348,7 @@ Wall time: 2.02 s
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>so, we went from a Wall time of 724 seconds to a Wall time of 2 seconds by using Truncated SVD.</p>
+<p>so, we went from a Wall time of ~600 seconds to a Wall time of 2 seconds by using Truncated SVD.</p>
 
 </div>
 </div>

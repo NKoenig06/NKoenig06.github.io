@@ -1040,7 +1040,7 @@ h6:hover .anchor-link {
 &lt;/ol&gt;
 &lt;p&gt;By identifying/assigning a set # of topics we derive a latent layer. In this way the latent layer acts as an intermediary where the words connect to the latent topic and the topic connects to the document or response in this case.&lt;/p&gt;
 &lt;p&gt;For those interested in a deeper conceptual understanding of how LDA works I'd recommend &lt;a href="https://towardsdatascience.com/light-on-math-machine-learning-intuitive-guide-to-latent-dirichlet-allocation-437c81220158"&gt;this article&lt;/a&gt; from which I borrowed this image, which I feel does a nice job of helping to visualize the document to latent topic and word to latent topic relationship.&lt;/p&gt;
-&lt;p&gt;!([img]&lt;a href="https://i.imgur.com/Hw6F72P.png"&gt;https://i.imgur.com/Hw6F72P.png&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/Hw6F72P.png" alt="img"&gt;&lt;/p&gt;
 &lt;p&gt;For the purposes of this article we will again leverage a &lt;a href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html"&gt;scikit-learn implementation of the algorithm&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;1st we'll need to vectorize the responses and then we'll run a grid search to determine the ideal number of topics.&lt;/p&gt;
 

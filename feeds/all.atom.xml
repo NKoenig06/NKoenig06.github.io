@@ -1405,8 +1405,8 @@ drama smell room grow advantage advancement organized costumers
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;As you can see we get a lot of the same general topics that the SVD gave us with a topic that focuses on management, pay, management, advancement, etc. In my experience the topics in LDA tend to be a bit easier to interpret, but one of the downsides of all Topic Modeling is that while you've been able to group the words together, it's still relatively difficult to do a lot with them.&lt;/p&gt;
-&lt;h1 id="Data-Visualization"&gt;Data Visualization&lt;a class="anchor-link" href="#Data-Visualization"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;One thing we did not focus on with LSA is visualizing the topics. One interesting way to visualize unsupervised learning data is to use another data reduction technique known as t-distribute stochastic neighbor embedding or &lt;strong&gt;T-SNE&lt;/strong&gt;. There is a fun package that I recently discovered that leverages tsne to make interactive visualizations called &lt;a href="https://github.com/bmabey/pyLDAvis"&gt;PyLDAvis&lt;/a&gt;. It takes as input the model, your vectors, the vectorizer you want to use and the multi-dimensional scaling technique you want to use, in our case we will be using tsne.&lt;/p&gt;
+&lt;p&gt;As you can see we get a lot of the same general topics that the SVD gave us with a topic that focuses on management, pay, advancement, etc. In my experience the topics in LDA tend to be a bit easier to interpret, but one of the downsides of all Topic Modeling is that while you've been able to group the words together, it's still relatively difficult to do a lot with them.&lt;/p&gt;
+&lt;h1 id="Data-Visualization"&gt;Data Visualization&lt;a class="anchor-link" href="#Data-Visualization"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;One thing we did not focus on with LSA is visualizing the topics. One interesting way to visualize unsupervised learning data is to use another data reduction technique known as t-distributed stochastic neighbor embedding or &lt;strong&gt;T-SNE&lt;/strong&gt;. There is a fun package that I recently discovered that leverages tsne to make interactive visualizations called &lt;a href="https://github.com/bmabey/pyLDAvis"&gt;PyLDAvis&lt;/a&gt;. It takes as input the model, your vectors, the vectorizer you want to use and the multi-dimensional scaling technique you want to use, in our case we will be using tsne.&lt;/p&gt;
 &lt;p&gt;You can hover over each of the topic bubbles and the top-30 most relevant words will change to reflect the topic. Feel free to give it a try :)&lt;/p&gt;
 
 &lt;/div&gt;
@@ -3864,6 +3864,7 @@ Wall time: 2.02 s
 &lt;li&gt;Look at topics for specific companies as it's likely that some of these companies have unique pros and cons for working for them. &lt;/li&gt;
 &lt;li&gt;Examine other text columns like "pros" and "advice for management". &lt;/li&gt;
 &lt;li&gt;Topic modeling works the best when topics are fairly distinct. It would be interesting to stack the columns together (i.e. pros, cons, and advice to management) and see if 3 basic topics come out that align with the label of the column. &lt;/li&gt;
+&lt;li&gt;Try a larger n-gram range. For simplicity we used the default TfidfVectorizer implementation which is an n-gram range of (1,1). If we had increased it to include bi-grams we may have seen additional clarity, but we would have also greatly increased the # of unique words/wordsets. &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In the next article we will examine topic modeling through the lens of &lt;strong&gt;&lt;a href="http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf"&gt;LDA&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
 

@@ -2370,6 +2370,7 @@ Wall time: 2.02 s
 <li>Look at topics for specific companies as it's likely that some of these companies have unique pros and cons for working for them. </li>
 <li>Examine other text columns like "pros" and "advice for management". </li>
 <li>Topic modeling works the best when topics are fairly distinct. It would be interesting to stack the columns together (i.e. pros, cons, and advice to management) and see if 3 basic topics come out that align with the label of the column. </li>
+<li>Try a larger n-gram range. For simplicity we used the default TfidfVectorizer implementation which is an n-gram range of (1,1). If we had increased it to include bi-grams we may have seen additional clarity, but we would have also greatly increased the # of unique words/wordsets. </li>
 </ul>
 <p>In the next article we will examine topic modeling through the lens of <strong><a href="http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf">LDA</a></strong>.</p>
 

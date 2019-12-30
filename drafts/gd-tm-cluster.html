@@ -1024,8 +1024,15 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Cluster-Analysis">Cluster Analysis<a class="anchor-link" href="#Cluster-Analysis">&#182;</a></h1><p>Cluster analysis offers another way for us to identify categories or topics. In most instances both LSA and LDA are considered "soft" clustering as each response can be partially assigned to each cluster whereas k-means clustering is considered "hard" clustering as each response is assigned to exactly 1 topic. For more specifics on k-means I'd point you to the <a href="https://towardsdatascience.com/k-means-clustering-8e1e64c1561c">following article</a>.</p>
-<p>The first thing we want to do is identify the # of clusters we want to use. We can do that using the elbow method and a for loop.</p>
+<h1 id="Clustering-Company-Reviews-with-K-means">Clustering Company Reviews with K-means<a class="anchor-link" href="#Clustering-Company-Reviews-with-K-means">&#182;</a></h1><p>My previous two articles have focused on popular topic modeling techniques; including <a href="https://nkoenig06.github.io/gd-tm-svd.html">LSA</a> and <a href="https://nkoenig06.github.io/gd-tm-lda.html">LDA</a>.</p>
+<p>This article will focus on a 3rd unsupervised learning technique that can be used to categorize open-ended text responses.</p>
+<p><img src="https://i.imgur.com/HkXDRu5.png" alt="img"></p>
+<p>Cluster analysis offers another way for us to identify categories or topics. In most instances both LSA and LDA are considered "soft" clustering as each response can be partially assigned to each cluster whereas k-means clustering is considered "hard" clustering as each response is assigned to exactly 1 topic. In my experience this typically leaves the end user with only about 40-50% of target clusters making sense and the final cluster typically contains the remaining 50-60% of responses, of course as the number of clusters increase the number of remaining responses in the largest cluster will continue to go down and it is possible to to have N clusters where N represents the actual number of responses and in this case each cluster would have exactly one response.</p>
+<h2 id="Explaining-K-means-Clustering.">Explaining K-means Clustering.<a class="anchor-link" href="#Explaining-K-means-Clustering.">&#182;</a></h2><p>K-means is actually a relatively easy algorithm to understand. Put simply, K-means clustering starts with k randomly initialized centroids. It then iteratively re-calculates the distance of each data point from the cluster centroids and moves each cluster centroid after each iteration of calculating the distance in an effort to minimize the distance of all data points from at least one cluster centroid. The typical distance metric used for k-means is <a href="https://en.wikipedia.org/wiki/Euclidean_distance">euclidean distance</a>.</p>
+<p>This gif does a good job of illustrating the centroid adjustments after each iteration.</p>
+<p><img src="https://i.imgur.com/YM2HswV.gif" alt="img"></p>
+<p>As you can see after each iteration data points are re-assigned based off of their proximity to each centroid.</p>
+<p>For more specifics on k-means I'd point you to the <a href="https://towardsdatascience.com/k-means-clustering-8e1e64c1561c">following article</a>.</p>
 
 </div>
 </div>
@@ -1035,7 +1042,8 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import our packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">decomposition</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">linalg</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1068,14 +1076,23 @@ h6:hover .anchor-link {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We will again use TFIDFVectorizer from scikit learn to vectorize our responses and to remain consistent we will use the cons data from our company reviews again.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
 <span class="n">vectors</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cons&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
-<span class="n">vectors</span><span class="o">.</span><span class="n">shape</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vectors</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="n">vocab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
 </pre></div>
@@ -1084,6 +1101,33 @@ h6:hover .anchor-link {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(21453, 11986)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Identifying-the-optimal-#-of-clusters">Identifying the optimal # of clusters<a class="anchor-link" href="#Identifying-the-optimal-#-of-clusters">&#182;</a></h2><p>Like many other unsupervised techniques an optimal k is not exactly a scientific process, but what we can do is run the k-means algorithm through a loop using different values for k and then plot the then plot the within-cluster sum of squares (WCSS) for each set of clusters. We can then identify where there is a natural elbow, like we would do when plotting eigen values for exploratory factor analysis.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1101,47 +1145,6 @@ h6:hover .anchor-link {
 </pre></div>
 
 </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wcss</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[6]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[20748.377015432605,
- 20620.28068724211,
- 20483.932443436977,
- 20369.253490382423,
- 20256.750224484334,
- 20162.947147129024,
- 20133.039226313565,
- 20001.820785858978,
- 19974.03985173165]</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -1197,14 +1200,24 @@ h6:hover .anchor-link {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When we look at the plot of WCSS we see a decent elbow at around 8 clusters, so let's use that as our number of unique clusters for the cons data.</p>
+<p>Another issue with an algorithm like k-means is local convergence rather than global convergence. To lower the probability of this happening the scikit learn implementation leverages an initialization technique known as k-means++, which can be read about in more detail in <a href="http://ilpubs.stanford.edu:8090/778/1/2006-13.pdf">this article</a></p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">num_clusters</span> <span class="o">=</span> <span class="mi">8</span>
 
-<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1500</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="n">num_clusters</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1500</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1214,7 +1227,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">vectors</span><span class="p">)</span>
@@ -1230,14 +1243,14 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>KMeans(algorithm=&#39;auto&#39;, copy_x=True, init=&#39;k-means++&#39;, max_iter=1500,
-    n_clusters=12, n_init=40, n_jobs=1, precompute_distances=&#39;auto&#39;,
+    n_clusters=8, n_init=40, n_jobs=1, precompute_distances=&#39;auto&#39;,
     random_state=0, tol=0.0001, verbose=0)</pre>
 </div>
 
@@ -1249,7 +1262,50 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[30]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(8, 11986)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>we can see by looking at the shape of the cluster_centers we have 8 clusters that have a dimension space of 11,986, which is the same # of columns we have representing each of the unique words.</p>
+<p>Next we will create a new column in a our dataframe that has the value for the cluster that each response was assigned to. This allows us to do some interesting investigating, which we will do next.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kmeans_cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
@@ -1259,6 +1315,432 @@ h6:hover .anchor-link {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kmeans_cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    12854
+5     2649
+1     2138
+3     1598
+6     1138
+2      441
+4      410
+7      225
+Name: kmeans_cluster, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As I mentioned earlier you can see tha that roughly 50% of the responses are still assigned to cluster 0, which means the algorithm really couldn't identify much of a difference between those responses. If we had increased our k surely some of those would have gone into the additional clusters, but in general a lot of those responses are just difficult to categorize by only focusing on individual words.</p>
+<h2 id="Investigating-the-Clusters">Investigating the Clusters<a class="anchor-link" href="#Investigating-the-Clusters">&#182;</a></h2><p>Like EFA the clusters don't give you topic titles. In order to identify the topics you have to read some of the responses. Let's read the first 10 responses for <strong>cluster 1.</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kmeans_cluster&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;cons&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>23             not enough hours for experienced workers
+26    dealing with con artists (at least at customer...
+41               working weekends sucks. too many hours
+45           Hours, Management, union dues are not fun.
+49    little to no communication from management abo...
+56    Part-timers aren&#39;t given many hours unless exp...
+57    Part-timers aren&#39;t given many hours unless exp...
+62                   long hours paper cuts really hurt!
+82    After the holidays, they really cut back on th...
+96    standing in the same spot all day, not enough ...
+Name: cons, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see here that in general cluster 1 is discussing hours, not enough hours, types of hours worked, etc. But in general the references are about work hours.</p>
+<p>Let's look at <strong>cluster 6.</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kmeans_cluster&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">6</span><span class="p">][</span><span class="s1">&#39;cons&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>17     Customers unfriendly, drive through difficult ...
+80          Some customers are difficult but its retail.
+97        The managers were very condescending and rude.
+145    It&#39;s retail...so you are going to have obnoxio...
+152    No issues with the company as a whole. Some ma...
+154      cranky customers, working with moody co workers
+161    As what you would expect sometimes customers c...
+168    they basically bow down to any customers over ...
+221             Low wage, rude customers, bad management
+234         Corporate is rude and demeaning to employees
+Name: cons, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cluster 6 makes a lot of references to Customers, statements around rude customers, mean customers, bad customers, etc.</p>
+<p>One cool thing about assigning a cluster to specific responses is it allows you to pretty easily examine trends across stores. Let's take a quick look.</p>
+<p>We have relatively equal representation of reviews across all company's outside of Giant Eagle, so we would expect there to be similar representation in each cluster. Let's look at <strong>cluster 6</strong> specifically.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kmeans_cluster&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">6</span><span class="p">][</span><span class="s1">&#39;company&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>mcd       368
+tbell     214
+wmt       132
+kr        106
+push       87
+tgt        70
+sams       60
+geagle     59
+cost       42
+Name: company, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This shows us that when it comes to customer related cons that our two fast food related companies have the most comments that fall into that cluster. What about <strong>cluster 1</strong>, around hours?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kmeans_cluster&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;company&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[24]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tgt       364
+push      335
+tbell     267
+wmt       260
+kr        208
+sams      196
+cost      187
+mcd       186
+geagle    135
+Name: company, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Cluster 1</strong> seems to be much more equally spread across all companies with a slight edge to Target and Publix.</p>
+<p><strong>Cluster 2</strong> talks a lot about work/life balance. Let's see which companies had responses that fell into that cluster the most.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kmeans_cluster&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;company&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>wmt       99
+kr        88
+tgt       84
+sams      61
+push      31
+tbell     27
+cost      21
+geagle    16
+mcd       14
+Name: company, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here we have a much larger proportion of responses that are in the retail/grocery space.</p>
+<p>Finally, let's look at <strong>cluster 3</strong>, which is around pay, with a specific emphasis on low pay as I'm sure many would have assumed.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kmeans_cluster&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">3</span><span class="p">][</span><span class="s1">&#39;company&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[26]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>kr        362
+mcd       269
+tbell     243
+tgt       158
+wmt       153
+sams      134
+geagle    117
+push      115
+cost       47
+Name: company, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I was surprised a bit by the company's with the most responses that fall into this cluster, but the 2 with the lowest make sense to me. Kroger, McDonald's and Taco Bell have a much larger proportion of their responses falling into this category than the rest and Costco has by far the lowest.</p>
+<p>Instead of looking strictly at value counts which can be a bit boring, we could instead build a count plot. I built one below to help us visualize cluster 3.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cluster_3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kmeans_cluster&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">:(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">)})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">cluster_3</span><span class="p">[</span><span class="s1">&#39;kmeans_cluster&#39;</span><span class="p">],</span><span class="n">hue</span><span class="o">=</span><span class="n">cluster_3</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">],</span><span class="n">hue_order</span> <span class="o">=</span> <span class="n">cluster_3</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[41]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f88dbe5b710&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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yxarYxjRq1cvLVmyxOoYAFChUMIBAJZ79913dd9991kdAwCMoYQDACo8l8tldQQAKBVKOACUsZ9//lkdOnTQqlWr1KFDB82ePVt33HGHWrRooTFjxujIkSPq37+/4uLi1KdPH+Xm5vrO3b59u3r06KGEhAR169ZNW7du9e1755131KVLF8XFxaljx45avHixb9/WrVvVrl07zZ07VzfccIPatGmjd955x7f/k08+0W233aa4uDi1bdtWc+bMOed9fPjhh7rzzjsVHx+vTp06aePGjacd8/LLL2v48OG+1/v27VPjxo19Jfndd99Vx44dFRcXpw4dOmj58uX6+eeflZSUpO3btysuLk4JCQmSJKfTqZSUFLVv31433nijxo8fr6KiolPu75VXXlHr1q31xBNPlPSXAwDKhUCrAwBAZfbdd9/p4YcfVlJSkm6++WZNnTpV69at07x58+R2u3XXXXfp+++/18SJE3XllVeqf//+ev311/XII4/o4MGDGjBggFJTU9W2bVt99tlnGjJkiN5//31FRkYqKipKs2bN0qWXXqovv/xSDz74oJo2baprr71WknTkyBHl5eVp48aN2rJli4YMGaJOnTopPDxcY8eO1YsvvqiEhATl5uZq3759Z72Pb775RqNGjdK0adN0ww036PDhw8rPzy/Ve3H8+HElJyfr7bff1hVXXKFDhw4pNzdXDRs21NNPP60lS5bozTff9B0/efJk/frrr1q6dKkCAwM1fPhwTZ8+XcOGDfPdX25urjZs2CCPx1PKXxkAsBYz4QBQRtLT0zVw4EA999xzuvnmm33be/bsqZo1a6p27dpKSEhQs2bNdM0118jhcOiWW27Rzp07JUnLli1Tu3btdNNNN8lut6t169Zq0qSJPvnkE0lS+/btddlll8lms+n6669X69atlZ6e7rtOYGCgHn74YQUFBemmm25SSEiIdu/e7dv3008/KT8/X+Hh4b7i/kfefvtt3X333WrdurXsdrtq166thg0blvo9sdvt2rVrl4qKilSrVi1dddVVZzzO6/VqyZIlGjNmjCIiIhQWFqYBAwZo1apVp4w1ZMgQORwOValSpdRZAMBKzIQDQBlZvHixrrvuOv3pT386ZXvNmjV9PwcHB5/yukqVKjp+/LgkKSMjQ2vWrNGGDRt8+10ul1q1aiXp5JKS6dOna8+ePfJ4PCoqKlKjRo18x0ZERCgw8P9+m69atapv7GnTpmnmzJmaOnWqGjdurGHDhikuLu4P7yUzM1M33XTT+bwNPiEhIXrhhRc0d+5cjR07VvHx8Ro1atQZy3x2drYKCwv1l7/8xbfN6/WeMuNdo0YNBQcHX1AmALAKJRwAysjTTz+tV199Vc8++6zGjBlT6vNjYmJ05513Kjk5+bR9TqdTQ4YMUUpKijp27KigoCANGjRIXq+3RGM3a9ZMM2fO1IkTJ7Ro0SI9+uijvhn2P8qyd+/ec45btWpV37pt6eSSkd9q27at2rZtq6KiIr344ot68skn9cYbb8hms51yXI0aNVSlShWtWrVKtWvXPuO1fn8OAFQkLEcBgDISGhqq2bNnKz09XVOmTCn1+d26ddOGDRu0adMmud1uFRcXa+vWrTpw4ICcTqecTqciIyMVGBioTz75RJs3by7RuE6nU8uXL1deXp6CgoIUGhqqgICAs55zzz336N1339Vnn30mj8ejgwcP6ueffz7tuNjYWH355ZfKyMhQXl6e/n/7dsuiQBSGYfjZYhCZYjJZzIYZFEUHYaLBIDjJ4E+w2ATbCCaTODBqtQpWi0b/hzCg1WCY3bDsgCwsLuzOfnBf9Xy3l3Oe4/t+3HY+n7Xb7XS9XpVKpZROp+N1s9mswjDU7XaT9Bo16XQ68jxPl8tFkhSGoQ6Hw0NnBIDfjiIcAL6RYRhaLpfa7/eaTqefGpvL5TSbzeT7vqrVqhqNhhaLhaIoUiaT0XA4VL/fV6lU0na7leM4D8+92WzkOI5M09R6vdZkMvmwf7FY1Hg8lud5sixL3W5Xp9PpXb9araZms6lWq6V2u32XhY+iSKvVSrZtq1wu63g8ajQaSZIqlYoKhYLq9XoctxkMBsrn83JdV6ZpqtfrxZl2APjrnp4ffbsEAAAA8CW4CQcAAAASxsdMAIAkaT6f32W431iWpSAIfmBHAPB/EUcBAAAAEkYcBQAAAEgYRTgAAACQMIpwAAAAIGEU4QAAAEDCXgAORcadCfJi2QAAAABJRU5ErkJggg==
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What I like about Clustering methods for identifying topics is that it assigns each response to a specific cluster instead of allowing it to be parts of each topic or cluster. This is most certainly an over-simplification of most of these responses, but it does allow you to examine trends across departments, companies, etc. much more easily than you can do with topic modeling methods like LSA and LDA.</p>
+<h2 id="Recap:">Recap:<a class="anchor-link" href="#Recap:">&#182;</a></h2><p><img src="https://i.imgur.com/dFaRN4P.jpg" alt="img"></p>
+<p>K-means clustering allows us to use unsupervised learning to assign each response to a specific category and then read responses within each category to understand the general topic of the responses. It's helpful when it comes to assigning a response to a specific category, but given the need for each response to fall into only 1 cluster it can often be considered overally simplistic as a solution to understand what the general trends in all responses are focused on. In the instances where this is important the topic modeling techniques discussed in earlier articles may be a more ideal solution.</p>
+
+</div>
+</div>
 </div>
  
 

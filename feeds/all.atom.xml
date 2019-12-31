@@ -990,7 +990,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[22]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
@@ -1049,7 +1049,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vectorizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TfidfVectorizer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stop_words&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;english&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1067,7 +1067,7 @@ h6:hover .anchor-link {
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[4]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[3]:&lt;/div&gt;
 
 
 
@@ -1084,7 +1084,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[15]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vocab&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vectorizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_feature_names&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
@@ -1097,7 +1097,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[5]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Load the LDA model from sk-learn&lt;/span&gt;
@@ -1266,7 +1266,7 @@ Model Perplexity:  5906.962760409925
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[11]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[6]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Tweak the two parameters below&lt;/span&gt;
@@ -1281,7 +1281,7 @@ Model Perplexity:  5906.962760409925
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[12]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Create and fit the LDA model&lt;/span&gt;
@@ -1303,15 +1303,15 @@ Model Perplexity:  5906.962760409925
 
 
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;CPU times: user 52.7 s, sys: 3.55 s, total: 56.3 s
-Wall time: 2min 6s
+&lt;pre&gt;CPU times: user 50.5 s, sys: 3.7 s, total: 54.2 s
+Wall time: 2min 3s
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[12]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[7]:&lt;/div&gt;
 
 
 
@@ -1406,6 +1406,87 @@ drama smell room grow advantage advancement organized costumers
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;As you can see we get a lot of the same general topics that the SVD gave us with a topic that focuses on management, pay, advancement, etc. In my experience the topics in LDA tend to be a bit easier to interpret, but one of the downsides of all Topic Modeling is that while you've been able to group the words together, it's still relatively difficult to do a lot with them.&lt;/p&gt;
+&lt;h2 id="Predicting-A-specific-response"&gt;Predicting A specific response&lt;a class="anchor-link" href="#Predicting-A-specific-response"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Let's look at which topics LDA distributes the final two responses under.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[21]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;21451&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-----------&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;21452&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;The pay isn&amp;#39;t great and the work is extra
+-----------
+Too much of focus on wage/dollars % and not guest focused, labor tight at times and added stress. Also, corporate too focused on controlling stores with micromanaging every simple task.
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[29]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;lda&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vectors&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[29]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;array([[0.05315866, 0.05373963, 0.05315866, 0.73362024, 0.05316418,
+        0.05315863],
+       [0.09641838, 0.76467776, 0.03470389, 0.03479211, 0.03470403,
+        0.03470382]])&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;So, according to the LDA model the first comment we see above falls mostly into topic 3 and the second comment falls mostly into topic 1. This could be an interesting topic of exploration to see if human labelers would agree with this.&lt;/p&gt;
 &lt;h1 id="Data-Visualization"&gt;Data Visualization&lt;a class="anchor-link" href="#Data-Visualization"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;One thing we did not focus on with LSA is visualizing the topics. One interesting way to visualize unsupervised learning data is to use another data reduction technique known as t-distributed stochastic neighbor embedding or &lt;strong&gt;T-SNE&lt;/strong&gt;. There is a fun package that I recently discovered that leverages tsne to make interactive visualizations called &lt;a href="https://github.com/bmabey/pyLDAvis"&gt;PyLDAvis&lt;/a&gt;. It takes as input the model, your vectors, the vectorizer you want to use and the multi-dimensional scaling technique you want to use, in our case we will be using tsne.&lt;/p&gt;
 &lt;p&gt;You can hover over each of the topic bubbles and the top-30 most relevant words will change to reflect the topic. Feel free to give it a try :)&lt;/p&gt;
 

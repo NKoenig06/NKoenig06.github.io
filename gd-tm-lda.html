@@ -1039,7 +1039,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1098,7 +1098,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
@@ -1116,7 +1116,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[4]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -1133,7 +1133,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
@@ -1146,7 +1146,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the LDA model from sk-learn</span>
@@ -1315,7 +1315,7 @@ Model Perplexity:  5906.962760409925
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Tweak the two parameters below</span>
@@ -1330,7 +1330,7 @@ Model Perplexity:  5906.962760409925
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create and fit the LDA model</span>
@@ -1352,15 +1352,15 @@ Model Perplexity:  5906.962760409925
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 52.7 s, sys: 3.55 s, total: 56.3 s
-Wall time: 2min 6s
+<pre>CPU times: user 50.5 s, sys: 3.7 s, total: 54.2 s
+Wall time: 2min 3s
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[12]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -1455,6 +1455,87 @@ drama smell room grow advantage advancement organized costumers
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you can see we get a lot of the same general topics that the SVD gave us with a topic that focuses on management, pay, advancement, etc. In my experience the topics in LDA tend to be a bit easier to interpret, but one of the downsides of all Topic Modeling is that while you've been able to group the words together, it's still relatively difficult to do a lot with them.</p>
+<h2 id="Predicting-A-specific-response">Predicting A specific response<a class="anchor-link" href="#Predicting-A-specific-response">&#182;</a></h2><p>Let's look at which topics LDA distributes the final two responses under.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cons&#39;</span><span class="p">][</span><span class="mi">21451</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-----------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cons&#39;</span><span class="p">][</span><span class="mi">21452</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The pay isn&#39;t great and the work is extra
+-----------
+Too much of focus on wage/dollars % and not guest focused, labor tight at times and added stress. Also, corporate too focused on controlling stores with micromanaging every simple task.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lda</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">vectors</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[0.05315866, 0.05373963, 0.05315866, 0.73362024, 0.05316418,
+        0.05315863],
+       [0.09641838, 0.76467776, 0.03470389, 0.03479211, 0.03470403,
+        0.03470382]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, according to the LDA model the first comment we see above falls mostly into topic 3 and the second comment falls mostly into topic 1. This could be an interesting topic of exploration to see if human labelers would agree with this.</p>
 <h1 id="Data-Visualization">Data Visualization<a class="anchor-link" href="#Data-Visualization">&#182;</a></h1><p>One thing we did not focus on with LSA is visualizing the topics. One interesting way to visualize unsupervised learning data is to use another data reduction technique known as t-distributed stochastic neighbor embedding or <strong>T-SNE</strong>. There is a fun package that I recently discovered that leverages tsne to make interactive visualizations called <a href="https://github.com/bmabey/pyLDAvis">PyLDAvis</a>. It takes as input the model, your vectors, the vectorizer you want to use and the multi-dimensional scaling technique you want to use, in our case we will be using tsne.</p>
 <p>You can hover over each of the topic bubbles and the top-30 most relevant words will change to reflect the topic. Feel free to give it a try :)</p>
 

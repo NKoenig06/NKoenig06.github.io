@@ -1025,7 +1025,7 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Topic-Modeling-Company-Reviews-with-LDA">Topic Modeling Company Reviews with LDA<a class="anchor-link" href="#Topic-Modeling-Company-Reviews-with-LDA">&#182;</a></h1><p><img src="https://i.imgur.com/BfNDjvf.png" alt="img"></p>
-<p>Surveys and open-ended feedback are among many of the data types and datasets that we may come into contact with as I/Os. Whether it's the open-ended section of an annual engagement survey, feedback from annual reviews, or customer feedback, the text that is provided is often difficult to do much with at scale. However, there are unsupervised machine learning methods that have provided us glimpses into how to make sense of this data. In the <a href="https://nkoenig06.github.io/gd-tm-svd.html">previous article</a> I worked through how we might use LSA to accomplish the task of topic modeling along with a brief look at the data we'll be using today and a background on turning words into vectors. If you are interested in that I'd refer you to the article linked above.</p>
+<p>Surveys and open-ended feedback are among many of the data types and datasets that we may come into contact with as I/Os. Whether it's the open-ended section of an annual engagement survey, feedback from annual reviews, or customer feedback, the text that is provided is often difficult to do much with at scale. However, there are unsupervised machine learning methods that have provided us glimpses into how to make sense of this data. In the <a href="https://nkoenig06.github.io/gd-tm-svd.html">previous article</a> I worked through how we might use LSA to accomplish the task of topic modeling along with a brief look at the data we'll be using today and a background on turning words into vectors. If you would like more detail on word vectorization or processing the data to be used by LDA I'd refer you to the article linked above.</p>
 <p>For this article I'll walk through another topic modeling technique known as Latent Dirichlet Allocation (LDA).</p>
 <ol>
 <li>Singular Value Decomposition (SVD), which Latent Semantic Analysis (LSA) is based off of.</li>
@@ -1091,7 +1091,7 @@ h6:hover .anchor-link {
 <p>For those interested in a deeper conceptual understanding of how LDA works I'd recommend <a href="https://towardsdatascience.com/light-on-math-machine-learning-intuitive-guide-to-latent-dirichlet-allocation-437c81220158">this article</a> from which I borrowed this image, which I feel does a nice job of helping to visualize the document to latent topic and word to latent topic relationship.</p>
 <p><img src="https://i.imgur.com/Hw6F72P.png" alt="img"></p>
 <p>For the purposes of this article we will again leverage a <a href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html">scikit-learn implementation of the algorithm</a>.</p>
-<p>1st we'll need to vectorize the responses and then we'll run a grid search to determine the ideal number of topics as well as the ideal learning decay.</p>
+<h2 id="Word-Vectorization">Word Vectorization<a class="anchor-link" href="#Word-Vectorization">&#182;</a></h2><p>1st we'll need to vectorize the responses and then we'll run a grid search to determine the ideal number of topics as well as the ideal learning decay.</p>
 
 </div>
 </div>

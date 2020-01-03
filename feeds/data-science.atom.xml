@@ -1043,6 +1043,8 @@ h6:hover .anchor-link {
 &lt;p&gt;&lt;img src="https://i.imgur.com/Hw6F72P.png" alt="img"&gt;&lt;/p&gt;
 &lt;p&gt;For the purposes of this article we will again leverage a &lt;a href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html"&gt;scikit-learn implementation of the algorithm&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="Word-Vectorization"&gt;Word Vectorization&lt;a class="anchor-link" href="#Word-Vectorization"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;1st we'll need to vectorize the responses and then we'll run a grid search to determine the ideal number of topics as well as the ideal learning decay.&lt;/p&gt;
+&lt;p&gt;In an effort to first replicate the SVD/LSA model from the first article we will first use the tf-idf methodology for vectorizing our responses, but Blei, et al. explicitly mention in their paper that tf-idf may not be necessary for the LDA method given the probabilistic nature of the model, so we will also compare the topics extracted to those extracted from a count vectorizer methodology as well.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/PKNaG5r.png" alt="img"&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1589,7 +1591,7 @@ if(typeof(LDAvis) !== "undefined"){
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;As you can see these topics line up perfectly with the topics identified above, and the &lt;strong&gt;1&lt;/strong&gt; topic is identical to &lt;strong&gt;Topic 4&lt;/strong&gt; shown above. However, what immediately stands out is that, while we have 6 distinct topics about 70% of the words used in the responses fall into topic 1, with the remaining 5-6% pretty equally distributed among the other 5 topics. In my experience this is fairly typical, where there is generally one large topic that accounts for 50-60% of the responses and the remaining topics are actually pretty distinct, but account for much less of the overall responses. We'll likely see this again when we do K-means clustering on this same dataset in the next article.&lt;/p&gt;
 &lt;p&gt;But.... PyLDAvis is a great interactive way to visualize your topics. As you hover over each of the topic bubbles you can see the top 30 most relevant terms as well as the estimated term frequency within each topic (which gives you an idea of the actual vs. expected.&lt;/p&gt;
-&lt;h2 id="Countvectorizer"&gt;Countvectorizer&lt;a class="anchor-link" href="#Countvectorizer"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There is conflicting research on whether or not one should use tfidf or counts for LDA. Conceptually the probabilistic idea behind LDA would infer that using counts instead of tfidf may create more coherent topics. Let's explore and decide ourselves.&lt;/p&gt;
+&lt;h2 id="Countvectorizer"&gt;Countvectorizer&lt;a class="anchor-link" href="#Countvectorizer"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There is conflicting research on whether or not one should use tf-idf or counts for LDA. As mentioned above the authors of LDA hint at tf-idf not being necessary due to the probabilistic nature of LDA, but others have found through research that tf-idf enhance the interpretability of topics, so I figured we'd just try both and compare :)&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1904,7 +1906,8 @@ Too much of focus on wage/dollars % and not guest focused, labor tight at times 
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;In my opinion counts do seem to create more articulate topics than tf-idf. The predicted categories for the two responses seem to align better and there is even more of a distribution between topics than the tf-idf predictions. But, I think this is specific to the responses, so it may make sense to try both when doing LDA.&lt;/p&gt;
+&lt;p&gt;In my opinion counts do seem to create more interpretable topics than tf-idf. The predicted categories for the two responses seem to align better and there is even more of a distribution between topics than the tf-idf predictions.&lt;/p&gt;
+&lt;p&gt;But, this may be specific to the problem, so it may make sense to try both when doing LDA.&lt;/p&gt;
 &lt;h2 id="Recap:"&gt;Recap:&lt;a class="anchor-link" href="#Recap:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src="https://i.imgur.com/dFaRN4P.jpg" alt="img"&gt;&lt;/p&gt;
 &lt;p&gt;LDA is another option to use for topic modeling and in general I'd consider it the most popular option for topic modeling in the data science community. The next and final article on topic modeling will focus on K-means clustering as a 3rd option for clustering data without labels into distinct groups.&lt;/p&gt;
 

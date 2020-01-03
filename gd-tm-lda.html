@@ -1092,7 +1092,7 @@ h6:hover .anchor-link {
 <p><img src="https://i.imgur.com/Hw6F72P.png" alt="img"></p>
 <p>For the purposes of this article we will again leverage a <a href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html">scikit-learn implementation of the algorithm</a>.</p>
 <h2 id="Word-Vectorization">Word Vectorization<a class="anchor-link" href="#Word-Vectorization">&#182;</a></h2><p>1st we'll need to vectorize the responses and then we'll run a grid search to determine the ideal number of topics as well as the ideal learning decay.</p>
-<p>In an effort to first replicate the SVD/LSA model from the first article we will first use the tf-idf methodology for vectorizing our responses, but Blei, et al. explicitly mention in their paper that tf-idf may not be necessary for the LDA method given the probabilistic nature of the model, so we will also compare the topics extracted to those extracted from a count vectorizer methodology as well.</p>
+<p>In an effort to first replicate the SVD/LSA model from the first article we will use the tf-idf methodology for vectorizing our responses, but Blei, et al. (2003) explicitly mention in their paper that tf-idf may not be necessary for the LDA method given the probabilistic nature of the model, so we will compare the results from the tf-idf LDA to those extracted from a count vectorizer methodology as well.</p>
 <p><img src="https://i.imgur.com/PKNaG5r.png" alt="img"></p>
 
 </div>

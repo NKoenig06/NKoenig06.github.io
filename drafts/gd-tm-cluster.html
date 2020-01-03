@@ -1027,8 +1027,8 @@ h6:hover .anchor-link {
 <h1 id="Clustering-Company-Reviews-with-K-means">Clustering Company Reviews with K-means<a class="anchor-link" href="#Clustering-Company-Reviews-with-K-means">&#182;</a></h1><p>My previous two articles have focused on popular topic modeling techniques; including <a href="https://nkoenig06.github.io/gd-tm-svd.html">LSA</a> and <a href="https://nkoenig06.github.io/gd-tm-lda.html">LDA</a>.</p>
 <p>This article will focus on a 3rd unsupervised learning technique that can be used to categorize open-ended text responses.</p>
 <p><img src="https://i.imgur.com/HkXDRu5.png" alt="img"></p>
-<p>Cluster analysis offers another way for us to identify categories or topics. In most instances both LSA and LDA are considered "soft" clustering as each response can be partially assigned to each cluster whereas k-means clustering is considered "hard" clustering as each response is assigned to exactly 1 topic. In my experience this typically leaves the end user with only about 40-50% of target clusters making sense and the final cluster typically contains the remaining 50-60% of responses, of course as the number of clusters increase the number of remaining responses in the largest cluster will continue to go down and it is possible to to have N clusters where N represents the actual number of responses and in this case each cluster would have exactly one response.</p>
-<h2 id="Explaining-K-means-Clustering.">Explaining K-means Clustering.<a class="anchor-link" href="#Explaining-K-means-Clustering.">&#182;</a></h2><p>K-means is actually a relatively easy algorithm to understand. Put simply, K-means clustering starts with k randomly initialized centroids. It then iteratively re-calculates the distance of each data point from the cluster centroids and moves each cluster centroid after each iteration of calculating the distance in an effort to minimize the distance of all data points from at least one cluster centroid. The typical distance metric used for k-means is <a href="https://en.wikipedia.org/wiki/Euclidean_distance">euclidean distance</a>.</p>
+<p>Cluster analysis offers another way for us to identify categories or topics. In most instances both LSA and LDA are considered "soft" clustering as each response can be partially assigned to each cluster in the same way <a href="https://en.wikipedia.org/wiki/Softmax_function">softmax</a> offers probabilities for each class and to assign the "category" you take the argmax probability. whereas k-means clustering is considered "hard" clustering as each response is assigned to exactly 1 topic. In my experience this typically leaves the end user with only about 40-50% of target clusters making sense and the final cluster typically contains the remaining 50-60% of responses, of course as the number of clusters increase the number of remaining responses in the largest cluster will continue to go down and it is possible to to have N clusters where N represents the actual number of responses and in this case each cluster would have exactly one response.</p>
+<h2 id="Explaining-K-means-Clustering.">Explaining K-means Clustering.<a class="anchor-link" href="#Explaining-K-means-Clustering.">&#182;</a></h2><p>K-means is actually a relatively easy algorithm to understand. Put simply, K-means clustering starts with k randomly initialized centroids, which are chosen by the user. It then iteratively re-calculates the distance of each data point from the cluster centroids and moves each cluster centroid after each iteration of calculating the distance in an effort to minimize the distance of all data points from at least one cluster centroid. The typical distance metric used for k-means is <a href="https://en.wikipedia.org/wiki/Euclidean_distance">euclidean distance</a>.</p>
 <p>This gif does a good job of illustrating the centroid adjustments after each iteration.</p>
 <p><img src="https://i.imgur.com/YM2HswV.gif" alt="img"></p>
 <p>As you can see after each iteration data points are re-assigned based off of their proximity to each centroid.</p>
@@ -1080,7 +1080,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We will again use TFIDFVectorizer from scikit learn to vectorize our responses and to remain consistent we will use the cons data from our company reviews again.</p>
+<p>We will again use TFIDFVectorizer from scikit learn to vectorize our responses and to remain consistent we will use the cons data from our company reviews again. I have walked through how countvectorizer and tfidfvectorizer work in a <a href="https://nkoenig06.github.io/gd-tm-svd.html">previous article.</a></p>
 
 </div>
 </div>
@@ -1124,7 +1124,8 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Identifying-the-optimal-#-of-clusters">Identifying the optimal # of clusters<a class="anchor-link" href="#Identifying-the-optimal-#-of-clusters">&#182;</a></h2><p>Like many other unsupervised techniques an optimal k is not exactly a scientific process, but what we can do is run the k-means algorithm through a loop using different values for k and then plot the then plot the within-cluster sum of squares (WCSS) for each set of clusters. We can then identify where there is a natural elbow, like we would do when plotting eigen values for exploratory factor analysis.</p>
+<p>again, we have 21,453 total reviews/responses and 11,986 unique words after removing the stopwords.</p>
+<h2 id="Identifying-the-optimal-#-of-clusters">Identifying the optimal # of clusters<a class="anchor-link" href="#Identifying-the-optimal-#-of-clusters">&#182;</a></h2><p>Like many other unsupervised techniques an optimal k is not exactly a scientific process, but what we can do is run the k-means algorithm through a loop using different values for k and then plot the the within-cluster sum of squares (WCSS) for each set of clusters. We can then identify where there is a natural elbow, like we would do when plotting eigenvalues for exploratory factor analysis.</p>
 
 </div>
 </div>
@@ -1298,7 +1299,7 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>we can see by looking at the shape of the cluster_centers we have 8 clusters that have a dimension space of 11,986, which is the same # of columns we have representing each of the unique words.</p>
-<p>Next we will create a new column in a our dataframe that has the value for the cluster that each response was assigned to. This allows us to do some interesting investigating, which we will do next.</p>
+<p>Next we will create a new column in our dataframe that has the value for the cluster that each response was assigned to. This allows us to do some investigating, which we will do next.</p>
 
 </div>
 </div>
@@ -1357,11 +1358,47 @@ Name: kmeans_cluster, dtype: int64</pre>
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cluster_0</span> <span class="o">=</span> <span class="mi">12854</span>
+<span class="n">total_responses</span> <span class="o">=</span> <span class="mi">21453</span>
+
+<span class="nb">round</span><span class="p">(</span><span class="n">cluster_0</span><span class="o">/</span><span class="n">total_responses</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[44]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.599</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As I mentioned earlier you can see tha that roughly 50% of the responses are still assigned to cluster 0, which means the algorithm really couldn't identify much of a difference between those responses. If we had increased our k surely some of those would have gone into the additional clusters, but in general a lot of those responses are just difficult to categorize by only focusing on individual words.</p>
+<p>As I mentioned earlier you can see tha that roughly 50-60% of the responses are still assigned to cluster 0, which means the algorithm really couldn't identify much of a difference between those responses. If we had increased our k surely some of those would have gone into the additional clusters, but in general a lot of those responses are just difficult to categorize by only focusing on individual words.</p>
 <h2 id="Investigating-the-Clusters">Investigating the Clusters<a class="anchor-link" href="#Investigating-the-Clusters">&#182;</a></h2><p>Like EFA the clusters don't give you topic titles. In order to identify the topics you have to read some of the responses. Let's read the first 10 responses for <strong>cluster 1.</strong></p>
 
 </div>
@@ -1468,7 +1505,57 @@ Name: cons, dtype: object</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Cluster 6 makes a lot of references to Customers, statements around rude customers, mean customers, bad customers, etc.</p>
-<p>One cool thing about assigning a cluster to specific responses is it allows you to pretty easily examine trends across stores. Let's take a quick look.</p>
+<h2 id="Responses-by-store">Responses by store<a class="anchor-link" href="#Responses-by-store">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[46]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tbell     2509
+sams      2509
+wmt       2509
+kr        2500
+push      2500
+mcd       2500
+tgt       2500
+cost      2500
+geagle    1426
+Name: company, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Investigating">Investigating<a class="anchor-link" href="#Investigating">&#182;</a></h2><p>One cool thing about assigning a cluster to specific responses is it allows you to pretty easily examine trends across stores. Let's take a quick look.</p>
 <p>We have relatively equal representation of reviews across all company's outside of Giant Eagle, so we would expect there to be similar representation in each cluster. Let's look at <strong>cluster 6</strong> specifically.</p>
 
 </div>
@@ -1738,6 +1825,7 @@ Name: company, dtype: int64</pre>
 <p>What I like about Clustering methods for identifying topics is that it assigns each response to a specific cluster instead of allowing it to be parts of each topic or cluster. This is most certainly an over-simplification of most of these responses, but it does allow you to examine trends across departments, companies, etc. much more easily than you can do with topic modeling methods like LSA and LDA.</p>
 <h2 id="Recap:">Recap:<a class="anchor-link" href="#Recap:">&#182;</a></h2><p><img src="https://i.imgur.com/dFaRN4P.jpg" alt="img"></p>
 <p>K-means clustering allows us to use unsupervised learning to assign each response to a specific category and then read responses within each category to understand the general topic of the responses. It's helpful when it comes to assigning a response to a specific category, but given the need for each response to fall into only 1 cluster it can often be considered overally simplistic as a solution to understand what the general trends in all responses are focused on. In the instances where this is important the topic modeling techniques discussed in earlier articles may be a more ideal solution.</p>
+<p>In my next few articles we'll stay within the NLP area of research and focus on supervised learning techniques where we'll try a number of techniques to try to predict the overall rating each employee provided.</p>
 
 </div>
 </div>

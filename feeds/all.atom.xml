@@ -1,5 +1,1816 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>AIO: Bridging the Gap Between Data Science and IO</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2019-12-13T16:00:00-06:00</updated><entry><title>Topic Modeling Company Reviews with LDA</title><link href="/gd-tm-lda.html" rel="alternate"></link><published>2019-12-13T16:00:00-06:00</published><updated>2019-12-13T16:00:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-12-13:gd-tm-lda.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>AIO: Bridging the Gap Between Data Science and IO</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2020-01-10T10:00:00-06:00</updated><entry><title>Topic Modeling Company Reviews with K-means</title><link href="/gd-tm-cluster.html" rel="alternate"></link><published>2020-01-10T10:00:00-06:00</published><updated>2020-01-10T10:00:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2020-01-10:gd-tm-cluster.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI colors. */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected {
+  border-color: #ababab;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  div.cell.selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area &gt; div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area &gt; div.highlight &gt; pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the &lt;head&gt; if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+.rendered_html pre,
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+.rendered_html td,
+
+
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+&lt;/style&gt;
+&lt;style type="text/css"&gt;.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
+&lt;style type="text/css"&gt;
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Clustering-Company-Reviews-with-K-means"&gt;Clustering Company Reviews with K-means&lt;a class="anchor-link" href="#Clustering-Company-Reviews-with-K-means"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;My previous two articles have focused on popular topic modeling techniques, including &lt;a href="https://nkoenig06.github.io/gd-tm-svd.html"&gt;LSA&lt;/a&gt; and &lt;a href="https://nkoenig06.github.io/gd-tm-lda.html"&gt;LDA&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This article will focus on a 3rd unsupervised learning technique that can be used to categorize open-ended text responses.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/HkXDRu5.png" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;Cluster analysis offers another way for us to identify categories or topics. In most instances both LSA and LDA are considered "soft" clustering as each response can be partially assigned to each cluster in the same way &lt;a href="https://en.wikipedia.org/wiki/Softmax_function"&gt;softmax&lt;/a&gt; offers probabilities for each class and to assign the "category" you take the argmax probability. whereas k-means clustering is considered "hard" clustering as each response is assigned to exactly 1 topic. In my experience this typically leaves the end user with only about 40-50% of target clusters making sense and the final cluster typically contains the remaining 50-60% of responses, of course as the number of clusters increase the number of remaining responses in the largest cluster will continue to go down and it is possible to to have N clusters where N represents the actual number of responses and in this case each cluster would have exactly one response.&lt;/p&gt;
+&lt;h2 id="Explaining-K-means-Clustering."&gt;Explaining K-means Clustering.&lt;a class="anchor-link" href="#Explaining-K-means-Clustering."&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;K-means is actually a relatively easy algorithm to understand. Put simply, K-means clustering starts with k randomly initialized centroids, which are chosen by the user. It then iteratively re-calculates the distance of each data point from the cluster centroids and moves each cluster centroid after each iteration of calculating the distance in an effort to minimize the distance of all data points from at least one cluster centroid. The typical distance metric used for k-means is &lt;a href="https://en.wikipedia.org/wiki/Euclidean_distance"&gt;euclidean distance&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This gif does a good job of illustrating the centroid adjustments after each iteration for k = 3.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/YM2HswV.gif" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;As you can see after each iteration data points are re-assigned based off of their proximity to each centroid.&lt;/p&gt;
+&lt;p&gt;For more specifics on k-means I'd point you to the &lt;a href="https://towardsdatascience.com/k-means-clustering-8e1e64c1561c"&gt;following article&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Now let's load our packages and our data.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# import our packages&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;seaborn&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;sns&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.feature_extraction&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;stop_words&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.feature_extraction.text&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;CountVectorizer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TfidfVectorizer&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# load the data&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data/glassdoor_data.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;We will again use TFIDFVectorizer from scikit learn to vectorize our responses and to remain consistent we will use the cons data from our company reviews again. I have walked through how countvectorizer and tfidfvectorizer work in a &lt;a href="https://nkoenig06.github.io/gd-tm-svd.html"&gt;previous article.&lt;/a&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vectorizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TfidfVectorizer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stop_words&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;english&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;vectors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vectorizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit_transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;todense&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vectors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;vocab&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vectorizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_feature_names&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;(21453, 11986)
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;again, we have 21,453 total reviews/responses and 11,986 unique words after removing the stopwords.&lt;/p&gt;
+&lt;h2 id="Identifying-the-optimal-#-of-clusters"&gt;Identifying the optimal # of clusters&lt;a class="anchor-link" href="#Identifying-the-optimal-#-of-clusters"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Like many other unsupervised techniques an optimal k is not exactly a scientific process, but what we can do is run the k-means algorithm through a loop using different values for k and then plot the the within-cluster sum of squares (WCSS) for each set of clusters. We can then identify where there is a natural elbow, like we would do when plotting eigenvalues for exploratory factor analysis.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[5]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.cluster&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;KMeans&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wcss&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;kmeans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KMeans&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_clusters&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;k-means++&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_iter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;300&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n_init&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;kmeans&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vectors&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;wcss&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kmeans&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inertia_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;wcss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;The Elbow Method&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xlabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Number of Clusters&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ylabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;WCSS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[9]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;Text(0,0.5,&amp;#39;WCSS&amp;#39;)&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class="output_png output_subarea "&gt;
+&lt;img src="data:image/png;base64,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
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;When we look at the plot of WCSS we see a decent elbow at around 8 clusters, so let's use that as our number of unique clusters for the cons data.&lt;/p&gt;
+&lt;p&gt;Another issue with an algorithm like k-means is local convergence rather than global convergence. To lower the probability of this happening the scikit learn implementation leverages an initialization technique known as k-means++, which can be read about in more detail in &lt;a href="http://ilpubs.stanford.edu:8090/778/1/2006-13.pdf"&gt;this article&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So, let's run kmeans on 8 clusters, using the centroid initialization of k-means++ for no more than 1500 iterations.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[6]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;num_clusters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;
+
+&lt;span class="n"&gt;kmeans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KMeans&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_clusters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;num_clusters&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;k-means++&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_iter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1500&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n_init&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;kmeans&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vectors&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# fit the vectors using KMeans&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[7]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;KMeans(algorithm=&amp;#39;auto&amp;#39;, copy_x=True, init=&amp;#39;k-means++&amp;#39;, max_iter=1500,
+    n_clusters=8, n_init=40, n_jobs=1, precompute_distances=&amp;#39;auto&amp;#39;,
+    random_state=0, tol=0.0001, verbose=0)&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[30]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;kmeans&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cluster_centers_&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt; &lt;span class="c1"&gt;# examine the cluster shape&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[30]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;(8, 11986)&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;we can see by looking at the shape of the cluster_centers we have 8 clusters that have a dimension space of 11,986, which is the same # of columns we have representing each of the unique words.&lt;/p&gt;
+&lt;p&gt;Next we will create a new column in our dataframe that has the value for the cluster that each response was assigned to. This allows us to do some investigating, which we will do next.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;kmeans_cluster&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kmeans&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;labels_&lt;/span&gt; &lt;span class="c1"&gt;#assign labels as an additional dataframe column&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;kmeans_cluster&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# examine how many responses fall into each cluster&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[9]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;0    12854
+5     2649
+1     2138
+3     1598
+6     1138
+2      441
+4      410
+7      225
+Name: kmeans_cluster, dtype: int64&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cluster_0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;12854&lt;/span&gt;
+&lt;span class="n"&gt;total_responses&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;21453&lt;/span&gt;
+
+&lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cluster_0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;total_responses&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[10]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;0.599&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;As I mentioned earlier you can see tha that roughly 50-60% of the responses are still assigned to cluster 0, which means the algorithm really couldn't identify much of a difference between those responses. If we had increased our k surely some of those would have gone into the additional clusters, but in general a lot of those responses are just difficult to categorize by only focusing on individual words.&lt;/p&gt;
+&lt;h2 id="Investigating-the-Clusters"&gt;Investigating the Clusters&lt;a class="anchor-link" href="#Investigating-the-Clusters"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Like EFA the clusters don't give you topic titles. In order to identify the topics you have to read some of the responses. Let's read the first 10 responses for &lt;strong&gt;cluster 1.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[15]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;kmeans_cluster&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[15]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;23             not enough hours for experienced workers
+26    dealing with con artists (at least at customer...
+41               working weekends sucks. too many hours
+45           Hours, Management, union dues are not fun.
+49    little to no communication from management abo...
+56    Part-timers aren&amp;#39;t given many hours unless exp...
+57    Part-timers aren&amp;#39;t given many hours unless exp...
+62                   long hours paper cuts really hurt!
+82    After the holidays, they really cut back on th...
+96    standing in the same spot all day, not enough ...
+Name: cons, dtype: object&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;We can see here that in general &lt;strong&gt;cluster 1 is discussing hours, not enough hours, types of hours worked, etc.&lt;/strong&gt; But in general the references are about work hours.&lt;/p&gt;
+&lt;p&gt;Let's look at &lt;strong&gt;cluster 6.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[17]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;kmeans_cluster&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cons&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[17]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;17     Customers unfriendly, drive through difficult ...
+80          Some customers are difficult but its retail.
+97        The managers were very condescending and rude.
+145    It&amp;#39;s retail...so you are going to have obnoxio...
+152    No issues with the company as a whole. Some ma...
+154      cranky customers, working with moody co workers
+161    As what you would expect sometimes customers c...
+168    they basically bow down to any customers over ...
+221             Low wage, rude customers, bad management
+234         Corporate is rude and demeaning to employees
+Name: cons, dtype: object&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;strong&gt;Cluster 6 makes a lot of references to Customers, statements around rude customers, mean customers, bad customers, etc.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="Responses-by-store"&gt;Responses by store&lt;a class="anchor-link" href="#Responses-by-store"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Let's first get the total responses by company and then we can examine the raw counts by company for each cluster.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[46]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;company&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[46]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;tbell     2509
+sams      2509
+wmt       2509
+kr        2500
+push      2500
+mcd       2500
+tgt       2500
+cost      2500
+geagle    1426
+Name: company, dtype: int64&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Investigating"&gt;Investigating&lt;a class="anchor-link" href="#Investigating"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;One cool thing about assigning a cluster to specific responses is it allows you to pretty easily examine trends across stores. Let's take a quick look.&lt;/p&gt;
+&lt;p&gt;We have relatively equal representation of reviews across all company's outside of Giant Eagle, so we would expect there to be similar representation in each cluster. Let's look at &lt;strong&gt;cluster 6&lt;/strong&gt; specifically.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[23]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;kmeans_cluster&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;company&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[23]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;mcd       368
+tbell     214
+wmt       132
+kr        106
+push       87
+tgt        70
+sams       60
+geagle     59
+cost       42
+Name: company, dtype: int64&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;This shows us that when it comes to customer related cons that our two fast food related companies have the most comments that fall into that cluster. If we remember this cluster focused on rude/poor experiences with customers.&lt;/p&gt;
+&lt;p&gt;What about &lt;strong&gt;cluster 1&lt;/strong&gt;, around hours?&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[24]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;kmeans_cluster&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;company&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[24]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;tgt       364
+push      335
+tbell     267
+wmt       260
+kr        208
+sams      196
+cost      187
+mcd       186
+geagle    135
+Name: company, dtype: int64&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;strong&gt;Cluster 1&lt;/strong&gt; seems to be much more equally spread across all companies with a slight edge to Target and Publix.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cluster 2&lt;/strong&gt; talks a lot about work/life balance. Let's see which companies had responses that fell into that cluster the most.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[25]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;kmeans_cluster&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;company&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[25]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;wmt       99
+kr        88
+tgt       84
+sams      61
+push      31
+tbell     27
+cost      21
+geagle    16
+mcd       14
+Name: company, dtype: int64&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Here we have a much larger proportion of responses that are in the retail/grocery space.&lt;/p&gt;
+&lt;p&gt;Finally, let's look at &lt;strong&gt;cluster 3&lt;/strong&gt;, which is around pay, with a specific emphasis on low pay as I'm sure many would have assumed.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[26]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;kmeans_cluster&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;company&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[26]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;kr        362
+mcd       269
+tbell     243
+tgt       158
+wmt       153
+sams      134
+geagle    117
+push      115
+cost       47
+Name: company, dtype: int64&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;I was surprised a bit by the company's with the most responses that fall into this cluster, but the 2 with the lowest make sense to me. Kroger, McDonald's and Taco Bell have a much larger proportion of their responses falling into this category than the rest and Costco has by far the lowest.&lt;/p&gt;
+&lt;p&gt;Instead of looking strictly at value counts which can be a bit boring, we could instead build a count plot. I built one below to help us visualize cluster 3.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[17]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cluster_3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;kmeans_cluster&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;figure.figsize&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)})&lt;/span&gt;
+&lt;span class="n"&gt;plot&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;countplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cluster_3&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;kmeans_cluster&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;hue&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;cluster_3&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;company&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;hue_order&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cluster_3&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;company&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;# of Responses Focused on Pay&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class="output_png output_subarea "&gt;
+&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuEAAAH1CAYAAABY7yCCAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi4zLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvIxREBQAAIABJREFUeJzs3XlclOX+//H3DDAooCCIgmbWsVRyZVHLpUztZy7Zop3MLTVLLZdyT0075hJomZaGpaIdLVtdQEttO5qZhctJW0zPcQdFEVQQGGf5/cFpvpmKoMM9gK/n49GjmXu5rs9960PeXHPd15icTqdTAAAAAAxj9nQBAAAAwI2GEA4AAAAYjBAOAAAAGIwQDgAAABiMEA4AAAAYjBAOAAAAGIwQDuCGcerUKfXs2VORkZF65ZVXPF0OilGdOnV06NAhT5cBAFfk7ekCAOBqunXrplmzZsnLy0vDhg3TypUrr6mdDz74QJUqVdKOHTtkMpku2T9u3DglJSXJx8dHPj4+qlevniZOnKhatWpd7yWUSkePHlXbtm3l5+fn2lajRg2tWbPGg1WVLHXq1FH58uVlMpkUEBCgjh07asyYMfLy8vJ0aQBKOEbCAZRoFy5cUEpKimrWrKk9e/bojjvuuOa2UlJSVKtWrcsG8D88+eST2rlzpzZt2qSqVatqwoQJ19xfWfHjjz9q586d2rlzJwH8MlavXq2dO3dqyZIlSkpK0ocffujpkgCUAoRwACXavn37XMG5MCF8x44d6tq1q6Kjo9W1a1ft2LFDUv4o96pVq7Ro0SJFRkbqu+++K7CdcuXKqUOHDvrtt98u2v7xxx+rQ4cOatKkiZ588kkdO3ZMkuR0OjV9+nTdddddio6O1gMPPKDff//d1fekSZPUr18/RUZGqlevXq7zCqpZknr37q3XX39d3bt3V2RkpPr376/Tp09LkvLy8jRq1Cg1a9ZMMTEx6tq1q06dOiVJOnfunMaPH6+WLVuqVatWmj17tux2uyTp0KFD6tWrl6Kjo9WsWTM999xzV/1z+CuHw6H58+fr3nvv1V133aUxY8bo3Llzrv3Jycnq3r27YmJidM899+jTTz91Xc9HH33kOu7TTz/V448/ftV7aLVaFRsbq9atW6t58+aaNGmScnNzXe0sXLhQLVu2VMuWLfXxxx8XWPuJEyc0aNAgNW3aVPfdd99FofmNN97Q8OHDNWbMGEVGRqpTp07avXt3oe5JrVq1FB0drX379kmS3n77bbVr106RkZHq2LGjNm7c6LqWpk2bau/eva5z09PT1bBhQ9efLYCyjxAOoET65JNPFBMTo8cff1y7du1STEyMEhISNGvWLMXExOjIkSOXnJOZmamBAweqd+/e2rZtm/r166eBAwcqIyNDr7zyih544AHXSHfz5s0L7P/8+fNKSkrSzTff7Nr2xRdfaMGCBXrzzTe1detWRUdHa+TIkZKkb7/9VsnJyVq/fr2Sk5P1+uuvKygoyHVuYmKinnnmGW3btk1169bVqFGjrlrzH5KSkjRjxgxt3bpVFy5c0OLFiyVJK1euVFZWlr755htt27ZN//jHP1SuXDlJ0tixY+Xt7a0NGzZo1apV2rJliyv8zpkzRy1atNCPP/6oTZs2qVevXkX+8/n000+1cuVKvfvuu/riiy90/vx5TZkyRVL+Jw5PPfWUevXqpa1bt2rVqlWKiIi4apsF3cOZM2fqwIEDWrVqlTZs2KC0tDTNmzdPkrRp0yYtXrxYixcv1oYNG7R169YC+xk5cqTCwsK0efNmzZ07V6+99tpF53z11Vfq1KmTkpOT1aZNG7388suFuif79+/X9u3bXddao0YNLV++XNu3b9eQIUM0evRopaWlyWKxqGPHjhd9qpCUlKTmzZsrODi4UH0BKP0I4QBKpK5duyo5OVn16tXThx9+qDVr1uj222/Xjh07lJycrBo1alxyzjfffKOaNWvqoYcekre3tzp37qy//e1v+vrrrwvd7+LFixUTE6OoqCht375dcXFxrn0rVqzQ008/rVq1asnb21uDBg3Sr7/+qmPHjsnb21vZ2dn673//K6fTqVq1aqlKlSquc1u3bq0mTZrIYrHo+eef165du5Samlqomh955BHdeuutKleunO6//379+uuvkiRvb29lZmbq0KFD8vLyUv369RUQEKBTp05p06ZNGj9+vPz8/BQSEqK+fftq7dq1rvNSUlKUlpYmX19fxcTEFHhP7rzzTsXExCgmJkaLFi2SlP9LRd++fVWjRg35+/trxIgRWrdunWw2mxITE9W8eXN17txZPj4+qlSpUqFC+JXuodPp1EcffaTx48crKChIAQEBGjhwoOt6PvvsMz3yyCOqXbu2/Pz8NGTIkCv2kZqaqu3bt2vUqFHy9fVVRESEHn30Ua1evdp1THR0tO655x55eXnpwQcfvOTTkL96+OGH1aRJEw0aNEjdunVT165dJUkdOnRQ1apVZTab1bFjR9WsWVM//fST65ykpCQ5HA5J+VNaunTpctV7BKDs4MFMACVOZmam2rVrJ6fTqfPnz6t3796yWq2SpCZNmmjIkCHq27fvJeelpaWpWrVqF22rVq2aTpw4Uei++/fvr+eff14pKSkaMGCADhw4oLp160rKH+GdPn26YmNjXcc7nU6dOHFCd911l3r27KkpU6YoJSVF9913n8aOHauAgABJUlhYmOscf39/BQYGKi0trVA1h4aGul6XL19e58+flyQ9+OCDOn78uEaMGKGzZ8+qS5curtptNptatmzpOs/hcCg8PFySNHr0aM2ZM0fdunVTYGCg+vXrp27dul3xnnz//ffy9r74x0VaWpqqV6/uel+9enXZbDalp6crNTX1ok8QCutK9zAvL085OTl65JFHXMc6nU5XgE1LS1P9+vUvquVK0tLSFBgY6PpzkfLv9549e1zvK1eu7Hpdrlw55eXlyWazXXIP/rBy5UrVrFnzku2rVq1SQkKCa+rR+fPnXZ9wNGrUSOXLl9cPP/yg0NBQHT58WG3bti3w/gAoWwjhAEqcoKAgJScna+3atdq2bZumTJmiZ599Vj179ixwGkmVKlWUkpJy0bbU1FS1atWqyDVUq1ZNEyZM0NixY3XvvfeqXLlyCg8P16BBg644YtmnTx/16dNH6enpeu6557Rw4ULXfOvjx4+7jsvOztaZM2dUpUqV66rZx8dHQ4YM0ZAhQ3T06FE9/fTTuvXWW3XPPffIYrFcNjxL+aF+6tSpkvLnbvfr109NmjS5bJC8kipVqlw0rz0lJUXe3t4KCQlReHi4a8T3r8qXL6+cnBzX+z/msP/hcvdw2LBhKleunNauXauqVatetpbU1NSLaimo7jNnzigrK8sVxFNTUy/b7vU4duyYJk6cqCVLligyMtI1qv5nDz/8sNasWaPQ0FC1b99evr6+bq0BQMnGdBQAJdafH8T89ddfVa9evQKPv+eee3Tw4EElJibKZrNp3bp12r9/v1q3bn1N/bdo0UJVqlTRBx98IEnq3r273n77bdeDd+fOndNnn30mSfrpp5/073//WxcuXFD58uVlsVguWqbuX//6l5KTk2W1WjVnzhw1atRI4eHh11Xz999/r71798putysgIEDe3t7y8vJSlSpV1KJFC73yyivKysqSw+HQ4cOH9cMPP0jKn77xxy8FgYGBMplMMpuL9uOgc+fOWrp0qY4cOaLs7GzNnj1bHTp0kLe3tx544AF99913rukpGRkZrik0ERER2rhxo3JycnTo0KGLHqK80j00m8169NFHNX36dKWnp0vKf7hy8+bNkqT7779fK1eu1P79+5WTk6M333zzinWHh4crMjJSr732mvLy8vTbb7/p448/1gMPPFCk67+anJwcmUwm1xzvTz75xPX35g8PPvigvvjiC61Zs0YPPfSQW/sHUPIRwgGUWD///LPuuOMOZWRkyGw2KzAwsMDjK1WqpPj4eCUkJKhZs2ZauHCh4uPjr+thtwEDBmjhwoWyWq267777NGDAAI0YMUJRUVHq3LmzNm3aJCl/dHvixIlq2rSp7r33XgUFBal///6udjp37qx58+apWbNm+vnnnzVz5szrrvnUqVMaNmyYoqOj1bFjRzVt2tQ1Sh8XF6cLFy6oY8eOatKkiYYNG6aTJ09Kknbv3q1HH31UkZGRGjx4sCZMmHDZOfYF6dq1q7p06aJevXqpbdu2slgsevHFFyXlf4rwzjvvKCEhQU2bNtVDDz3kmlf9xBNPyMfHR82bN9fYsWMvCr8F3cPRo0erZs2a+vvf/66oqCj17dtXBw4ckJT/y9cTTzyhJ554Qvfdd5/uvPPOAmt/7bXXdOzYMbVq1UpDhgzR0KFD1aJFiyJd/9Xcdttt6t+/v7p3767mzZvr999/V1RU1EXHhIWF6Y477pDJZLrqvHwAZY/J6XQ6PV0EAJRl48aNU9WqVfX88897uhSUMC+88IKqVKnC3w3gBsSccAAAPODo0aPauHHjNX8DLIDSjekoAAAY7PXXX3etW1/UqUAAygamowAAAAAGYyQcAAAAMBghHAAAADBYmX8wMyMjWw4HM24AAADgfmazSZUq+Rf5vDIfwh0OJyEcAAAAJQrTUQAAAACDEcIBAAAAgxHCAQAAAIOV+TnhAAAAuDy73aaMjJOy2ayeLqVU8Pa2qFKlUHl5XX+EJoQDAADcoDIyTqpcOT/5+4fJZDJ5upwSzel0Kjv7rDIyTqpy5fDrbo/pKAAAADcom80qf/+KBPBCMJlM8vev6LZPDQjhAAAANzACeOG5814RwgEAAACDEcIBAAAAgxHCAQAAAIOxOgoAAACuyYYNn2v58qWSpKpVwzRy5FjNmDFFGRmn5efnp9GjJ+hvf6ulRYsW6PjxVJ04cVzHjh1Vjx595HQ6tG5dkux2m6ZPn6Xq1W/SokULdOzYUaWnn9KJEyfUuXMX9erVV5I0ceIYpaSkyGq1qn37Durdu58kqVu3B9ShQ2d99923ys3N0cSJ/1BERD09++xTGjx4mOrXbyBJGjv2eXXt+piaNr3TI/fqrxgJBwAAQJEdOPBfLV68QK+/Pk9Ll76vCRMm6/XXZ6p167ZaunSF+vTpr6lTJ7mOP3jwgGbNmqt33lmqBQvmyemUFi9epvvv76wPP3zPddzvv/+mV155TYsXL9Pnn6/V77//JkkaM2aCFi9epoSE5frXv77W4cOHXOeUL++nRYv+qb59ByghYaEkqUuXh7V27WpJ0unT6Tpw4L+KiWlqxK0pFEI4AAAAimz79h909933qlKlYElSYGCQ/v3vXerQobMk6a67Wio9/ZSys7P+976FLBaLgoNDFBAQoFat7pEk1a5dR6mpKa52W7VqrfLly8vPz0+tWrXWrl07JUmffvqR+vbtoQEDeuvYsaM6ePCA65w2bdpJku64o75SU49Jklq3bqvk5B+Um5urzz5LUvv2HWU2l5zoW3IqAQAAQKlytSX7nM7/e+3jY3G9NpvN8vHxcbVhs9kL7GPnzu3asmWz5s9fqKVLVygqKlpWa96f2vZxtWu357fl6+urli3v0ddff6HPPlurjh0fKPL1FSdCOAAAAIosOrqpvvnmS2VknJYknTmTqUaNGmv9+nWSpO+//06VK1eWv39AkdrdvPlfys3NVU5OjjZv/pcaNWqs7OwsVahQUX5+fjp+/LiSk38oVFtdujysBQvmqXLlygoPr1a0CyxmPJgJAACAIrv11r/pyScHavjwwTKZzAoPD9dzz43RK69M0SeffKDy5f00ceKUIrfboEFDjRs3QsePH1fnzl1Uu3Zd3XprLa1Zs1J9+jym6tVrqFGjqELXGBwcok6duhS5juJmcjr//EFB2ZOeniWHo0xfIgAAwDU5fvyQwsJqeroMl0WLFshi8VXv3n3d0l5mZqaeeqqPli37SL6+vm5p86/3zGw2KSSkaKP9EtNRAAAAUAZt2PCZ+vfvqf79n3ZbAHcnRsJvEBUqllM5Xx9Pl2GI3LwLOnc219NlAABQ4pW0kfDSwF0j4cwJv0GU8/VRjzHLPV2GId6L66lzIoQDAICSi+koAAAAgMEI4QAAAIDBCOEAAACAwZgTDgAAAEnFt5ADiyZcihAOAAAAScW3kENhF01o2TJGGzZskp+fn9trKGmYjgIAAIBSw2azeboEt2AkHAAAACWKw+HQm2/OVnp6uiZMeEkzZ06Xn5+fjhw5oszMDC1evMzTJV43QjgAAABKDKvVqunTX1JYWDW99NI0mUwmSdKePbv15ptvq3z58h6u0D2YjgIAAIASY+TIobrjjgYaMuQ5VwCXpNat25aZAC4ZOBL+zDPP6OjRozKbzfLz89OLL76oiIgItWnTRhaLRb6+vpKkUaNGqVWrVpKkXbt2adKkScrLy1P16tU1c+ZMhYSEGFUyAAAADBYVFaNt27bq4Ye7XRS6/fzKTgCXDBwJj42N1Zo1a7Rq1Sr1799f48ePd+2bO3euVq9erdWrV7sCuNPp1OjRozVp0iStX79eMTExmjVrllHlAgAAwAP69XtKTZo01ciRQ5WdneXpcoqNYSPhFSpUcL3Oysq66OOFy9m9e7d8fX0VExMjSerevbvatm2rGTNmFGudAAAAN6rcvAt6L65nsbRbFL169ZWvbzk999wzevXVN9xeT0lg6IOZEyZM0JYtW+R0OrVw4ULX9lGjRsnpdCo6OlojRoxQxYoVlZqaqmrVqrmOCQ4OlsPhUGZmpoKCggrdZ0hIgFuvAaVDaGiFqx8EAMANLi3NLG/v/5sYkXPeqpzz1mLp68/9XMn33+9wvX788R56/PEekqTJk6cUS03Xwmw2uyVnGBrCp02bJklatWqV4uLi9M4772j58uUKDw+X1WrVtGnTNGXKFLdOO0lPz5LD4XRbe6XVjRZKT5485+kSAAAo8RwOh2w2h6fLKFUcDsdFOcNsNl3ToK9HVkd56KGHtG3bNmVkZCg8PFySZLFY1KNHD+3Ykf8bUHh4uFJSUlznnD59WiaTqUij4AAAAEBJZEgIz87OVmpqquv9V199pcDAQPn6+urcufzfJJxOp9atW6eIiAhJUv369ZWbm6vk5GRJ0ooVK9ShQwcjygUAAACKlSHTUXJycjR8+HDl5OTIbDYrMDBQ8fHxSk9P19ChQ2W32+VwOFSrVi1NnjxZUv58m7i4OE2ePPmiJQoBAACA0s6QEF65cmV9+OGHl923atWqK54XFRWlxMTE4ioLAAAA8Ai+MRMAAAAwmKGrowAAAKDkqhRokbfF1+3t2qx5yjhTPEsfFiQ1NUUDBvTW2rVfGt731RDCAQAAIEnytvhqe9wAt7cbPWahJONDeElGCAcAAECJ0LJljJ56arA2b/6Xzpw5o7FjJyg5+Qdt2/adbDabXn45VrfccqskKSlptT76aIUkycfHR3FxsxUcHKJPPvlQH374nkJCKisyMtqTl1Mg5oQDAACgxAgIqKCFC9/V4MFD9cILI9WwYWMlJLyn++/vpHffXSxJ2rEjWf/8Z4Jee+0NLV36vubOjZe/f4D279+nd99drLfeWqT58xfqzJkzHr6aKyOEAwAAoMRo2/b/SZLq1KkryaTmzVv+732Ejh49IknaunWL7r+/k0JCKkuS/Pz85Ovrq507t6t585YKDg6RJD344MPGX0AhEcIBAABQYlgsFkn53xljsfi4tpvNZtntdkn5X/J4OVfaXhIRwgEAAFCqtGjRSp9/vlanT6dLks6fPy+r1aqoqBht3bpFGRmnJeXPGy+peDATAAAAkvKXEsxfycT97bpTZGS0evfuq+eee0YmU/6IeWzsbN122+3q3bufBg9+UsHBIbrrrpZu7dedTM7SNG5/DdLTs+RwlOlLLJTQ0ArqMWa5p8swxHtxPXXy5DlPlwEAQIl3/PghhYXV9HQZpcpf75nZbFJISECR22E6CgAAAGAwQjgAAABgMEI4AAAAYDBCOAAAAGAwQjgAAABgMEI4AAAAYDDWCQcAAIAkqWKgr3z/942V7pRntersGfeuFV7aEcIBAAAgSfK1WNQ3Ybjb213Sb46kq4fwRYsWqE+f/vLx8dG0aS+pbt0Ide36WJH6GjLkaT3+eG+1aNHqmtswAtNRAAAAUCIkJLyjCxcueLoMQzASDgAAAI979dVYSdLgwf1lMpkVHh6u/fv3afjwZ5SWdlyNG0dpxIix8vHxUXZ2lt54Y7b+8599slqtioyM0dChz8vLy8vDV1F4jIQDAADA40aOHCtJeuutxVqy5D0FBFTQL7/s0YwZs/TPf36o48dTtWbNp5KkN96YrcaNo/TOO+8qIeE9ZWSc1tq1azxZfpExEg4AAIASqU2b++Tn5ydJ6tChs7755it17fqYvv12k3799WetWLFckpSbm6sqVap6stQiI4QDAACgxHM6nTKZXO80ffosVa9+kydLui5MRwEAAECJ4Ofnr+zsLNf7r7/+Ujk5ObLZbFq//jNFRcVIklq0uFvLli2V3W6XJGVmZiol5ZhHar5WjIQDAABAUv563vnLCbq/3cLo3r2nhg0bJF/fcgoPD1fjxpF64YWROnEi/8HMLl0ekSQNHz5S8+fPVd++j8tkMsnHx6Jhw0aqWrXqbq+9uJicTqfT00UUp/T0LDkcZfoSCyU0tIJ6jFnu6TIM8V5cT508ec7TZQAAUOIdP35IYWE1PV1GqfLXe2Y2mxQSElDkdpiOAgAAABiMEA4AAAAYjBAOAAAAGIwQDgAAABiMEA4AAAAYjBAOAAAAGIx1wgEAACBJCqpgkU85X7e3eyE3T5nnrr5W+KJFC9SnT3/5+PgUeNymTd+ocuXKuuOO+u4q0XCEcAAAAEiSfMr5al2ffm5vt+O7CVIhQnhCwjt6/PHeVw3hmzd/o7p1IwjhAAAAwPV49dVYSdLgwf1lMpk1c+brmjp1stLT01W9enU5nVKzZnfqpptu1rffblJy8g9KTFytxx7roQ4dOnu4+qIjhAMAAMDjRo4cq5UrP9Jbby2Wn5+fJkwYrcjIaPXtO0DHj6eqT5/uatbsTjVrdpdatrxbdetGqGvXxzxd9jXjwUwAAACUODt2bFenTl0kSWFh4YqObuLhityLEA4AAIASyWQyebqEYkMIBwAAQIng5+ev7OwsSVJkZLTWrUuUJJ04cVw7dvzoOs7f319ZWVkeqdFdmBMOAAAASflLCXZ8N6FY2i2M7t17atiwQfL1LafY2Nc0depkffnlRtWseYsaNGgkf/8ASVL79h01bdo/9PXXX5baBzNNTqfT6ekiilN6epYcjjJ9iYUSGlpBPcYs93QZhngvrqdOnjzn6TIAACjxjh8/pLCwmp4u47Ly8nLl5eUtb29vnTp1Sk891Udz5szXzTff4tG6/nrPzGaTQkICitwOI+EAAAAocY4cOaKpUyfL6XTKbrepX7+nPB7A3YkQDgAAgBLntttu15Il73m6jGLDg5kAAACAwQjhAAAAgMEI4QAAAIDBCOEAAACAwXgwEwAAAJKkwIrlZfF1fzy05tl05myO29stzQwL4c8884yOHj0qs9ksPz8/vfjii4qIiNCBAwc0btw4ZWZmKigoSLGxsbrlllskqcB9AAAAcC+Lr7emT/jY7e2On9bN7W0WJDU1RT/88L0efPARQ/stCsOmo8TGxmrNmjVatWqV+vfvr/Hjx0uSJk+erB49emj9+vXq0aOHJk2a5DqnoH0AAADA5aSmpmjNmpWeLqNAhoXwChUquF5nZWXJZDIpPT1dv/zyizp3zv+q0c6dO+uXX37R6dOnC9wHAACAsmXVqk/06quxkqRfftmjli1j9OuvP0uSZs16RatXf6qWLWO0dOkiDRjQR48++qCSk39QfPyb6tevh3r3/rsOHjwgSXrttTgdPPhf9e3bQxMnjvHYNRXE0DnhEyZM0JYtW+R0OrVw4UKlpqaqatWq8vLykiR5eXmpSpUqSk1NldPpvOK+4ODgQvd5LV8jitIvNLTC1Q8CAOAGl5Zmlre3MWOyV+unWbNm+uij9+XtbdbOnclq0KDh//7fQDt2/KhevXpLkgIDK2rJkmX68suNeuGFkZo69RUNGTJM//znEv3zn4v1j39M0+jR4/TGG7O1ZMlyt1+H2Wx2S84wNIRPmzZNkrRq1SrFxcVp+PDhxd5nenqWHA5nsfdT0t1oofTkyXOeLgEAgBLP4XDIZnMY0tfV+gkPv0m5ublKSUnVDz/8oKefflZLly5S27btZbVaFRZWXZLUuvV9stkcuu22OpJMatashWw2h26/va6+/vor2WwO2e0OOZ1X7/NaOByOi3KG2Wy6pkFfjyxR+NBDD2nbtm0KCwvTiRMnZLfbJUl2u11paWkKDw9XeHj4FfcBAACg7ImObqLvvvtWGRnpioyMVnr6KW3d+q2iomJcx1gsFkn5I9IWi49ru9lsduXG0sCQEJ6dna3U1FTX+6+++kqBgYEKCQlRRESEkpKSJElJSUmKiIhQcHBwgfsAAABQ9kRHN9GyZUvUoEEjSVKDBo20bNlSxcQ0LVI7/v4Bys7OKo4S3caQ6Sg5OTkaPny4cnJyZDabFRgYqPj4eJlMJr300ksaN26c5s+fr4oVKyo2NtZ1XkH7AAAA4F7WPFuxLCdozbMV6rjo6CZ6+eVJio5u+r/3TbVmzUpFRTUpUn+1at2mm2+uqd69/66aNW/R1KlxRa65uJmcTmeZnjDNnPB8oaEV1GOM+x9OKInei+vJnHAAAArh+PFDCgur6ekySpW/3rNSNSccAAAAuJERwgEAAACDEcIBAAAAgxHCAQAAAIMRwgEAAACDEcIBAAAAgxn6tfUAAAAouQIrWmTx9XV7u9a8PJ05a3V7u6UZIRwAAACSJIuvr157YaDb2x0xY4EkQvifEcIBAADgcbm5uZo6dbIOHvyvvLy8dfPNNfXcc6P00ksTlJ2dLavVqubNW+iZZ4ZLkhYtWqDDhw8qOztbR44cVp06EerV6wm9+ebrOn48Vffc00bPPpt/7OLFb+uLL9bLYvGVySTNnbtAFSpU8OTlEsIBAADgedu2bdW5c+e0bNlHkqSzZ8/K19dXsbGz5efnJ5vNphEjhuj7779No9/SAAAgAElEQVTTnXc2lyTt3fubFi78p8qXL6/+/XspPv5NzZo1V3a7XY8+2kVdujyswMAgvf/+MiUlbZCvbzmdP58ti8X9U26KihAOAAAAj7vtttt1+PBBvfpqrCIjo9W8eUs5HA7Nnz9Hu3f/JMmp9PR07dv3uyuEN216pwICAv53/m2qVau2LBaLJOnmm2vq2LGjqlatum6+uaamTHlRzZo1V/PmreTn5++py3RhdRQAAAB4XPXqN2n58o/UpEkzJSdvU9++j+uDD5br3LmzevvtJVq6dIVatWotqzXPdc6fR7TNZi/5+lr+9N4su90uLy8vLViQoG7duuvkyTQ9+WQv7d+/z9BruxxCOAAAADwuLe2EzGYv3X13aw0bNlKZmRlKSTmmkJDK8vX11cmTafr2238Vud3z57OVmZmpyMhoPfnkQP3tb7X03//+pxiuoGiYjgIAAABJ+UsJ5q9k4v52r+Y//9mv+Pg3JUkOh129evVVu3bt9eKLY9WvXw9VqVJV0dFNitx3VlaWJkwYI6s1Tw6HQ7Vr19U999xb5HbczeR0Op2eLqI4padnyeEo05dYKKGhFdRjzHJPl2GI9+J66uTJc54uAwCAEu/48UMKC6vp6TJKlb/eM7PZpJCQgCK3w3QUAAAAwGCEcAAAAMBghHAAAADAYIRwAAAAwGCEcAAAAMBghHAAAADAYKwTDgAAAElSpcDy8ra4Px7arDZlnMlxe7ulGSEcAAAAkiRvi7f+Pf8bt7fb6JnWbm/zeqxbl6jvvtusqVPjPFYD01EAAAAAgzESDgAAgBLhm2++1Ntvz5evr6/uvbed3n57vjZs2KQDB/6r+Pg3lJ2dLUkaMGCQmjdvKZvNpjFjntOZM2eUl5enO+6op9Gjx8vHx0cXLlzQa6/FaefO7apUqZJuv722Tp9Ov+zo92efJenTTz+S3W5XQECARo0ap5tvvqVYr5UQDgAAAI/LyDituLjpWrAgQTVq3KwPPlguScrKOqdZs6Zr5sy5qly5sk6dOqWnnuqjd9/9QAEBAZo8eaoCA4PkdDo1depkrV27Wg891E2rV3+iEyeOa9myD2W32zV06EBVqVLlkn7//e+d+uqrjZo37x1ZLBZt3bpFM2ZM0VtvLS7W6yWEAwAAwON+/nm3ateuoxo1bpYkder0oN54Y7Z+//03paamaNSoYa5jTSaTjh07ottvr6P331+m77//Tg6HXefOnVO5cuUkSTt2bNf993eUt7e3vL291a5de/30085L+t2yZZP279+np5/uK0lyOp06d+5ssV8vIRwAAAAe53Q6ZTKZLru9Vq3bNW/eO5fs+/zztfrpp12aP/8d+fn56913F+vIkcOu86RL27u0falTpy4aMGDQdV9DUfBgJgAAADyuXr0G2rv3Nx09ekRS/gomklS7dl0dPXpYO3Yku4799def5XQ6lZV1ToGBQfLz81dWVpY2bvzcdUxUVIw2bFgnm82mvLw8ffXVxsv226JFK33++VqlpZ2QJNntdv3226/FdZkujIQDAABAUv563sWxnKDNarvqMcHBIRo16gWNHj1cQUFBat78bnl7eys0tIpeeeU1zZs3R3PmvCqb7YKqVauu2NjZuv/+ztq8eZN69fq7QkND1ahRpPLy8iRJDz3UVfv3/67evf+uKlXCVKdOXeXm5l7Sb+PGUXr66Wc0btwI2e0O2WwXdO+97VS3boTb78OfmZz5Y/VlVnp6lhyOMn2JhRIaWkE9xiz3dBmGWDb97zJ7+3i6DMPYrHnKOGP1dBkAgFLo+PFDCgur6ekyXM6fz5afn78kae3aNUpKWq233lp03e1ZrVaNGzdC997bTg888NB11fjXe2Y2mxQSElDkdhgJR5lj9vbR9rgBni7DMNFjFkoihAMASr+PPlqhr7/+Una7TRUrBmrs2InX1d7w4c/owoULslrzFBPTVB06dHZTpdePEA4AAIAS4YknntQTTzzptvbeeWep29pyNx7MBAAAAAxGCAcAAAAMRggHAAAADEYIBwAAAAzGg5kAAACQJAUGlpPF4v5lfq3WCzpz5tI1uovTunWJ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
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;What I like about Clustering methods for identifying topics is that it assigns each response to a specific cluster instead of allowing it to be parts of each topic or cluster. This is most certainly an over-simplification of most of these responses, but it does allow you to examine trends across departments, companies, etc. much more easily than you can do with topic modeling methods like LSA and LDA.&lt;/p&gt;
+&lt;h2 id="Recap:"&gt;Recap:&lt;a class="anchor-link" href="#Recap:"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src="https://i.imgur.com/dFaRN4P.jpg" alt="img"&gt;&lt;/p&gt;
+&lt;p&gt;K-means clustering allows us to use unsupervised learning to assign each response to a specific category and then read responses within each category to understand the general topic of the responses. It's helpful when it comes to assigning a response to a specific category, but given the need for each response to fall into only 1 cluster it can often be considered overally simplistic as a solution to understand what the general trends in all responses are focused on. In the instances where this is important the topic modeling techniques discussed in earlier articles may be a more ideal solution.&lt;/p&gt;
+&lt;p&gt;In my next few articles we'll stay within the NLP area of research and focus on supervised learning techniques where we'll try a number of techniques to try to predict the overall rating each employee provided.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ 
+
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;
+</summary><category term="Data Science"></category><category term="Python"></category></entry><entry><title>Topic Modeling Company Reviews with LDA</title><link href="/gd-tm-lda.html" rel="alternate"></link><published>2019-12-13T16:00:00-06:00</published><updated>2019-12-13T16:00:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2019-12-13:gd-tm-lda.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *

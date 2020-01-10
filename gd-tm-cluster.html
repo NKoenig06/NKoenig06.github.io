@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Topic Modeling Glassdoor Reviews with K-means — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: Topic Modeling Glassdoor Reviews with K-means; Date: 2019-12-01; Author: N. Koenig">
+	<title>Topic Modeling Company Reviews with K-means — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Topic Modeling Company Reviews with K-means; Date: 2020-01-10; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,11 +26,11 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">Topic Modeling Glassdoor Reviews with K-means</h1>
+		<h1 itemprop="name headline" class="article-title">Topic Modeling Company Reviews with K-means</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2019-12-01T11:00:00-06:00" itemprop="datePublished">Sun 01 December 2019</time>
+		<time datetime="2020-01-10T10:00:00-06:00" itemprop="datePublished">Fri 10 January 2020</time>
 	</div>
 	<div>
 		Category:
@@ -1459,7 +1459,7 @@ Name: cons, dtype: object</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can see here that in general cluster 1 is discussing hours, not enough hours, types of hours worked, etc. But in general the references are about work hours.</p>
+<p>We can see here that in general <strong>cluster 1 is discussing hours, not enough hours, types of hours worked, etc.</strong> But in general the references are about work hours.</p>
 <p>Let's look at <strong>cluster 6.</strong></p>
 
 </div>
@@ -1512,8 +1512,9 @@ Name: cons, dtype: object</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Cluster 6 makes a lot of references to Customers, statements around rude customers, mean customers, bad customers, etc.</p>
-<h2 id="Responses-by-store">Responses by store<a class="anchor-link" href="#Responses-by-store">&#182;</a></h2>
+<p><strong>Cluster 6 makes a lot of references to Customers, statements around rude customers, mean customers, bad customers, etc.</strong></p>
+<h2 id="Responses-by-store">Responses by store<a class="anchor-link" href="#Responses-by-store">&#182;</a></h2><p>Let's first get the total responses by company and then we can examine the raw counts by company for each cluster.</p>
+
 </div>
 </div>
 </div>
@@ -1615,7 +1616,8 @@ Name: company, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This shows us that when it comes to customer related cons that our two fast food related companies have the most comments that fall into that cluster. What about <strong>cluster 1</strong>, around hours?</p>
+<p>This shows us that when it comes to customer related cons that our two fast food related companies have the most comments that fall into that cluster. If we remember this cluster focused on rude/poor experiences with customers.</p>
+<p>What about <strong>cluster 1</strong>, around hours?</p>
 
 </div>
 </div>
@@ -1864,7 +1866,7 @@ Name: company, dtype: int64</pre>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'Topic Modeling Glassdoor Reviews with K-means';
+    var disqus_title = 'Topic Modeling Company Reviews with K-means';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -1900,7 +1902,7 @@ Name: company, dtype: int64</pre>
 						<h4>Categories</h4>
 						<ul class="list-unstyled my-list-style">
 							<li><a href="/category/about.html">about (1)</a></li>
-							<li><a href="/category/data-science.html">data science (12)</a></li>
+							<li><a href="/category/data-science.html">data science (13)</a></li>
 							<li><a href="/category/programming.html">programming (5)</a></li>
 						</ul>
 					</div>

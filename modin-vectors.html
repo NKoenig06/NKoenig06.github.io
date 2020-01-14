@@ -1170,7 +1170,7 @@ Wall time: 2.85 s
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>So we can see Modin has promise. The CPU time needed to load a 360MB file is less than half and it's a relatively large dataframe of 723.3k rows by 90 columns.</p>
+<p>So we can see Modin has promise. The CPU time needed to load a 360MB file is roughly half and it's a relatively large dataframe of 723.3k rows by 90 columns.</p>
 <p>Now let's look at a few different ways to process data.</p>
 
 </div>
@@ -1180,7 +1180,7 @@ Wall time: 2.85 s
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3-different-ways-to-functionize-data">3 different ways to functionize data<a class="anchor-link" href="#3-different-ways-to-functionize-data">&#182;</a></h2><h3 id="1.-Write-a-function-and-use-.apply()">1. Write a function and use .apply()<a class="anchor-link" href="#1.-Write-a-function-and-use-.apply()">&#182;</a></h3><p>this involves writing a typical function and then using .apply() to execute the function on the column. This simple function returns a 1 if the variable is an "R" or a 0 if it is not. This function can be used for creating an integer feature to be included in an ML model.</p>
+<h2 id="3-different-ways-to-functionize-data">3 different ways to functionize data<a class="anchor-link" href="#3-different-ways-to-functionize-data">&#182;</a></h2><h3 id="1.-Write-a-function-and-use-.apply()">1. Write a function and use .apply()<a class="anchor-link" href="#1.-Write-a-function-and-use-.apply()">&#182;</a></h3><p>this involves writing a typical function and then using <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html">.apply()</a> to execute the function on the column. This simple function returns a 1 if the variable is an "R" or a 0 if it is not. This function can be used for creating an integer feature to be included in an ML model.</p>
 
 </div>
 </div>
@@ -1290,7 +1290,7 @@ Wall time: 210 ms
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.-Use-np.where()">3. Use np.where()<a class="anchor-link" href="#3.-Use-np.where()">&#182;</a></h3><p>np.where() leverages numpy and allows us to vectorize the computation. Let's see if we can get some speed up by taking advantage of numpy vectorization.</p>
+<h3 id="3.-Use-np.where()">3. Use np.where()<a class="anchor-link" href="#3.-Use-np.where()">&#182;</a></h3><p><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html">np.where()</a> leverages numpy and allows us to vectorize the computation. Let's see if we can get some speed up by taking advantage of numpy vectorization.</p>
 
 </div>
 </div>
@@ -1332,7 +1332,7 @@ Wall time: 13.3 ms
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can clearly see this is a lot faster. np.where() is roughly 12x faster on the exact same data.</p>
+<p>We can clearly see this is a lot faster. np.where() is roughly 13x faster on the exact same data.</p>
 <h2 id="Try-the-same-thing-on-modin-dataframes">Try the same thing on modin dataframes<a class="anchor-link" href="#Try-the-same-thing-on-modin-dataframes">&#182;</a></h2><p>We know modin loads data faster than pandas, but what about doing computation on the dataframes. Let's look at the numbers for each of those as well.</p>
 
 </div>

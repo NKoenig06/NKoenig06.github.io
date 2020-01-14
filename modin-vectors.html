@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Hello World & Installing Python and Jupyter — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: Hello World & Installing Python and Jupyter; Date: 2019-01-17; Author: N. Koenig">
+	<title>Using parallel processing and vectorization to speed up your code — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Using parallel processing and vectorization to speed up your code; Date: 2020-01-14; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,11 +26,11 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">Hello World & Installing Python and Jupyter</h1>
+		<h1 itemprop="name headline" class="article-title">Using parallel processing and vectorization to speed up your code</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2019-01-17T10:30:00-06:00" itemprop="datePublished">Thu 17 January 2019</time>
+		<time datetime="2020-01-14T10:00:00-06:00" itemprop="datePublished">Tue 14 January 2020</time>
 	</div>
 	<div>
 		Category:
@@ -42,16 +42,13 @@
 	<div>
 		Tags:
 		<span itemprop="keywords">
+			<a href="/tag/python.html" rel="tag">Python</a>
+		</span>
+		<span itemprop="keywords">
 			<a href="/tag/data-science.html" rel="tag">Data Science</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/environment-setup.html" rel="tag">Environment Setup</a>
-		</span>
-		<span itemprop="keywords">
-			<a href="/tag/jupyter.html" rel="tag">Jupyter</a>
-		</span>
-		<span itemprop="keywords">
-			<a href="/tag/python.html" rel="tag">Python</a>
+			<a href="/tag/programming.html" rel="tag">Programming</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1030,28 +1027,40 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Hello-World-&amp;-Installing-Python-and-Jupyter">Hello World &amp; Installing Python and Jupyter<a class="anchor-link" href="#Hello-World-&amp;-Installing-Python-and-Jupyter">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Like many social scientists I was taught very little programming in grad school. I knew how to point and click my way through SPSS and I knew how to to do some "proc reg" commands in SAS. That was about it. As I started to deal with more and more data in SPSS and Excel I started to realize there were tons of redundancies and a lot of my time was spent recreating very similar analyses to answer slightly different questions.</p>
-<p>At the same time I started to see many "Machine Learning Experts" creep into the I/O &amp; Selection Space saying they could leverage ML to predict the perfect employee.</p>
-<p>I thought we were trying to solve the same problem, they can't be doing things that differently than us, so I started to dive into basic ML literature. My first experience with ML was <a href="https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf">this book</a> and I started to see that ML wasn't that different than many of the things social scientists were traditionally trained to do, they just used different terminology, which made it seem foreign to us.</p>
-<p>My hope for this blog is it can be something that helps Social Scientists interested in adding programming and data analysis to their core skillset get that knowledge in a way that made sense for someone coming from their background.</p>
+<h1 id="Speed-Test">Speed Test<a class="anchor-link" href="#Speed-Test">&#182;</a></h1><p>I thought it might be useful for those working day-to-day within Python to learn from some of the testing I do when I learn about new packages or methods. So I may have some shorter articles that come out more frequently as well. This article will focus on two things.</p>
+<ol>
+<li>A new dataframe concept that allows you to use multiple CPU cores</li>
+<li>A vectorization method for applying changes to your dataframe</li>
+</ol>
+<h2 id="Meet-Modin">Meet Modin<a class="anchor-link" href="#Meet-Modin">&#182;</a></h2><p><a href="https://github.com/modin-project/modin">Modin</a> is potentially the answer we have all been waiting for. A way to work with "big data" in memory. From their github repo linked earlier:</p>
+<p><img src="https://i.imgur.com/HopYymq.png" alt="img"></p>
+<p>The fact that you can use multiple cores in parallel should greatly increase the speed, but let's give it a try on some of my data.</p>
+<p>The data we will be using is the entire dataset provided from statcast for the 2019 MLB season. While the file size isn't huge, it's 360MB, which is relatively large for a standard csv. Let's load it in pandas and then load it in modin and see how it compares.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello World!!&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">pd_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../statcast_data/2019_mlb_stats.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1068,7 +1077,8 @@ h6:hover .anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Hello World!!
+<pre>CPU times: user 4.7 s, sys: 280 ms, total: 4.98 s
+Wall time: 4.98 s
 </pre>
 </div>
 </div>
@@ -1077,193 +1087,26 @@ h6:hover .anchor-link {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/eZBOkye.png" alt="ML"></p>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">modin.pandas</span> <span class="k">as</span> <span class="nn">md_pd</span>
+</pre></div>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Starting-with-the-basics">Starting with the basics<a class="anchor-link" href="#Starting-with-the-basics">&#182;</a></h2><p>One thing that has always been fairly cumbersome is setting up your working environment in python. In SPSS you pay for the software, you install it and you are good to go. You want to run a correlation. There's a dropdown in the menu for that. A linear regression, a drop down in the menu for that. The difference between SPSS and Python is that SPSS is a ready to use software solution designed with a specific purpose. On the other hand Python is a general use programming language. Do you want to build a website? The flask and django packages can help with that. Do you want to perform math? Basic Python has you covered there. More advanced linear algebra? NumPy's <a href="https://docs.scipy.org/doc/numpy-1.15.0/user/basics.broadcasting.html">broadcasting</a> has you covered. For this reason your environment is important. You would use a different environment to build a website than you would to perform a statistical analysis. This is where the specific packages come in. One place where most packages are compiled and kept up-to-date is Anaconda. <a href="https://www.anaconda.com/what-is-anaconda/">Anaconda</a> is a distribution of the most common packages used for data science and machine learning.</p>
-<h3 id="In-this-first-post-I-will-walk-you-through-the-process-of-downloading-Anaconda-and-setting-up-your-first-Data-Science-Environment">In this first post I will walk you through the process of downloading Anaconda and setting up your first Data Science Environment<a class="anchor-link" href="#In-this-first-post-I-will-walk-you-through-the-process-of-downloading-Anaconda-and-setting-up-your-first-Data-Science-Environment">&#182;</a></h3><p>Step:</p>
-<ol>
-<li>Download and install Anaconda or Miniconda<ul>
-<li><a href="https://www.anaconda.com/download/">This</a> site will give you the installation for your specific OS. <ul>
-<li>If you are in <strong>Windows</strong> in your start menu after installation you should be able to search for <strong>Anaconda Prompt</strong>.</li>
-<li>If you are in <strong>Linux</strong> or <strong>Mac</strong> you can use the actual terminal.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<ol>
-<li><p>Open Anaconda Prompt or the terminal and you should see something similar to the image below</p>
-</li>
-<li><p>After successfully installing Anaconda you can use conda commands.</p>
-<ul>
-<li>This is where you will create your first virtual environment. A virtual environment is extremely important when it comes to keeping your work environment from being overrun by packages (collections of python files) you aren't using for your specific project. You can then specify the version of python you want. I want my environment to be in python 3.7, so I will specify that in the creation by writing the following:</li>
-</ul>
-</li>
-</ol>
-<p><img src="https://i.imgur.com/w6k6BTH.png" alt="conda_create"></p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>-n stands for (name) so after the -n command you will name your virtual environment. For the purposes of this example I named mine <strong>my_first_venv</strong> and specified the python version to be 3.7.</p>
-<p>There are differences between Python 2 and Python 3, that are beyond the scope of this blog, but most new data analysis and data science methods will be more routinely updated in python 3.</p>
-<p>In fact Guido van Rossum, the creator of Python has told the community Python 2 will stop being support in January of 2020. You can view the <a href="https://pythonclock.org/">countdown here</a>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Getting-into-our-virtual-environment">Getting into our virtual environment<a class="anchor-link" href="#Getting-into-our-virtual-environment">&#182;</a></h3><p>Now that we have built our virtual environment let's use it. You can do that by using the <strong>source activate</strong> command and the name of the virtual environment you created above. Similar to what I did below.</p>
-<p><strong>Note</strong> When you are finished in your virtual environment you just use the command <strong>source deactivate</strong> and you will be back to a normal bash shell/terminal.</p>
-<p><img src="https://i.imgur.com/w6k6BTH.png" alt="source_activate"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You successfully navigated into your first virtual environment. Now anything you run or do will be working strictly off of the packages in this virtual environment.</p>
-<p>Next you can install the common packages that you'll need for data analysis/data science, here are a few:</p>
-<ul>
-<li>conda install numpy <ul>
-<li><a href="https://en.wikipedia.org/wiki/NumPy">numpy</a> is a linear algebra library, which pandas is built on top of</li>
-</ul>
-</li>
-<li>conda install pandas <ul>
-<li><a href="https://en.wikipedia.org/wiki/Pandas_(software">pandas</a>) is a dataframe library (structures data similar to excel)</li>
-</ul>
-</li>
-<li>conda install scikit-learn <ul>
-<li><a href="https://en.wikipedia.org/wiki/Scikit-learn">scikit learn</a> is a machine learning library</li>
-</ul>
-</li>
-<li>conda install -c conda-forge matplotlib <ul>
-<li><a href="https://en.wikipedia.org/wiki/Matplotlib">matplotlib</a> is a visualization library</li>
-</ul>
-</li>
-<li>conda install -c anaconda seaborn<ul>
-<li><a href="https://seaborn.pydata.org/">seaborn</a> is an advanced visualization library built on top of matplotlib</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Downloading-Jupyter-and-Creating-a-Jupyter-Kernel">Downloading Jupyter and Creating a Jupyter Kernel<a class="anchor-link" href="#Downloading-Jupyter-and-Creating-a-Jupyter-Kernel">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Most people running data analyis won't want to work in a traditional developers IDE (Integrated Development Environment), like <a href="https://www.jetbrains.com/pycharm/">PyCharm</a> because it's fairly cumbersome to debug code when you can't run it in line. For this reason I think Jupyter is an excellent solution for people that are unlikely to be productionizing their analysis, but instead will be trying to derive quick calculations, like means, standard deviations, correlations, etc.</p>
-<p><a href="https://en.wikipedia.org/wiki/Project_Jupyter">Jupyter</a> stands for 3 programming languages:</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Julia_(programming_language">Julia</a>) <strong>JU</strong></li>
-<li><a href="https://en.wikipedia.org/wiki/Python_(programming_language">Python</a>) <strong>PYT</strong></li>
-<li><a href="https://en.wikipedia.org/wiki/R_(programming_language">R</a>) <strong>ER</strong> (I guess at that point the name was too good to pass up)</li>
-</ul>
-<p>and allows you to develop and test code within your web browser which is extremely convenient for quickly prototyping analyses or simple functions.</p>
-<p>So let's create a kernel specific to our virtual environment, so we can use jupyter in our browser.</p>
-<p>First thing we need to do is install ipykernel in our virtual environment.</p>
-<p><img src="https://i.imgur.com/1jwYKKi.png" alt="jup1"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Next we activate the notebook by typing the following command:</p>
-<p><img src="https://i.imgur.com/2mf2gX7.png" alt="jup2"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If that doesn't launch the notebook in a browser you can use the following command in your terminal/anaconda prompt</p>
-<p><img src="https://i.imgur.com/Sj6jRRc.png" alt="launch_jup"></p>
-<p><strong>Note</strong> I don't typically work in Windows or MacOS, but I have been told that once Jupyter is installed on your computer you can also just launch it by searching through the <strong>START</strong> menu. If that's the case I'd recommend creating a shortcut on your desktop, so you can just double-click and get it started. It might look like below, where the anaconda prompt is circled and immediately below it is the jupyter notebook application.</p>
-<p><img src="https://pythonforundergradengineers.com/posts/jupyter/anaconda_start_menu.png" alt="windwos start"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This will launch a web browser that allows you to interact with your directories. You can navigate through your directories to where you plan to work on your project. You can do this through the browser.</p>
-<p>Over on the far right of the web browser you will see a tab titled <strong>New</strong>. You can see here that I have a few virtual environments with kernels, from an R kernel to many different kernels for different projects.</p>
-<p>You will click on my_first_venv and it will open up a jupyter notebook with that kernel.</p>
-<p><img src="https://i.imgur.com/TkFphBr.png" alt="kernels"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Once you click on my_first_venv you will get a notebook that pops up and looks identical to this:</p>
-<p><img src="https://i.imgur.com/q2AF2cP.png" alt="notebook"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that you are in the notebook you can start your work. Here is an example of some basic math operations happening in line. In a python script you'd typically need to call the print command to see the output.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Basic-Math">Basic Math<a class="anchor-link" href="#Basic-Math">&#182;</a></h2>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">4</span><span class="o">+</span><span class="mi">4</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">mdn_df</span> <span class="o">=</span> <span class="n">md_pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../statcast_data/2019_mlb_stats.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1276,15 +1119,285 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 144 ms, sys: 18.3 ms, total: 162 ms
+Wall time: 2.85 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>8</pre>
+<pre>(723346, 90)</pre>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So we can see Modin has promise. The CPU time needed to load a 360MB file is less than half and it's a relatively large dataframe of 723.3k rows by 90 columns.</p>
+<p>Now let's look at a few different ways to process data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3-different-ways-to-functionize-data">3 different ways to functionize data<a class="anchor-link" href="#3-different-ways-to-functionize-data">&#182;</a></h2><h3 id="1.-Write-a-function-and-use-.apply()">1. Write a function and use .apply()<a class="anchor-link" href="#1.-Write-a-function-and-use-.apply()">&#182;</a></h3><p>this involves writing a typical function and then using .apply() to execute the function on the column. This simple function returns a 1 if the variable is an "R" or a 0 if it is not. This function can be used for creating an integer feature to be included in an ML model.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">stance</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;R&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">stance</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 164 ms, sys: 16 ms, total: 180 ms
+Wall time: 176 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-Write-a-lambda-function-within-.apply()">2. Write a lambda function within .apply()<a class="anchor-link" href="#2.-Write-a-lambda-function-within-.apply()">&#182;</a></h3><p>This is similar to the original .apply() but allows us to use more concise functions that are not designed to be reproducible.This is a good resource for more on <a href="https://realpython.com/python-lambda/">lambda functions</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">==</span><span class="s2">&quot;R&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 218 ms, sys: 0 ns, total: 218 ms
+Wall time: 210 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see that the results of the first two are almost identical, with a wall time of about 180 milliseconds.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.-Use-np.where()">3. Use np.where()<a class="anchor-link" href="#3.-Use-np.where()">&#182;</a></h3><p>np.where() leverages numpy and allows us to vectorize the computation. Let's see if we can get some speed up by taking advantage of numpy vectorization.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span><span class="s2">&quot;R&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 14.4 ms, sys: 185 µs, total: 14.6 ms
+Wall time: 13.3 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can clearly see this is a lot faster. np.where() is roughly 12x faster on the exact same data.</p>
+<h2 id="Try-the-same-thing-on-modin-dataframes">Try the same thing on modin dataframes<a class="anchor-link" href="#Try-the-same-thing-on-modin-dataframes">&#182;</a></h2><p>We know modin loads data faster than pandas, but what about doing computation on the dataframes. Let's look at the numbers for each of those as well.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">stance</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 25.4 ms, sys: 3.82 ms, total: 29.2 ms
+Wall time: 30.5 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">==</span><span class="s2">&quot;R&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 209 ms, sys: 7.87 ms, total: 217 ms
+Wall time: 922 ms
+</pre>
+</div>
 </div>
 
 </div>
@@ -1296,40 +1409,8 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">35</span><span class="o">*</span><span class="mi">5</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[12]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>175</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Let&#39;s learn some python!!&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span><span class="s2">&quot;R&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1346,7 +1427,8 @@ h6:hover .anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Let&#39;s learn some python!!
+<pre>CPU times: user 13.1 s, sys: 351 ms, total: 13.5 s
+Wall time: 14.2 s
 </pre>
 </div>
 </div>
@@ -1359,7 +1441,13 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="In-follow-up-posts-I'll-start-to-talk-about-using-numpy-and-pandas-and-their-importance-to-data-science-and-the-value-I-think-they-can-add-for-your-typical-Social-Scientists.">In follow up posts I'll start to talk about using numpy and pandas and their importance to data science and the value I think they can add for your typical Social Scientists.<a class="anchor-link" href="#In-follow-up-posts-I'll-start-to-talk-about-using-numpy-and-pandas-and-their-importance-to-data-science-and-the-value-I-think-they-can-add-for-your-typical-Social-Scientists.">&#182;</a></h3>
+<p>So we can see that for modin there are vast differences across the types of implementations. The traditional function runs extremely quickly, almost as fast as the np.where() function on pandas, but the lambda function is much slower and the most surprising of all was the np.where() function within modin. It's wall time is roughly 75x slower than the .apply() function within pandas.</p>
+<p>I reached out to the development team and they said part of the reason for this is that when you call np.where() in modin it first converts it to a numpy array and then must convert it back to a pandas distributed series, which in effect ends up with them collecting the data, merging, running the np.where() then re-splitting the data for distribution, which causes all the high overhead.</p>
+<h1 id="Takeaways">Takeaways<a class="anchor-link" href="#Takeaways">&#182;</a></h1><ul>
+<li>Modin has promise for dealing with large dataframes across CPUs. I'm excited to see where the project goes. </li>
+<li>There are often multiple ways to solve the same problem in python and as part of continuous learning and refactoring code it's often worth it to explores the pros and cons of these different methods. </li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -1401,7 +1489,7 @@ h6:hover .anchor-link {
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'Hello World & Installing Python and Jupyter';
+    var disqus_title = 'Using parallel processing and vectorization to speed up your code';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

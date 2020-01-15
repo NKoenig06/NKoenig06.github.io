@@ -1128,7 +1128,7 @@ Wall time: 2.85 s
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="3-different-ways-to-functionize-data"&gt;3 different ways to functionize data&lt;a class="anchor-link" href="#3-different-ways-to-functionize-data"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id="1.-Write-a-function-and-use-.apply()"&gt;1. Write a function and use .apply()&lt;a class="anchor-link" href="#1.-Write-a-function-and-use-.apply()"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;this involves writing a typical function and then using &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html"&gt;.apply()&lt;/a&gt; to execute the function on the column. This simple function returns a 1 if the variable is an "R" or a 0 if it is not. This function can be used for creating an integer feature to be included in an ML model.&lt;/p&gt;
+&lt;h2 id="3-different-ways-to-process-data"&gt;3 different ways to process data&lt;a class="anchor-link" href="#3-different-ways-to-process-data"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id="1.-Write-a-function-and-use-.apply()"&gt;1. Write a function and use .apply()&lt;a class="anchor-link" href="#1.-Write-a-function-and-use-.apply()"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;this involves writing a typical function and then using &lt;a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html"&gt;.apply()&lt;/a&gt; to execute the function on the column. This simple function returns a 1 if the variable is an "R" or a 0 if it is not. This function can be used for creating an integer feature to be included in an ML model.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

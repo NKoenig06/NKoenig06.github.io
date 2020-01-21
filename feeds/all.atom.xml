@@ -990,7 +990,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
@@ -1391,6 +1391,16 @@ Wall time: 14.2 s
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;So we can see that for modin there are vast differences across the types of implementations. The traditional function runs extremely quickly, almost as fast as the np.where() function on pandas, but the lambda function is much slower and the most surprising of all was the np.where() function within modin. It's wall time is roughly 75x slower than the .apply() function within pandas.&lt;/p&gt;
 &lt;p&gt;I reached out to the development team and they said part of the reason for this is that when you call np.where() in modin it first converts it to a numpy array and then must convert it back to a pandas distributed series, which in effect ends up with them collecting the data, merging, running the np.where() then re-splitting the data for distribution, which causes all the high overhead.&lt;/p&gt;
+&lt;h2 id="How-does-this-compare-to-R?"&gt;How does this compare to R?&lt;a class="anchor-link" href="#How-does-this-compare-to-R?"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A question came up on whether or not the .apply() method was similar to the family of apply() functions in R. I'm not completely familiar with R code, but after some investigating it appears that they are very similar. So I decided it would be interesting to compare speed between R and Python. For whatever reason the R kernel was running exceptionally slow in Jupyter so I ran it in Rstudio. Below are the results. You can see that it took about 2 seconds longer to load the dataframe using pandas and about 4 seconds longer to load the dataframe as compared to Modin. the lapply() fucntion took 624 milliseconds compared to the roughly 200ms for .apply() and the 13.3ms for np.where(),so .apply() is roughly 3x faster and np.where() is roughly 47x faster.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://i.imgur.com/XjOl5t0.png" alt="img"&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h1 id="Takeaways"&gt;Takeaways&lt;a class="anchor-link" href="#Takeaways"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;Modin has promise for dealing with large dataframes across CPUs. I'm excited to see where the project goes. &lt;/li&gt;
 &lt;li&gt;There are often multiple ways to solve the same problem in python and as part of continuous learning and refactoring code it's often worth it to explores the pros and cons of these different methods. &lt;/li&gt;

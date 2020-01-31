@@ -2470,6 +2470,7 @@ mean correlation:  0.127
 &lt;li&gt;We implemented an off the shelf Sentiment package to produce features we could feed into our machine learning algorithms&lt;/li&gt;
 &lt;li&gt;We tried 3 different algorithms; Ridge Regression, Random Forests, and XGBoost&lt;/li&gt;
 &lt;li&gt;Ridge Regression performed the best and provided us with an average correlation that would have put us in &lt;strong&gt;20th place on the public leaderboard&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Conscientiousness' high mean and small standard deviation made it the most difficult to predict with a top correlation of 0.098&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In the next article we'll explore another off the shelf feature creation package and compare the two. We can also then combine all the features together and see if we can beat our current best of 20th place.&lt;/p&gt;
 

@@ -1498,7 +1498,7 @@ Name: open_ended_4_len, dtype: float64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Creating-Features">Creating Features<a class="anchor-link" href="#Creating-Features">&#182;</a></h1><p>The first thing you have to do in machine learning is create features you think will provide meaningful signal when it comes to predicting our criterion of interest. One way to do that is to leverage others work. For the purposes of this article we will leverage a pre-trained sentiment analysis package.</p>
+<h1 id="Creating-Features">Creating Features<a class="anchor-link" href="#Creating-Features">&#182;</a></h1><p>The first thing you have to do in machine learning is create features you think will provide meaningful signal when it comes to predicting our criterion of interest. One way to do that is to leverage others' work. For the purposes of this article we will leverage a pre-trained sentiment analysis package.</p>
 <h2 id="Sentiment-Analysis">Sentiment Analysis<a class="anchor-link" href="#Sentiment-Analysis">&#182;</a></h2><p><img src="https://i.imgur.com/k48EKbK.jpg" alt="img"></p>
 <p>Sentiment Analysis is a fairly simple concept. A trained sentiment based model has the capability of analyzing a set of written (or spoken text) and identifying whether the corpus is positive, negative, or neutral. A good overview of sentiment analysis in action is available <a href="https://towardsdatascience.com/sentiment-analysis-concept-analysis-and-applications-6c94d6f58c17">here</a>, but for the focus of this article I will assume you are generally familiar with sentiment and it's uses.</p>
 <p>One potential use is for the sentiment proportions to be used as predictors for each of the trait scores.</p>
@@ -2245,7 +2245,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <h1 id="Random-Forest">Random Forest<a class="anchor-link" href="#Random-Forest">&#182;</a></h1><p><img src="https://i.imgur.com/ib25WBR.png" alt="img"></p>
 <p>Next, let's look at one of the more popular "Machine Learning" algorithms today the Random Forests algorithm. In fairly simple terms the Random Forests algorithm uses bagging where it takes random subsets of both data and features and creates a tree-based model to predict the label. All of these "trees" are then aggregated together to form an <strong>ensemble</strong> model using the <a href="https://en.wikipedia.org/wiki/Wisdom_of_the_crowd">wisdom of the crowds</a> theory. For more specifics I refer you to <a href="https://machinelearningmastery.com/bagging-and-random-forest-ensemble-algorithms-for-machine-learning/">this article</a>.</p>
 <p>We will implement <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">sklearn</a> version of the algorithm.</p>
-<p>One quick note, with ridge regression I originally included the length features and found that they did slightly lowered the predictions of each of the traits, so I excluded them. But for Random Forests I found the opposite, so we'll include them for random forests.</p>
+<p>One quick note, with ridge regression I originally included the length features and found that they slightly lowered the predictions of each of the traits, so I excluded them. But for Random Forests I found the opposite, so we'll include them here.</p>
 
 </div>
 </div>

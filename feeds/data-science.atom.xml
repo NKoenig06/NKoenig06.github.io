@@ -1327,7 +1327,7 @@ Name: open_ended_4_len, dtype: float64&lt;/pre&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;So the longest response to the neuroticism prompt is 235 words and the shortest is 15, with a median response length of 49 words.&lt;/p&gt;
-&lt;h3 id="Most-Common-Words"&gt;Most Common Words&lt;a class="anchor-link" href="#Most-Common-Words"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;To get the word count we'll want to do a small bit of pre-processing that takes out punctuation and stopwords as it will almost certainly be the case a few stopwords like I, the, etc. will be the most common if we do not.&lt;/p&gt;
+&lt;h3 id="Most-Common-Words"&gt;Most Common Words&lt;a class="anchor-link" href="#Most-Common-Words"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;To get the word count we'll want to do a small bit of pre-processing that takes out punctuation and stopwords as it will almost certainly be the case a few stopwords like; I, the, etc. will be the most common if we do not.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The first cell creates a list of all responses to open_ended_4 and then joins them all together. &lt;/li&gt;
 &lt;li&gt;Then the function &lt;strong&gt;text_process&lt;/strong&gt; removes punctuation and stopwords&lt;/li&gt;

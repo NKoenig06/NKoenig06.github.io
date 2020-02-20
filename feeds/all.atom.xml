@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>AIO: Bridging the Gap Between Data Science and IO</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2020-02-20T14:00:00-06:00</updated><entry><title>Using Dictionary Mapping to Predict Personality Traits (SIOP ML Competition)</title><link href="/siopml-empath.html" rel="alternate"></link><published>2020-02-20T14:00:00-06:00</published><updated>2020-02-20T14:00:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2020-02-20:siopml-empath.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>AIO: Bridging the Gap Between Data Science and IO</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2020-02-20T14:00:00-06:00</updated><entry><title>Using Dict Mapping to Predict Personality (SIOP ML Competition) Part II</title><link href="/siopml-empath.html" rel="alternate"></link><published>2020-02-20T14:00:00-06:00</published><updated>2020-02-20T14:00:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2020-02-20:siopml-empath.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1738,7 +1738,7 @@ mean correlation:  0.183
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="Data Science"></category><category term="Machine Learning"></category><category term="Python"></category></entry><entry><title>Using Sentiment to Predict Personality Traits (SIOP ML Competition)</title><link href="/siopml-sentiment.html" rel="alternate"></link><published>2020-01-31T14:00:00-06:00</published><updated>2020-01-31T14:00:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2020-01-31:siopml-sentiment.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="Data Science"></category><category term="Machine Learning"></category><category term="Python"></category></entry><entry><title>Using Sentiment to Predict Personality (SIOP ML Competition) Part I</title><link href="/siopml-sentiment.html" rel="alternate"></link><published>2020-01-31T14:00:00-06:00</published><updated>2020-01-31T14:00:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:,2020-01-31:siopml-sentiment.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *

@@ -1004,8 +1004,8 @@ h6:hover .anchor-link {
 &lt;li&gt;we changed directories to a folder on our desktop titled "test"&lt;/li&gt;
 &lt;li&gt;we printed the working directory&lt;/li&gt;
 &lt;li&gt;we made a folder titled "additional_folder"&lt;/li&gt;
-&lt;li&gt;we listed the files in the working directory, which now include the additional_folder directory and a csv file&lt;/li&gt;
-&lt;li&gt;we navigated to the additional_folder directory&lt;/li&gt;
+&lt;li&gt;we listed the files in the working directory, which now include the &lt;strong&gt;additional_folder&lt;/strong&gt; directory and a csv file&lt;/li&gt;
+&lt;li&gt;we navigated to the &lt;strong&gt;additional_folder&lt;/strong&gt; directory&lt;/li&gt;
 &lt;li&gt;we used &lt;strong&gt;..&lt;/strong&gt; to navigate back to the test directory&lt;/li&gt;
 &lt;li&gt;we copied the &lt;strong&gt;test_data.csv&lt;/strong&gt; file to the &lt;strong&gt;additional_folder&lt;/strong&gt; directory&lt;/li&gt;
 &lt;li&gt;we navigated to the &lt;strong&gt;additional_folder&lt;/strong&gt; directory to confirm we had copied the file there. &lt;/li&gt;

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Loading Multiple Files — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: Loading Multiple Files; Date: 2020-03-02; Author: N. Koenig">
+	<title>Data Science on a Chromebook? — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Data Science on a Chromebook?; Date: 2020-03-16; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,16 +26,16 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">Loading Multiple Files</h1>
+		<h1 itemprop="name headline" class="article-title">Data Science on a Chromebook?</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2020-03-02T14:00:00-06:00" itemprop="datePublished">Mon 02 March 2020</time>
+		<time datetime="2020-03-16T14:00:00-05:00" itemprop="datePublished">Mon 16 March 2020</time>
 	</div>
 	<div>
 		Category:
 		<span itemprop="articleSection">
-			<a href="/category/data-science-programming.html" rel="category">data science, programming</a>
+			<a href="/category/data-science.html" rel="category">data science</a>
 		</span>
 	</div>
  
@@ -48,7 +48,7 @@
 			<a href="/tag/python.html" rel="tag">Python</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/programming.html" rel="tag">Programming</a>
+			<a href="/tag/hardware.html" rel="tag">Hardware</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1027,763 +1027,49 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Merging-multiple-files-for-Analysis">Merging multiple files for Analysis<a class="anchor-link" href="#Merging-multiple-files-for-Analysis">&#182;</a></h1><p>In practice it's often the case that you will be presented with multiple data files that need to be merged together. Perhaps it's survey data that was collected on a monthly basis over a period of a year, or performance data that was collected from a number of locations. When it's only 4-5 files it's extremely easy to manually load all of them, concatenate them, and save the file out.</p>
-<p>But, what if it's not 10 files? What if it's 100? or 1000? What then?</p>
-<p>At the end of the day Python is interacting with your computer, so there are a number of ways to look inside folders. Contrary to what many would believe, but it's still possible to navigate a computer's directory without your mouse :) Let's start with a brief overview of the terminal/command prompt and some basic commands, then we'll switch over to python and leveraging the <strong>os</strong> package to do similar things.</p>
-<p><strong>A quick note:</strong> I'm working in a Linux operating system, so the terminal commands will work in Linux and Unix (i.e. Mac's), but will not work in Windows. You can still do the same thing, but the commands are slightly different. For example if I want to list the folders in a directory in linux I'd use <strong>ls</strong> in windows you will use <strong>dir</strong>. It's extremely easy to just Google ls in Windows, etc.</p>
-<h1 id="The-Terminal">The Terminal<a class="anchor-link" href="#The-Terminal">&#182;</a></h1><p>There are many reasons why knowing the terminal is valuable.</p>
-<ol>
-<li>It helps us wrap our head around the Python os package. </li>
-<li>If you ever move into the cloud to do your work, you will need to know how to use the terminal to get stuff done on the cloud machine. In most instances it doesn't make sense to set up an RDP (Remote Desktop) for cloud machines, so using the terminal is your new desktop. </li>
-</ol>
-<p>The terminal is what people used to use before OS GUIs were invented. It looked something like this back in the day :)</p>
-<p><img src="https://i.imgur.com/jiTi7OS.jpg" alt="img"></p>
-<p>The terminals always remind me of my favorite game when I was a little kid, Oregon Trail, which on my parent's computer ran straight out of DOS.</p>
-<p><img src="https://i.imgur.com/2Z7yAZb.jpg" alt="img"></p>
-<h2 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h2><p>Think about using the terminal in the same way you'd navigate your directory via GUI. If I have a folder with files in it and I double click on it I move into the new folder. That same methodology holds true for the terminal if you use the cd command.</p>
-<p>Important Commands:</p>
+<h1 id="Data-Science-on-a-Chromebook">Data Science on a Chromebook<a class="anchor-link" href="#Data-Science-on-a-Chromebook">&#182;</a></h1><p>I've brought up the idea of doing data science on a chromebook many times. Conceptually it seemed like it was possible, but to be honest I'd never really actually tried it. However, I bring this up as a potential option for cash-strapped students or people asking about easily portable computer options for doing data science work I immediately get laughed at or downvoted on reddit :)</p>
+<p>Well, I finally decided to give it a try and I bought a gently used Google Pixelbook for \$395. So, here I am all in at under \\$400. Let's give it a try.</p>
+<h1 id="Google-Pixelbook">Google Pixelbook<a class="anchor-link" href="#Google-Pixelbook">&#182;</a></h1><p><img src="https://i.imgur.com/RIr9WWX.jpg" alt="img"></p>
+<p>I wanted a Chromebook that could also function as a tablet if needed. I also wanted it to have 8GBs of RAM and at least 128GB of storage space. I quickly realized that most cheaper chromebooks had 4GB of RAM and 32-64GBs of storage. I found what looked to be perfect in the Google Pixelbook. It's original price was a bit expensive for a chromebook, but you could find gently used one's online for well under \$500. It's compact, light, and looks extremely sleak. Reminds me a bit of the Macbook Air at a fraction of the price :)</p>
+<p>Setting it up to practice Data Science. A lot of this has been done by others, so I won't re-hash it. I'll just walk through the main process and provide links.</p>
+<h2 id="1.-Setup-Linux">1. Setup Linux<a class="anchor-link" href="#1.-Setup-Linux">&#182;</a></h2><p>Many current chromebooks come with a beta version of Linux. The first thing you will want to do is enable that. <a href="https://support.google.com/pixelbook/answer/9031351?hl=en">Google</a> walks you through how to do it specifically for a Pixelbook and I'd imagine it's similar for other chromebooks.</p>
+<h2 id="2.-Download-Miniconda-or-Anaconda-and-move-it-from-the-downloads-folder-to-the-Linux-files-folder.">2. Download <a href="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh">Miniconda</a> or Anaconda and move it from the downloads folder to the Linux files folder.<a class="anchor-link" href="#2.-Download-Miniconda-or-Anaconda-and-move-it-from-the-downloads-folder-to-the-Linux-files-folder.">&#182;</a></h2><p><img src="https://d33wubrfki0l68.cloudfront.net/fae682bf1030dccf7c76a7ae2a0482f43ab2d094/8e5cc/img/pixelbook/linuxfiles.png" alt="img"></p>
+<h2 id="3.-Follow-these-instructions-to-install-Miniconda.">3. Follow <a href="https://alex.miller.im/posts/data-science-chromebook-pixelbook-jupyter-python-r/">these instructions</a> to install Miniconda.<a class="anchor-link" href="#3.-Follow-these-instructions-to-install-Miniconda.">&#182;</a></h2><p><img src="https://i.imgur.com/A98CDJ4.png" alt="img">
+<img src="https://i.imgur.com/Fb0w2QV.png" alt="img"></p>
+<p>I took a slightly different route and noticed that the sudo chown command wasn't allowing me access to miniconda. So instead what I did was saved it in my home directory. Then when I want to use anaconda what I need to do is navigate to the miniconda directory and type the following.</p>
 <ul>
-<li>cd (change directory)</li>
-<li>ls (list directory contents)</li>
-<li>mkdir (make a new directory)</li>
-<li>cp (cp a file from one directory to another)</li>
-<li>.. (allows you to move back directories)</li>
+<li>source bin/activate</li>
 </ul>
-<p>Here is an example of all of them at work</p>
-<p><img src="https://i.imgur.com/yne25iW.png" alt="img"></p>
-<p>so what did we do?</p>
+<p>Then this gives me access to a base miniconda environment that I then used to create my virtual environment. Which I did like this.</p>
+<p><img src="https://i.imgur.com/xHkq343.png" alt="img">
+<img src="https://i.imgur.com/BOMxnfr.png" alt="img"></p>
+<h2 id="4.-Install-Jupyter-Lab">4. Install Jupyter Lab<a class="anchor-link" href="#4.-Install-Jupyter-Lab">&#182;</a></h2><p><a href="https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html">Install jupyterlab by following these instructions</a></p>
+<h2 id="5.-Setup-an-instance-of-your-virtual-environment-in-Jupyter-Lab">5. Setup an instance of your virtual environment in Jupyter Lab<a class="anchor-link" href="#5.-Setup-an-instance-of-your-virtual-environment-in-Jupyter-Lab">&#182;</a></h2><p>Create your virtual environment in jupyterlab by <a href="https://anbasile.github.io/posts/2017-06-25-jupyter-venv/">following these instructions.</a></p>
+<h2 id="6.-Install-Numpy-and-Pandas">6. Install Numpy and Pandas<a class="anchor-link" href="#6.-Install-Numpy-and-Pandas">&#182;</a></h2><ul>
+<li>pip install numpy</li>
+<li>pip install pandas</li>
+</ul>
+<h2 id="7.-Launch-Jupyter-Lab">7. Launch Jupyter Lab<a class="anchor-link" href="#7.-Launch-Jupyter-Lab">&#182;</a></h2><p>Launch jupyter lab by typing <strong>jupyter lab</strong> into the terminal and you should see something like this.</p>
+<p><img src="https://i.imgur.com/hn9RVXY.png" alt="img"></p>
+<h2 id="8.-Get-to-work">8. Get to work<a class="anchor-link" href="#8.-Get-to-work">&#182;</a></h2><p>Now we can use numpy and pandas to do data science. Obviously we'll need more packages than that, but this will get us started.</p>
+<p><img src="https://i.imgur.com/jjt45vm.png" alt="img"></p>
+<h1 id="GPU-Access">GPU Access<a class="anchor-link" href="#GPU-Access">&#182;</a></h1><p>Inevitably whenever I mention using a chromebook for data science people bring up their need for GPU runtimes. I'm honestly surprised Macs are so popular in data science with as many people as I hear make this comment. AMD GPUs, which is what Mac's use don't support GPU acceleration, so you'd need to be using a Windows or Linux OS to take advantage of NVIDIA's CUDA library. But even if we ignore that fact GPUs are readily available for free or next to free.</p>
+<p>Here are 3 options.</p>
 <ol>
-<li>we changed directories to a folder on our desktop titled "test"</li>
-<li>we printed the working directory</li>
-<li>we made a folder titled "additional_folder"</li>
-<li>we listed the files in the working directory, which now include the <strong>additional_folder</strong> directory and a csv file</li>
-<li>we navigated to the <strong>additional_folder</strong> directory</li>
-<li>we used <strong>..</strong> to navigate back to the test directory</li>
-<li>we copied the <strong>test_data.csv</strong> file to the <strong>additional_folder</strong> directory</li>
-<li>we navigated to the <strong>additional_folder</strong> directory to confirm we had copied the file there. </li>
+<li>Take advantage of Google Colab or Kaggle's free kernels with GPU acceleration. I quickly spun up a free instance on Colab in my chromebook. You can tell this by looking at my torch device name. </li>
 </ol>
-<p>Pretty, easy, right?</p>
-<p>Now that we have a sense of how to navigate the computers' directories via the terminal let's move on to python and figure out how to do similar things within python.</p>
+<p><img src="https://i.imgur.com/9lD12W3.png" alt="img"></p>
+<ol>
+<li>Google Colab Pro. If you really feel like a free GPU that can be downgraded and may be shut off after a long time or a short amount of idle time will be a hindrance Google just announced a professional tier of colab for the amazing price of \$9.99/month. This gives you preferred access to the Tesla V100 GPUs and more memory, longer runtimes, etc. </li>
+</ol>
+<ol>
+<li>ssh into an AWS, Azure or, Google server with a GPU. The instructions to do this are a bit beyond the purpose of this article, but they are readily available and not very difficult at ll. </li>
+</ol>
+<p>Moral of the story, GPUs and compute power aren't an issue given the abundance of cheap cloud resources available.</p>
+<h1 id="Recap">Recap<a class="anchor-link" href="#Recap">&#182;</a></h1><p>It is possible to practice data science on an inexpensive chromebook. You don't need a \$1.5k machine although I will admit all that horsepower is enticing :)</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">listdir</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">join</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="OS">OS<a class="anchor-link" href="#OS">&#182;</a></h1><p>The <a href="https://docs.python.org/2/library/os.html">OS module</a> in python allows you to interact with your operating system within python. Why might this be important for loading multiple files? Because we will want to see every file that's in a working directory in order to identify which files to load.</p>
-<p>for this we will use the following os functions:</p>
-<ul>
-<li>listdir</li>
-<li>isfile</li>
-<li>join</li>
-</ul>
-<p>These are all extremely straightforward. Let's quickly look at them. We'll start by setting a path to start from.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mypath</span> <span class="o">=</span> <span class="s2">&quot;data/reviews/splits/&quot;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">listdir</span><span class="p">(</span><span class="n">mypath</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[3]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>215</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So we can see here that there are 215 files listed in this directory. Now let's use list comprehension and isfile and join to pull the names of all of the files out of the path into a list.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">onlyfiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">mypath</span><span class="p">)</span> <span class="k">if</span> <span class="n">isfile</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">mypath</span><span class="p">,</span> <span class="n">f</span><span class="p">))]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of files in the directory: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">onlyfiles</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;example of file names: &quot;</span><span class="p">,</span><span class="n">onlyfiles</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>number of files in the directory:  215
-example of file names:  [&#39;171_df.csv&#39;, &#39;133_df.csv&#39;, &#39;96_df.csv&#39;, &#39;188_df.csv&#39;, &#39;128_df.csv&#39;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We get 215 unique filenames like we see above and we can look at a few of the example file names.</p>
-<p>So in reality I just split several rather large dataframes into 215 smaller dataframes for this example, so I just named them based off of their number for simplicity.</p>
-<p>Now let's go ahead and load each of the 215 files. Because we know they are all dataframes we can just loop through the files and load them each as a pandas dataframe and then store each pandas dataframe in a list of dataframes.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_frames</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">onlyfiles</span><span class="p">:</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">mypath</span><span class="o">+</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">data_frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">data_frames</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[7]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>215</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We see here that we have 215 dataframes.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">data_frames</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>100</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Each of the 215 files is of length 100.</p>
-<p>Next step is to concatenate them into one large dataframe for analysis purposes and then reset the index for the potential of indexing at a later point.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">full_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">data_frames</span><span class="p">)</span>
-<span class="n">full_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">full_df</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[10]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>21456</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we have the separate files all in one dataframe, which is what we wanted. But we can assume that these files are randomly added, so let's assume we need to put them in some sort of order. How about based off of date of review?</p>
-<p>Let's ensure that the dates are actually of type datetime.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">full_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">full_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">full_df</span> <span class="o">=</span> <span class="n">full_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">full_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[14]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>level_0</th>
-      <th>index</th>
-      <th>date</th>
-      <th>employee_title</th>
-      <th>location</th>
-      <th>employee_status</th>
-      <th>review_title</th>
-      <th>years_at_company</th>
-      <th>helpful</th>
-      <th>pros</th>
-      <th>cons</th>
-      <th>advice_to_mgmt</th>
-      <th>rating_overall</th>
-      <th>rating_balance</th>
-      <th>rating_culture</th>
-      <th>rating_career</th>
-      <th>rating_comp</th>
-      <th>rating_mgmt</th>
-      <th>company</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>14496</th>
-      <td>96</td>
-      <td>1378</td>
-      <td>2008-07-22</td>
-      <td>Stock Clerk</td>
-      <td>Fairlawn, OH</td>
-      <td>Former Employee</td>
-      <td>Working at Giant Eagle is not that "Giant</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>flexible schedule, location, proximity from ho...</td>
-      <td>no respect for employees, minimum wages for a ...</td>
-      <td>When your employees quit their menial jobs, as...</td>
-      <td>2.0</td>
-      <td>3.0</td>
-      <td>2.5</td>
-      <td>2.5</td>
-      <td>2.5</td>
-      <td>NaN</td>
-      <td>geagle</td>
-    </tr>
-    <tr>
-      <th>14493</th>
-      <td>93</td>
-      <td>1375</td>
-      <td>2008-09-22</td>
-      <td>Stock Clerk</td>
-      <td>Pittsburgh, PA</td>
-      <td>Former Employee</td>
-      <td>good place to work</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>Very good scheduling and management. They will...</td>
-      <td>Sometime I felt like it was hard to work your ...</td>
-      <td>remember the little people</td>
-      <td>4.0</td>
-      <td>4.0</td>
-      <td>4.0</td>
-      <td>3.5</td>
-      <td>3.5</td>
-      <td>NaN</td>
-      <td>geagle</td>
-    </tr>
-    <tr>
-      <th>14495</th>
-      <td>95</td>
-      <td>1377</td>
-      <td>2008-09-24</td>
-      <td>Engineering Manager</td>
-      <td>Pittsburgh, PA</td>
-      <td>Current Employee</td>
-      <td>If it wasn't close to home, I wouldn't be here.</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>Local, privately held company. Big company, wi...</td>
-      <td>The leadership talks about the right things bu...</td>
-      <td>Live your values, stop talking about them. Fla...</td>
-      <td>2.0</td>
-      <td>4.0</td>
-      <td>2.0</td>
-      <td>2.5</td>
-      <td>2.0</td>
-      <td>NaN</td>
-      <td>geagle</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">full_df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[15]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>level_0</th>
-      <th>index</th>
-      <th>date</th>
-      <th>employee_title</th>
-      <th>location</th>
-      <th>employee_status</th>
-      <th>review_title</th>
-      <th>years_at_company</th>
-      <th>helpful</th>
-      <th>pros</th>
-      <th>cons</th>
-      <th>advice_to_mgmt</th>
-      <th>rating_overall</th>
-      <th>rating_balance</th>
-      <th>rating_culture</th>
-      <th>rating_career</th>
-      <th>rating_comp</th>
-      <th>rating_mgmt</th>
-      <th>company</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>18218</th>
-      <td>18</td>
-      <td>0</td>
-      <td>2019-01-26</td>
-      <td>Front End Team Leader</td>
-      <td>Youngstown, OH</td>
-      <td>Current Employee</td>
-      <td>9 Great Years of Employment!</td>
-      <td>More than 8 years</td>
-      <td>0</td>
-      <td>flexibility, ability to change careers at any ...</td>
-      <td>Too much of focus on wage/dollars % and not gu...</td>
-      <td>Ease off on the "special projects" and let sto...</td>
-      <td>4.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>4.0</td>
-      <td>4.0</td>
-      <td>3.0</td>
-      <td>geagle</td>
-    </tr>
-    <tr>
-      <th>7663</th>
-      <td>63</td>
-      <td>54</td>
-      <td>2019-01-26</td>
-      <td>Cashier</td>
-      <td>Jonesboro, GA</td>
-      <td>Former Employee</td>
-      <td>This isn't a real review I just wanted premium</td>
-      <td>Less than a year</td>
-      <td>0</td>
-      <td>The job is really easy to get</td>
-      <td>The pay isn't great and the work is extra</td>
-      <td>Do your job better mate</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>5.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>mcd</td>
-    </tr>
-    <tr>
-      <th>17949</th>
-      <td>49</td>
-      <td>2</td>
-      <td>2019-01-26</td>
-      <td>NaN</td>
-      <td>Madison, AL</td>
-      <td>Current Employee</td>
-      <td>Pharmacist</td>
-      <td>More than a year</td>
-      <td>0</td>
-      <td>Kroger offers a family like feel with benefits...</td>
-      <td>This is a VERY corporate company. There are so...</td>
-      <td>Reduce the number of emails sent out and make ...</td>
-      <td>5.0</td>
-      <td>3.0</td>
-      <td>4.0</td>
-      <td>4.0</td>
-      <td>5.0</td>
-      <td>2.0</td>
-      <td>kr</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">full_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[16]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>count                   21456
-unique                   1681
-top       2018-08-20 00:00:00
-freq                       87
-first     2008-07-22 00:00:00
-last      2019-01-26 00:00:00
-Name: date, dtype: object</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="How-did-I-separate-all-of-the-files?">How did I separate all of the files?<a class="anchor-link" href="#How-did-I-separate-all-of-the-files?">&#182;</a></h2><p>I had to think through the easiest way to do this because there wasn't something readily available online to separate the files. I figured I'd leave in my approach if there is ever a reason anyone would need to do this. I'd also be interested to see how others have done it, because I'm fairly certain this isn't the most efficient approach.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">223</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sub_frames</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">end</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
-    <span class="n">sub_frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">full_df</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">])</span>
-    <span class="n">start</span> <span class="o">+=</span><span class="mi">100</span>
-    <span class="n">end</span> <span class="o">+=</span><span class="mi">100</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sub_frames</span><span class="p">:</span>
-    <span class="n">i</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/reviews/splits/&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_df.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">index</span><span class="o">+=</span><span class="mi">1</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
  
 
@@ -1823,7 +1109,7 @@ Name: date, dtype: object</pre>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'Loading Multiple Files';
+    var disqus_title = 'Data Science on a Chromebook?';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

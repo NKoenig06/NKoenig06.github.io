@@ -59,9 +59,124 @@
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -140,12 +255,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -158,27 +281,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -374,7 +509,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -384,11 +521,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -636,6 +786,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -674,7 +827,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -796,6 +949,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -812,16 +969,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -837,6 +1002,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -887,8 +1057,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -920,24 +1097,29 @@ h6:hover .anchor-link {
   font-style: italic;
 }
 </style>
-<style type="text/css">.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
+<style type="text/css">pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gr { color: #E40000 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
@@ -950,15 +1132,15 @@ h6:hover .anchor-link {
 .highlight .kt { color: #B00040 } /* Keyword.Type */
 .highlight .m { color: #666666 } /* Literal.Number */
 .highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .na { color: #687822 } /* Name.Attribute */
 .highlight .nb { color: #008000 } /* Name.Builtin */
 .highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
 .highlight .no { color: #880000 } /* Name.Constant */
 .highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
 .highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nl { color: #767600 } /* Name.Label */
 .highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
 .highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .highlight .nv { color: #19177C } /* Name.Variable */
@@ -975,11 +1157,11 @@ h6:hover .anchor-link {
 .highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
 .highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
 .highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
@@ -988,47 +1170,8 @@ h6:hover .anchor-link {
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
-<style type="text/css">
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Multiple-Regression-in-Python-and-R">Multiple Regression in Python and R<a class="anchor-link" href="#Multiple-Regression-in-Python-and-R">&#182;</a></h1><p><img src="https://i.imgur.com/q7VTIg1.png" alt="regression"></p>
 
@@ -1036,8 +1179,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Linear-Regression-in-Python-Using-Statsmodels">Linear Regression in Python Using Statsmodels<a class="anchor-link" href="#Linear-Regression-in-Python-Using-Statsmodels">&#182;</a></h2><p>Let's Regression!!</p>
 <p>Isn't that what everybody says after their first day in grad methods?</p>
@@ -1047,8 +1189,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you will see from the output statsmodels was built with a lot of similarities between SPSS &amp; R's lm. One important thing to notice about statsmodels is by default it does not include a constant in the linear model, so you will need to add the constant to get the same results as you would get in SPSS or R.</p>
 
@@ -1056,8 +1197,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Importing-Packages">Importing Packages<a class="anchor-link" href="#Importing-Packages">&#182;</a></h2><p>Have to import our relevant packages</p>
 
@@ -1071,18 +1211,17 @@ h6:hover .anchor-link {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># dataframe library</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># linear algebra library</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span> <span class="c1"># stats library from scipy</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span> <span class="c1"># stats library from scipy</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span> <span class="c1"># importing statsmodels.api but giving it an alias, so you don&#39;t have to type statsmodels.api every time</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Does-data-matter?">Does data matter?<a class="anchor-link" href="#Does-data-matter?">&#182;</a></h1><p>I often get people from I/O or other social sciences telling me that they don't see how many of the publicly available datasets are applicable to them. In my opinion all datasets are equally valuable when it comes to learning exploration and data manipulation techniques and predictive algorithms. The data below is about housing, but you could just as easily replace the features about <strong>crime rate</strong> and <strong># of rooms</strong> with <strong>cognitive ability</strong> and <strong>extraversion</strong> and instead of predicting <strong>median house value</strong> you are predicting <strong>job performance</strong> The linear model works the exact same way.</p>
 
@@ -1090,8 +1229,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Load-the-data">Load the data<a class="anchor-link" href="#Load-the-data">&#182;</a></h3><p>This is the <a href="https://www.kaggle.com/c/boston-housing">Boston housing</a> training data. It's an easy way to build a straightforward regression model that is comparable across packages and languages.</p>
 
@@ -1106,7 +1244,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/train.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1119,7 +1257,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># shows top 5 by default by putting a number in the parantheses I can increase or decrease that amount</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1129,7 +1267,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -1272,8 +1410,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Here's-a-description-of-each-variable/feature-as-provided-by-the-link-above.">Here's a description of each variable/feature as provided by the link above.<a class="anchor-link" href="#Here's-a-description-of-each-variable/feature-as-provided-by-the-link-above.">&#182;</a></h3><h3 id="Data-description">Data description<a class="anchor-link" href="#Data-description">&#182;</a></h3><p><strong>The Boston data frame has 506 rows and 14 columns.</strong></p>
 <p>This data frame contains the following columns:</p>
@@ -1326,8 +1463,7 @@ median value of owner-occupied homes in $1000s.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's define our IVs and DV.</p>
 <ul>
@@ -1347,14 +1483,13 @@ median value of owner-occupied homes in $1000s.</p>
 <span class="n">y_sm</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;medv&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>Again, remember we assigned statsmodels an alias of sm, so we are going to add a constant to sm</li>
@@ -1373,14 +1508,13 @@ median value of owner-occupied homes in $1000s.</p>
 <span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y_sm</span><span class="p">,</span><span class="n">x_sm</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Let's-look-at-a-summary-of-the-model-output">Let's look at a summary of the model output<a class="anchor-link" href="#Let's-look-at-a-summary-of-the-model-output">&#182;</a></h2><p>As social scientists this has everything we need. We can look at the R-sqaure to understand how much of the variance in the DV the IVs explain. We can look at the IV coefficients and the significance of these coefficients.</p>
 
@@ -1395,7 +1529,7 @@ median value of owner-occupied homes in $1000s.</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1405,7 +1539,7 @@ median value of owner-occupied homes in $1000s.</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -1507,24 +1641,21 @@ median value of owner-occupied homes in $1000s.</p>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="You-can-see-we-get-F-statistic,-R-square,-adjusted-R-square,-coefficients,-and-p-values-of-each-coefficient-in-a-similar-output-to-SPSS-or-R.">You can see we get F-statistic, R-square, adjusted R-square, coefficients, and p-values of each coefficient in a similar output to SPSS or R.<a class="anchor-link" href="#You-can-see-we-get-F-statistic,-R-square,-adjusted-R-square,-coefficients,-and-p-values-of-each-coefficient-in-a-similar-output-to-SPSS-or-R.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="A-Regression-in-R">A Regression in R<a class="anchor-link" href="#A-Regression-in-R">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Quick note about running R in a Python notebook.</p>
 <ul>
@@ -1546,7 +1677,7 @@ median value of owner-occupied homes in $1000s.</p>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1560,22 +1691,20 @@ median value of owner-occupied homes in $1000s.</p>
 <span class="o">%</span><span class="k">load_ext</span> rpy2.ipython
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="First-thing-we-do-is-load-the-reader-library-and-the-data">First thing we do is load the reader library and the data<a class="anchor-link" href="#First-thing-we-do-is-load-the-reader-library-and-the-data">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>While running R code within a python notebook you need to use %%R at the top of every cell. <strong>Again this is not necessary if you are using an R kernel.</strong></p>
 
@@ -1587,19 +1716,18 @@ median value of owner-occupied homes in $1000s.</p>
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span>R 
-<span class="kn">library</span><span class="p">(</span>readr<span class="p">)</span>
-train <span class="o">&lt;-</span> read_csv<span class="p">(</span><span class="s">&#39;data/train.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">R</span> 
+<span class="nf">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">&lt;-</span> <span class="nf">read_csv</span><span class="p">(</span><span class="s">&#39;data/train.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Then-we-subset-the-data-to-include-the-same-variables-above">Then we subset the data to include the same variables above<a class="anchor-link" href="#Then-we-subset-the-data-to-include-the-same-variables-above">&#182;</a></h3>
 </div>
@@ -1610,18 +1738,17 @@ train <span class="o">&lt;-</span> read_csv<span class="p">(</span><span class="
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span>R
-X <span class="o">&lt;-</span> <span class="kp">subset</span><span class="p">(</span>train<span class="p">,</span> select <span class="o">=</span> <span class="o">-</span><span class="kt">c</span><span class="p">(</span>black<span class="p">,</span>ID<span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">R</span>
+<span class="n">X</span> <span class="o">&lt;-</span> <span class="nf">subset</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">select</span> <span class="o">=</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="n">black</span><span class="p">,</span><span class="n">ID</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Similar to python you assign the linear model function to model. In R you can tell the model specifically to use everything but the variable listed as the y. You then need to assign the data the lm function is using.</p>
 
@@ -1633,11 +1760,11 @@ X <span class="o">&lt;-</span> <span class="kp">subset</span><span class="p">(</
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span>R 
-model <span class="o">&lt;-</span> lm<span class="p">(</span>medv <span class="o">~</span><span class="m">.</span><span class="p">,</span> data<span class="o">=</span>X<span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">R</span> 
+<span class="n">model</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">medv</span> <span class="o">~</span><span class="n">.</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1647,11 +1774,11 @@ model <span class="o">&lt;-</span> lm<span class="p">(</span>medv <span class="o
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span>R
-<span class="kp">summary</span><span class="p">(</span>model<span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">R</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1661,7 +1788,7 @@ model <span class="o">&lt;-</span> lm<span class="p">(</span>medv <span class="o
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1707,16 +1834,14 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Similarly-we-have-the-F-statistic,R-square,-adjusted-R-square,-coefficients,-p-values,-etc.">Similarly we have the F-statistic,R-square, adjusted R-square, coefficients, p-values, etc.<a class="anchor-link" href="#Similarly-we-have-the-F-statistic,R-square,-adjusted-R-square,-coefficients,-p-values,-etc.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Machine-Learning">Machine Learning<a class="anchor-link" href="#Machine-Learning">&#182;</a></h1><p>So far we've been focused on replicating typical stats processes within python and R. However there is this entire field/buzzword/"all the cool kids are doing it" term called machine learning. There really isn't a difference, honestly. The main difference is the school of thought and the focus of the process. When it comes to <strong>statistics</strong> the focus is largely on interpretability and understanding. Examining the coefficient weights, importance of predictors, etc.</p>
 <p>When it comes to <strong>machine learning</strong> the focus is solely on prediction. They don't really care as much about understanding what is predicting, they care about the MSE or the R-square, whatever the metric of importance is.</p>
@@ -1734,14 +1859,13 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/train.csv&#39;</span><span class="p">)</span><span class="c1">## load the dataset</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Similar to statsmodels we need to add the constant.</p>
 <p>In Pandas if you assign a dataframe's column with a specific # it acts as adding a scalar.</p>
@@ -1758,7 +1882,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1768,7 +1892,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -1917,8 +2041,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you can see there is now an additional column called <strong>constant</strong> that is all 1s.</p>
 
@@ -1926,8 +2049,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>import the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">LinearRegression class</a> from sklearn package</p>
 
@@ -1939,10 +2061,10 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LinearRegression</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1956,14 +2078,13 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;medv&#39;</span><span class="p">]</span> <span class="c1"># assigning the median value as the DV as we did earlier</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>assigning the linear regression class to the variable model and then applying the .fit() method off of the model variable to the x and y variables and assigning that to the variable <strong>lr_model</strong></p>
 
@@ -1979,14 +2100,13 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 <span class="n">lr_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's look at the R-square, which is defined as the .score() method. Notice, even the language suggests that there is a competition to predict. <strong>Score</strong></p>
 
@@ -2001,7 +2121,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;R-square: &#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2011,7 +2131,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2025,8 +2145,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's look at the Intercept/Constant:</p>
 
@@ -2041,7 +2160,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Intercept/Constant: &#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">((</span><span class="n">lr_model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">),</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2051,7 +2170,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2065,8 +2184,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Finally, let's create a dataframe that shows zips the coefficients to their feature names, so we can examine the coefficients.</p>
 
@@ -2081,7 +2199,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span><span class="n">lr_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">,</span><span class="s1">&#39;estimated_Coefficients&#39;</span><span class="p">])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2091,7 +2209,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -2196,8 +2314,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="The-TLDR-Version">The TLDR Version<a class="anchor-link" href="#The-TLDR-Version">&#182;</a></h1>
 </div>
@@ -2218,7 +2335,7 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2228,16 +2345,16 @@ F-statistic: 70.07 on 12 and 320 DF,  p-value: &lt; 2.2e-16
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span>R
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">R</span>
 <span class="c1">#R</span>
-<span class="kn">library</span><span class="p">(</span>readr<span class="p">)</span>
-train <span class="o">&lt;-</span> read_csv<span class="p">(</span><span class="s">&#39;data/train.csv&#39;</span><span class="p">)</span>
-X <span class="o">&lt;-</span> <span class="kp">subset</span><span class="p">(</span>train<span class="p">,</span> select <span class="o">=</span> <span class="o">-</span><span class="kt">c</span><span class="p">(</span>black<span class="p">,</span>ID<span class="p">))</span>
-model <span class="o">&lt;-</span> lm<span class="p">(</span>medv <span class="o">~</span><span class="m">.</span><span class="p">,</span> data<span class="o">=</span>X<span class="p">)</span>
-<span class="kp">summary</span><span class="p">(</span>model<span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">&lt;-</span> <span class="nf">read_csv</span><span class="p">(</span><span class="s">&#39;data/train.csv&#39;</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">&lt;-</span> <span class="nf">subset</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">select</span> <span class="o">=</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="n">black</span><span class="p">,</span><span class="n">ID</span><span class="p">))</span>
+<span class="n">model</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">medv</span> <span class="o">~</span><span class="n">.</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2248,7 +2365,7 @@ model <span class="o">&lt;-</span> lm<span class="p">(</span>medv <span class="o
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#scikitlearn</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/train.csv&#39;</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="s1">&#39;medv&#39;</span><span class="p">])</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;medv&#39;</span><span class="p">]</span>
@@ -2259,22 +2376,20 @@ model <span class="o">&lt;-</span> lm<span class="p">(</span>medv <span class="o
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span><span class="n">lr_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">,</span><span class="s1">&#39;estimated_Coefficients&#39;</span><span class="p">])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="So-as-you-can-see-there-are-several-ways-to-do-the-same-thing.-All-of-which-are-fewer-lines-of-code-than-SPSS!!!">So as you can see there are several ways to do the same thing. All of which are fewer lines of code than SPSS!!!<a class="anchor-link" href="#So-as-you-can-see-there-are-several-ways-to-do-the-same-thing.-All-of-which-are-fewer-lines-of-code-than-SPSS!!!">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Links to documentation:</p>
 <ul>
@@ -2285,6 +2400,19 @@ model <span class="o">&lt;-</span> lm<span class="p">(</span>medv <span class="o
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
  
 

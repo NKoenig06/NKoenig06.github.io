@@ -56,9 +56,124 @@
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -137,12 +252,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -155,27 +278,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -371,7 +506,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -381,11 +518,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -633,6 +783,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -671,7 +824,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -793,6 +946,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -809,16 +966,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -834,6 +999,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -884,8 +1054,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -917,24 +1094,29 @@ h6:hover .anchor-link {
   font-style: italic;
 }
 </style>
-<style type="text/css">.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
+<style type="text/css">pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gr { color: #E40000 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
@@ -947,15 +1129,15 @@ h6:hover .anchor-link {
 .highlight .kt { color: #B00040 } /* Keyword.Type */
 .highlight .m { color: #666666 } /* Literal.Number */
 .highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .na { color: #687822 } /* Name.Attribute */
 .highlight .nb { color: #008000 } /* Name.Builtin */
 .highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
 .highlight .no { color: #880000 } /* Name.Constant */
 .highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
 .highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nl { color: #767600 } /* Name.Label */
 .highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
 .highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .highlight .nv { color: #19177C } /* Name.Variable */
@@ -972,11 +1154,11 @@ h6:hover .anchor-link {
 .highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
 .highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
 .highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
@@ -985,55 +1167,15 @@ h6:hover .anchor-link {
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
-<style type="text/css">
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Predicting-Job-Performance">Predicting Job Performance<a class="anchor-link" href="#Predicting-Job-Performance">&#182;</a></h1><h3 id="Using-Baseball-Data">Using Baseball Data<a class="anchor-link" href="#Using-Baseball-Data">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="https://i.imgur.com/D1mIWTk.jpg" alt="Imgur"></p>
 
@@ -1041,8 +1183,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As I/O Psychologists one of our main functions is to predict job performance. Often we are in search of what job performance means and it means different things for different roles, but often we can get at a decent understanding of what behaviors and competencies differentiate good and poor performers. Our goal is to then use available data to predict whether or not the employee/candidate will be a good performer or a bad performer.</p>
 <p>We can look at the game of baseball as a microcosm for this. A hit is good and an out is bad. For simplicity sake we will treat all hits as equal (single, double, triple, homerun) and an out from a ball in play is bad.</p>
@@ -1062,7 +1203,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#!pip install pybaseball</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1072,7 +1213,7 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pybaseball</span> <span class="k">import</span> <span class="n">statcast</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pybaseball</span> <span class="kn">import</span> <span class="n">statcast</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
@@ -1080,14 +1221,13 @@ h6:hover .anchor-link {
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>After that let's download the 2019 seasons data. Pybaseball, makes downloading the statcast data about as easy as possible. You can look at <a href="https://baseballsavant.mlb.com/csv-docs">this</a> to get an idea of the variables/features available. These are the variables I thought might be useful:</p>
 <ul>
@@ -1117,7 +1257,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hitter_stats</span> <span class="o">=</span> <span class="n">statcast</span><span class="p">(</span><span class="s1">&#39;2019-03-31&#39;</span><span class="p">,</span><span class="s1">&#39;2019-10-04&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1127,7 +1267,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -1173,8 +1313,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's first take a look at the data we have.</p>
 
@@ -1189,7 +1328,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">hitter_stats</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1199,7 +1338,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -1222,7 +1361,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">hitter_stats</span><span class="p">[</span><span class="s1">&#39;player_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1232,7 +1371,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[151]:</div>
+    <div class="prompt output_prompt">Out[151]:</div>
 
 
 
@@ -1248,8 +1387,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So there are over 723k pitches thrown in the 2019 season by 829 different pitchers.</p>
 <p>Let's look at a few pitchers. I'm a Cardinals fan, so let's look at a few of the Cardinals young arms.</p>
@@ -1270,7 +1408,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 <span class="n">jordan_h</span> <span class="o">=</span> <span class="n">hitter_stats</span><span class="p">[</span><span class="n">hitter_stats</span><span class="p">[</span><span class="s1">&#39;player_name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Jordan Hicks&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1283,7 +1421,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">jack_f</span><span class="p">[</span><span class="n">jack_f</span><span class="p">[</span><span class="s1">&#39;pitch_type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;FF&#39;</span><span class="p">][</span><span class="s1">&#39;pfx_x&#39;</span><span class="p">],</span><span class="n">jack_f</span><span class="p">[</span><span class="n">jack_f</span><span class="p">[</span><span class="s1">&#39;pitch_type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;FF&#39;</span><span class="p">][</span><span class="s1">&#39;pfx_z&#39;</span><span class="p">])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1293,7 +1431,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -1306,7 +1444,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1331,7 +1469,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">jordan_h</span><span class="p">[</span><span class="n">jordan_h</span><span class="p">[</span><span class="s1">&#39;pitch_type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;SI&#39;</span><span class="p">][</span><span class="s1">&#39;pfx_x&#39;</span><span class="p">],</span><span class="n">jordan_h</span><span class="p">[</span><span class="n">jordan_h</span><span class="p">[</span><span class="s1">&#39;pitch_type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;SI&#39;</span><span class="p">][</span><span class="s1">&#39;pfx_z&#39;</span><span class="p">])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1341,7 +1479,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -1354,7 +1492,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1372,8 +1510,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Above are two scatterplots of the horizontal (X) and vertical (Z) movement of two different pitchers' pitches. The first is Jack Flaherty's fastball. You can see some horizontal movement averaging around -0.5 and some vertical movement averaging around 1.2. Contrast that with Jordan Hicks' sinker. He actually has a lot of horizontal movement averaging around -1.3, but has less vertical movement averaging around 0.9, which is pretty interesting because one is a fastball and the other is a sinker. Hicks' movement at 100+MPH has been discussed a lot.</p>
 <p>Here is a link to <a href="https://twitter.com/PitchingNinja/status/1123048728967954433">Jordan Hicks' sinker in action</a></p>
@@ -1383,8 +1520,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Predicting-hits">Predicting hits<a class="anchor-link" href="#Predicting-hits">&#182;</a></h3><p>Now let's go ahead and focus on the hitter statistics because after all our goal is to predict whether or not a ball put in play will be a hit.</p>
 <p>Let's select those features along with the type and the event. The type is whether it was a hit or not and the event is the result of the ball strike.</p>
@@ -1401,14 +1537,13 @@ Completed sub-query from 2019-10-03 to 2019-10-04
     <span class="s1">&#39;stand&#39;</span><span class="p">,</span><span class="s1">&#39;hit_location&#39;</span><span class="p">,</span><span class="s1">&#39;p_throws&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;events&#39;</span><span class="p">]]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now we only want the balls in play, so let's subset the dataset to only have the balls in play.</p>
 
@@ -1423,14 +1558,13 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">in_play</span> <span class="o">=</span> <span class="n">hit</span><span class="p">[</span><span class="n">hit</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;X&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next we want to ensure our label or outcome variable is accurate. Right now this is what event contains.</p>
 
@@ -1445,7 +1579,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">in_play</span><span class="p">[</span><span class="s1">&#39;events&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1455,7 +1589,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -1475,8 +1609,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see that while all of these are balls in play, there are singles, doubles, homeruns, along with fielders choice, errors, and sacrifices. So let's recode these to be hits or outs.</p>
 
@@ -1491,14 +1624,13 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">in_play</span><span class="p">[</span><span class="s1">&#39;hit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">in_play</span><span class="p">[</span><span class="s1">&#39;events&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span><span class="p">(</span><span class="s1">&#39;single&#39;</span><span class="p">,</span><span class="s1">&#39;double&#39;</span><span class="p">,</span><span class="s1">&#39;home_run&#39;</span><span class="p">,</span><span class="s1">&#39;triple&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>How many balls were put in play in 2019?</p>
 
@@ -1513,7 +1645,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">in_play</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1523,7 +1655,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -1539,8 +1671,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>What was the hardest ball put in play in 2019? The weakest?</p>
 
@@ -1556,7 +1687,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;softest hit ball: &#39;</span><span class="p">,</span><span class="n">in_play</span><span class="p">[</span><span class="s1">&#39;launch_speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1566,7 +1697,7 @@ Completed sub-query from 2019-10-03 to 2019-10-04
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -1581,8 +1712,7 @@ softest hit ball:  7.6
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>What would be our guess for with regards to which, if either of these were a hit? My initial hypothesis is that the soft one was not a hit, the hard one is likely to be a hit, but it could have been a line drive right at someone.</p>
 
@@ -1597,7 +1727,7 @@ softest hit ball:  7.6
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">in_play</span><span class="p">[</span><span class="n">in_play</span><span class="p">[</span><span class="s1">&#39;launch_speed&#39;</span><span class="p">]</span><span class="o">==</span> <span class="mf">118.9</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1607,7 +1737,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -1700,7 +1830,7 @@ softest hit ball:  7.6
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">in_play</span><span class="p">[</span><span class="n">in_play</span><span class="p">[</span><span class="s1">&#39;launch_speed&#39;</span><span class="p">]</span><span class="o">==</span> <span class="mf">7.6</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1710,7 +1840,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -1779,8 +1909,7 @@ softest hit ball:  7.6
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>so there were actually two balls hit at 118.9 and both were hits. The ball hit at 7.6 MPH was not a hit. The two batters that hit the ball 118.9 MPH...Giancarlo Stanton and Vlady Guerrero Jr. Honestly no surprises there. The 7.6 MPH was hit by Willi Castro, a shortstop for the Detroit Tigers.</p>
 
@@ -1788,8 +1917,7 @@ softest hit ball:  7.6
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Cleaning-Data-for-input-into-the-model">Cleaning Data for input into the model<a class="anchor-link" href="#Cleaning-Data-for-input-into-the-model">&#182;</a></h2><ul>
 <li>Recodes</li>
@@ -1812,7 +1940,7 @@ softest hit ball:  7.6
 <span class="n">in_play</span><span class="p">[</span><span class="s1">&#39;right_handed_pitcher&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">in_play</span><span class="p">[</span><span class="s1">&#39;p_throws&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span><span class="s2">&quot;R&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1826,7 +1954,7 @@ softest hit ball:  7.6
 <span class="n">in_play_new</span> <span class="o">=</span> <span class="n">in_play</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;if_fielding_alignment&#39;</span><span class="p">,</span><span class="s1">&#39;of_fielding_alignment&#39;</span><span class="p">,</span><span class="s1">&#39;home_team&#39;</span><span class="p">,</span><span class="s1">&#39;stand&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;events&#39;</span><span class="p">,</span><span class="s1">&#39;p_throws&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1839,7 +1967,7 @@ softest hit ball:  7.6
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">in_play_new</span><span class="p">[</span><span class="s1">&#39;hit_location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1849,7 +1977,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -1872,7 +2000,7 @@ softest hit ball:  7.6
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">in_play_new</span><span class="p">[</span><span class="s1">&#39;hit_location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1882,7 +2010,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -1898,8 +2026,7 @@ softest hit ball:  7.6
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>we can see here that a certain % of hit locations have a np.nan. After some quick digging I identified these as homeruns. So we can re-code these as hit location 10, but in reality we can clearly see how this is cheating at this point because now we know that every ball with a hit location of 10 is a hit (perfect signal). But let's still use it for the time being.</p>
 
@@ -1914,7 +2041,7 @@ softest hit ball:  7.6
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">in_play_new</span><span class="p">[</span><span class="s1">&#39;hit_location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1930,7 +2057,7 @@ softest hit ball:  7.6
 <span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">in_play_new</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">in_play</span><span class="p">[</span><span class="s1">&#39;home_team&#39;</span><span class="p">])],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1944,7 +2071,7 @@ softest hit ball:  7.6
 <span class="n">train</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1958,7 +2085,7 @@ softest hit ball:  7.6
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;hit&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1971,7 +2098,7 @@ softest hit ball:  7.6
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1981,7 +2108,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[87]:</div>
+    <div class="prompt output_prompt">Out[87]:</div>
 
 
 
@@ -1997,8 +2124,7 @@ softest hit ball:  7.6
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is interesting, because at first the .334 batting average seems a bit high, but in reality it's the batting average only for balls that were put in play. So we now know that by predicting an out every time we'd have a classification model that is 66.6% accurate.</p>
 <h2 id="Area-Under-the-Curve">Area Under the Curve<a class="anchor-link" href="#Area-Under-the-Curve">&#182;</a></h2><p><a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5">This</a> is a good introduction to area under the curve, but basically when evaluating model performance, when the target is imbalanced, accuracy can often times be less important than the order of the probabilities assigned.</p>
@@ -2016,14 +2142,14 @@ softest hit ball:  7.6
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># cross-validate basic Logistic Regression model to get a baseline AUC</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">cross_val_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="n">lr_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(),</span>
 <span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Logistic Regression cross-validated mean AUC: &quot;</span><span class="p">,</span><span class="n">lr_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2033,7 +2159,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2047,8 +2173,7 @@ softest hit ball:  7.6
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So, we have a baseline area under the cruve of 0.883. That's a pretty good start, but remember we almost certainly have perfect signal from the balls that were hit to "fielder 10".</p>
 
@@ -2056,8 +2181,7 @@ softest hit ball:  7.6
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="K-Nearest-Neigbors">K-Nearest Neigbors<a class="anchor-link" href="#K-Nearest-Neigbors">&#182;</a></h2><p>K-Nearest Neigbors is another algorithm that may be useful. It uses Euclidean Distance and a set of neigbors (nearest data points) to label a target. The basic premise is that if the features are similar to features we know were a hit then it's likely to be a hit, etc. For more specifics on the KNN algorithm check out this <a href="https://machinelearningmastery.com/k-nearest-neighbors-for-machine-learning/">article</a>. It makes sense that balls in play most like other balls in play will have a similar result, but the problem is identifying the ideal number of neighbors. Let's write a for loop to identify this.</p>
 
@@ -2072,7 +2196,7 @@ softest hit ball:  7.6
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">neighbors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2089,7 +2213,7 @@ softest hit ball:  7.6
     <span class="n">cv_means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">knn_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2102,7 +2226,7 @@ softest hit ball:  7.6
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">cv_means</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2112,7 +2236,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[58]:</div>
+    <div class="prompt output_prompt">Out[58]:</div>
 
 
 
@@ -2128,8 +2252,7 @@ softest hit ball:  7.6
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see here that the argmax for the knn, i.e. the largest value in the array is at position # 32. We can index to position 32 to find out what knn value that is by doing the following.</p>
 
@@ -2144,7 +2267,7 @@ softest hit ball:  7.6
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">neighbors</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2154,7 +2277,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[62]:</div>
+    <div class="prompt output_prompt">Out[62]:</div>
 
 
 
@@ -2170,8 +2293,7 @@ softest hit ball:  7.6
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>so we can see that 66 neighbors was ideal in the cross-validation dataset, so let's go ahead and use that.</p>
 
@@ -2183,13 +2305,13 @@ softest hit ball:  7.6
 <div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">KNeighborsClassifier</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
 <span class="n">knn_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">66</span><span class="p">),</span>
 <span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;K-Nearest Neighbors cross-validated mean AUC: &quot;</span><span class="p">,</span><span class="n">knn_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2199,7 +2321,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2213,8 +2335,7 @@ softest hit ball:  7.6
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>An AUC of 0.96113 is pretty impressive for such a simple algorithm, but now it's time to bring in the big boys. Random Forests and Gradient Boosted Trees.</p>
 <h2 id="Random-Forests">Random Forests<a class="anchor-link" href="#Random-Forests">&#182;</a></h2><p><img src="https://i.imgur.com/ib25WBR.png" alt="img"></p>
@@ -2230,13 +2351,13 @@ softest hit ball:  7.6
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># cross-validate basic Random Forest model to get an AUC</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 <span class="n">rf_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">(),</span>
 <span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Random Forest cross-validated mean AUC: &quot;</span><span class="p">,</span><span class="n">rf_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2246,7 +2367,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2260,8 +2381,7 @@ softest hit ball:  7.6
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="XGBoosts-implementation-of-Gradient-Boosted-Trees">XGBoosts implementation of Gradient Boosted Trees<a class="anchor-link" href="#XGBoosts-implementation-of-Gradient-Boosted-Trees">&#182;</a></h2><p>The final algorithm we will try is typically considered the most powerful. Unlike random forests which randomly develops trees via bagging, gradient boosting takes a purposeful approach and focuses on improving the <strong>weak learners</strong> or the trees that are performing relatively poorly. By doing this it boosts the overall success of the combination of trees at the end. For more specifics I refer you to <a href="https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/">this article</a>.</p>
 <p>We will actually not be using sklearn for the gradient boosting algorithm (although I have heard that the most recent version of sklearn does have a gradient boosting algorithm on par with XGboost and LightGBM. For this we will focus on <a href="https://xgboost.readthedocs.io/en/latest/python/python_intro.html">XGBoost</a>. Luckily for us the developers built the API to reflect the sklearn implementation, which makes it almost exactly the same.</p>
@@ -2275,13 +2395,13 @@ softest hit ball:  7.6
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># cross-validate basic XGBoost model to get an AUC</span>
-<span class="kn">from</span> <span class="nn">xgboost</span> <span class="k">import</span> <span class="n">XGBClassifier</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
 <span class="n">xgb_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">XGBClassifier</span><span class="p">(),</span>
 <span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;XGBoost cross-validated mean AUC: &quot;</span><span class="p">,</span><span class="n">xgb_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2291,7 +2411,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2305,8 +2425,7 @@ softest hit ball:  7.6
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="WOW!!">WOW!!<a class="anchor-link" href="#WOW!!">&#182;</a></h4><p>Nearest Neigbors outperformed both XGBoost and Random Forests. Let's go ahead and run XGBoost and Nearest Neigbors ina train/test split.</p>
 <p>Let's use a 65/35 split.</p>
@@ -2319,12 +2438,12 @@ softest hit ball:  7.6
 <div class="prompt input_prompt">In&nbsp;[134]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">test_size</span><span class="o">=.</span><span class="mi">35</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">.35</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
 <span class="nb">print</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span><span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2334,7 +2453,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2348,8 +2467,7 @@ softest hit ball:  7.6
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="K-Nearest-Neigbors">K-Nearest Neigbors<a class="anchor-link" href="#K-Nearest-Neigbors">&#182;</a></h2>
 </div>
@@ -2360,8 +2478,8 @@ softest hit ball:  7.6
 <div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">roc_auc_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 
 <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">66</span><span class="p">)</span>
 <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -2374,7 +2492,7 @@ softest hit ball:  7.6
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;K-Nearest Neigbors AUC:&#39;</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">knn_proba_2</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2384,7 +2502,7 @@ softest hit ball:  7.6
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2403,11 +2521,11 @@ K-Nearest Neigbors AUC: 0.9610448809740594
 <div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">classification_report</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">knn_pred</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2417,7 +2535,7 @@ K-Nearest Neigbors AUC: 0.9610448809740594
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2437,8 +2555,7 @@ avg / total       0.91      0.91      0.91     43336
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="XGBoost">XGBoost<a class="anchor-link" href="#XGBoost">&#182;</a></h2>
 </div>
@@ -2449,9 +2566,9 @@ avg / total       0.91      0.91      0.91     43336
 <div class="prompt input_prompt">In&nbsp;[70]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">roc_auc_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span>
-<span class="kn">from</span> <span class="nn">xgboost</span> <span class="k">import</span> <span class="n">XGBClassifier</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
 
 <span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">()</span>
 <span class="n">xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -2464,7 +2581,7 @@ avg / total       0.91      0.91      0.91     43336
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;XGBoost AUC:&#39;</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">xgb_proba_2</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2474,7 +2591,7 @@ avg / total       0.91      0.91      0.91     43336
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2493,11 +2610,11 @@ XGBoost AUC: 0.9608995982830845
 <div class="prompt input_prompt">In&nbsp;[71]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">classification_report</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">xgb_pred</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2507,7 +2624,7 @@ XGBoost AUC: 0.9608995982830845
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2527,8 +2644,7 @@ avg / total       0.92      0.92      0.92     43336
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So you can see that while K-Nearest Neighbors has a slightly higher AUC, XGBoost outperforms it when it comes to accuracy, but both are very good and drastically outperform logistic regression. One final thing we can do is a randomized grid search for xgboost. We tuned the hyper parameter for knn, by identifying the ideal # of nearest neigbors, but so far we're using XGBoost's default settings. Can we get a little more accuracy and AUC by picking ideal hypers?</p>
 <p>Let's give it a try.</p>
@@ -2541,12 +2657,12 @@ avg / total       0.92      0.92      0.92     43336
 <div class="prompt input_prompt">In&nbsp;[74]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">randint</span> <span class="k">as</span> <span class="n">sp_randint</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">time</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">RandomizedSearchCV</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">randint</span> <span class="k">as</span> <span class="n">sp_randint</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RandomizedSearchCV</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2569,7 +2685,7 @@ avg / total       0.92      0.92      0.92     43336
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2581,7 +2697,7 @@ avg / total       0.92      0.92      0.92     43336
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># specify parameters and distributions to sample from</span>
 <span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">param_dist</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">.</span><span class="mi">01</span><span class="p">,</span><span class="o">.</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">),</span>
+<span class="n">param_dist</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">.01</span><span class="p">,</span><span class="mf">.15</span><span class="p">,</span><span class="mi">15</span><span class="p">),</span>
               <span class="s1">&#39;min_child_weight&#39;</span><span class="p">:</span> <span class="n">sp_randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span>
               <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="n">sp_randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
               <span class="s2">&quot;reg_lambda&quot;</span><span class="p">:[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
@@ -2589,7 +2705,7 @@ avg / total       0.92      0.92      0.92     43336
               <span class="s2">&quot;n_estimators&quot;</span><span class="p">:[</span><span class="mi">250</span><span class="p">,</span><span class="mi">500</span><span class="p">]}</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2605,7 +2721,7 @@ avg / total       0.92      0.92      0.92     43336
                                    <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter_search</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2622,14 +2738,13 @@ avg / total       0.92      0.92      0.92     43336
 <span class="n">report</span><span class="p">(</span><span class="n">random_search</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="https://i.imgur.com/3xGvvvB.png" alt="img"></p>
 
@@ -2637,8 +2752,7 @@ avg / total       0.92      0.92      0.92     43336
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The results of the grid search show us that the validation score of the randomized cross validation was 0.975</p>
 
@@ -2650,9 +2764,9 @@ avg / total       0.92      0.92      0.92     43336
 <div class="prompt input_prompt">In&nbsp;[92]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">roc_auc_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span>
-<span class="kn">from</span> <span class="nn">xgboost</span> <span class="k">import</span> <span class="n">XGBClassifier</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
 
 <span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.0799999999</span><span class="p">,</span><span class="n">min_child_weight</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">reg_alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">reg_lambda</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
 <span class="n">xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -2665,7 +2779,7 @@ avg / total       0.92      0.92      0.92     43336
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;XGBoost AUC:&#39;</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">xgb_proba_2</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2675,7 +2789,7 @@ avg / total       0.92      0.92      0.92     43336
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2694,11 +2808,11 @@ XGBoost AUC: 0.9752752321835964
 <div class="prompt input_prompt">In&nbsp;[93]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">classification_report</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">xgb_pred</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2708,7 +2822,7 @@ XGBoost AUC: 0.9752752321835964
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2728,8 +2842,7 @@ avg / total       0.94      0.94      0.94     43336
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So, we achieved a similar AUC on our holdout sample using the hyperparameters obtained from the grid search and we got our accuracy up to almost 94%. Let's take a look at which features were deemed most important.</p>
 
@@ -2746,12 +2859,12 @@ avg / total       0.94      0.94      0.94     43336
     <span class="n">feats</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">=</span> <span class="n">importance</span> <span class="c1">#add the name/value pair </span>
 
 <span class="n">importances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Gini-importance&#39;</span><span class="p">})</span>
-<span class="kn">from</span> <span class="nn">pylab</span> <span class="k">import</span> <span class="n">rcParams</span>
+<span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="n">rcParams</span>
 <span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span>
 <span class="n">figure</span> <span class="o">=</span> <span class="n">importances</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Gini-importance&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">15</span><span class="p">:,:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2761,7 +2874,7 @@ avg / total       0.94      0.94      0.94     43336
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -2779,8 +2892,7 @@ avg / total       0.94      0.94      0.94     43336
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So we can see that by far the most important feature is hit location, which makes a ton of sense because I recoded a hit location of 10 to be homeruns and balls first touched by outfielders are much more likely to be hits than balls first touched by infielders. Let's go ahead and remove that feature and the hc_y feature as it shows how far the ball was actually hit. Then let's create a feature which shows whether or not the batter/pitcher matchup was same or different as evidence typically shows hitters can see the ball for slightly longer if the pitcher is coming across their body, which tends to favor opposite hand matchups.</p>
 
@@ -2795,7 +2907,7 @@ avg / total       0.94      0.94      0.94     43336
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;hit_location&#39;</span><span class="p">,</span><span class="s1">&#39;hc_y&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2809,7 +2921,7 @@ avg / total       0.94      0.94      0.94     43336
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;hit&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2822,7 +2934,7 @@ avg / total       0.94      0.94      0.94     43336
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x_train</span><span class="p">[</span><span class="s1">&#39;opp_matchup&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">==</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;right_handed_pitcher&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="mi">1</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2832,12 +2944,12 @@ avg / total       0.94      0.94      0.94     43336
 <div class="prompt input_prompt">In&nbsp;[121]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">test_size</span><span class="o">=.</span><span class="mi">35</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">.35</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
 <span class="nb">print</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span><span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2847,7 +2959,7 @@ avg / total       0.94      0.94      0.94     43336
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2865,9 +2977,9 @@ avg / total       0.94      0.94      0.94     43336
 <div class="prompt input_prompt">In&nbsp;[122]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">roc_auc_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span>
-<span class="kn">from</span> <span class="nn">xgboost</span> <span class="k">import</span> <span class="n">XGBClassifier</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
 
 <span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">()</span>
 <span class="n">xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -2880,7 +2992,7 @@ avg / total       0.94      0.94      0.94     43336
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;XGBoost AUC:&#39;</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">xgb_proba_2</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2890,7 +3002,7 @@ avg / total       0.94      0.94      0.94     43336
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2905,8 +3017,7 @@ XGBoost AUC: 0.9136241972410872
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see that we lost a fair amount of both accuracy and AUC by removing hit location and the y-coordinate indicating how far the ball traveled.</p>
 <p>Let's redo our grid search with the new smaller model.</p>
@@ -2926,14 +3037,13 @@ XGBoost AUC: 0.9136241972410872
 <span class="n">report</span><span class="p">(</span><span class="n">random_search</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="https://i.imgur.com/gAmtsj2.png" alt="img"></p>
 
@@ -2945,9 +3055,9 @@ XGBoost AUC: 0.9136241972410872
 <div class="prompt input_prompt">In&nbsp;[135]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">roc_auc_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span>
-<span class="kn">from</span> <span class="nn">xgboost</span> <span class="k">import</span> <span class="n">XGBClassifier</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
 
 <span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">min_child_weight</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span><span class="n">reg_alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">reg_lambda</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -2960,7 +3070,7 @@ XGBoost AUC: 0.9136241972410872
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;XGBoost AUC:&#39;</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">xgb_proba_2</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2970,7 +3080,7 @@ XGBoost AUC: 0.9136241972410872
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2985,8 +3095,7 @@ XGBoost AUC: 0.9403944619477198
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The amount of lift we got from the grid search is actually pretty surprising to me. We had about a 3% lift in both accuracy and AUC. Let's look at the feature importance now.</p>
 
@@ -3003,12 +3112,12 @@ XGBoost AUC: 0.9403944619477198
     <span class="n">feats</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">=</span> <span class="n">importance</span> <span class="c1">#add the name/value pair </span>
 
 <span class="n">importances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Gini-importance&#39;</span><span class="p">})</span>
-<span class="kn">from</span> <span class="nn">pylab</span> <span class="k">import</span> <span class="n">rcParams</span>
+<span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="n">rcParams</span>
 <span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span>
 <span class="n">figure</span> <span class="o">=</span> <span class="n">importances</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Gini-importance&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:,:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -3018,7 +3127,7 @@ XGBoost AUC: 0.9403944619477198
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -3036,8 +3145,7 @@ XGBoost AUC: 0.9403944619477198
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Our final feature importance graph indicates that launch angle and launch speed are the most important features. This is exactly what the MLB teams have found <a href="https://www.washingtonpost.com/graphics/sports/mlb-launch-angles-story/?utm_term=.6bc0b872ac59">as well</a></p>
 <p><img src="https://i.imgur.com/SKONHYs.gif" alt="img"></p>
@@ -3060,7 +3168,7 @@ XGBoost AUC: 0.9403944619477198
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Saint Louis batting average of balls in play:&#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">in_play</span><span class="p">[</span><span class="n">in_play</span><span class="p">[</span><span class="s1">&#39;home_team&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;STL&#39;</span><span class="p">][</span><span class="s1">&#39;hit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -3070,7 +3178,7 @@ XGBoost AUC: 0.9403944619477198
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -3085,8 +3193,7 @@ Saint Louis batting average of balls in play: 0.311
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There's a pretty dramatic difference there.</p>
 <p>So what have we done? We've used machine learning models to predict job performance in the game of baseball. Our original model which included the hit location and the y-coordinate for how far the ball was hit allowed us to achieve almost 94% accuracy and an area under the curve of almost 98% on determining whether a ball in play was a hit or an out across the entire 2019 MLB season.</p>
@@ -3100,6 +3207,19 @@ Saint Louis batting average of balls in play: 0.311
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
  
 

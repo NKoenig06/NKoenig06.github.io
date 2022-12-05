@@ -53,9 +53,124 @@
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -134,12 +249,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -152,27 +275,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -368,7 +503,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -378,11 +515,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -630,6 +780,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -668,7 +821,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -790,6 +943,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -806,16 +963,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -831,6 +996,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -881,8 +1051,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -914,24 +1091,29 @@ h6:hover .anchor-link {
   font-style: italic;
 }
 </style>
-<style type="text/css">.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
+<style type="text/css">pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gr { color: #E40000 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
@@ -944,15 +1126,15 @@ h6:hover .anchor-link {
 .highlight .kt { color: #B00040 } /* Keyword.Type */
 .highlight .m { color: #666666 } /* Literal.Number */
 .highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .na { color: #687822 } /* Name.Attribute */
 .highlight .nb { color: #008000 } /* Name.Builtin */
 .highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
 .highlight .no { color: #880000 } /* Name.Constant */
 .highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
 .highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nl { color: #767600 } /* Name.Label */
 .highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
 .highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .highlight .nv { color: #19177C } /* Name.Variable */
@@ -969,11 +1151,11 @@ h6:hover .anchor-link {
 .highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
 .highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
 .highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
@@ -982,47 +1164,8 @@ h6:hover .anchor-link {
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
-<style type="text/css">
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Glassdoor-Exploratory-Analysis">Glassdoor Exploratory Analysis<a class="anchor-link" href="#Glassdoor-Exploratory-Analysis">&#182;</a></h1><p>A few months ago I <a href="https://nkoenig06.github.io/scrape-gd.html">scraped Glassdoor</a> for roughly 2.5k reviews across 9 companies. In this article I'm going to do some exploratory data analysis (EDA). In future articles I'll build ML models to try to predict ratings and explore NLP models as well.</p>
 <h2 id="What-is-EDA-and-why-do-we-do-it?">What is EDA and why do we do it?<a class="anchor-link" href="#What-is-EDA-and-why-do-we-do-it?">&#182;</a></h2><p>Often times we will be given data and have a rough understanding of what is included, but not know much about the data. <a href="https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15">EDA</a> is the step where we explore the data. This typically includes looking at the descriptive statistics for your numnerical data as well as exploring response types and patterns in your categorical data. It also might involve creating plots and charts to explore and find nuggets hidden within the data. It's the first step when it comes to eventually providing useful and actionable insights from your data.</p>
@@ -1043,14 +1186,13 @@ h6:hover .anchor-link {
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>First let's load our dataframe and take a look at the features we have.</p>
 
@@ -1065,7 +1207,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/glassdoor_data.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1078,7 +1220,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1088,7 +1230,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -1189,8 +1331,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>One thing we'll want to do is parse the location as you can see it has both the state and the city in each, so let's do that right now.</p>
 <p>First let's write a quick lambda function that replaces all of the nans with a no city, no state so our later functions work.</p>
@@ -1206,14 +1347,13 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;no city, no state&#39;</span> <span class="k">if</span> <span class="n">x</span><span class="o">==</span><span class="s1">&#39;no &#39;</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next let's write two lambda functions that split the city and state on the comma and the city will take the first element of the list and the state will take the second element of the list.</p>
 
@@ -1230,7 +1370,7 @@ h6:hover .anchor-link {
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1243,7 +1383,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;city&#39;</span><span class="p">,</span><span class="s1">&#39;state&#39;</span><span class="p">,</span><span class="s1">&#39;location&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1253,7 +1393,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -1324,8 +1464,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's remove the data that has the "no state" designation by creating a new dataframe to examine the counts by state.</p>
 
@@ -1340,7 +1479,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">states_only</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39; no state&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1353,7 +1492,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;count&#39;</span> <span class="p">:</span> <span class="n">states_only</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1366,7 +1505,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c1"># strip any extra space that might cause issues with the map</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1379,7 +1518,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1389,7 +1528,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[10]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -1454,8 +1593,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you can see this gets us exactly what we want. Now we can make a map looking at the number of reviews by state.</p>
 <h1 id="Map-of-Reviews">Map of Reviews<a class="anchor-link" href="#Map-of-Reviews">&#182;</a></h1><p>When it comes to developing interactive plots some packages provide better support than others. In developing interactive maps one great package is known as <a href="https://github.com/plotly/plotly.py">Plotly</a> is actually both a company and package. They provide both pay solutions as well as open source solutions for interactive graphing. If you are using it at an individual level in most instances the open source options provided by them will be more than sufficient.</p>
@@ -1470,11 +1608,11 @@ h6:hover .anchor-link {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.plotly</span> <span class="k">as</span> <span class="nn">py</span>
 <span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span> 
-<span class="kn">from</span> <span class="nn">plotly.offline</span> <span class="k">import</span> <span class="n">download_plotlyjs</span><span class="p">,</span> <span class="n">init_notebook_mode</span><span class="p">,</span> <span class="n">plot</span><span class="p">,</span> <span class="n">iplot</span>
+<span class="kn">from</span> <span class="nn">plotly.offline</span> <span class="kn">import</span> <span class="n">download_plotlyjs</span><span class="p">,</span> <span class="n">init_notebook_mode</span><span class="p">,</span> <span class="n">plot</span><span class="p">,</span> <span class="n">iplot</span>
 <span class="n">init_notebook_mode</span><span class="p">(</span><span class="n">connected</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1484,7 +1622,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1528,7 +1666,7 @@ h6:hover .anchor-link {
             <span class="p">)</span> 
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1545,14 +1683,13 @@ h6:hover .anchor-link {
              <span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Quick note; the website builder I am using to build my plots is giving me trouble on producing the maps. You should be able to produce interactive maps by following the method I used above within your own Jupyter Notebooks. I'm currently looking into how I can get them to publish as well. For the time being I am going to leverage images of the maps though.</p>
 
@@ -1567,7 +1704,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">choromap</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">],</span><span class="n">layout</span> <span class="o">=</span> <span class="n">layout</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1580,14 +1717,13 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#iplot(choromap)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="https://i.imgur.com/5jINKz9.png" alt="Imgur"></p>
 <p>Now we can see that up in the northeast and northwest areas of the country we have very few reviews. In California, Texas, and Florida we have the most reviews.</p>
@@ -1597,8 +1733,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Walmart-Map">Walmart Map<a class="anchor-link" href="#Walmart-Map">&#182;</a></h1>
 </div>
@@ -1612,7 +1747,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wmt</span> <span class="o">=</span> <span class="n">states_only</span><span class="p">[</span><span class="n">states_only</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;wmt&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1626,7 +1761,7 @@ h6:hover .anchor-link {
 <span class="n">wmt_grpby</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wmt_grpby</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c1"># strip any extra space that might cause issues with the map</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1652,7 +1787,7 @@ h6:hover .anchor-link {
              <span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1666,14 +1801,13 @@ h6:hover .anchor-link {
 <span class="c1">#iplot(choromap)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="https://i.imgur.com/A8GSP5d.png" alt="Imgur"></p>
 <p>As you can see from this most of our reviews come from Arkansas (129), Texas (117), and California (89). This makes sense as Arkansas is home to Walmart HQ and both AR and TX have a large quantity of Walmart locations.</p>
@@ -1691,7 +1825,7 @@ h6:hover .anchor-link {
 <span class="n">tgt_grpby</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tgt_grpby</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c1"># strip any extra space that might cause issues with the map</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1717,7 +1851,7 @@ h6:hover .anchor-link {
              <span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1731,14 +1865,13 @@ h6:hover .anchor-link {
 <span class="c1">#iplot(choromap)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="https://i.imgur.com/x42sy1L.png" alt="Imgur"></p>
 <p>For target the most reviews come from California (162), Minnesota (106), and Texas (82). Again this makes sense as Target's HQ is in Minny.</p>
@@ -1757,7 +1890,7 @@ h6:hover .anchor-link {
 <span class="n">push_grpby</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">push_grpby</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c1"># strip any extra space that might cause issues with the map</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1783,7 +1916,7 @@ h6:hover .anchor-link {
              <span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1797,14 +1930,13 @@ h6:hover .anchor-link {
 <span class="c1">#iplot(choromap)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="https://i.imgur.com/pMdGR0V.png" alt="Imgur"></p>
 <p>For the most part this makes sense. We know that Publix was founded outside of Orlando, Florida and the majority of their footprint is in Florida, with a few locations in surrounding states. What is interesting to see is that there are a few reviews coming from states that don't have a Publix. Let's see what the individuals from California had to say.</p>
@@ -1820,7 +1952,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">push</span><span class="p">[</span><span class="n">push</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39; CA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1830,7 +1962,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[26]:</div>
+    <div class="prompt output_prompt">Out[26]:</div>
 
 
 
@@ -1931,8 +2063,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see here that both of these jobs are corporate roles, so it is possible that Publix allowed them to work remotely, or perhaps they moved before they completed the review.</p>
 
@@ -1940,8 +2071,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Most-Common-Job-Titles?">Most Common Job Titles?<a class="anchor-link" href="#Most-Common-Job-Titles?">&#182;</a></h1><p>We know that many of these jobs are service retail, but let's see what reviewers put as the most common job titles to get reviewed across all companies.</p>
 
@@ -1956,7 +2086,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;employee_title&#39;</span><span class="p">])[</span><span class="s1">&#39;employee_title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;count&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1966,7 +2096,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[27]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -2056,8 +2186,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see that cashier is the heavy favorite at roughly 3.5x more than crew member, but we can see here that there are a few cashier titles, such as <strong>cashier, front end cashier, and sales associate/cashier</strong>. Can we find out how many people have the word <strong>cashier</strong> in the employee title?</p>
 
@@ -2065,8 +2194,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The first thing we'll want to do is ensure the column is a string, so we can apply the .lower() string function to the titles, to ensure all are in the same case. Then it's as simple as a seeing if the string contains the word cashier and getting a count.</p>
 
@@ -2082,7 +2210,7 @@ h6:hover .anchor-link {
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title_low&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2095,14 +2223,13 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title_low&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title_low&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's go ahead and look at all the instances where cashier is included in the job title.</p>
 
@@ -2117,7 +2244,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title_low&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;cashier&#39;</span><span class="p">)][</span><span class="s1">&#39;employee_title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2127,7 +2254,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[47]:</div>
+    <div class="prompt output_prompt">Out[47]:</div>
 
 
 
@@ -2155,14 +2282,13 @@ h6:hover .anchor-link {
         <span class="k">pass</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's see how many different job titles we have.</p>
 
@@ -2177,7 +2303,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cashier_titles</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2187,7 +2313,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[57]:</div>
+    <div class="prompt output_prompt">Out[57]:</div>
 
 
 
@@ -2203,8 +2329,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So we have 189 different job titles with the word cashier in them. Let's look at some of them.</p>
 
@@ -2219,7 +2344,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cashier_titles</span><span class="p">))[:</span><span class="mi">15</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2229,7 +2354,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[62]:</div>
+    <div class="prompt output_prompt">Out[62]:</div>
 
 
 
@@ -2259,8 +2384,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now let's write a little function that isolates all cases where they use the word cashier in the job title so we can create an additional column that identifies whether it is a cashier job or not.</p>
 
@@ -2275,7 +2399,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cashier&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_title_low&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;cashier&#39;</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2288,7 +2412,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cashier&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;company&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2298,7 +2422,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[32]:</div>
+    <div class="prompt output_prompt">Out[32]:</div>
 
 
 
@@ -2323,8 +2447,7 @@ Name: company, dtype: int64</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now we can see that Taco Bell had the most reviews that included the word cashier in the job title and target had the fewest.</p>
 
@@ -2332,8 +2455,7 @@ Name: company, dtype: int64</pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Average-Overall-Ratings">Average Overall Ratings<a class="anchor-link" href="#Average-Overall-Ratings">&#182;</a></h1><p>Let's go ahead and look at the overall ratings across companies and then look at a few different ways to visuzalize these ratings.</p>
 
@@ -2348,7 +2470,7 @@ Name: company, dtype: int64</pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;company&#39;</span><span class="p">)[</span><span class="s1">&#39;rating_overall&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2358,7 +2480,7 @@ Name: company, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[33]:</div>
 
 
 
@@ -2514,8 +2636,7 @@ Name: company, dtype: int64</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see here that Costco had both the highest mean and the lowest standard deviation, so people in general agree Costco is a good company to work for. On the opposite end Giant Eagle had the lowest mean, with a standard deviation somewhere in the middle.</p>
 <p>Is there a good way to visualize not only the means, but also the distributions?</p>
@@ -2533,7 +2654,7 @@ Name: company, dtype: int64</pre>
 <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;company&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;rating_overall&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Set3&#39;</span><span class="p">);</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2543,7 +2664,7 @@ Name: company, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -2561,8 +2682,7 @@ Name: company, dtype: int64</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>From this graph we can see that the majority of both Costco and Publix's responses are either a 4 or a 5, while for most other companies the majority of responses are in the 3 range.</p>
 
@@ -2570,8 +2690,7 @@ Name: company, dtype: int64</pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Rating-of-Culture">Rating of Culture<a class="anchor-link" href="#Rating-of-Culture">&#182;</a></h1><p>One thing I think is extremely important in these job types is the culture rating. There isn't a large difference between the quality of these roles and in most instances that is true for the pay as well. So one would think that the work culture would have a huge impact on how much people enjoy their time with these companies. Having said that let's investigate the culture ratings.</p>
 
@@ -2586,7 +2705,7 @@ Name: company, dtype: int64</pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;company&#39;</span><span class="p">)[</span><span class="s1">&#39;rating_culture&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2596,7 +2715,7 @@ Name: company, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[35]:</div>
+    <div class="prompt output_prompt">Out[35]:</div>
 
 
 
@@ -2752,8 +2871,7 @@ Name: company, dtype: int64</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see that Costco and Publix have the highest culture ratings while Walmart and McDonalds have the lowest and this has some variation from the overall ratings. Let's look to see if Walmart has a higher % of ratings coming from former employees compared to Costco.</p>
 
@@ -2769,7 +2887,7 @@ Name: company, dtype: int64</pre>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_status_num&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;employee_status_num&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2783,7 +2901,7 @@ Name: company, dtype: int64</pre>
 <span class="n">df_wmt</span><span class="p">[</span><span class="s1">&#39;employee_status_num&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">df_wmt</span><span class="p">[</span><span class="s1">&#39;employee_status_num&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2793,7 +2911,7 @@ Name: company, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[37]:</div>
+    <div class="prompt output_prompt">Out[37]:</div>
 
 
 
@@ -2809,8 +2927,7 @@ Name: company, dtype: int64</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Roughly 51% of the ratings coming from Walmart are from previous employees. Let's see what that looks like from Costco.</p>
 
@@ -2826,7 +2943,7 @@ Name: company, dtype: int64</pre>
 <span class="n">df_cost</span><span class="p">[</span><span class="s1">&#39;employee_status_num&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">df_cost</span><span class="p">[</span><span class="s1">&#39;employee_status_num&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2836,7 +2953,7 @@ Name: company, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[38]:</div>
+    <div class="prompt output_prompt">Out[38]:</div>
 
 
 
@@ -2852,8 +2969,7 @@ Name: company, dtype: int64</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Compare that with Costco where less than 45% of employees leaving ratings are previous employees. We can look at whether or not these proportions differences are statistically significant by using a proportions z-test calculation.</p>
 
@@ -2869,7 +2985,7 @@ Name: company, dtype: int64</pre>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Costco: &#39;</span><span class="p">,</span> <span class="n">df_cost</span><span class="p">[</span><span class="s1">&#39;employee_status_num&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2879,7 +2995,7 @@ Name: company, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2898,7 +3014,7 @@ Costco:  1116
 <div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.proportion</span> <span class="k">import</span> <span class="n">proportions_ztest</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.proportion</span> <span class="kn">import</span> <span class="n">proportions_ztest</span>
 
 <span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1289</span><span class="p">,</span> <span class="mi">1116</span><span class="p">])</span>
 <span class="n">nobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2041</span><span class="p">,</span> <span class="mi">2161</span><span class="p">])</span>
@@ -2906,7 +3022,7 @@ Costco:  1116
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0:0.5f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pval</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2916,7 +3032,7 @@ Costco:  1116
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2930,8 +3046,7 @@ Costco:  1116
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see that this is highly significant and many more of the ratings for Walmart are coming from those that have left the organization as compared to those ratings for Costco.</p>
 
@@ -2939,8 +3054,7 @@ Costco:  1116
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Rating-Correlations">Rating Correlations<a class="anchor-link" href="#Rating-Correlations">&#182;</a></h1><p>One final thing we can explore is the relationship between rating types. My hypothesis is all will have fairly high correlations given the ratings are obtained from the same subject and all topics are fairly closely related. But, let's take a look to confirm.</p>
 
@@ -2956,7 +3070,7 @@ Costco:  1116
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span><span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2966,7 +3080,7 @@ Costco:  1116
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[67]:</div>
+    <div class="prompt output_prompt">Out[67]:</div>
 
 
 
@@ -2979,7 +3093,7 @@ Costco:  1116
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -2997,8 +3111,7 @@ Costco:  1116
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you can see as anticipated the ratings are relatively highly correlated with only 2 at .50 or below.</p>
 <h1 id="What's-Next?">What's Next?<a class="anchor-link" href="#What's-Next?">&#182;</a></h1><p>There is clearly a lot of ways we can examine this data. One interesting thing would be to look at ratings for career as well. People that feel they have a career with a company, may be more likely to stay and/or more likely to provide a high overall rating. It also might be interesting to examine job titles for those that give the organization a high career rating. My hypothesis would be there would be a wider variety of job titles in those organizations.</p>
@@ -3006,6 +3119,19 @@ Costco:  1116
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
  
 

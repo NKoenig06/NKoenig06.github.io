@@ -56,9 +56,124 @@
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -137,12 +252,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -155,27 +278,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -371,7 +506,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -381,11 +518,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -633,6 +783,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -671,7 +824,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -793,6 +946,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -809,16 +966,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -834,6 +999,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -884,8 +1054,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -917,24 +1094,29 @@ h6:hover .anchor-link {
   font-style: italic;
 }
 </style>
-<style type="text/css">.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
+<style type="text/css">pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gr { color: #E40000 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
@@ -947,15 +1129,15 @@ h6:hover .anchor-link {
 .highlight .kt { color: #B00040 } /* Keyword.Type */
 .highlight .m { color: #666666 } /* Literal.Number */
 .highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .na { color: #687822 } /* Name.Attribute */
 .highlight .nb { color: #008000 } /* Name.Builtin */
 .highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
 .highlight .no { color: #880000 } /* Name.Constant */
 .highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
 .highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nl { color: #767600 } /* Name.Label */
 .highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
 .highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .highlight .nv { color: #19177C } /* Name.Variable */
@@ -972,11 +1154,11 @@ h6:hover .anchor-link {
 .highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
 .highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
 .highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
@@ -985,47 +1167,8 @@ h6:hover .anchor-link {
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
-<style type="text/css">
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Natural-Language-Processing-Using-the-2019-SIOP-Machine-Learning-Competition-Data">Natural Language Processing Using the 2019 SIOP Machine Learning Competition Data<a class="anchor-link" href="#Natural-Language-Processing-Using-the-2019-SIOP-Machine-Learning-Competition-Data">&#182;</a></h1><p>In recent years academics and practitioners a like have realized that while structured surveys and assessments are valuable, employees and candidates can provide us much more rich data via the written or spoken word. In this article I'll leverage the 2019 SIOP Machine Learning Competition Dataset to explore using NLP to create features to predict outcomes of interest. In future articles I'll create additional features, use bag of words, and even leverage deep learning methods. I hope this is engaging for readers because with this comes a benchmark via the leaderboard with which we can compare each method via ranking compared to other teams.</p>
 <h2 id="The-2019-SIOP-Machine-Learning-Competition">The 2019 SIOP Machine Learning Competition<a class="anchor-link" href="#The-2019-SIOP-Machine-Learning-Competition">&#182;</a></h2><p>The 2019 SIOP Machine Learning Competition was an NLP task where the goal was to predict someone's big 5 trait scores from a series of 5 open-ended situational judgment items, that were designed to each elicit one of the big 5 traits. The metric of interest was the mean correlation across all traits. The training set had 1088 respondents, who each answered 5 questions for a total of 5,440 open-ended responses and the public and private leaderboard datasets each had 300 respondents for a total of 1,500 open-ended responses. Below are some screenshots from the competition website.</p>
@@ -1069,7 +1212,7 @@ h6:hover .anchor-link {
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1083,7 +1226,7 @@ h6:hover .anchor-link {
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/siop_ml_train_full.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1096,7 +1239,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1106,7 +1249,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -1134,8 +1277,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>From looking at the columns included in the dataset we can see they have the 5 open-ended responses, the trait scores for each of the respondents and I added a label column so the data could be split identically to the way it was split for the competition. The first thing we want to do is ensure that each of the open-ended responses are all strings. It's a small formatting process that could potentially cause errors later if we don't do it up front. So I'll create a list of column names and then write a quick for loop to ensure they are all strings.</p>
 
@@ -1157,14 +1299,13 @@ h6:hover .anchor-link {
     <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Examining-the-Criterion">Examining the Criterion<a class="anchor-link" href="#Examining-the-Criterion">&#182;</a></h1><p>Let's look at the trait level score distributions.</p>
 
@@ -1179,7 +1320,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;E_Scale_score&#39;</span><span class="p">,</span><span class="s1">&#39;A_Scale_score&#39;</span><span class="p">,</span><span class="s1">&#39;O_Scale_score&#39;</span><span class="p">,</span><span class="s1">&#39;C_Scale_score&#39;</span><span class="p">,</span><span class="s1">&#39;N_Scale_score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1189,7 +1330,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -1296,8 +1437,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="What-do-we-immediately-notice?">What do we immediately notice?<a class="anchor-link" href="#What-do-we-immediately-notice?">&#182;</a></h3><ol>
 <li>Everyone is pretty positive. Not very many means near 3. </li>
@@ -1308,8 +1448,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Examining-the-Predictors">Examining the Predictors<a class="anchor-link" href="#Examining-the-Predictors">&#182;</a></h1><p>Let's take a look at the responses as well.</p>
 <p>Let's look at length, common words, etc.</p>
@@ -1329,7 +1468,7 @@ h6:hover .anchor-link {
     <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1342,7 +1481,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;open_ended_4_len&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1352,7 +1491,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -1376,8 +1515,7 @@ Name: open_ended_4_len, dtype: float64</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So the longest response to the neuroticism prompt is 235 words and the shortest is 15, with a median response length of 49 words.</p>
 <h3 id="Most-Common-Words">Most Common Words<a class="anchor-link" href="#Most-Common-Words">&#182;</a></h3><p>To get the word count we'll want to do a small bit of pre-processing that takes out punctuation and stopwords as it will almost certainly be the case a few stopwords like; I, the, etc. will be the most common if we do not.</p>
@@ -1399,7 +1537,7 @@ Name: open_ended_4_len, dtype: float64</pre>
 <span class="n">oe_4_corpus</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">oe_4</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1410,7 +1548,7 @@ Name: open_ended_4_len, dtype: float64</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
-<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="k">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
 <span class="kn">import</span> <span class="nn">string</span>
 <span class="c1">#Pre-processing the data</span>
 <span class="k">def</span> <span class="nf">text_process</span><span class="p">(</span><span class="n">mess</span><span class="p">):</span>
@@ -1430,7 +1568,7 @@ Name: open_ended_4_len, dtype: float64</pre>
     <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">nopunc</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">)])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1443,7 +1581,7 @@ Name: open_ended_4_len, dtype: float64</pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">oe_4_corpus_clean</span> <span class="o">=</span> <span class="n">text_process</span><span class="p">(</span><span class="n">oe_4_corpus</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1453,15 +1591,15 @@ Name: open_ended_4_len, dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.probability</span> <span class="k">import</span> <span class="n">FreqDist</span>
-<span class="kn">from</span> <span class="nn">nltk</span> <span class="k">import</span> <span class="n">word_tokenize</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.probability</span> <span class="kn">import</span> <span class="n">FreqDist</span>
+<span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
 
 <span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">oe_4_corpus_clean</span><span class="p">)</span>
 <span class="n">fdist</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
 <span class="n">fdist</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1471,7 +1609,7 @@ Name: open_ended_4_len, dtype: float64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -1487,8 +1625,7 @@ Name: open_ended_4_len, dtype: float64</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So we can see here that after we remove the stop words the most used words are "would", which is part of the prompt and should be included as an additional stop word IMO, "feedback", "manager", and "ask". Not necessarily anything that readily jumps off the page thus far, but nevertheless interesting data to have.</p>
 
@@ -1496,8 +1633,7 @@ Name: open_ended_4_len, dtype: float64</pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Creating-Features">Creating Features<a class="anchor-link" href="#Creating-Features">&#182;</a></h1><p>The first thing you have to do in machine learning is create features you think will provide meaningful signal when it comes to predicting our criterion of interest. One way to do that is to leverage others' work. For the purposes of this article we will leverage a pre-trained sentiment analysis package.</p>
 <h2 id="Sentiment-Analysis">Sentiment Analysis<a class="anchor-link" href="#Sentiment-Analysis">&#182;</a></h2><p><img src="https://i.imgur.com/k48EKbK.jpg" alt="img"></p>
@@ -1517,14 +1653,13 @@ Name: open_ended_4_len, dtype: float64</pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#!pip install vaderSentiment</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>After we install the package we can follow the documentation from the repo and load the Sentiment Analyzer by running the following command.</p>
 
@@ -1536,17 +1671,16 @@ Name: open_ended_4_len, dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">vaderSentiment.vaderSentiment</span> <span class="k">import</span> <span class="n">SentimentIntensityAnalyzer</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">vaderSentiment.vaderSentiment</span> <span class="kn">import</span> <span class="n">SentimentIntensityAnalyzer</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now let's test it out on a response. Let's first pick a few written responses from our dataframe. We can do that by indexing into a column. [:2] will get us the first two responses from a column.</p>
 
@@ -1561,7 +1695,7 @@ Name: open_ended_4_len, dtype: float64</pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sentences</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;open_ended_1&#39;</span><span class="p">][:</span><span class="mi">2</span><span class="p">];</span> <span class="n">sentences</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1571,7 +1705,7 @@ Name: open_ended_4_len, dtype: float64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -1589,8 +1723,7 @@ Name: open_ended_1, dtype: object</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now let's take the code from the repo and feed it the sentences.</p>
 
@@ -1608,7 +1741,7 @@ Name: open_ended_1, dtype: object</pre>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:-&lt;65}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">vs</span><span class="p">)))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1618,7 +1751,7 @@ Name: open_ended_1, dtype: object</pre>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -1633,8 +1766,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Output">Output<a class="anchor-link" href="#Output">&#182;</a></h3><p>You can see here we get 4 outputs from the sentiment analyzer.</p>
 <ol>
@@ -1662,7 +1794,7 @@ I would talk to my colleague and see if they were willing to change the vacation
     <span class="k">return</span> <span class="n">json_list</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1675,7 +1807,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_sentiment</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1685,7 +1817,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -1702,8 +1834,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now, what do we get as output if we test our sentences object on it? We get a list of dictionaries, which we clearly need to parse. Luckily pandas makes that easy with <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.io.json.json_normalize.html">json_normalize</a></p>
 
@@ -1715,17 +1846,16 @@ I would talk to my colleague and see if they were willing to change the vacation
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pandas.io.json</span> <span class="k">import</span> <span class="n">json_normalize</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pandas.io.json</span> <span class="kn">import</span> <span class="n">json_normalize</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's first turn all of the text rows into a list.</p>
 
@@ -1744,14 +1874,13 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">oe_5</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;open_ended_5&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="c1"># openness to experience</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Then let's run the function on each set of text, use json_normalize to turn the dictionary into a pandas dataframe, and rename each column to be specific to the text column it came from.</p>
 <h3 id="Open_Ended_1">Open_Ended_1<a class="anchor-link" href="#Open_Ended_1">&#182;</a></h3><p>This open ended question is designed to elicit agreeableness, refer to the beginning of the article for the exact question.</p>
@@ -1769,7 +1898,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">oe_1_sent_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;oe_1_compound&#39;</span><span class="p">,</span><span class="s1">&#39;oe_1_neg&#39;</span><span class="p">,</span><span class="s1">&#39;oe_1_neu&#39;</span><span class="p">,</span><span class="s1">&#39;oe_1_pos&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1782,7 +1911,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">oe_1_sent_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1792,7 +1921,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -1869,8 +1998,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Open_Ended_2">Open_Ended_2<a class="anchor-link" href="#Open_Ended_2">&#182;</a></h3><p>This open ended question is designed to elicit conscientiousness, refer to the beginning of the article for the exact question.</p>
 
@@ -1887,14 +2015,13 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">oe_2_sent_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;oe_2_compound&#39;</span><span class="p">,</span><span class="s1">&#39;oe_2_neg&#39;</span><span class="p">,</span><span class="s1">&#39;oe_2_neu&#39;</span><span class="p">,</span><span class="s1">&#39;oe_2_pos&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Open_Ended_3">Open_Ended_3<a class="anchor-link" href="#Open_Ended_3">&#182;</a></h3><p>This open ended question is designed to elicit extraversion, refer to the beginning of the article for the exact question.</p>
 
@@ -1911,14 +2038,13 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">oe_3_sent_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;oe_3_compound&#39;</span><span class="p">,</span><span class="s1">&#39;oe_3_neg&#39;</span><span class="p">,</span><span class="s1">&#39;oe_3_neu&#39;</span><span class="p">,</span><span class="s1">&#39;oe_3_pos&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Open_Ended_4">Open_Ended_4<a class="anchor-link" href="#Open_Ended_4">&#182;</a></h3><p>This open ended question is designed to elicit neuroticism, refer to the beginning of the article for the exact question.</p>
 
@@ -1935,14 +2061,13 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">oe_4_sent_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;oe_4_compound&#39;</span><span class="p">,</span><span class="s1">&#39;oe_4_neg&#39;</span><span class="p">,</span><span class="s1">&#39;oe_4_neu&#39;</span><span class="p">,</span><span class="s1">&#39;oe_4_pos&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Open_Ended_5">Open_Ended_5<a class="anchor-link" href="#Open_Ended_5">&#182;</a></h3><p>This open ended question is designed to elicit openness to experience, refer to the beginning of the article for the exact question.</p>
 
@@ -1959,14 +2084,13 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">oe_5_sent_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;oe_5_compound&#39;</span><span class="p">,</span><span class="s1">&#39;oe_5_neg&#39;</span><span class="p">,</span><span class="s1">&#39;oe_5_neu&#39;</span><span class="p">,</span><span class="s1">&#39;oe_5_pos&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Then let's concatenate all 6 of the dataframes back together.</p>
 
@@ -1981,7 +2105,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span><span class="n">oe_1_sent_df</span><span class="p">,</span><span class="n">oe_2_sent_df</span><span class="p">,</span><span class="n">oe_3_sent_df</span><span class="p">,</span><span class="n">oe_4_sent_df</span><span class="p">,</span><span class="n">oe_5_sent_df</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1994,14 +2118,13 @@ I would talk to my colleague and see if they were willing to change the vacation
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/vader_features.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Features/Variables-to-Include">Features/Variables to Include<a class="anchor-link" href="#Features/Variables-to-Include">&#182;</a></h1><p>As we mentioned earlier, for the purposes of this article we will only be focusing on Sentiment as features, so we will take the proportion scores of each set of text being negative, neutral, and positive as well as the compound score as the input features for our model.</p>
 <p>Later we'll consider some others and see which one's appear the most important.</p>
@@ -2019,7 +2142,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">ys</span> <span class="o">=</span> <span class="n">new_df</span><span class="p">[[</span><span class="s1">&#39;E_Scale_score&#39;</span><span class="p">,</span><span class="s1">&#39;A_Scale_score&#39;</span><span class="p">,</span><span class="s1">&#39;O_Scale_score&#39;</span><span class="p">,</span><span class="s1">&#39;C_Scale_score&#39;</span><span class="p">,</span><span class="s1">&#39;N_Scale_score&#39;</span><span class="p">,</span><span class="s1">&#39;label&#39;</span><span class="p">]]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2032,7 +2155,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_df</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2042,7 +2165,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[29]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -2058,8 +2181,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Remember we have 3 different datasets here, so we'll need to seperate them into train, dev, and test then drop the label column from the dataframes.</p>
 
@@ -2081,7 +2203,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">ys</span><span class="p">[</span><span class="n">ys</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;test&#39;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2099,14 +2221,13 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">X_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Ridge-Regression">Ridge Regression<a class="anchor-link" href="#Ridge-Regression">&#182;</a></h1><p>Ridge regression is essentially an Ordinary Least Squares technique that leverages L2 Regularization. In simple terms this method help us to avoid overfitting our models to the data. L2 regularization specifically penalizes each of the features. Unlike L1 regularization it doesn't necessarily try to force the features to be extremely positive or negative (hence acting as a feature selection technique). The following <a href="https://towardsdatascience.com/ridge-regression-for-better-usage-2f19b3a202db">article</a> goes into much more depth regarding ridge regression. We will use the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html">sklearn ridge regression</a> implementation and for simplicity sake we'll use the penalization term of 1.0, which is the default.</p>
 <p><img src="https://i.imgur.com/NlNFmqV.png" alt="img"></p>
@@ -2120,7 +2241,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">Ridge</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
 
 <span class="k">def</span> <span class="nf">run_ridge</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_label</span><span class="p">):</span>
     <span class="n">ridge</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">()</span>
@@ -2131,14 +2252,13 @@ I would talk to my colleague and see if they were willing to change the vacation
     <span class="k">return</span> <span class="n">test</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Development-Set">Development Set<a class="anchor-link" href="#Development-Set">&#182;</a></h1><p>i.e. the Public Leaderboard</p>
 
@@ -2162,7 +2282,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">N_pred</span> <span class="o">=</span> <span class="n">run_ridge</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_dev</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_dev</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;N_Scale_score&#39;</span><span class="p">])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2175,7 +2295,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean correlation: &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">E_pred</span><span class="p">,</span><span class="n">A_pred</span><span class="p">,</span><span class="n">C_pred</span><span class="p">,</span><span class="n">O_pred</span><span class="p">,</span><span class="n">N_pred</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2185,7 +2305,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2199,8 +2319,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So this would have gotten us right in about <strong>20th place on the public leaderboard</strong>. Not bad for spending just a few minutes cleaning the data and setting up an out of the box ridge regression only leveraging some simple sentiment features.</p>
 <p><img src="https://i.imgur.com/Uz4irLv.png" alt="img"></p>
@@ -2217,7 +2336,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">E_pred</span><span class="p">,</span><span class="n">A_pred</span><span class="p">,</span><span class="n">C_pred</span><span class="p">,</span><span class="n">O_pred</span><span class="p">,</span><span class="n">N_pred</span><span class="p">])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2227,7 +2346,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[35]:</div>
+    <div class="prompt output_prompt">Out[35]:</div>
 
 
 
@@ -2243,8 +2362,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>By looking at the individual scores we can see that ridge regression is best at predicting agreeableness and by far the worst at predicting conscientiousness.</p>
 <p>What about some other machine learning algorithms?</p>
@@ -2253,8 +2371,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Random-Forest">Random Forest<a class="anchor-link" href="#Random-Forest">&#182;</a></h1><p><img src="https://i.imgur.com/ib25WBR.png" alt="img"></p>
 <p>Next, let's look at one of the more popular "Machine Learning" algorithms today the Random Forests algorithm. In fairly simple terms the Random Forests algorithm uses bagging where it takes random subsets of both data and features and creates a tree-based model to predict the label. All of these "trees" are then aggregated together to form an <strong>ensemble</strong> model using the <a href="https://en.wikipedia.org/wiki/Wisdom_of_the_crowd">wisdom of the crowds</a> theory. For more specifics I refer you to <a href="https://machinelearningmastery.com/bagging-and-random-forest-ensemble-algorithms-for-machine-learning/">this article</a>.</p>
@@ -2289,7 +2406,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">X_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2299,10 +2416,10 @@ I would talk to my colleague and see if they were willing to change the vacation
 <div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestRegressor</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2312,7 +2429,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stderr output_text">
@@ -2340,7 +2457,7 @@ I would talk to my colleague and see if they were willing to change the vacation
     <span class="k">return</span> <span class="n">test</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2362,7 +2479,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="n">N_pred</span> <span class="o">=</span> <span class="n">run_rf</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_dev</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_dev</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;N_Scale_score&#39;</span><span class="p">])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2376,7 +2493,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean correlation: &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">E_pred</span><span class="p">,</span><span class="n">A_pred</span><span class="p">,</span><span class="n">C_pred</span><span class="p">,</span><span class="n">O_pred</span><span class="p">,</span><span class="n">N_pred</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2386,7 +2503,7 @@ I would talk to my colleague and see if they were willing to change the vacation
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2401,8 +2518,7 @@ mean correlation:  0.156
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Using these specific features random forests did not perform anywhere near as good as ridge regression performed overall, but you'll notice we did get a slight lift on oppenness to experience. What about Gradient Boosted Trees?</p>
 
@@ -2410,8 +2526,7 @@ mean correlation:  0.156
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Gradient-Boosted-Trees">Gradient Boosted Trees<a class="anchor-link" href="#Gradient-Boosted-Trees">&#182;</a></h1><p>The final algorithm we will try is typically considered the most powerful. Unlike random forests which randomly develops trees via bagging, gradient boosting takes a purposeful approach and focuses on improving the <strong>weak learners</strong> or the trees that are performing relatively poorly. By doing this it boosts the overall success of the combination of trees at the end. For more specifics I refer you to <a href="https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/">this article</a>.</p>
 <p>We will actually not be using sklearn for the gradient boosting algorithm (although I have heard that the most recent version of sklearn does have a gradient boosting algorithm on par with XGboost and LightGBM. For this we will focus on <a href="https://xgboost.readthedocs.io/en/latest/python/python_intro.html">XGBoost</a>. Luckily for us the developers built the API to reflect the sklearn implementation, which makes it almost exactly the same.</p>
@@ -2424,7 +2539,7 @@ mean correlation:  0.156
 <div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">xgboost</span> <span class="k">import</span> <span class="n">XGBRegressor</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBRegressor</span>
 
 <span class="k">def</span> <span class="nf">run_xgb</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_label</span><span class="p">):</span>
     <span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBRegressor</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -2435,7 +2550,7 @@ mean correlation:  0.156
     <span class="k">return</span> <span class="n">test</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2460,7 +2575,7 @@ mean correlation:  0.156
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean correlation: &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">E_pred</span><span class="p">,</span><span class="n">A_pred</span><span class="p">,</span><span class="n">C_pred</span><span class="p">,</span><span class="n">O_pred</span><span class="p">,</span><span class="n">N_pred</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2470,7 +2585,7 @@ mean correlation:  0.156
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2485,8 +2600,7 @@ mean correlation:  0.127
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So, if we combine our best trait scores from each model it would be <strong>ridge regression</strong> for the following:</p>
 <ul>
@@ -2511,7 +2625,7 @@ mean correlation:  0.127
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.25960968</span><span class="p">,</span> <span class="mf">0.35637792</span><span class="p">,</span> <span class="mf">0.09777237</span><span class="p">,</span> <span class="mf">0.24055125</span><span class="p">,</span> <span class="mf">0.21310606</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2521,7 +2635,7 @@ mean correlation:  0.127
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[43]:</div>
+    <div class="prompt output_prompt">Out[43]:</div>
 
 
 
@@ -2537,8 +2651,7 @@ mean correlation:  0.127
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This gets us an average correlation of <strong>0.2335</strong> a slight improvement to what ridge regression was able to provide on its own.</p>
 <h2 id="Recap:">Recap:<a class="anchor-link" href="#Recap:">&#182;</a></h2><p><img src="https://i.imgur.com/dFaRN4P.jpg" alt="img"></p>
@@ -2547,8 +2660,7 @@ mean correlation:  0.127
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>We examined the data from the 2019 SIOP Machine Learning Competition</li>
@@ -2561,6 +2673,19 @@ mean correlation:  0.127
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
  
 

@@ -1122,7 +1122,20 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;p&gt;&lt;img src="https://i.imgur.com/x5uLCYo.png" alt="ai_lecture"&gt;&lt;/p&gt;
 &lt;p&gt;*image credit of Dall-E the artistic AI&lt;/p&gt;
 &lt;h2 id="Psychometrics"&gt;Psychometrics&lt;a class="anchor-link" href="#Psychometrics"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;One thing that has often taken a lot of skill, creativity, and nuance is item writing for test development. Big 5 personality scales like the &lt;a href="https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf"&gt;BFI-2&lt;/a&gt; are just one of a variety of personality scales out there. These scales usually require the writing of several variations of multiple items designed to elicit specific traits and then the collection of data to establish factor loadings and scale inter-item correlations showing good scale reliabilities. For more details on actually creating and validating psychometrically sound scales I'd refer you to Nunnally and Bernstein's book titled &lt;a href="https://www.amazon.com/Psychometric-Theory-Jum-C-Nunnally/dp/007047849X"&gt;&lt;em&gt;Psychometric Theory&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp;amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.&lt;/p&gt;
+&lt;h3 id="Scale-Development"&gt;Scale Development&lt;a class="anchor-link" href="#Scale-Development"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Scale development typically involves the following (Hinkin, 1995):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Identifying the construct&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Using SMEs to create item pools&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Narrow the pool of items down to be used as a first draft of the scale&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Administer the scale to a large population&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Examine and evaluate the psychometric properties of the scale&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="Context-Matters"&gt;Context Matters&lt;a class="anchor-link" href="#Context-Matters"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp;amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.&lt;/p&gt;
 &lt;h2 id="AI"&gt;AI&lt;a class="anchor-link" href="#AI"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;This brings us to the main point of this article. Can we use AI to help us generate items and if so, how, and under what circumstances?&lt;/p&gt;
 &lt;p&gt;Open AI just released a version of their GPT-3 model called &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt;. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.&lt;/p&gt;
 &lt;h2 id="Item-Writing"&gt;Item Writing&lt;a class="anchor-link" href="#Item-Writing"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Today let's focus on item writing.&lt;/p&gt;
@@ -1141,7 +1154,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;p&gt;Again, I'm pretty impressed by the quality and the content.&lt;/p&gt;
 &lt;p&gt;Overall, I'd say I'm pretty impressed with GPT as a generator of Likert style items to be used in psychometric assessments. You don't need to define the traits you are asking it to generate items for. Just provide it with the name and other instructions. It understands what Likert style questions look like and understands how to frame Likert style questions both negatively and positively.&lt;/p&gt;
 &lt;p&gt;In future articles I'll explore using AI to create additional training data for models, to write research reports, and more.&lt;/p&gt;
-&lt;p&gt;I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)&lt;/p&gt;
+&lt;h2 id="Paper-on-this-Topic"&gt;Paper on this Topic&lt;a class="anchor-link" href="#Paper-on-this-Topic"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;If anyone would like to read an excellent paper on developing a pipeline to do this with an older version of GPT, I’d highly recommend this excellent paper by &lt;a href="https://doi.org/10.1111/peps.12543"&gt;Ivan Hernandez and Weiwen Nie that was recently published in Personnel Psychology (Hernandez &amp;amp; Nie, 2022)&lt;/a&gt;. They leveraged a GPT-2 model that was fine-tuned on personality items to generate thousands of potential items. Then to infer the expected correlation among these items they used BERT to generate embedding representations of IPIP items and the correlations those embeddings had with the other item embeddings from respondent data. They used the relationship between these to estimate the expected correlations on the new items they created. It’s a very creative use of this new technology IMO.&lt;/p&gt;
+&lt;p&gt;However, now it appears they can skip the fine-tuning a model step and just ask GPT to create items to represent specific traits instead of randomly creating thousands of items and attempting to estimate how related they may be. But nonetheless, this is a very good paper I’d recommend everyone interested in this read.&lt;/p&gt;
+&lt;h2 id="GPT's-Closing-Argument"&gt;GPT's Closing Argument&lt;a class="anchor-link" href="#GPT's-Closing-Argument"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/QpQsezh.png" alt="img"&gt;&lt;/p&gt;
 
 &lt;/div&gt;
@@ -1152,22 +1167,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;References:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386"&gt;Grover, S., &amp;amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hernandez, I., &amp;amp; Nie, W. (2022). The AI-IP: Minimizing the guesswork of personality scale item development through artificial intelligence. Personnel Psychology, 00, 1– 24. Advance online publication. &lt;a href="https://doi.org/10.1111/peps.12543"&gt;https://doi.org/10.1111/peps.12543&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988. &lt;a href="https://doi.org/10.1177/014920639502100509"&gt;https://doi.org/10.1177/014920639502100509&lt;/a&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
 &lt;/div&gt;
  
 

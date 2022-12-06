@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Using Parallel Processing and Vectorization to Speed Up Your Code — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: Using Parallel Processing and Vectorization to Speed Up Your Code; Date: 2020-01-14; Author: N. Koenig">
+	<title>The AI PhD Student Part I — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: The AI PhD Student Part I; Date: 2022-12-04; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,29 +26,29 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">Using Parallel Processing and Vectorization to Speed Up Your Code</h1>
+		<h1 itemprop="name headline" class="article-title">The AI PhD Student Part I</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2020-01-14T10:00:00-06:00" itemprop="datePublished">Tue 14 January 2020</time>
+		<time datetime="2022-12-04T19:10:00-06:00" itemprop="datePublished">Sun 04 December 2022</time>
 	</div>
 	<div>
 		Category:
 		<span itemprop="articleSection">
-			<a href="/category/programming.html" rel="category">programming</a>
+			<a href="/category/data-science-artificial-intelligence.html" rel="category">data science, artificial intelligence</a>
 		</span>
 	</div>
  
 	<div>
 		Tags:
 		<span itemprop="keywords">
-			<a href="/tag/python.html" rel="tag">Python</a>
-		</span>
-		<span itemprop="keywords">
 			<a href="/tag/data-science.html" rel="tag">Data Science</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/programming.html" rel="tag">Programming</a>
+			<a href="/tag/ai.html" rel="tag">AI</a>
+		</span>
+		<span itemprop="keywords">
+			<a href="/tag/deep-learning.html" rel="tag">Deep Learning</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1170,150 +1170,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Speed-Test">Speed Test<a class="anchor-link" href="#Speed-Test">&#182;</a></h1><p>I thought it might be useful for those working day-to-day within Python to learn from some of the testing I do when I learn about new packages or methods. So I may have some shorter articles that come out more frequently as well. This article will focus on two things.</p>
-<ol>
-<li>A new dataframe concept that allows you to use multiple CPU cores</li>
-<li>A vectorization method for applying changes to your dataframe</li>
-</ol>
-<h2 id="Meet-Modin">Meet Modin<a class="anchor-link" href="#Meet-Modin">&#182;</a></h2><p><a href="https://github.com/modin-project/modin">Modin</a> is potentially the answer we have all been waiting for. A way to work with "big data" in memory. From their github repo linked earlier:</p>
-<p><img src="https://i.imgur.com/HopYymq.png" alt="img"></p>
-<p>The fact that you can use multiple cores in parallel should greatly increase the speed, but let's give it a try on some of my data.</p>
-<p>The data we will be using is the entire dataset provided from statcast for the 2019 MLB season. While the file size isn't huge, it's 360MB, which is relatively large for a standard csv. Let's load it in pandas and then load it in modin and see how it compares.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">pd_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../statcast_data/2019_mlb_stats.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 4.7 s, sys: 280 ms, total: 4.98 s
-Wall time: 4.98 s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">modin.pandas</span> <span class="k">as</span> <span class="nn">md_pd</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">mdn_df</span> <span class="o">=</span> <span class="n">md_pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../statcast_data/2019_mlb_stats.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 144 ms, sys: 18.3 ms, total: 162 ms
-Wall time: 2.85 s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd_df</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[5]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(723346, 90)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So we can see Modin has promise. The CPU time needed to load a 360MB file is roughly half and it's a relatively large dataframe of 723.3k rows by 90 columns.</p>
-<p>Now let's look at a few different ways to process data.</p>
+<h1 id="The-AI-I/O-PhD-Part-I">The AI I/O PhD Part I<a class="anchor-link" href="#The-AI-I/O-PhD-Part-I">&#182;</a></h1><p>I've had a pretty long hiatus from this and thought it would be fun to get back into it. I thought I'd start by looking into some of the recent advances in the field and the truly groundbreaking potential they may have. I thought I'd title this series the AI I/O PhD because I think what some of these large transformers are capable of starts to creep into the creativity and expertise we'd typically associate with highly skilled and educated I/O professionals.</p>
+<p><img src="https://i.imgur.com/x5uLCYo.png" alt="ai_lecture"></p>
+<p>*image credit of Dall-E the artistic AI</p>
+<h2 id="Item-Writing">Item Writing<a class="anchor-link" href="#Item-Writing">&#182;</a></h2><p>One thing that has often taken a lot of skill, creativity, and nuance is item writing for test development. Big 5 personality scales like the <a href="https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf">BFI-2</a> are just one of a variety of personality scales out there. These scales usually require the writing of several variations of multiple items designed to elicit specific traits and then the collection of data to establish factor loadings and scale inter-item correlations showing good scale reliabilities. For more details on actually creating and validating psychometrically sound scales I'd refer you to Nunnally and Bernstein's book titled <a href="https://www.amazon.com/Psychometric-Theory-Jum-C-Nunnally/dp/007047849X"><em>Psychometric Theory</em></a>.</p>
+<p>However, there are many nuances to item writing. One that is heavily researched and discussed in our field is the inclusion of work context, especially when it comes to personality items (Grover &amp; Furnham, 2021).</p>
+<h2 id="AI">AI<a class="anchor-link" href="#AI">&#182;</a></h2><p>Can we use AI to help us generate items and if so, how, and under what circumstances? Open AI just released a version of their GPT-3 model called <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>. This AI has the capability of taking in natural language generating intelligible responses that in my opinion can support much of the work we do today as practicing I/Os. I'll discuss other areas in later articles though.</p>
+<p>Today let's focus on item writing.</p>
+<p>I'm going to first ask GPT to write 5 Likert style items designed to assess the trait of extraversion.</p>
+<p><img src="https://i.imgur.com/ipDQwfc.png" alt="img"></p>
+<p>You can see I told GPT that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.</p>
+<p>These are good, but as I mentioned earlier we should probably add the context of work to the questions. So, let's tell GPT that I want the items to be written in a work context.</p>
+<p><img src="https://i.imgur.com/OdN5pRz.png" alt="img"></p>
+<p>So you can see it still retained the main premise of the item, but added work-specific context. It swapped social gatherings with meetings and added the context of coworkers in other items as well.</p>
+<p>This is pretty good, but one problem I see is they are all framed positively. Typically we want some items that are framed positively and others that are framed negatively. So let's ask GPT to provide us with both.</p>
+<p><img src="https://i.imgur.com/O9ZvYwd.png" alt="img"></p>
+<p>These look pretty good. If we were being really picky we could say that these are all just rephrased variants of the same 10 items, but we could explore ways to generate specific variations of a subset of items if we wanted to. I feel like GPT succeeded in writing some pretty solid items for extraversion. I'd expect them to all load together if we collected data on them and ran a CFA.</p>
+<p>One final test I wanted to do was to ask GPT to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.</p>
+<p><img src="https://i.imgur.com/1DjBc1o.png" alt="img"></p>
+<p>Again, I'm pretty impressed by the quality and the content.</p>
+<p>Overall, I'd say I'm impressed with GPT as a generator of Likert style items to be used in psychometric assessments. In future articles I'll explore using AI to create additional training data for models, to write research reports, and more.</p>
+<p>I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)</p>
+<p><img src="https://i.imgur.com/QpQsezh.png" alt="img"></p>
 
 </div>
 </div>
@@ -1321,277 +1199,8 @@ Wall time: 2.85 s
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3-different-ways-to-process-data">3 different ways to process data<a class="anchor-link" href="#3-different-ways-to-process-data">&#182;</a></h2><h3 id="1.-Write-a-function-and-use-.apply()">1. Write a function and use .apply()<a class="anchor-link" href="#1.-Write-a-function-and-use-.apply()">&#182;</a></h3><p>this involves writing a typical function and then using <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html">.apply()</a> to execute the function on the column. This simple function returns a 1 if the variable is an "R" or a 0 if it is not. This function can be used for creating an integer feature to be included in an ML model.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">stance</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;R&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">stance</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 164 ms, sys: 16 ms, total: 180 ms
-Wall time: 176 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.-Write-a-lambda-function-within-.apply()">2. Write a lambda function within .apply()<a class="anchor-link" href="#2.-Write-a-lambda-function-within-.apply()">&#182;</a></h3><p>This is similar to the original .apply() but allows us to use more concise functions that are not designed to be reproducible.This is a good resource for more on <a href="https://realpython.com/python-lambda/">lambda functions</a>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">==</span><span class="s2">&quot;R&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 218 ms, sys: 0 ns, total: 218 ms
-Wall time: 210 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can see that the results of the first two are almost identical, with a wall time of about 180 milliseconds.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.-Use-np.where()">3. Use np.where()<a class="anchor-link" href="#3.-Use-np.where()">&#182;</a></h3><p><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html">np.where()</a> leverages numpy and allows us to vectorize the computation. Let's see if we can get some speed up by taking advantage of numpy vectorization.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pd_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span><span class="s2">&quot;R&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 14.4 ms, sys: 185 µs, total: 14.6 ms
-Wall time: 13.3 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can clearly see this is a lot faster. np.where() is roughly 13x faster on the exact same data.</p>
-<h2 id="Try-the-same-thing-on-modin-dataframes">Try the same thing on modin dataframes<a class="anchor-link" href="#Try-the-same-thing-on-modin-dataframes">&#182;</a></h2><p>We know modin loads data faster than pandas, but what about doing computation on the dataframes. Let's look at the numbers for each of those as well.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">stance</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 25.4 ms, sys: 3.82 ms, total: 29.2 ms
-Wall time: 30.5 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">==</span><span class="s2">&quot;R&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 209 ms, sys: 7.87 ms, total: 217 ms
-Wall time: 922 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;right_handed_batter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mdn_df</span><span class="p">[</span><span class="s1">&#39;stand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span><span class="s2">&quot;R&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 13.1 s, sys: 351 ms, total: 13.5 s
-Wall time: 14.2 s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So we can see that for modin there are vast differences across the types of implementations. The traditional function runs extremely quickly, almost as fast as the np.where() function on pandas, but the lambda function is much slower and the most surprising of all was the np.where() function within modin. It's wall time is roughly 75x slower than the .apply() function within pandas.</p>
-<p>I reached out to the development team and they said part of the reason for this is that when you call np.where() in modin it first converts it to a numpy array and then must convert it back to a pandas distributed series, which in effect ends up with them collecting the data, merging, running the np.where() then re-splitting the data for distribution, which causes all the high overhead.</p>
-<h2 id="How-does-this-compare-to-R?">How does this compare to R?<a class="anchor-link" href="#How-does-this-compare-to-R?">&#182;</a></h2><p>A question came up on whether or not the .apply() method was similar to the family of apply() functions in R. I'm not completely familiar with R code, but after some investigating it appears that they are very similar. So I decided it would be interesting to compare speed between R and Python. For whatever reason the R kernel was running exceptionally slow in Jupyter so I ran it in Rstudio. Below are the results. You can see that it took about 2 seconds longer to load the dataframe using pandas and about 4 seconds longer to load the dataframe as compared to Modin. the lapply() fucntion took 624 milliseconds compared to the roughly 200ms for .apply() and the 13.3ms for np.where(),so .apply() is roughly 3x faster and np.where() is roughly 47x faster.</p>
-<p><img src="https://i.imgur.com/XjOl5t0.png" alt="img"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Takeaways">Takeaways<a class="anchor-link" href="#Takeaways">&#182;</a></h1><ul>
-<li>Modin has promise for dealing with large dataframes across CPUs. I'm excited to see where the project goes. </li>
-<li>There are often multiple ways to solve the same problem in python and as part of continuous learning and refactoring code it's often worth it to explores the pros and cons of these different methods. </li>
-</ul>
+<p>References:</p>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386">Grover, S., &amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.</a></p>
 
 </div>
 </div>
@@ -1647,7 +1256,7 @@ Wall time: 14.2 s
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'Using Parallel Processing and Vectorization to Speed Up Your Code';
+    var disqus_title = 'The AI PhD Student Part I';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

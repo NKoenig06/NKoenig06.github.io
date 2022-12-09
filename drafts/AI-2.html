@@ -1,5 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>AIO: Bridging the Gap Between Data Science and IO - data science, artificial intelligence</title><link href="/" rel="alternate"></link><link href="/feeds/data-science-artificial-intelligence.atom.xml" rel="self"></link><id>/</id><updated>2022-12-05T19:10:00-06:00</updated><entry><title>The AI I/O PhD Part I: The SME Item Writer</title><link href="/AI-1.html" rel="alternate"></link><published>2022-12-05T19:10:00-06:00</published><updated>2022-12-05T19:10:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:None,2022-12-05:/AI-1.html</id><summary type="html">&lt;p&gt;This article explores the use of Open AI's Davinci algorithm, to generate high quality specific item content from a simple natural language prompt.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>The AI PhD Student Part 2 — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: The AI PhD Student Part 2; Date: 2022-12-05; Author: N. Koenig">
+	<meta name="author" content="N. Koenig">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="/theme/html5.js"></script>
+		<![endif]-->
+	<link href="/theme/css/ipython.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
+	<link href="/theme/css/local.css" rel="stylesheet">
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+	<div class="page-header">
+		<h1><a href="/">AIO: Bridging the Gap Between Data Science and IO</a>
+			<br>	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="text-center article-header">
+		<h1 itemprop="name headline" class="article-title">The AI PhD Student Part 2</h1>
+		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
+			<h4 itemprop="name">N. Koenig</h4>
+		</span>
+		<time datetime="2022-12-05T19:10:00-06:00" itemprop="datePublished">Mon 05 December 2022</time>
+	</div>
+	<div>
+		Category:
+		<span itemprop="articleSection">
+			<a href="/category/data-science-artificial-intelligence.html" rel="category">data science, artificial intelligence</a>
+		</span>
+	</div>
+ 
+	<div>
+		Tags:
+		<span itemprop="keywords">
+			<a href="/tag/data-science.html" rel="tag">Data Science</a>
+		</span>
+		<span itemprop="keywords">
+			<a href="/tag/ai.html" rel="tag">AI</a>
+		</span>
+		<span itemprop="keywords">
+			<a href="/tag/deep-learning.html" rel="tag">Deep Learning</a>
+		</span>
+	</div>
+	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
 *
 * IPython notebook
 *
@@ -361,7 +413,7 @@ div.unrecognized_cell .inner_cell a:hover {
   text-decoration: none;
 }
 @media (max-width: 540px) {
-  div.unrecognized_cell &gt; div.prompt {
+  div.unrecognized_cell > div.prompt {
     display: none;
   }
 }
@@ -414,19 +466,19 @@ div.input_prompt {
   color: #303F9F;
   border-top: 1px solid transparent;
 }
-div.input_area &gt; div.highlight {
+div.input_area > div.highlight {
   margin: 0.4em;
   border: none;
   padding: 0px;
   background-color: transparent;
 }
-div.input_area &gt; div.highlight &gt; pre {
+div.input_area > div.highlight > pre {
   margin: 0px;
   border: none;
   padding: 0px;
   background-color: transparent;
 }
-/* The following gets added to the &lt;head&gt; if it is detected that the user has a
+/* The following gets added to the <head> if it is detected that the user has a
  * monospace font with inconsistent normal/bold/italic height.  See
  * notebookmain.js.  Such fonts will have keywords vertically offset with
  * respect to the rest of the text.  The user should select a better font.
@@ -487,7 +539,7 @@ div.input_area &gt; div.highlight &gt; pre {
 }
 /*
 
-Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
 Adapted from GitHub theme
 
 */
@@ -731,7 +783,7 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
-div.output_area .mglyph &gt; img {
+div.output_area .mglyph > img {
   max-width: none;
 }
 /* This is needed to protect the pre formating from global settings such
@@ -969,7 +1021,7 @@ div.text_cell {
   align-items: stretch;
 }
 @media (max-width: 540px) {
-  div.text_cell &gt; div.prompt {
+  div.text_cell > div.prompt {
     display: none;
   }
 }
@@ -1041,8 +1093,8 @@ h6:hover .anchor-link {
   font-size: 100%;
   font-style: italic;
 }
-&lt;/style&gt;
-&lt;style type="text/css"&gt;pre { line-height: 125%; }
+</style>
+<style type="text/css">pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -1115,68 +1167,67 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="The-AI-I/O-PhD-Part-I"&gt;The AI I/O PhD Part I&lt;a class="anchor-link" href="#The-AI-I/O-PhD-Part-I"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;I've had a pretty long hiatus from this and thought it would be fun to get back into it. I thought I'd start by looking into some of the recent advances in the field and the truly groundbreaking potential they may have. I thought I'd title this series the AI I/O PhD because I think what some of these large transformers are capable of starts to creep into the creativity and expertise we'd typically associate with highly skilled and educated I/O professionals.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://i.imgur.com/x5uLCYo.png" alt="ai_lecture"&gt;&lt;/p&gt;
-&lt;p&gt;*image credit of Dall-E the artistic AI&lt;/p&gt;
-&lt;h2 id="Psychometrics"&gt;Psychometrics&lt;a class="anchor-link" href="#Psychometrics"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;One thing that has often taken a lot of skill, creativity, and nuance is item writing for test development. Big 5 personality scales like the &lt;a href="https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf"&gt;BFI-2&lt;/a&gt; are just one of a variety of personality scales out there. These scales usually require the writing of several variations of multiple items designed to elicit specific traits and then the collection of data to establish factor loadings and scale inter-item correlations showing good scale reliabilities. For more details on actually creating and validating psychometrically sound scales I'd refer you to Nunnally and Bernstein's book titled &lt;a href="https://www.amazon.com/Psychometric-Theory-Jum-C-Nunnally/dp/007047849X"&gt;&lt;em&gt;Psychometric Theory&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id="Scale-Development"&gt;Scale Development&lt;a class="anchor-link" href="#Scale-Development"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Scale development typically involves the following (Hinkin, 1995):&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Identifying the construct&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Using SMEs to create item pools&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Narrow the pool of items down to be used as a first draft of the scale&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Administer the scale to a large population&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Examine and evaluate the psychometric properties of the scale&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id="Context-Matters"&gt;Context Matters&lt;a class="anchor-link" href="#Context-Matters"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp;amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.&lt;/p&gt;
-&lt;h2 id="AI"&gt;AI&lt;a class="anchor-link" href="#AI"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;This brings us to the main point of this article. Can we use AI to help us generate items and if so, how, and under what circumstances?&lt;/p&gt;
-&lt;p&gt;Open AI just released a version of their GPT-3 model called &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt;. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.&lt;/p&gt;
-&lt;h2 id="Item-Writing"&gt;Item Writing&lt;a class="anchor-link" href="#Item-Writing"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Today let's focus on item writing.&lt;/p&gt;
-&lt;p&gt;Can AI write traditional Likert style scale items we see in so many of our personality/work styles sections of assessments?&lt;/p&gt;
-&lt;p&gt;I'm going to first ask GPT to write 5 Likert style items designed to assess the trait of extraversion.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://i.imgur.com/ipDQwfc.png" alt="img"&gt;&lt;/p&gt;
-&lt;p&gt;You can see I told GPT that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.&lt;/p&gt;
-&lt;p&gt;These are good, but as I mentioned earlier we should probably add the context of work to the questions. So, let's tell GPT that I want the items to be written in a work context.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://i.imgur.com/OdN5pRz.png" alt="img"&gt;&lt;/p&gt;
-&lt;p&gt;So you can see it still retained the main premise of the item, but added work-specific context. It swapped social gatherings with meetings and added the context of coworkers in other items as well.&lt;/p&gt;
-&lt;p&gt;This is pretty good, but one problem I see is they are all framed positively. Typically we want some items that are framed positively and others that are framed negatively. So let's ask GPT to provide us with both.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://i.imgur.com/O9ZvYwd.png" alt="img"&gt;&lt;/p&gt;
-&lt;p&gt;These look pretty good. If we were being really picky we could say that these are all just rephrased variants of the same 10 items, but we could explore ways to generate specific variations of a subset of items if we wanted to. I feel like GPT succeeded in writing some pretty solid items for extraversion. I'd expect them to all load together if we collected data on them and ran a CFA.&lt;/p&gt;
-&lt;p&gt;One final test I wanted to do was to ask GPT to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://i.imgur.com/1DjBc1o.png" alt="img"&gt;&lt;/p&gt;
-&lt;p&gt;Again, I'm pretty impressed by the quality and the content.&lt;/p&gt;
-&lt;p&gt;Overall, I'd say I'm pretty impressed with GPT as a generator of Likert style items to be used in psychometric assessments. You don't need to define the traits you are asking it to generate items for. Just provide it with the name and other instructions. It understands what Likert style questions look like and understands how to frame Likert style questions both negatively and positively.&lt;/p&gt;
-&lt;p&gt;In future articles I'll explore using AI to create additional training data for models, to write research reports, and more.&lt;/p&gt;
-&lt;h2 id="Paper-on-this-Topic"&gt;Paper on this Topic&lt;a class="anchor-link" href="#Paper-on-this-Topic"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;If anyone would like to read an excellent paper on developing a pipeline to do this with an older version of GPT, I’d highly recommend this excellent paper by &lt;a href="https://doi.org/10.1111/peps.12543"&gt;Ivan Hernandez and Weiwen Nie that was recently published in Personnel Psychology (Hernandez &amp;amp; Nie, 2022)&lt;/a&gt;. They leveraged a GPT-2 model that was fine-tuned on personality items to generate thousands of potential items. Then to infer the expected correlation among these items they used BERT to generate embedding representations of IPIP items and the correlations those embeddings had with the other item embeddings from respondent data. They used the relationship between these to estimate the expected correlations on the new items they created. It’s a very creative use of this new technology IMO.&lt;/p&gt;
-&lt;p&gt;However, now it appears they can skip the fine-tuning a model step and just ask GPT to create items to represent specific traits instead of randomly creating thousands of items and attempting to estimate how related they may be. But nonetheless, this is a very good paper I’d recommend everyone interested in this read.&lt;/p&gt;
-&lt;h2 id="GPT's-Closing-Argument"&gt;GPT's Closing Argument&lt;a class="anchor-link" href="#GPT's-Closing-Argument"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://i.imgur.com/QpQsezh.png" alt="img"&gt;&lt;/p&gt;
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-AI-I/O-PhD-Part-II:-Creating-Unique-Interview-Responses">The AI I/O PhD Part II: Creating Unique Interview Responses<a class="anchor-link" href="#The-AI-I/O-PhD-Part-II:-Creating-Unique-Interview-Responses">&#182;</a></h1><p><img src="https://i.imgur.com/x5uLCYo.png" alt="ai_lecture"></p>
+<p>*image credit of Dall-E the artistic AI</p>
+<h2 id="Psychometrics">Psychometrics<a class="anchor-link" href="#Psychometrics">&#182;</a></h2><p>One thing that has often taken a lot of skill, creativity, and nuance is item writing for test development. Big 5 personality scales like the <a href="https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf">BFI-2</a> are just one of a variety of personality scales out there. These scales usually require the writing of several variations of multiple items designed to elicit specific traits and then the collection of data to establish factor loadings and scale inter-item correlations showing good scale reliabilities. For more details on actually creating and validating psychometrically sound scales I'd refer you to Nunnally and Bernstein's book titled <a href="https://www.amazon.com/Psychometric-Theory-Jum-C-Nunnally/dp/007047849X"><em>Psychometric Theory</em></a>.</p>
+<h3 id="Scale-Development">Scale Development<a class="anchor-link" href="#Scale-Development">&#182;</a></h3><p>Scale development typically involves the following (Hinkin, 1995):</p>
+<ol>
+<li><p>Identifying the construct</p>
+</li>
+<li><p>Using SMEs to create item pools</p>
+</li>
+<li><p>Narrow the pool of items down to be used as a first draft of the scale</p>
+</li>
+<li><p>Administer the scale to a large population</p>
+</li>
+<li><p>Examine and evaluate the psychometric properties of the scale</p>
+</li>
+</ol>
+<h3 id="Context-Matters">Context Matters<a class="anchor-link" href="#Context-Matters">&#182;</a></h3><p>One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.</p>
+<h2 id="AI">AI<a class="anchor-link" href="#AI">&#182;</a></h2><p>This brings us to the main point of this article. Can we use AI to help us generate items and if so, how, and under what circumstances?</p>
+<p>Open AI just released a version of their GPT-3 model called <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.</p>
+<h2 id="Item-Writing">Item Writing<a class="anchor-link" href="#Item-Writing">&#182;</a></h2><p>Today let's focus on item writing.</p>
+<p>Can AI write traditional Likert style scale items we see in so many of our personality/work styles sections of assessments?</p>
+<p>I'm going to first ask GPT to write 5 Likert style items designed to assess the trait of extraversion.</p>
+<p><img src="https://i.imgur.com/ipDQwfc.png" alt="img"></p>
+<p>You can see I told GPT that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.</p>
+<p>These are good, but as I mentioned earlier we should probably add the context of work to the questions. So, let's tell GPT that I want the items to be written in a work context.</p>
+<p><img src="https://i.imgur.com/OdN5pRz.png" alt="img"></p>
+<p>So you can see it still retained the main premise of the item, but added work-specific context. It swapped social gatherings with meetings and added the context of coworkers in other items as well.</p>
+<p>This is pretty good, but one problem I see is they are all framed positively. Typically we want some items that are framed positively and others that are framed negatively. So let's ask GPT to provide us with both.</p>
+<p><img src="https://i.imgur.com/O9ZvYwd.png" alt="img"></p>
+<p>These look pretty good. If we were being really picky we could say that these are all just rephrased variants of the same 10 items, but we could explore ways to generate specific variations of a subset of items if we wanted to. I feel like GPT succeeded in writing some pretty solid items for extraversion. I'd expect them to all load together if we collected data on them and ran a CFA.</p>
+<p>One final test I wanted to do was to ask GPT to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.</p>
+<p><img src="https://i.imgur.com/1DjBc1o.png" alt="img"></p>
+<p>Again, I'm pretty impressed by the quality and the content.</p>
+<p>Overall, I'd say I'm pretty impressed with GPT as a generator of Likert style items to be used in psychometric assessments. You don't need to define the traits you are asking it to generate items for. Just provide it with the name and other instructions. It understands what Likert style questions look like and understands how to frame Likert style questions both negatively and positively.</p>
+<p>In future articles I'll explore using AI to create additional training data for models, to write research reports, and more.</p>
+<h2 id="Paper-on-this-Topic">Paper on this Topic<a class="anchor-link" href="#Paper-on-this-Topic">&#182;</a></h2><p>If anyone would like to read an excellent paper on developing a pipeline to do this with an older version of GPT, I’d highly recommend this excellent paper by <a href="https://doi.org/10.1111/peps.12543">Ivan Hernandez and Weiwen Nie that was recently published in Personnel Psychology (Hernandez &amp; Nie, 2022)</a>. They leveraged a GPT-2 model that was fine-tuned on personality items to generate thousands of potential items. Then to infer the expected correlation among these items they used BERT to generate embedding representations of IPIP items and the correlations those embeddings had with the other item embeddings from respondent data. They used the relationship between these to estimate the expected correlations on the new items they created. It’s a very creative use of this new technology IMO.</p>
+<p>However, now it appears they can skip the fine-tuning a model step and just ask GPT to create items to represent specific traits instead of randomly creating thousands of items and attempting to estimate how related they may be. But nonetheless, this is a very good paper I’d recommend everyone interested in this read.</p>
+<h2 id="GPT's-Closing-Argument">GPT's Closing Argument<a class="anchor-link" href="#GPT's-Closing-Argument">&#182;</a></h2><p>I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)</p>
+<p><img src="https://i.imgur.com/QpQsezh.png" alt="img"></p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;References:&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386"&gt;Grover, S., &amp;amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Hernandez, I., &amp;amp; Nie, W. (2022). The AI-IP: Minimizing the guesswork of personality scale item development through artificial intelligence. Personnel Psychology, 00, 1– 24. Advance online publication. &lt;a href="https://doi.org/10.1111/peps.12543"&gt;https://doi.org/10.1111/peps.12543&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988. &lt;a href="https://doi.org/10.1177/014920639502100509"&gt;https://doi.org/10.1177/014920639502100509&lt;/a&gt;&lt;/p&gt;
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>References:</p>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386">Grover, S., &amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.</a></p>
+<p>Hernandez, I., &amp; Nie, W. (2022). The AI-IP: Minimizing the guesswork of personality scale item development through artificial intelligence. Personnel Psychology, 00, 1– 24. Advance online publication. <a href="https://doi.org/10.1111/peps.12543">https://doi.org/10.1111/peps.12543</a></p>
+<p>Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988. <a href="https://doi.org/10.1177/014920639502100509">https://doi.org/10.1177/014920639502100509</a></p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
  
 
 
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
@@ -1203,5 +1254,103 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         "}); ";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;
-</content><category term="data science, artificial intelligence"></category><category term="Data Science"></category><category term="AI"></category><category term="Deep Learning"></category></entry></feed>
+</script>
+</div>
+	<hr>
+	<h2>Comments</h2>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="@N_KNIG">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'https-nkoenig06-github-io'; 
+    var disqus_title = 'The AI PhD Student Part 2';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+		</div>
+	</div> 	<!-- <hr> -->
+</div> <!-- /container -->
+<footer class="aw-footer bg-danger">
+	<div class="container"> <!-- footer -->
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="row">
+					<div class="col-md-3">
+						<h4>Navigation</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="">AIO: Bridging the Gap Between Data Science and IO</a></li>
+							<li><a href="/feeds/all.atom.xml" type="application/atom+xml"><i class="fa fa-rss "></i> atom</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Author</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://twitter.com/N_KNIG/">Twitter</a></li>
+							<li><a href="http://www.linkedin.com/in/nick-koenig-69699a27/">LinkedIn</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Categories</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="/category/about.html">about (1)</a></li>
+							<li><a href="/category/data-science.html">data science (16)</a></li>
+							<li><a href="/category/data-science,-artificial-intelligence.html">data science, artificial intelligence (1)</a></li>
+							<li><a href="/category/data-science,-programming.html">data science, programming (1)</a></li>
+							<li><a href="/category/programming.html">programming (6)</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Links</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://jupyter.org/">Jupyter.org</a></li>
+							<li><a href="http://python.org/">Python.org</a></li>
+							<li><a href="http://kdnuggets.com/">KDnuggets</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center center-block aw-bottom">
+			<p>&copy; N. Koenig 2016</p>
+			<p>Powered by Pelican</p>
+		</div>
+	</div>
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-132815257-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<a href="https://github.com/NKoenig06"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+</body>
+</html>

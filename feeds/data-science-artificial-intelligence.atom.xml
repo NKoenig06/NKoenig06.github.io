@@ -1136,26 +1136,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;/ol&gt;
 &lt;h3 id="Context-Matters"&gt;Context Matters&lt;a class="anchor-link" href="#Context-Matters"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp;amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.&lt;/p&gt;
 &lt;h2 id="AI"&gt;AI&lt;a class="anchor-link" href="#AI"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;This brings us to the main point of this article. Can we use AI to help us generate items and if so, how, and under what circumstances?&lt;/p&gt;
-&lt;p&gt;Open AI just released a version of their GPT-3 model called &lt;a href="https://openai.com/blog/chatgpt/"&gt;davinci&lt;/a&gt;. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.&lt;/p&gt;
+&lt;p&gt;Open AI just released a version of their GPT-3 davinci model called &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt;. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.&lt;/p&gt;
 &lt;h2 id="Item-Writing"&gt;Item Writing&lt;a class="anchor-link" href="#Item-Writing"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Today let's focus on item writing.&lt;/p&gt;
 &lt;p&gt;Can AI write traditional Likert style scale items we see in so many of our personality/work styles sections of assessments?&lt;/p&gt;
-&lt;p&gt;I'm going to first ask davinci to write 5 Likert style items designed to assess the trait of extraversion.&lt;/p&gt;
+&lt;p&gt;I'm going to first ask ChatGPT to write 5 Likert style items designed to assess the trait of extraversion.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/ipDQwfc.png" alt="img"&gt;&lt;/p&gt;
-&lt;p&gt;You can see I told davinci that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.&lt;/p&gt;
+&lt;p&gt;You can see I told ChatGPT that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.&lt;/p&gt;
 &lt;p&gt;These are good, but as I mentioned earlier we should probably add the context of work to the questions. So, let's tell GPT that I want the items to be written in a work context.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/OdN5pRz.png" alt="img"&gt;&lt;/p&gt;
 &lt;p&gt;So you can see it still retained the main premise of the item, but added work-specific context. It swapped social gatherings with meetings and added the context of coworkers in other items as well.&lt;/p&gt;
 &lt;p&gt;This is pretty good, but one problem I see is they are all framed positively. Typically we want some items that are framed positively and others that are framed negatively. So let's ask GPT to provide us with both.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/O9ZvYwd.png" alt="img"&gt;&lt;/p&gt;
 &lt;p&gt;These look pretty good. If we were being really picky we could say that these are all just rephrased variants of the same 10 items, but we could explore ways to generate specific variations of a subset of items if we wanted to. I feel like GPT succeeded in writing some pretty solid items for extraversion. I'd expect them to all load together if we collected data on them and ran a CFA.&lt;/p&gt;
-&lt;p&gt;One final test I wanted to do was to ask davinci to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.&lt;/p&gt;
+&lt;p&gt;One final test I wanted to do was to ask ChatGPT to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/1DjBc1o.png" alt="img"&gt;&lt;/p&gt;
-&lt;p&gt;Again, I'm pretty impressed by the quality and the content.&lt;/p&gt;
 &lt;p&gt;Overall, I'd say I'm pretty impressed with GPT as a generator of Likert style items to be used in psychometric assessments. You don't need to define the traits you are asking it to generate items for. Just provide it with the name and other instructions. It understands what Likert style questions look like and understands how to frame Likert style questions both negatively and positively.&lt;/p&gt;
-&lt;p&gt;In future articles I'll explore using AI to create additional training data for models, to write research reports, and more.&lt;/p&gt;
+&lt;p&gt;In future articles I'll explore using AI to create additional training data for models, to summarize articles, to help write code, and more.&lt;/p&gt;
 &lt;h2 id="Paper-on-this-Topic"&gt;Paper on this Topic&lt;a class="anchor-link" href="#Paper-on-this-Topic"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;If anyone would like to read an excellent paper on developing a pipeline to do this with an older version of GPT, I’d highly recommend this excellent paper by &lt;a href="https://doi.org/10.1111/peps.12543"&gt;Ivan Hernandez and Weiwen Nie that was recently published in Personnel Psychology (Hernandez &amp;amp; Nie, 2022)&lt;/a&gt;. They leveraged a GPT-2 model that was fine-tuned on personality items to generate thousands of potential items. Then to infer the expected correlation among these items they used BERT to generate embedding representations of IPIP items and the correlations those embeddings had with the other item embeddings from respondent data. They used the relationship between these to estimate the expected correlations on the new items they created. It’s a very creative use of this new technology IMO.&lt;/p&gt;
 &lt;p&gt;However, now it appears they can skip the fine-tuning a model step and just ask GPT to create items to represent specific traits instead of randomly creating thousands of items and attempting to estimate how related they may be. But nonetheless, this is a very good paper I’d recommend everyone interested in this read.&lt;/p&gt;
-&lt;h2 id="Davinci's-Closing-Argument"&gt;Davinci's Closing Argument&lt;a class="anchor-link" href="#Davinci's-Closing-Argument"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I'll leave everyone with davinci describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)&lt;/p&gt;
+&lt;h2 id="ChatGPT's-Closing-Argument"&gt;ChatGPT's Closing Argument&lt;a class="anchor-link" href="#ChatGPT's-Closing-Argument"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/QpQsezh.png" alt="img"&gt;&lt;/p&gt;
 
 &lt;/div&gt;
@@ -1167,10 +1166,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;p&gt;References:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386"&gt;Grover, S., &amp;amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Hernandez, I., &amp;amp; Nie, W. (2022). The AI-IP: Minimizing the guesswork of personality scale item development through artificial intelligence. Personnel Psychology, 00, 1– 24. Advance online publication. &lt;a href="https://doi.org/10.1111/peps.12543"&gt;https://doi.org/10.1111/peps.12543&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988. &lt;a href="https://doi.org/10.1177/014920639502100509"&gt;https://doi.org/10.1177/014920639502100509&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.researchgate.net/profile/Khandoker-Mahmudur-Rahman/post/In_the_case_where_no_existing_scale_is_available_how_do_you_prepare_your_questionnaire_in_quantitative_research/attachment/59d625fc79197b8077984478/AS%3A319986898276353%401453302229543/download/Hinkin+1995.pdf"&gt;Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988.&lt;/a&gt; &lt;a href="https://doi.org/10.1177/014920639502100509"&gt;https://doi.org/10.1177/014920639502100509&lt;/a&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
 &lt;/div&gt;
  
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>AIO: Bridging the Gap Between Data Science and IO - data science, artificial intelligence</title><link href="/" rel="alternate"></link><link href="/feeds/data-science-artificial-intelligence.atom.xml" rel="self"></link><id>/</id><updated>2023-01-13T19:10:00-06:00</updated><entry><title>The AI PhD Student Part II: The Data Creator</title><link href="/AI-2.html" rel="alternate"></link><published>2023-01-13T19:10:00-06:00</published><updated>2023-01-13T19:10:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:None,2023-01-13:/AI-2.html</id><summary type="html">&lt;p&gt;This article explores the use of Open AI's new Chatbot GPT to generate datasets that allow users to train large language models on downstream tasks leveraging a few shot learning approach.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>AIO: Bridging the Gap Between Data Science and IO - data science, artificial intelligence</title><link href="/" rel="alternate"></link><link href="/feeds/data-science-artificial-intelligence.atom.xml" rel="self"></link><id>/</id><updated>2023-01-13T19:10:00-06:00</updated><entry><title>The AI I/O PhD Part II: The Data Creator</title><link href="/AI-2.html" rel="alternate"></link><published>2023-01-13T19:10:00-06:00</published><updated>2023-01-13T19:10:00-06:00</updated><author><name>N. Koenig</name></author><id>tag:None,2023-01-13:/AI-2.html</id><summary type="html">&lt;p&gt;This article explores the use of Open AI's new Chatbot GPT to generate datasets that allow users to train large language models on downstream tasks leveraging a few shot learning approach.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1603,10 +1603,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
  
  
-&lt;div id="2826f871-d3a3-4454-a825-978eb85afa5d"&gt;&lt;/div&gt;
+&lt;div id="93d5d25e-e970-4733-a8d8-9d20ce55536a"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#2826f871-d3a3-4454-a825-978eb85afa5d');
+var element = $('#93d5d25e-e970-4733-a8d8-9d20ce55536a');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "14cf685988314a8f848ab82696341cd0", "version_major": 2, "version_minor": 0}
@@ -1625,10 +1625,10 @@ var element = $('#2826f871-d3a3-4454-a825-978eb85afa5d');
 
  
  
-&lt;div id="cbd6820f-7bfe-457e-a28e-2946ad558fe3"&gt;&lt;/div&gt;
+&lt;div id="4ede5fea-d66b-462f-9bbe-8b27edb15883"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#cbd6820f-7bfe-457e-a28e-2946ad558fe3');
+var element = $('#4ede5fea-d66b-462f-9bbe-8b27edb15883');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "79398f7ca85a4777b124b94e8cc46c3d", "version_major": 2, "version_minor": 0}
@@ -1659,10 +1659,10 @@ var element = $('#cbd6820f-7bfe-457e-a28e-2946ad558fe3');
 
  
  
-&lt;div id="198e65a8-94f8-48bf-b4fa-fcb7710d0b9e"&gt;&lt;/div&gt;
+&lt;div id="0b2856b3-8b72-4e76-8c02-f0c3c8bf3f66"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#198e65a8-94f8-48bf-b4fa-fcb7710d0b9e');
+var element = $('#0b2856b3-8b72-4e76-8c02-f0c3c8bf3f66');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "11966e75dd584b00b50b4840dde329e8", "version_major": 2, "version_minor": 0}

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>The AI I/O PhD Part I: The SME Item Writer — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: The AI I/O PhD Part I: The SME Item Writer; Date: 2022-12-05; Author: N. Koenig">
+	<title>Hello World & Installing Python and Jupyter — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Hello World & Installing Python and Jupyter; Date: 2019-01-17; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,16 +26,16 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">The AI I/O PhD Part I: The SME Item Writer</h1>
+		<h1 itemprop="name headline" class="article-title">Hello World & Installing Python and Jupyter</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2022-12-05T19:10:00-06:00" itemprop="datePublished">Mon 05 December 2022</time>
+		<time datetime="2019-01-17T10:30:00-06:00" itemprop="datePublished">Thu 17 January 2019</time>
 	</div>
 	<div>
 		Category:
 		<span itemprop="articleSection">
-			<a href="/category/data-science-artificial-intelligence.html" rel="category">data science, artificial intelligence</a>
+			<a href="/category/programming.html" rel="category">programming</a>
 		</span>
 	</div>
  
@@ -45,10 +45,13 @@
 			<a href="/tag/data-science.html" rel="tag">Data Science</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/ai.html" rel="tag">AI</a>
+			<a href="/tag/environment-setup.html" rel="tag">Environment Setup</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/deep-learning.html" rel="tag">Deep Learning</a>
+			<a href="/tag/jupyter.html" rel="tag">Jupyter</a>
+		</span>
+		<span itemprop="keywords">
+			<a href="/tag/python.html" rel="tag">Python</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1170,44 +1173,56 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/x5uLCYo.png" alt="ai_lecture"></p>
-<p>*image credit of Dall-E the artistic AI</p>
-<h2 id="Psychometrics">Psychometrics<a class="anchor-link" href="#Psychometrics">&#182;</a></h2><p>One thing that has often taken a lot of skill, creativity, and nuance is item writing for test development. Big 5 personality scales like the <a href="https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf">BFI-2</a> are just one of a variety of personality scales out there. These scales usually require the writing of several variations of multiple items designed to elicit specific traits and then the collection of data to establish factor loadings and scale inter-item correlations showing good scale reliabilities. For more details on actually creating and validating psychometrically sound scales I'd refer you to Nunnally and Bernstein's book titled <a href="https://www.amazon.com/Psychometric-Theory-Jum-C-Nunnally/dp/0071070885"><em>Psychometric Theory</em></a>.</p>
-<h3 id="Scale-Development">Scale Development<a class="anchor-link" href="#Scale-Development">&#182;</a></h3><p>Scale development typically involves the following (Hinkin, 1995):</p>
-<ol>
-<li><p>Identifying the construct</p>
-</li>
-<li><p>Using SMEs to create item pools</p>
-</li>
-<li><p>Narrow the pool of items down to be used as a first draft of the scale</p>
-</li>
-<li><p>Administer the scale to a large population</p>
-</li>
-<li><p>Examine and evaluate the psychometric properties of the scale</p>
-</li>
-</ol>
-<h3 id="Context-Matters">Context Matters<a class="anchor-link" href="#Context-Matters">&#182;</a></h3><p>One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.</p>
-<h2 id="AI">AI<a class="anchor-link" href="#AI">&#182;</a></h2><p>This brings us to the main point of this article. Can we use AI to help us generate items and if so, how, and under what circumstances?</p>
-<p>Open AI just released a version of their GPT-3 davinci model called <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.</p>
-<h2 id="Item-Writing">Item Writing<a class="anchor-link" href="#Item-Writing">&#182;</a></h2><p>Today let's focus on item writing.</p>
-<p>Can AI write traditional Likert style scale items we see in so many of our personality/work styles sections of assessments?</p>
-<p>I'm going to first ask ChatGPT to write 5 Likert style items designed to assess the trait of extraversion.</p>
-<p><img src="https://i.imgur.com/ipDQwfc.png" alt="img"></p>
-<p>You can see I told ChatGPT that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.</p>
-<p>These are good, but as I mentioned earlier we should probably add the context of work to the questions. So, let's tell GPT that I want the items to be written in a work context.</p>
-<p><img src="https://i.imgur.com/OdN5pRz.png" alt="img"></p>
-<p>So you can see it still retained the main premise of the item, but added work-specific context. It swapped social gatherings with meetings and added the context of coworkers in other items as well.</p>
-<p>This is pretty good, but one problem I see is they are all framed positively. Typically we want some items that are framed positively and others that are framed negatively. So let's ask GPT to provide us with both.</p>
-<p><img src="https://i.imgur.com/O9ZvYwd.png" alt="img"></p>
-<p>These look pretty good. If we were being really picky we could say that these are all just rephrased variants of the same 10 items, but we could explore ways to generate specific variations of a subset of items if we wanted to. I feel like GPT succeeded in writing some pretty solid items for extraversion. I'd expect them to all load together if we collected data on them and ran a CFA.</p>
-<p>One final test I wanted to do was to ask ChatGPT to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.</p>
-<p><img src="https://i.imgur.com/1DjBc1o.png" alt="img"></p>
-<p>Overall, I'd say I'm pretty impressed with GPT as a generator of Likert style items to be used in psychometric assessments. You don't need to define the traits you are asking it to generate items for. Just provide it with the name and other instructions. It understands what Likert style questions look like and understands how to frame Likert style questions both negatively and positively.</p>
-<p>In future articles I'll explore using AI to create additional training data for models, to summarize articles, to help write code, and more.</p>
-<h2 id="Paper-on-this-Topic">Paper on this Topic<a class="anchor-link" href="#Paper-on-this-Topic">&#182;</a></h2><p>If anyone would like to read an excellent paper on developing a pipeline to do this with an older version of GPT, I’d highly recommend this excellent paper by <a href="https://doi.org/10.1111/peps.12543">Ivan Hernandez and Weiwen Nie that was recently published in Personnel Psychology (Hernandez &amp; Nie, 2022)</a>. They leveraged a GPT-2 model that was fine-tuned on personality items to generate thousands of potential items. Then to infer the expected correlation among these items they used BERT to generate embedding representations of IPIP items and the correlations those embeddings had with the other item embeddings from respondent data. They used the relationship between these to estimate the expected correlations on the new items they created. It’s a very creative use of this new technology IMO.</p>
-<p>However, now it appears they can skip the fine-tuning a model step and just ask GPT to create items to represent specific traits instead of randomly creating thousands of items and attempting to estimate how related they may be. But nonetheless, this is a very good paper I’d recommend everyone interested in this read.</p>
-<h2 id="ChatGPT's-Closing-Argument">ChatGPT's Closing Argument<a class="anchor-link" href="#ChatGPT's-Closing-Argument">&#182;</a></h2><p>I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)</p>
-<p><img src="https://i.imgur.com/QpQsezh.png" alt="img"></p>
+<h1 id="Hello-World-&amp;-Installing-Python-and-Jupyter">Hello World &amp; Installing Python and Jupyter<a class="anchor-link" href="#Hello-World-&amp;-Installing-Python-and-Jupyter">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Like many social scientists I was taught very little programming in grad school. I knew how to point and click my way through SPSS and I knew how to to do some "proc reg" commands in SAS. That was about it. As I started to deal with more and more data in SPSS and Excel I started to realize there were tons of redundancies and a lot of my time was spent recreating very similar analyses to answer slightly different questions.</p>
+<p>At the same time I started to see many "Machine Learning Experts" creep into the I/O &amp; Selection Space saying they could leverage ML to predict the perfect employee.</p>
+<p>I thought we were trying to solve the same problem, they can't be doing things that differently than us, so I started to dive into basic ML literature. My first experience with ML was <a href="https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf">this book</a> and I started to see that ML wasn't that different than many of the things social scientists were traditionally trained to do, they just used different terminology, which made it seem foreign to us.</p>
+<p>My hope for this blog is it can be something that helps Social Scientists interested in adding programming and data analysis to their core skillset get that knowledge in a way that made sense for someone coming from their background.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello World!!&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello World!!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="https://i.imgur.com/eZBOkye.png" alt="ML"></p>
 
 </div>
 </div>
@@ -1215,11 +1230,264 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>References:</p>
-<p><a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386">Grover, S., &amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.</a></p>
-<p>Hernandez, I., &amp; Nie, W. (2022). The AI-IP: Minimizing the guesswork of personality scale item development through artificial intelligence. Personnel Psychology, 00, 1– 24. Advance online publication. <a href="https://doi.org/10.1111/peps.12543">https://doi.org/10.1111/peps.12543</a></p>
-<p><a href="https://www.researchgate.net/profile/Khandoker-Mahmudur-Rahman/post/In_the_case_where_no_existing_scale_is_available_how_do_you_prepare_your_questionnaire_in_quantitative_research/attachment/59d625fc79197b8077984478/AS%3A319986898276353%401453302229543/download/Hinkin+1995.pdf">Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988.</a> <a href="https://doi.org/10.1177/014920639502100509">https://doi.org/10.1177/014920639502100509</a></p>
+<h2 id="Starting-with-the-basics">Starting with the basics<a class="anchor-link" href="#Starting-with-the-basics">&#182;</a></h2><p>One thing that has always been fairly cumbersome is setting up your working environment in python. In SPSS you pay for the software, you install it and you are good to go. You want to run a correlation. There's a dropdown in the menu for that. A linear regression, a drop down in the menu for that. The difference between SPSS and Python is that SPSS is a ready to use software solution designed with a specific purpose. On the other hand Python is a general use programming language. Do you want to build a website? The flask and django packages can help with that. Do you want to perform math? Basic Python has you covered there. More advanced linear algebra? NumPy's <a href="https://docs.scipy.org/doc/numpy-1.15.0/user/basics.broadcasting.html">broadcasting</a> has you covered. For this reason your environment is important. You would use a different environment to build a website than you would to perform a statistical analysis. This is where the specific packages come in. One place where most packages are compiled and kept up-to-date is Anaconda. <a href="https://www.anaconda.com/what-is-anaconda/">Anaconda</a> is a distribution of the most common packages used for data science and machine learning.</p>
+<h3 id="In-this-first-post-I-will-walk-you-through-the-process-of-downloading-Anaconda-and-setting-up-your-first-Data-Science-Environment">In this first post I will walk you through the process of downloading Anaconda and setting up your first Data Science Environment<a class="anchor-link" href="#In-this-first-post-I-will-walk-you-through-the-process-of-downloading-Anaconda-and-setting-up-your-first-Data-Science-Environment">&#182;</a></h3><p>Step:</p>
+<ol>
+<li>Download and install Anaconda or Miniconda<ul>
+<li><a href="https://www.anaconda.com/download/">This</a> site will give you the installation for your specific OS. <ul>
+<li>If you are in <strong>Windows</strong> in your start menu after installation you should be able to search for <strong>Anaconda Prompt</strong>.</li>
+<li>If you are in <strong>Linux</strong> or <strong>Mac</strong> you can use the actual terminal.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>Open Anaconda Prompt or the terminal and you should see something similar to the image below</p>
+</li>
+<li><p>After successfully installing Anaconda you can use conda commands.</p>
+<ul>
+<li>This is where you will create your first virtual environment. A virtual environment is extremely important when it comes to keeping your work environment from being overrun by packages (collections of python files) you aren't using for your specific project. You can then specify the version of python you want. I want my environment to be in python 3.7, so I will specify that in the creation by writing the following:</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/w6k6BTH.png" alt="conda_create"></p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>-n stands for (name) so after the -n command you will name your virtual environment. For the purposes of this example I named mine <strong>my_first_venv</strong> and specified the python version to be 3.7.</p>
+<p>There are differences between Python 2 and Python 3, that are beyond the scope of this blog, but most new data analysis and data science methods will be more routinely updated in python 3.</p>
+<p>In fact Guido van Rossum, the creator of Python has told the community Python 2 will stop being support in January of 2020. You can view the <a href="https://pythonclock.org/">countdown here</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Getting-into-our-virtual-environment">Getting into our virtual environment<a class="anchor-link" href="#Getting-into-our-virtual-environment">&#182;</a></h3><p>Now that we have built our virtual environment let's use it. You can do that by using the <strong>source activate</strong> command and the name of the virtual environment you created above. Similar to what I did below.</p>
+<p><strong>Note</strong> When you are finished in your virtual environment you just use the command <strong>source deactivate</strong> and you will be back to a normal bash shell/terminal.</p>
+<p><img src="https://i.imgur.com/w6k6BTH.png" alt="source_activate"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You successfully navigated into your first virtual environment. Now anything you run or do will be working strictly off of the packages in this virtual environment.</p>
+<p>Next you can install the common packages that you'll need for data analysis/data science, here are a few:</p>
+<ul>
+<li>conda install numpy <ul>
+<li><a href="https://en.wikipedia.org/wiki/NumPy">numpy</a> is a linear algebra library, which pandas is built on top of</li>
+</ul>
+</li>
+<li>conda install pandas <ul>
+<li><a href="https://en.wikipedia.org/wiki/Pandas_(software">pandas</a>) is a dataframe library (structures data similar to excel)</li>
+</ul>
+</li>
+<li>conda install scikit-learn <ul>
+<li><a href="https://en.wikipedia.org/wiki/Scikit-learn">scikit learn</a> is a machine learning library</li>
+</ul>
+</li>
+<li>conda install -c conda-forge matplotlib <ul>
+<li><a href="https://en.wikipedia.org/wiki/Matplotlib">matplotlib</a> is a visualization library</li>
+</ul>
+</li>
+<li>conda install -c anaconda seaborn<ul>
+<li><a href="https://seaborn.pydata.org/">seaborn</a> is an advanced visualization library built on top of matplotlib</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Downloading-Jupyter-and-Creating-a-Jupyter-Kernel">Downloading Jupyter and Creating a Jupyter Kernel<a class="anchor-link" href="#Downloading-Jupyter-and-Creating-a-Jupyter-Kernel">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Most people running data analyis won't want to work in a traditional developers IDE (Integrated Development Environment), like <a href="https://www.jetbrains.com/pycharm/">PyCharm</a> because it's fairly cumbersome to debug code when you can't run it in line. For this reason I think Jupyter is an excellent solution for people that are unlikely to be productionizing their analysis, but instead will be trying to derive quick calculations, like means, standard deviations, correlations, etc.</p>
+<p><a href="https://en.wikipedia.org/wiki/Project_Jupyter">Jupyter</a> stands for 3 programming languages:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Julia_(programming_language">Julia</a>) <strong>JU</strong></li>
+<li><a href="https://en.wikipedia.org/wiki/Python_(programming_language">Python</a>) <strong>PYT</strong></li>
+<li><a href="https://en.wikipedia.org/wiki/R_(programming_language">R</a>) <strong>ER</strong> (I guess at that point the name was too good to pass up)</li>
+</ul>
+<p>and allows you to develop and test code within your web browser which is extremely convenient for quickly prototyping analyses or simple functions.</p>
+<p>So let's create a kernel specific to our virtual environment, so we can use jupyter in our browser.</p>
+<p>First thing we need to do is install ipykernel in our virtual environment.</p>
+<p><img src="https://i.imgur.com/1jwYKKi.png" alt="jup1"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next we activate the notebook by typing the following command:</p>
+<p><img src="https://i.imgur.com/2mf2gX7.png" alt="jup2"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If that doesn't launch the notebook in a browser you can use the following command in your terminal/anaconda prompt</p>
+<p><img src="https://i.imgur.com/Sj6jRRc.png" alt="launch_jup"></p>
+<p><strong>Note</strong> I don't typically work in Windows or MacOS, but I have been told that once Jupyter is installed on your computer you can also just launch it by searching through the <strong>START</strong> menu. If that's the case I'd recommend creating a shortcut on your desktop, so you can just double-click and get it started. It might look like below, where the anaconda prompt is circled and immediately below it is the jupyter notebook application.</p>
+<p><img src="https://pythonforundergradengineers.com/posts/jupyter/anaconda_start_menu.png" alt="windwos start"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This will launch a web browser that allows you to interact with your directories. You can navigate through your directories to where you plan to work on your project. You can do this through the browser.</p>
+<p>Over on the far right of the web browser you will see a tab titled <strong>New</strong>. You can see here that I have a few virtual environments with kernels, from an R kernel to many different kernels for different projects.</p>
+<p>You will click on my_first_venv and it will open up a jupyter notebook with that kernel.</p>
+<p><img src="https://i.imgur.com/TkFphBr.png" alt="kernels"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once you click on my_first_venv you will get a notebook that pops up and looks identical to this:</p>
+<p><img src="https://i.imgur.com/q2AF2cP.png" alt="notebook"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that you are in the notebook you can start your work. Here is an example of some basic math operations happening in line. In a python script you'd typically need to call the print command to see the output.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Basic-Math">Basic Math<a class="anchor-link" href="#Basic-Math">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">4</span><span class="o">+</span><span class="mi">4</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">35</span><span class="o">*</span><span class="mi">5</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>175</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Let&#39;s learn some python!!&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Let&#39;s learn some python!!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="In-follow-up-posts-I'll-start-to-talk-about-using-numpy-and-pandas-and-their-importance-to-data-science-and-the-value-I-think-they-can-add-for-your-typical-Social-Scientists.">In follow up posts I'll start to talk about using numpy and pandas and their importance to data science and the value I think they can add for your typical Social Scientists.<a class="anchor-link" href="#In-follow-up-posts-I'll-start-to-talk-about-using-numpy-and-pandas-and-their-importance-to-data-science-and-the-value-I-think-they-can-add-for-your-typical-Social-Scientists.">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -1274,7 +1542,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'The AI I/O PhD Part I: The SME Item Writer';
+    var disqus_title = 'Hello World & Installing Python and Jupyter';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

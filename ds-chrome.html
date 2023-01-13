@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>The AI I/O PhD Part I: The SME Item Writer — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: The AI I/O PhD Part I: The SME Item Writer; Date: 2022-12-05; Author: N. Koenig">
+	<title>Data Science on a Chromebook? — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Data Science on a Chromebook?; Date: 2020-03-16; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,16 +26,16 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">The AI I/O PhD Part I: The SME Item Writer</h1>
+		<h1 itemprop="name headline" class="article-title">Data Science on a Chromebook?</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2022-12-05T19:10:00-06:00" itemprop="datePublished">Mon 05 December 2022</time>
+		<time datetime="2020-03-16T14:00:00-05:00" itemprop="datePublished">Mon 16 March 2020</time>
 	</div>
 	<div>
 		Category:
 		<span itemprop="articleSection">
-			<a href="/category/data-science-artificial-intelligence.html" rel="category">data science, artificial intelligence</a>
+			<a href="/category/data-science.html" rel="category">data science</a>
 		</span>
 	</div>
  
@@ -45,10 +45,10 @@
 			<a href="/tag/data-science.html" rel="tag">Data Science</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/ai.html" rel="tag">AI</a>
+			<a href="/tag/python.html" rel="tag">Python</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/deep-learning.html" rel="tag">Deep Learning</a>
+			<a href="/tag/hardware.html" rel="tag">Hardware</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1170,58 +1170,62 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/x5uLCYo.png" alt="ai_lecture"></p>
-<p>*image credit of Dall-E the artistic AI</p>
-<h2 id="Psychometrics">Psychometrics<a class="anchor-link" href="#Psychometrics">&#182;</a></h2><p>One thing that has often taken a lot of skill, creativity, and nuance is item writing for test development. Big 5 personality scales like the <a href="https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf">BFI-2</a> are just one of a variety of personality scales out there. These scales usually require the writing of several variations of multiple items designed to elicit specific traits and then the collection of data to establish factor loadings and scale inter-item correlations showing good scale reliabilities. For more details on actually creating and validating psychometrically sound scales I'd refer you to Nunnally and Bernstein's book titled <a href="https://www.amazon.com/Psychometric-Theory-Jum-C-Nunnally/dp/0071070885"><em>Psychometric Theory</em></a>.</p>
-<h3 id="Scale-Development">Scale Development<a class="anchor-link" href="#Scale-Development">&#182;</a></h3><p>Scale development typically involves the following (Hinkin, 1995):</p>
+<h1 id="Data-Science-on-a-Chromebook">Data Science on a Chromebook<a class="anchor-link" href="#Data-Science-on-a-Chromebook">&#182;</a></h1><p>I've brought up the idea of doing data science on a chromebook many times. Conceptually it seemed like it was possible, but to be honest I'd never really actually tried it. Whenever I bring this up as a potential option for cash-strapped students or people asking about easily portable computer options for doing data science work I immediately get laughed at or downvoted on reddit :)</p>
+<p>Well, I finally decided to give it a try and I bought a gently used Google Pixelbook for \$395. So, here I am all in at under \\$400. Let's give it a try.</p>
+<h1 id="Google-Pixelbook">Google Pixelbook<a class="anchor-link" href="#Google-Pixelbook">&#182;</a></h1><p><img src="https://i.imgur.com/RIr9WWX.jpg" alt="img"></p>
+<p>I wanted a Chromebook that could also function as a tablet if needed. I also wanted it to have 8GBs of RAM and at least 128GB of storage space. I quickly realized that most cheaper chromebooks had 4GB of RAM and 32-64GBs of storage. I found what looked to be perfect in the Google Pixelbook. It's original price was a bit expensive for a chromebook, but you could find gently used one's online for well under \$500. It's compact, light, and looks extremely sleak. Reminds me a bit of the Macbook Air at a fraction of the price :)</p>
+<p>Setting it up to practice Data Science. A lot of this has been done by others, so I won't re-hash it. I'll just walk through the main process and provide links.</p>
+<h2 id="1.-Setup-Linux">1. Setup Linux<a class="anchor-link" href="#1.-Setup-Linux">&#182;</a></h2><p>Many current chromebooks come with a beta version of Linux. The first thing you will want to do is enable that. <a href="https://support.google.com/pixelbook/answer/9031351?hl=en">Google</a> walks you through how to do it specifically for a Pixelbook and I'd imagine it's similar for other chromebooks.</p>
+<h2 id="2.-Download-Miniconda-or-Anaconda-and-move-it-from-the-downloads-folder-to-the-Linux-files-folder.">2. Download <a href="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh">Miniconda</a> or Anaconda and move it from the downloads folder to the Linux files folder.<a class="anchor-link" href="#2.-Download-Miniconda-or-Anaconda-and-move-it-from-the-downloads-folder-to-the-Linux-files-folder.">&#182;</a></h2><p><img src="https://d33wubrfki0l68.cloudfront.net/fae682bf1030dccf7c76a7ae2a0482f43ab2d094/8e5cc/img/pixelbook/linuxfiles.png" alt="img"></p>
+<h2 id="3.-Follow-these-instructions-to-install-Miniconda.">3. Follow <a href="https://alex.miller.im/posts/data-science-chromebook-pixelbook-jupyter-python-r/">these instructions</a> to install Miniconda.<a class="anchor-link" href="#3.-Follow-these-instructions-to-install-Miniconda.">&#182;</a></h2><p><img src="https://i.imgur.com/A98CDJ4.png" alt="img">
+<img src="https://i.imgur.com/Fb0w2QV.png" alt="img"></p>
+<p>I took a slightly different route and noticed that the sudo chown command wasn't allowing me access to miniconda. So instead what I did was saved it in my home directory. Then when I want to use anaconda what I need to do is navigate to the miniconda directory and type the following.</p>
+<ul>
+<li>source bin/activate</li>
+</ul>
+<p>Then this gives me access to a base miniconda environment that I then used to create my virtual environment. Which I did like this.</p>
+<p><img src="https://i.imgur.com/xHkq343.png" alt="img">
+<img src="https://i.imgur.com/BOMxnfr.png" alt="img"></p>
+<h2 id="4.-Install-Jupyter-Lab">4. Install Jupyter Lab<a class="anchor-link" href="#4.-Install-Jupyter-Lab">&#182;</a></h2><p><a href="https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html">Install jupyterlab by following these instructions</a></p>
+<h2 id="5.-Setup-an-instance-of-your-virtual-environment-in-Jupyter-Lab">5. Setup an instance of your virtual environment in Jupyter Lab<a class="anchor-link" href="#5.-Setup-an-instance-of-your-virtual-environment-in-Jupyter-Lab">&#182;</a></h2><p>Create your virtual environment in jupyterlab by <a href="https://anbasile.github.io/posts/2017-06-25-jupyter-venv/">following these instructions.</a></p>
+<h2 id="6.-Install-Numpy-and-Pandas">6. Install Numpy and Pandas<a class="anchor-link" href="#6.-Install-Numpy-and-Pandas">&#182;</a></h2><ul>
+<li>pip install numpy</li>
+<li>pip install pandas</li>
+</ul>
+<h2 id="7.-Launch-Jupyter-Lab">7. Launch Jupyter Lab<a class="anchor-link" href="#7.-Launch-Jupyter-Lab">&#182;</a></h2><p>Launch jupyter lab by typing <strong>jupyter lab</strong> into the terminal and you should see something like this.</p>
+<p><img src="https://i.imgur.com/hn9RVXY.png" alt="img"></p>
+<h2 id="8.-Get-to-work">8. Get to work<a class="anchor-link" href="#8.-Get-to-work">&#182;</a></h2><p>Now we can use numpy and pandas to do data science. Obviously we'll need more packages than that, but this will get us started.</p>
+<p><img src="https://i.imgur.com/jjt45vm.png" alt="img"></p>
+<h1 id="GPU-Access">GPU Access<a class="anchor-link" href="#GPU-Access">&#182;</a></h1><p>Inevitably whenever I mention using a chromebook for data science people bring up their need for GPU runtimes. I'm honestly surprised Macs are so popular in data science with as many people as I hear make this comment. AMD GPUs, which is what Mac's use don't support GPU acceleration, so you'd need to be using a Windows or Linux OS to take advantage of NVIDIA's CUDA library. But even if we ignore that fact GPUs are readily available for free or next to free.</p>
+<p>Here are 3 options.</p>
 <ol>
-<li><p>Identifying the construct</p>
-</li>
-<li><p>Using SMEs to create item pools</p>
-</li>
-<li><p>Narrow the pool of items down to be used as a first draft of the scale</p>
-</li>
-<li><p>Administer the scale to a large population</p>
-</li>
-<li><p>Examine and evaluate the psychometric properties of the scale</p>
-</li>
+<li>Take advantage of Google Colab or Kaggle's free kernels with GPU acceleration. I quickly spun up a free instance on Colab in my chromebook. You can tell this by looking at my torch device name. </li>
 </ol>
-<h3 id="Context-Matters">Context Matters<a class="anchor-link" href="#Context-Matters">&#182;</a></h3><p>One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.</p>
-<h2 id="AI">AI<a class="anchor-link" href="#AI">&#182;</a></h2><p>This brings us to the main point of this article. Can we use AI to help us generate items and if so, how, and under what circumstances?</p>
-<p>Open AI just released a version of their GPT-3 davinci model called <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.</p>
-<h2 id="Item-Writing">Item Writing<a class="anchor-link" href="#Item-Writing">&#182;</a></h2><p>Today let's focus on item writing.</p>
-<p>Can AI write traditional Likert style scale items we see in so many of our personality/work styles sections of assessments?</p>
-<p>I'm going to first ask ChatGPT to write 5 Likert style items designed to assess the trait of extraversion.</p>
-<p><img src="https://i.imgur.com/ipDQwfc.png" alt="img"></p>
-<p>You can see I told ChatGPT that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.</p>
-<p>These are good, but as I mentioned earlier we should probably add the context of work to the questions. So, let's tell GPT that I want the items to be written in a work context.</p>
-<p><img src="https://i.imgur.com/OdN5pRz.png" alt="img"></p>
-<p>So you can see it still retained the main premise of the item, but added work-specific context. It swapped social gatherings with meetings and added the context of coworkers in other items as well.</p>
-<p>This is pretty good, but one problem I see is they are all framed positively. Typically we want some items that are framed positively and others that are framed negatively. So let's ask GPT to provide us with both.</p>
-<p><img src="https://i.imgur.com/O9ZvYwd.png" alt="img"></p>
-<p>These look pretty good. If we were being really picky we could say that these are all just rephrased variants of the same 10 items, but we could explore ways to generate specific variations of a subset of items if we wanted to. I feel like GPT succeeded in writing some pretty solid items for extraversion. I'd expect them to all load together if we collected data on them and ran a CFA.</p>
-<p>One final test I wanted to do was to ask ChatGPT to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.</p>
-<p><img src="https://i.imgur.com/1DjBc1o.png" alt="img"></p>
-<p>Overall, I'd say I'm pretty impressed with GPT as a generator of Likert style items to be used in psychometric assessments. You don't need to define the traits you are asking it to generate items for. Just provide it with the name and other instructions. It understands what Likert style questions look like and understands how to frame Likert style questions both negatively and positively.</p>
-<p>In future articles I'll explore using AI to create additional training data for models, to summarize articles, to help write code, and more.</p>
-<h2 id="Paper-on-this-Topic">Paper on this Topic<a class="anchor-link" href="#Paper-on-this-Topic">&#182;</a></h2><p>If anyone would like to read an excellent paper on developing a pipeline to do this with an older version of GPT, I’d highly recommend this excellent paper by <a href="https://doi.org/10.1111/peps.12543">Ivan Hernandez and Weiwen Nie that was recently published in Personnel Psychology (Hernandez &amp; Nie, 2022)</a>. They leveraged a GPT-2 model that was fine-tuned on personality items to generate thousands of potential items. Then to infer the expected correlation among these items they used BERT to generate embedding representations of IPIP items and the correlations those embeddings had with the other item embeddings from respondent data. They used the relationship between these to estimate the expected correlations on the new items they created. It’s a very creative use of this new technology IMO.</p>
-<p>However, now it appears they can skip the fine-tuning a model step and just ask GPT to create items to represent specific traits instead of randomly creating thousands of items and attempting to estimate how related they may be. But nonetheless, this is a very good paper I’d recommend everyone interested in this read.</p>
-<h2 id="ChatGPT's-Closing-Argument">ChatGPT's Closing Argument<a class="anchor-link" href="#ChatGPT's-Closing-Argument">&#182;</a></h2><p>I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)</p>
-<p><img src="https://i.imgur.com/QpQsezh.png" alt="img"></p>
+<p><img src="https://i.imgur.com/9lD12W3.png" alt="img"></p>
+<ol>
+<li><a href="https://colab.research.google.com/signup">Google Colab Pro</a>. If you really feel like a free GPU that can be downgraded and may be shut off after a long time or a short amount of idle time will be a hindrance Google just announced a professional tier of colab for the amazing price of \$9.99/month. This gives you preferred access to the Tesla V100 GPUs and more memory, longer runtimes, etc. </li>
+</ol>
+<ol>
+<li>ssh into an AWS, Azure or, Google server with a GPU. The instructions to do this are a bit beyond the purpose of this article, but they are readily available and not very difficult at ll. </li>
+</ol>
+<p>Moral of the story, GPUs and compute power aren't an issue given the abundance of cheap cloud resources available.</p>
+<h1 id="Recap">Recap<a class="anchor-link" href="#Recap">&#182;</a></h1><p>It is possible to practice data science on an inexpensive chromebook. You don't need a \$1.5k machine although I will admit all that horsepower is enticing :)</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>References:</p>
-<p><a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386">Grover, S., &amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.</a></p>
-<p>Hernandez, I., &amp; Nie, W. (2022). The AI-IP: Minimizing the guesswork of personality scale item development through artificial intelligence. Personnel Psychology, 00, 1– 24. Advance online publication. <a href="https://doi.org/10.1111/peps.12543">https://doi.org/10.1111/peps.12543</a></p>
-<p><a href="https://www.researchgate.net/profile/Khandoker-Mahmudur-Rahman/post/In_the_case_where_no_existing_scale_is_available_how_do_you_prepare_your_questionnaire_in_quantitative_research/attachment/59d625fc79197b8077984478/AS%3A319986898276353%401453302229543/download/Hinkin+1995.pdf">Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988.</a> <a href="https://doi.org/10.1177/014920639502100509">https://doi.org/10.1177/014920639502100509</a></p>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
 
+    </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1274,7 +1278,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'The AI I/O PhD Part I: The SME Item Writer';
+    var disqus_title = 'Data Science on a Chromebook?';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

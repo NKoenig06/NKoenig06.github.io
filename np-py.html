@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>The AI I/O PhD Part I: The SME Item Writer — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: The AI I/O PhD Part I: The SME Item Writer; Date: 2022-12-05; Author: N. Koenig">
+	<title>Python Math vs. NumPy Math: Why should I care about linear algebra as an I/O? — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Python Math vs. NumPy Math: Why should I care about linear algebra as an I/O?; Date: 2019-01-18; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,16 +26,16 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">The AI I/O PhD Part I: The SME Item Writer</h1>
+		<h1 itemprop="name headline" class="article-title">Python Math vs. NumPy Math: Why should I care about linear algebra as an I/O?</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2022-12-05T19:10:00-06:00" itemprop="datePublished">Mon 05 December 2022</time>
+		<time datetime="2019-01-18T14:45:00-06:00" itemprop="datePublished">Fri 18 January 2019</time>
 	</div>
 	<div>
 		Category:
 		<span itemprop="articleSection">
-			<a href="/category/data-science-artificial-intelligence.html" rel="category">data science, artificial intelligence</a>
+			<a href="/category/data-science.html" rel="category">data science</a>
 		</span>
 	</div>
  
@@ -45,10 +45,13 @@
 			<a href="/tag/data-science.html" rel="tag">Data Science</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/ai.html" rel="tag">AI</a>
+			<a href="/tag/math.html" rel="tag">Math</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/deep-learning.html" rel="tag">Deep Learning</a>
+			<a href="/tag/python.html" rel="tag">Python</a>
+		</span>
+		<span itemprop="keywords">
+			<a href="/tag/linear-algebra.html" rel="tag">Linear Algebra</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1170,44 +1173,57 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/x5uLCYo.png" alt="ai_lecture"></p>
-<p>*image credit of Dall-E the artistic AI</p>
-<h2 id="Psychometrics">Psychometrics<a class="anchor-link" href="#Psychometrics">&#182;</a></h2><p>One thing that has often taken a lot of skill, creativity, and nuance is item writing for test development. Big 5 personality scales like the <a href="https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf">BFI-2</a> are just one of a variety of personality scales out there. These scales usually require the writing of several variations of multiple items designed to elicit specific traits and then the collection of data to establish factor loadings and scale inter-item correlations showing good scale reliabilities. For more details on actually creating and validating psychometrically sound scales I'd refer you to Nunnally and Bernstein's book titled <a href="https://www.amazon.com/Psychometric-Theory-Jum-C-Nunnally/dp/0071070885"><em>Psychometric Theory</em></a>.</p>
-<h3 id="Scale-Development">Scale Development<a class="anchor-link" href="#Scale-Development">&#182;</a></h3><p>Scale development typically involves the following (Hinkin, 1995):</p>
-<ol>
-<li><p>Identifying the construct</p>
-</li>
-<li><p>Using SMEs to create item pools</p>
-</li>
-<li><p>Narrow the pool of items down to be used as a first draft of the scale</p>
-</li>
-<li><p>Administer the scale to a large population</p>
-</li>
-<li><p>Examine and evaluate the psychometric properties of the scale</p>
-</li>
-</ol>
-<h3 id="Context-Matters">Context Matters<a class="anchor-link" href="#Context-Matters">&#182;</a></h3><p>One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.</p>
-<h2 id="AI">AI<a class="anchor-link" href="#AI">&#182;</a></h2><p>This brings us to the main point of this article. Can we use AI to help us generate items and if so, how, and under what circumstances?</p>
-<p>Open AI just released a version of their GPT-3 davinci model called <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.</p>
-<h2 id="Item-Writing">Item Writing<a class="anchor-link" href="#Item-Writing">&#182;</a></h2><p>Today let's focus on item writing.</p>
-<p>Can AI write traditional Likert style scale items we see in so many of our personality/work styles sections of assessments?</p>
-<p>I'm going to first ask ChatGPT to write 5 Likert style items designed to assess the trait of extraversion.</p>
-<p><img src="https://i.imgur.com/ipDQwfc.png" alt="img"></p>
-<p>You can see I told ChatGPT that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.</p>
-<p>These are good, but as I mentioned earlier we should probably add the context of work to the questions. So, let's tell GPT that I want the items to be written in a work context.</p>
-<p><img src="https://i.imgur.com/OdN5pRz.png" alt="img"></p>
-<p>So you can see it still retained the main premise of the item, but added work-specific context. It swapped social gatherings with meetings and added the context of coworkers in other items as well.</p>
-<p>This is pretty good, but one problem I see is they are all framed positively. Typically we want some items that are framed positively and others that are framed negatively. So let's ask GPT to provide us with both.</p>
-<p><img src="https://i.imgur.com/O9ZvYwd.png" alt="img"></p>
-<p>These look pretty good. If we were being really picky we could say that these are all just rephrased variants of the same 10 items, but we could explore ways to generate specific variations of a subset of items if we wanted to. I feel like GPT succeeded in writing some pretty solid items for extraversion. I'd expect them to all load together if we collected data on them and ran a CFA.</p>
-<p>One final test I wanted to do was to ask ChatGPT to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.</p>
-<p><img src="https://i.imgur.com/1DjBc1o.png" alt="img"></p>
-<p>Overall, I'd say I'm pretty impressed with GPT as a generator of Likert style items to be used in psychometric assessments. You don't need to define the traits you are asking it to generate items for. Just provide it with the name and other instructions. It understands what Likert style questions look like and understands how to frame Likert style questions both negatively and positively.</p>
-<p>In future articles I'll explore using AI to create additional training data for models, to summarize articles, to help write code, and more.</p>
-<h2 id="Paper-on-this-Topic">Paper on this Topic<a class="anchor-link" href="#Paper-on-this-Topic">&#182;</a></h2><p>If anyone would like to read an excellent paper on developing a pipeline to do this with an older version of GPT, I’d highly recommend this excellent paper by <a href="https://doi.org/10.1111/peps.12543">Ivan Hernandez and Weiwen Nie that was recently published in Personnel Psychology (Hernandez &amp; Nie, 2022)</a>. They leveraged a GPT-2 model that was fine-tuned on personality items to generate thousands of potential items. Then to infer the expected correlation among these items they used BERT to generate embedding representations of IPIP items and the correlations those embeddings had with the other item embeddings from respondent data. They used the relationship between these to estimate the expected correlations on the new items they created. It’s a very creative use of this new technology IMO.</p>
-<p>However, now it appears they can skip the fine-tuning a model step and just ask GPT to create items to represent specific traits instead of randomly creating thousands of items and attempting to estimate how related they may be. But nonetheless, this is a very good paper I’d recommend everyone interested in this read.</p>
-<h2 id="ChatGPT's-Closing-Argument">ChatGPT's Closing Argument<a class="anchor-link" href="#ChatGPT's-Closing-Argument">&#182;</a></h2><p>I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)</p>
-<p><img src="https://i.imgur.com/QpQsezh.png" alt="img"></p>
+<h1 id="Why-use-NumPy?-Why-should-I-care-about-linear-algebra-as-an-I/O?">Why use NumPy? Why should I care about linear algebra as an I/O?<a class="anchor-link" href="#Why-use-NumPy?-Why-should-I-care-about-linear-algebra-as-an-I/O?">&#182;</a></h1><p>NumPy (Numerical Python) is a linear algebra library for python. But why use it? Python handles numbers natively. Let's do some basic math in python to show you what I am talking about.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[134]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="mi">7</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">lst1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">lst2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">16</span><span class="p">]</span>
+<span class="n">addition_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># this would be equivalent to adding two columns in excel</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst1</span><span class="p">)):</span>
+    <span class="n">addition_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lst1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">lst2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">addition_list</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>21
+343
+[2, 4, 7, 12, 21]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Enter-NumPy">Enter NumPy<a class="anchor-link" href="#Enter-NumPy">&#182;</a></h1><p><img src="https://i.imgur.com/vkKfmIW.jpg" alt="numpy"></p>
 
 </div>
 </div>
@@ -1215,10 +1231,511 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>References:</p>
-<p><a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386">Grover, S., &amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.</a></p>
-<p>Hernandez, I., &amp; Nie, W. (2022). The AI-IP: Minimizing the guesswork of personality scale item development through artificial intelligence. Personnel Psychology, 00, 1– 24. Advance online publication. <a href="https://doi.org/10.1111/peps.12543">https://doi.org/10.1111/peps.12543</a></p>
-<p><a href="https://www.researchgate.net/profile/Khandoker-Mahmudur-Rahman/post/In_the_case_where_no_existing_scale_is_available_how_do_you_prepare_your_questionnaire_in_quantitative_research/attachment/59d625fc79197b8077984478/AS%3A319986898276353%401453302229543/download/Hinkin+1995.pdf">Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988.</a> <a href="https://doi.org/10.1177/014920639502100509">https://doi.org/10.1177/014920639502100509</a></p>
+<h2 id="Quick-note-about-NumPy">Quick note about NumPy<a class="anchor-link" href="#Quick-note-about-NumPy">&#182;</a></h2><p>NumPy was created by <a href="https://github.com/teoliphant">Travis Oliphant</a> who is actually the founder of <strong>Anaconda</strong>.</p>
+<p><strong>So again</strong>, why use NumPy? It seems basic python has this taken care of. Well here are a few reasons:</p>
+<h2 id="1.-Memory:-NumPy-objects-take-up-less-space-than-python-list-objects.">1. Memory: NumPy objects take up less space than python list objects.<a class="anchor-link" href="#1.-Memory:-NumPy-objects-take-up-less-space-than-python-list-objects.">&#182;</a></h2><p>While this is important, it's not a huge deal with most of the datasets we use.</p>
+<h2 id="2.-Speed:-NumPy-leverages-broadcasting-which-makes-the-computation-much-faster.">2. Speed: NumPy leverages broadcasting which makes the computation much faster.<a class="anchor-link" href="#2.-Speed:-NumPy-leverages-broadcasting-which-makes-the-computation-much-faster.">&#182;</a></h2><p>Let's take a look</p>
+<p>First we import numpy and assign it an alias of np as this is the standard python etiquette</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Now</strong> let's create an <strong>enormous vector</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[136]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 100,000 should do the trick</span>
+<span class="n">size_of_vec</span> <span class="o">=</span> <span class="mi">100000</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Next</strong> let's write a simple function that creates an X and Y variable that each consist of the numbers 0 through 99,999. Let's then iterate through each of those lists index by index in a for loop and add them together in a variable called Z.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[142]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pure_python_version</span><span class="p">():</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">size_of_vec</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">size_of_vec</span><span class="p">)</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Next</strong> let's build a function using NumPy that does the exact same thing.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[144]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">numpy_version</span><span class="p">():</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">size_of_vec</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">size_of_vec</span><span class="p">)</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">X</span> <span class="o">+</span> <span class="n">Y</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's use the %timeit magic function to time the speed of our code. First we will look at the pure python version, then we will look at the NumPy version.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[147]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> t1 = pure_python_version()
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>22.9 ms ± 734 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[148]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> t2 = numpy_version()
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>679 µs ± 11.8 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="As-you-can-see-NumPy-is-roughly-33x-faster-at-adding-these-two-variables-together.">As you can see NumPy is roughly <strong>33x</strong> faster at adding these two variables together.<a class="anchor-link" href="#As-you-can-see-NumPy-is-roughly-33x-faster-at-adding-these-two-variables-together.">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Basic-NumPy">Basic NumPy<a class="anchor-link" href="#Basic-NumPy">&#182;</a></h2><p>So as you can see it is much faster. But why should we even care about this as social scientists? What does NumPy even do that's relevant to our work? Like many people going into social sciences, I didn't have a strong math background. I certainly never took a course in linear algebra. But...if you look at what we do in excel or SPSS what we are often doing is basic linear algebra.</p>
+<p>For example, let's say we collected data on 20 respondents and we asked them a 5 item Extraversion battery. What would that data look like in excel or SPSS? It would be 20 rows and it would contain 5 columns, with each  individual's response to the 5 items.</p>
+<p>Let's create that array right now.</p>
+<p><strong>First</strong> we want to create a random array with numbers between 1-5 that has a size of 100 (20 people X 5 responses)
+<strong>Second</strong> we want to reshape it to be a 20,5 matrix.</p>
+<p>The beauty of python is that you can chain methods together, so we can do all of that in one line of code. We'll assign the output of that to a variable named extraversion.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[164]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">extraversion</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[165]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">extraversion</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[165]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[3, 1, 4, 2, 2],
+       [4, 2, 1, 3, 3],
+       [4, 2, 4, 3, 3],
+       [1, 2, 1, 2, 4],
+       [3, 1, 1, 3, 2],
+       [1, 1, 4, 3, 4],
+       [4, 1, 1, 4, 1],
+       [2, 1, 1, 1, 1],
+       [3, 2, 2, 2, 3],
+       [1, 2, 4, 3, 2],
+       [2, 1, 2, 4, 3],
+       [3, 1, 2, 4, 2],
+       [3, 2, 2, 4, 3],
+       [3, 3, 3, 1, 3],
+       [2, 4, 1, 3, 2],
+       [3, 2, 4, 3, 2],
+       [1, 1, 3, 1, 4],
+       [3, 4, 3, 4, 3],
+       [1, 1, 2, 1, 3],
+       [1, 2, 3, 4, 2]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we have our responses for each respondent. Is this starting to look familiar? It looks extremely similar to an excel sheet, without column headers. In fact if we wanted to we could import Pandas and turn this into a replica of an excel sheet.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[186]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1">#alias</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">extraversion</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;item_1&#39;</span><span class="p">,</span><span class="s1">&#39;item_2&#39;</span><span class="p">,</span><span class="s1">&#39;item_3&#39;</span><span class="p">,</span><span class="s1">&#39;item_4&#39;</span><span class="p">,</span><span class="s1">&#39;item_5&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[186]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>item_1</th>
+      <th>item_2</th>
+      <th>item_3</th>
+      <th>item_4</th>
+      <th>item_5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But the focus of this post is on NumPy, so let's return to our array!</p>
+<p>Now, Let's imagine we get asked to give our professor the <strong>mean extraversion score</strong> for each respondent. How would you do that? If it were a python list you would have to add up each item in the list and divide by the length of the list, something similar to this.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[176]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">extraversion</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">total</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">extraversion</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2.4
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So what that function did was the equivalent to generating the mean for one row of the NumPy array. You'd need to loop through that using extraversion[0] through extraversion[19] to get everyone's mean. Seems pretty time consuming and inefficient.</p>
+<p>That's where NumPy comes in. Using NumPy I can simply add the columns together like a basic math problem.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Intuitively-this-is-what-is-happening-when-you-use-a-linear-algebra-package-like-NumPy,-this-specifically-is-an-example-of-broadcasting">Intuitively this is what is happening when you use a linear algebra package like NumPy, this specifically is an example of <a href="https://machinelearningmastery.com/broadcasting-with-numpy-arrays/">broadcasting</a><a class="anchor-link" href="#Intuitively-this-is-what-is-happening-when-you-use-a-linear-algebra-package-like-NumPy,-this-specifically-is-an-example-of-broadcasting">&#182;</a></h3><p><img src="https://i.imgur.com/R1EV3T7.png" alt="broadcasting"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[180]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">extraversion</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">extraversion</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[180]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([2.4, 2.6, 3.2, 2. , 2. , 2.6, 2.2, 1.2, 2.4, 2.4, 2.4, 2.4, 2.8,
+       2.6, 2.4, 2.8, 2. , 3.4, 1.6, 2.4])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That one line did what about 5 lines of code would do in python. This also ignores the fact that NumPy comes with many built in methods. It's actually as simple as this:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[181]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">extraversion</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[181]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([2.4, 2.6, 3.2, 2. , 2. , 2.6, 2.2, 1.2, 2.4, 2.4, 2.4, 2.4, 2.8,
+       2.6, 2.4, 2.8, 2. , 3.4, 1.6, 2.4])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hopefully-now-you-have-an-understanding-of-how-and-why-linear-algebra-and-the-NumPy-packag-are-important-to-us-and-how-it-relates-to-your-research/work-as-an-I/O">Hopefully now you have an understanding of how and why linear algebra and the NumPy packag are important to us and how it relates to your research/work as an I/O<a class="anchor-link" href="#Hopefully-now-you-have-an-understanding-of-how-and-why-linear-algebra-and-the-NumPy-packag-are-important-to-us-and-how-it-relates-to-your-research/work-as-an-I/O">&#182;</a></h3><p>I feel like the basic mathematical understanding is kind of assumed when learning how to calculate means or sum numbers for multiple respondents, but it's interesting to think about how it works when it comes to programming.</p>
+<p>If you are interested in learning more about how to use NumPy, Jake Vanderplas has a great book titled: <a href="https://www.amazon.com/Python-Data-Science-Handbook-Essential/dp/1491912057">Python Data Science Handbook</a></p>
+<p>He made all of his notebooks available for free on his Github account. The notebooks below are great resources for diggin in further.</p>
+<ul>
+<li><a href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.00-Introduction-to-NumPy.ipynb">Intro to NumPy</a></li>
+<li><a href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.02-The-Basics-Of-NumPy-Arrays.ipynb">The Basics of NumPy Arrays</a></li>
+<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/02.05-computation-on-arrays-broadcasting.html">Broadcasting NumPy Arrays</a></li>
+</ul>
+<p>This article wasn't meant to be all inclusive and show everything NumPy has to offer, moreso to be a quick overview of it's benefits and why I think it's relevant to the social sciences.</p>
+<p><a href="https://towardsdatascience.com/numpy-guide-for-people-in-a-hurry-22232699259f">This</a> is a very quick article that provides many of the highlights of NumPy functionality. Definitely worth taking a look to learn more.</p>
 
 </div>
 </div>
@@ -1274,7 +1791,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'The AI I/O PhD Part I: The SME Item Writer';
+    var disqus_title = 'Python Math vs. NumPy Math: Why should I care about linear algebra as an I/O?';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

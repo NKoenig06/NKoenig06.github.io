@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>The AI I/O PhD Part I: The SME Item Writer — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: The AI I/O PhD Part I: The SME Item Writer; Date: 2022-12-05; Author: N. Koenig">
+	<title>Installing an R Kernel in Jupyter — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Installing an R Kernel in Jupyter; Date: 2019-01-17; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,16 +26,16 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">The AI I/O PhD Part I: The SME Item Writer</h1>
+		<h1 itemprop="name headline" class="article-title">Installing an R Kernel in Jupyter</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2022-12-05T19:10:00-06:00" itemprop="datePublished">Mon 05 December 2022</time>
+		<time datetime="2019-01-17T19:15:00-06:00" itemprop="datePublished">Thu 17 January 2019</time>
 	</div>
 	<div>
 		Category:
 		<span itemprop="articleSection">
-			<a href="/category/data-science-artificial-intelligence.html" rel="category">data science, artificial intelligence</a>
+			<a href="/category/programming.html" rel="category">programming</a>
 		</span>
 	</div>
  
@@ -45,10 +45,10 @@
 			<a href="/tag/data-science.html" rel="tag">Data Science</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/ai.html" rel="tag">AI</a>
+			<a href="/tag/r.html" rel="tag">R</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/deep-learning.html" rel="tag">Deep Learning</a>
+			<a href="/tag/jupyter.html" rel="tag">Jupyter</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1170,44 +1170,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/x5uLCYo.png" alt="ai_lecture"></p>
-<p>*image credit of Dall-E the artistic AI</p>
-<h2 id="Psychometrics">Psychometrics<a class="anchor-link" href="#Psychometrics">&#182;</a></h2><p>One thing that has often taken a lot of skill, creativity, and nuance is item writing for test development. Big 5 personality scales like the <a href="https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf">BFI-2</a> are just one of a variety of personality scales out there. These scales usually require the writing of several variations of multiple items designed to elicit specific traits and then the collection of data to establish factor loadings and scale inter-item correlations showing good scale reliabilities. For more details on actually creating and validating psychometrically sound scales I'd refer you to Nunnally and Bernstein's book titled <a href="https://www.amazon.com/Psychometric-Theory-Jum-C-Nunnally/dp/0071070885"><em>Psychometric Theory</em></a>.</p>
-<h3 id="Scale-Development">Scale Development<a class="anchor-link" href="#Scale-Development">&#182;</a></h3><p>Scale development typically involves the following (Hinkin, 1995):</p>
-<ol>
-<li><p>Identifying the construct</p>
-</li>
-<li><p>Using SMEs to create item pools</p>
-</li>
-<li><p>Narrow the pool of items down to be used as a first draft of the scale</p>
-</li>
-<li><p>Administer the scale to a large population</p>
-</li>
-<li><p>Examine and evaluate the psychometric properties of the scale</p>
-</li>
-</ol>
-<h3 id="Context-Matters">Context Matters<a class="anchor-link" href="#Context-Matters">&#182;</a></h3><p>One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.</p>
-<h2 id="AI">AI<a class="anchor-link" href="#AI">&#182;</a></h2><p>This brings us to the main point of this article. Can we use AI to help us generate items and if so, how, and under what circumstances?</p>
-<p>Open AI just released a version of their GPT-3 davinci model called <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.</p>
-<h2 id="Item-Writing">Item Writing<a class="anchor-link" href="#Item-Writing">&#182;</a></h2><p>Today let's focus on item writing.</p>
-<p>Can AI write traditional Likert style scale items we see in so many of our personality/work styles sections of assessments?</p>
-<p>I'm going to first ask ChatGPT to write 5 Likert style items designed to assess the trait of extraversion.</p>
-<p><img src="https://i.imgur.com/ipDQwfc.png" alt="img"></p>
-<p>You can see I told ChatGPT that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.</p>
-<p>These are good, but as I mentioned earlier we should probably add the context of work to the questions. So, let's tell GPT that I want the items to be written in a work context.</p>
-<p><img src="https://i.imgur.com/OdN5pRz.png" alt="img"></p>
-<p>So you can see it still retained the main premise of the item, but added work-specific context. It swapped social gatherings with meetings and added the context of coworkers in other items as well.</p>
-<p>This is pretty good, but one problem I see is they are all framed positively. Typically we want some items that are framed positively and others that are framed negatively. So let's ask GPT to provide us with both.</p>
-<p><img src="https://i.imgur.com/O9ZvYwd.png" alt="img"></p>
-<p>These look pretty good. If we were being really picky we could say that these are all just rephrased variants of the same 10 items, but we could explore ways to generate specific variations of a subset of items if we wanted to. I feel like GPT succeeded in writing some pretty solid items for extraversion. I'd expect them to all load together if we collected data on them and ran a CFA.</p>
-<p>One final test I wanted to do was to ask ChatGPT to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.</p>
-<p><img src="https://i.imgur.com/1DjBc1o.png" alt="img"></p>
-<p>Overall, I'd say I'm pretty impressed with GPT as a generator of Likert style items to be used in psychometric assessments. You don't need to define the traits you are asking it to generate items for. Just provide it with the name and other instructions. It understands what Likert style questions look like and understands how to frame Likert style questions both negatively and positively.</p>
-<p>In future articles I'll explore using AI to create additional training data for models, to summarize articles, to help write code, and more.</p>
-<h2 id="Paper-on-this-Topic">Paper on this Topic<a class="anchor-link" href="#Paper-on-this-Topic">&#182;</a></h2><p>If anyone would like to read an excellent paper on developing a pipeline to do this with an older version of GPT, I’d highly recommend this excellent paper by <a href="https://doi.org/10.1111/peps.12543">Ivan Hernandez and Weiwen Nie that was recently published in Personnel Psychology (Hernandez &amp; Nie, 2022)</a>. They leveraged a GPT-2 model that was fine-tuned on personality items to generate thousands of potential items. Then to infer the expected correlation among these items they used BERT to generate embedding representations of IPIP items and the correlations those embeddings had with the other item embeddings from respondent data. They used the relationship between these to estimate the expected correlations on the new items they created. It’s a very creative use of this new technology IMO.</p>
-<p>However, now it appears they can skip the fine-tuning a model step and just ask GPT to create items to represent specific traits instead of randomly creating thousands of items and attempting to estimate how related they may be. But nonetheless, this is a very good paper I’d recommend everyone interested in this read.</p>
-<h2 id="ChatGPT's-Closing-Argument">ChatGPT's Closing Argument<a class="anchor-link" href="#ChatGPT's-Closing-Argument">&#182;</a></h2><p>I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)</p>
-<p><img src="https://i.imgur.com/QpQsezh.png" alt="img"></p>
+<h1 id="Installing-an-R-Kernel-in-Jupyter">Installing an R Kernel in Jupyter<a class="anchor-link" href="#Installing-an-R-Kernel-in-Jupyter">&#182;</a></h1><p>Jupyter is commonly thought of as a resource for python. But it works just as well with R. In this brief post I will show you how to create a Jupyter kernel for R, so you can run R line by line.</p>
 
 </div>
 </div>
@@ -1215,23 +1178,386 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>References:</p>
-<p><a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386">Grover, S., &amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.</a></p>
-<p>Hernandez, I., &amp; Nie, W. (2022). The AI-IP: Minimizing the guesswork of personality scale item development through artificial intelligence. Personnel Psychology, 00, 1– 24. Advance online publication. <a href="https://doi.org/10.1111/peps.12543">https://doi.org/10.1111/peps.12543</a></p>
-<p><a href="https://www.researchgate.net/profile/Khandoker-Mahmudur-Rahman/post/In_the_case_where_no_existing_scale_is_available_how_do_you_prepare_your_questionnaire_in_quantitative_research/attachment/59d625fc79197b8077984478/AS%3A319986898276353%401453302229543/download/Hinkin+1995.pdf">Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988.</a> <a href="https://doi.org/10.1177/014920639502100509">https://doi.org/10.1177/014920639502100509</a></p>
+<p>If you don't already have R follow these two instructions to download R and R studio. R studio isn't necessarily needed if you will be working in jupyter, but it's always a good piece of software to have.</p>
+<h3 id="INSTALLING-R:">INSTALLING R:<a class="anchor-link" href="#INSTALLING-R:">&#182;</a></h3><ul>
+<li>Go to <a href="http://www.r-project.org/">http://www.r-project.org/</a>, and in the “Getting Started” box, click on “download R.”</li>
+</ul>
+<h3 id="INSTALLING-R-STUDIO:">INSTALLING R STUDIO:<a class="anchor-link" href="#INSTALLING-R-STUDIO:">&#182;</a></h3><ul>
+<li>Go to <a href="http://www.rstudio.com">http://www.rstudio.com</a>, click on “Download RStudio” and follow the directions for your
+operating system. </li>
+</ul>
+<p><img src="https://i.imgur.com/AlVgbKo.jpg" alt="R"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Installing-an-R-Kernel-is-actually-extremely-easy">Installing an R Kernel is actually extremely easy<a class="anchor-link" href="#Installing-an-R-Kernel-is-actually-extremely-easy">&#182;</a></h4><p>The first thing you will want to do is open up an R console. You can do this in Rstudio if you already use that.</p>
+<p>Then you will run the following two commands. Either by running a script or by entering them into the console:</p>
+<ul>
+<li>install.packages('IRkernel')</li>
+<li>IRkernel::installspec()</li>
+</ul>
+<p><img src="https://i.imgur.com/ezC51Ov.png" alt="R_kernel_install"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Open-Jupyter-Notebook">Open Jupyter Notebook<a class="anchor-link" href="#Open-Jupyter-Notebook">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>After running this in your our console you will then go to your terminal/anaconda prompt and type the following to launch Jupyter Notebook:</p>
+<p><img src="https://i.imgur.com/Sj6jRRc.png" alt="launch_jupyter"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Which will launch your web browser with Jupyter. And like I mentioned earlier on the far right you can view your current kernels. As mentioned earlier, I have a few, one of which is R.</p>
+<p><img src="https://i.imgur.com/TkFphBr.png" alt="kernels"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Now I can start programming in R</strong></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-r"><pre><span></span><span class="n">X_vals</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+<span class="n">y_vals</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">8</span><span class="p">,</span><span class="m">16</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">X_vals</span><span class="p">,</span><span class="n">y_vals</span><span class="p">,</span>
+    <span class="n">col</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="m">12</span><span class="p">,</span>
+    <span class="n">main</span><span class="o">=</span><span class="s">&#39;R plot in Jupyter&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAANICAIAAAByhViMAAAACXBIWXMAABJ0AAASdAHeZh94
+AAAgAElEQVR4nO3deXhU5f3w4WeSQIAEAi5F2UVBFBQqVCniD9DiiiuKoGKhWGvVtioqoli1
+taJYF+wiIiJYFRQRtIjSWhUqLmWxNErdWF5EBGVP2EJI3j+GpikqCZIw5PG+r169zpw5c/Kd
+SS/99CyTRHFxcQAAoOpLS/UAAABUDGEHABAJYQcAEAlhBwAQCWEHABAJYQcAEAlhBwAQCWEH
+ABAJYQcAEAlhBwAQCWEHABAJYQcAEAlhBwAQCWEHABAJYQcAEAlhBwAQCWEHABAJYQcAEAlh
+BwAQCWEHABAJYQcAEAlhBwAQCWEHABAJYQcAEAlhBwAQCWEHABAJYQcAEAlhBwAQCWEHABAJ
+YQcAEAlhBwAQCWEHABAJYQcAEAlhBwAQCWEHABAJYQcAEAlhBwAQCWEHABAJYQcAEAlhBwAQ
+CWEHfIWVK1cmvl6tWrXat28/aNCgvLy8Cvyho0aNSu6/Ro0aFbjbrzN+/PiSd1RYWFipP6tu
+3brJH9S7d+9K/UHAt5ywA3bZpk2b5s6dO2zYsCOPPHLNmjWpHue/CgsLS1rt8ccfT/U4ezWf
+FURJ2AFlyMjIyPqPWrVqlX5q8eLFv/zlL1M1GAA7yEj1AMDebtCgQbfffnvJwy1btrzyyis9
+e/bctGlTCGHatGmpG223dO7cedKkScnltDT/LxeIgX+WAbsmMzPzlFNOOf3005MPFy9eXFxc
+/HUbX3LJJcmTfV27ds3Ly/v5z3/esGHDGjVqtGzZcvDgwevWrSvnD12xYsUvf/nLU045pWnT
+prVr1+7QoUPfvn1feOGF0j+6d+/e1apVK3nYt2/fRCLx1ltvfd0+X3rppbPPPvvss8/u3bt3
+SdjdfvvtyYGbNWu2bdu2e++9t3Xr1jVr1mzatOnZZ589f/78cg5cptKfTOn1Y8aMSa7PyMj4
+yo13/jFeeumlyS3T09NXrVpVes9nnnlm8qnu3bvv/LMqLi7+61//2rdv33bt2tWsWbN+/fpn
+nHHGlClTSn/apT+oEMKECRPatm3bsmXLivp8gG9G2AHfRFFRUXKhUaNGiUSizO0LCgq6d+/+
+u9/9btmyZVu2bPnoo4/uvPPOo4466pNPPinzta+88kqrVq1+/etfv/TSS0uWLMnPz58zZ87j
+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
+d+6ll166aNGi8r2nipGWljZ27NjSJ2RLVKtWbeTIkU2aNEk+7Nq16znnnFPy7Keffrpy5cpq
+1ar16dNnJ/sv/8eYlZVVev/Nmzc/+uijS2/wdZ9V//79f/KTnyTX//3vf3/wwQdfeumlZNV1
+7Nhx8uTJLqqDvZmwA3bZfvvtd9RRRyWXx4wZs/NvGE6qW7fu3//+9969e++zzz5ZWVldunS5
+8847//KXv+y7775lvvaEE07497//PWTIkBNPPLFx48ZZWVnt27fv27fv1KlTH3/88erVq5fe
++KGHHjrvvPN2uMB/T2rSpMkHH3xw6623duzYcZ999qlTp067du0uueSSDz744Pzzzy+95fjx
+4++666527drVqlWrXr16Z5xxxttvv11yx/FX2qWPseTe2BDCBRdc8OUg+8rPKi0tbcSIEX/9
+61979uzZqlWrzMzMJk2adO/e/cknn5w+ffp+++23y58IsAcldvLXuwF20yWXXPLII4+EELp0
+6ZI8Qck38M0+xoKCgho1aiT/If/ee+/tPbeYAJXHETuAOL388svJqmvXrp2qg28JN08AxOaO
+O+744osvRo4cmXxYcs0cED1hBxCbYcOGlXyDSYsWLfr375/aeYA9xqlYgNjUrl07IyNj//33
+v+CCC1577bXMzMxUTwTsIW6eAACIhCN2AACREHYAAJEQdgAAkRB2AACREHYAAJEQdgAAkRB2
+AACREHYAAJEQdgAAkRB2AACREHYAAJEQdgAAkRB2AACREHYAAJEQdgAAkRB2AACREHYAAJEQ
+dgAAkRB2AACREHYAAJEQdgAAkRB2AACREHYAAJEQdgAAkRB2AACREHYAAJEQdgAAkRB2AACR
+EHYAAJEQdgAAkRB2AACREHYAAJEQdgAAkchI9QBVw7x58woLC1M9BQCwV8jIyGjbtm2qp/gK
+wq5ss2fP/t73vpfqKQCAvcisWbM6dOiQ6il2JOzKVlBQEELYsmVL9erVUz0LAJBiBQUFmZmZ
+yTzY27jGDgAgEsIOACASwg4AIBLCDgAgEsIOACASwg4AIBLCDgAgEsIOACASwg4AIBLCDgAg
+EsIOACASwg4AIBLCDgAgEsIOACASwg4AIBLCDgAgEhmpHgAAoOLl54cePUJ+/vaHK1eGEMJ+
++21/mJ0dpkwJ2dmpma3yCDsAIEIrV4bp08OgQaFevRBCmDAhhBDOOy+EENasCXfdFVauFHYA
+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
+2rZtWyVPCABAuZQddi+99FLXrl3HjBmzfv36EMJtt932zjvvnHDCCe3atRs+fPjYsWMrf0gA
+AMpWdtj95je/qVmz5vTp048++uiioqKnn366Q4cOL7/88syZM/fZZ59Ro0btgSkBAChT2WH3
+3nvvnX766f/3f/+XlpY2f/78FStW9OnTJ4SQmZl57LHHfvTRR5U/JAAAZSs77LZt27Z58+bk
+8l//+tcQQteuXZMP9913340bN1babAAA7IKyw65FixbTp0/Pz8/funXrqFGjGjRo0K5duxBC
+QUHBzJkzmzRpUvlDAgBQtrLD7vLLL1+7dm2bNm0OPfTQ+fPn9+vXLy0t7ZVXXunUqdNHH310
+7rnn7oEpAQAoU0aZW/Tr12/p0qUPPPDA2rVrzzjjjMGDB4cQZsyYMWfOnB49elx77bWVPyQA
+AGVLFBcXl2e74uLirVu3Vq9ePflw4cKFaWlpTZs2TSQSlTneXuGhhx667LLL8vLysrOzUz0L
+AJBiBQUFmZmZM2fO7NSpU6pn2dFXH7ErLCz88sq0tLSS9clL65LfTpyRUfZhPwAAKttXN1m1
+atXKv4tyHvMDAKBSfXXYXXjhhXt4DgAAdtNXh93jjz++h+cAAGA3lf11Jztxzz33XH/99RU1
+CgAAu6Nc9z0sXbr0lVdeWb16demVmzZtuu+++9LS0oYNG1Y5swEAsAvKDru5c+cef/zx69at
++4oXZ2SoOgCAvUTZp2J//etfr1+//t577502bVqbNm1OOeWUN998c9y4cS1btjz55JOvuuqq
+PTAlAABlKjvs3n777TZt2lx99dUnnnjigAEDli1b1rFjx969e//1r3+dNm3aY489tgemBACg
+TGWH3cqVK4866qjkcqdOnd59990NGzaEEJo0adK1a1dhBwCwlyg77Pbff/8vvvgiuXzEEUcU
+FxdPnz49+XCfffaZPXt2JU4HAEC5lR12HTt2nDZt2rPPPltYWFizZs1WrVpNnjw5hFBcXPyP
+f/yjTp06lT8kAABlKzvsbr755qysrJ49e44ZMyaEcNJJJz388MPnnntuly5dFi1adOqpp1b6
+jAAAlEPZX3fSrl27OXPmPPbYYwcddFAI4ZZbblmwYMHzzz+/devW7t27/+Y3v6n8IQEAKFu5
+vqD4kEMO+dWvfpVczsnJee655/Lz87du3VqvXr3KnA0AgF1Q9qnYQYMGvfvuuzuszM7OVnUA
+AHuVssNu2LBhRxxxxFFHHXXfffctX758D8wEAMA3UHbYPfPMM7169frwww+vueaaRo0anXrq
+qePHj9+4ceMeGA4AgPIrO+x69uz51FNPff75588888y55547Y8aMPn36HHDAAQMGDHjttdeK
+ior2wJQAAJSp7LBLqlWrVs+ePcePH58svFNPPfWpp57q1q1b8lZZAABSrrxhV6JWrVodOnTo
+1KnTEUccEUJYsmRJJUwFAMAuK9fXnYQQiouL33333cmTJ0+ePHnu3LkhhJycnIsvvrhXr16V
+OR4AAOVVdti9/vrrkydPnjRp0sKFC8N/eu68887r3r17ZmZm5U8IAEC5lB12xx13XAihTp06
+ffv27dWrl54DANg7lX2NXd++fZ9//vnPP//8scce69Gjx06q7qabblq/fn2FjgcAQHmVHXaP
+PfbY6aefXp6jdA899JDvtwMASJVdvisWAIC9k7ADAIiEsAMAiISwAwCIhLADAIiEsAMAiISw
+A+BbatWqkJUVEomv/k9WVli1KtUjwi4q79+KBYDI5OWFjRvD44+H+vVDCOHuu0MI4brrQghh
+xYpw0UUhLy/su28qJ4RdJewA+FY79tjQrFkIITzxRAgh/OAHIYSweHHqBoLd4FQsAEAkyj5i
+9+ijj/bs2bNOnTplbnn77bfXrl27IqYCgEpXWBhCCHfdFXJyQghhzpwQQrjhhhBCWLfuvxtA
+FVL2Ebsf/ehH9evX79Onz9SpU7du3bqTLS+77LKsrKyKmw0AKlHy32m5uWHOnDBnTli1Kqxa
+tX05N/e/G0AVUvYRuz/84Q9PPvnk+PHjx48f/53vfKdPnz59+/Y96qijEonEHpgPACpJzZoh
+hPD449uvsevfP4QQHn00hBAWLw4HHbR9A6hCyj5id/nll7/++uuLFi264447vvOd7wwfPrxD
+hw6tW7ceOnTokiVL9sCIAACUR3lvnmjWrNngwYNzc3PnzZs3aNCgDRs23HjjjU2bNu3Wrdvo
+0aPXJS9GAAAgdXb5rtiWLVt27ty5W7du6enpIYTXXnttwIABBxxwwLXXXrtly5ZKmBAAKkX1
+6iGEcNBB27+ReMyYMGbM9uWDDvrvBlCFlPd77DZs2PDSSy9NnDhxypQpeXl5IYTvf//75513
+3imnnDJjxowHHnjgnnvuWbt27ahRoypzWgCoMA0ahFmzwtq12x/m5YUQQsm3O1KZ3QMAABl7
+SURBVNStGxo0SM1g8I2VHXZPPvnkxIkTX3zxxU2bNoUQOnXqdN5555177rmNGjVKbtCqVav+
+/fsfeeSRTz/9tLADoArp0CHVE0CFKjvsLrzwwhDCsccem+y5hg0bfnmbatWqHX744XXr1q34
+AQEAKJ+yw2748OE9e/b8yp4rbeLEiRU0EgAA30TZYffzn/98D8wBAMBu8rdiAQAiIewAACIh
+7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAi
+IewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAA
+IiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewA
+ACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHs
+AAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh
+7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAi
+IewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAA
+IiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewA
+ACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIiHsAAAiIewAACIh7AAAIpGR
+6gF2S15e3vvvv5+Tk9O8efOMjKr9XgAAdlPVOGI3cuTIIUOGlF7z0UcfnXTSSXXq1Dn66KMP
+PfTQ7Ozsq6++ev369amaEAAg5arGUa7HHnts5syZt99+e/Lh8uXLO3bsuHr16pYtWx5zzDEZ
+GRmzZ8++//77//a3v82aNSszMzO10wIApETVOGK3g8GDB69evfq2226bP3/+Y489Nnr06Hnz
+5g0bNiw3N3fo0KGpng4AIDWqZNi9/vrrrVu3vvnmm9PT05NrEonEtdde26ZNm6lTp6Z2NgCA
+VKkap2J3sGzZsrPOOiuRSJRemUgk2rZtO2nSpF3a1SeffHLyySdv3rx5J9vk5eV9kykBAPas
+Khl2LVu2XLhw4ZfXL1u2bL/99tulXdWvX/+6664rKCjYyTYffvjhPffcU7169V2bEgBgz6pK
+YTdw4MAWLVq0aNGiV69eN91007PPPnvOOeeUPPvCCy+8+uqrvXv33qV9Vq9evV+/fjvf5o03
+3rjnnnu+wcAAAHtS1Qi7xo0bZ2Zm3nvvvaVX9uvXLxl2+fn5/fr1mzRpUnZ29i233JKiGQEA
+UqxqhN24ceOKioo+/fTTBaUsXbo0+Wx+fv7EiROPO+64ESNGtGrVKrWjAgCkStUIuxBCWlpa
+48aNGzdu3LVr1x2eqlev3ieffNKoUaNUzAUAsLeokl93soPMzExVBwAQQ9gBABCEHQBANIQd
+AEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSE
+HQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAk
+hB0AQCSEHQBAJDJSPQDAXm358rBx4/blgoIQQqheffvDWrXCAQekZiqAryTsAL7WihWhUaOw
+bdtXP5ueHj79NNSvv2dnAvh6wg7ga23aFLZtC9Onh0aNQgjh+utDCGHYsBBCWLo0dOkSNm1K
+5XgAOxB2AGVo0iQ0axZCCLVrhxBC8+YhhJDmEmVg7+OfTAAAkXDEDuBrJe+WuPHG7cfq3ngj
+hBB+8pMQQsjL++8GAHsJR+wAACLhiB3A10p+s8kdd2y/xq5//xBCeOihEEJYvDiMG/ffrz4B
+2Bs4YgcAEAlH7ADKsGRJKCoK4T/X1S1cGEIIS5emciSAryTsAL5WzZohPT106fI/KydO3L6Q
+nh5q1tzzQwF8LWEH8LXq1w9Ll+7sT4r5sxPAXkXYAeyMvwYLVCFungAAiISwAwCIhLADAIiE
+sAMAiISwAwCIhLADAIiEsAMAiISwAwCIhLADAIiEsAMAiISwAwCIhLADAIiEsAMAiISwAwCI
+hLADAIiEsAMAiISwAwCIhLADAIiEsAMAiISwAwCIhLADAIiEsAMAiISwAwCIhLADAIiEsAMA
+iISwAwCIhLADAIiEsAMAiISwAwCIhLADAIiEsAMAiISwAwCIhLADAIiEsAMAiISwAwCIhLAD
+AIiEsAMAiISwAwCIhLADAIiEsAMAiISwAwCIhLADAIiEsAMAiISwAwCIhLADAIiEsAMAiISw
+AwCIhLADAIiEsAMAiISwAwCIhLADAIiEsAMAiISwAwCIhLADAIiEsAMAiISwAwCIhLADAIiE
+sAMAiISwAwCIhLADAIiEsAMAiISwAwCIhLADAIiEsAMAiERGqgeAqm3TpvDTn4aNG7c/XLo0
+hBAaNdr+sFat8OCDoWbN1MwGwLeNI3awW1asCGPHhoyMUK9eqFcvrFoVVq3avpyREcaODStW
+pHpEAL41HLGDCnDHHaFZsxBC6N8/hBAeeiiEEBYvDuPGpXAoAL51HLEDAIiEI3ZQAXJzw6pV
+IYTt/z1nTgghLFuWypEA+BYSdrBb8vNDCOGMM/5n5Z//vOMGALAHOBULuyU7O4QQ/vnPsHp1
+WL06XHBBuOCC7cv//Od/NwCAPcARO6gAOTmhXr0QQqhePYSwfXndulSOBMC3kCN2AACRcMQO
+KsAVV4SsrBBCmDUrhBB69QohhA0bUjkSAN9Cwg52S8OG4frrw9q12x+2aRPCf07F1qsXrr8+
+NGyYstkA+LYRdrBbqlULd92V6iEAIITgGjsAgGgIOwCASAg7AIBICDsAgEgIOwCASAg7AIBI
+CDsAgEgIOwCASAg7AIBICDsAgEgIOwCASAg7AIBICDsAgEgIOwCASAg7AIBICDsAgEgIOwCA
+SAg7AIBICDsAgEgIOwCASAg7AIBICDsAgEgIOwCASAg7AIBICDsAgEgIOwCASGSkeoD4FRWF
+ESNCXt72h8uWhRBCgwbbH9auHS67LKQJbABgtwm7SvfJJ+GKK8IRR4Tq1UMIYfHiEEJo1iyE
+EAoKQm5uOO200LRp6uYDAGIh7CpdcXEIITz//PaY698/hBAefTSEEBYvDgcdtH0DAIDd5BQg
+AEAkhB0AQCSciq10+fkhhNCu3fY7JDZsCCGE554LIYSiov9uAACwm4RdpcvODiGEP/wh1K8f
+Qgh33x1CCNddF0IIK1aEiy7avgEAwG4SdnvIscduv3niiSdCCOEHPwjhP3fIAgBUCNfYAQBE
+whG7PWTEiFCvXggh5OaGEMJdd4UQwpo1qRwJAIiMsKt0++0XunQJL7+8/eHKlSGEMGHC9odd
+uoT99kvNYABAZIRdpcvODq+9luohAIBvAdfYAQBEQtgBAERC2AEARELYAQBEQtgBAERC2AEA
+RELYAQBEQtgBAERC2AEARELYAQBEQtgBAERC2AEARELYAQBEQtgBAERC2AEARELYAQBEIiPV
+A1QB1atXDyFkZmamehAAYG+RzIO9TaK4uDjVM1QB8+bNKywsrJBdDRkyZOPGjT/+8Y8rZG/s
+bR5++OEQgt9vrPx+4+b3G7eHH364Vq1at99+e4XsLSMjo23bthWyq4rliF25VOAv74ADDggh
+XHTRRRW1Q/Yqf/vb34Lfb7z8fuPm9xu35O+3ffv2qR6kcrnGDgAgEsIOACASwg4AIBLCDgAg
+EsIOACASwg4AIBLCDgAgEsIOACASwg4AIBL+8sSetnf+aTkqit9v3Px+4+b3G7dvye/X34rd
+09asWRNCqFevXqoHoVL4/cbN7zdufr9x+5b8foUdAEAkXGMHABAJYQcAEAlhBwAQCWEHABAJ
+YQcAEAlhBwAQCWEHABAJYQcAEAlhBwAQCWEHABAJYQcAEAlhBwAQCWEHABAJYQcAEAlhlwKj
+Ro2qW7duqqeggm3cuPGGG25o27ZtVlZWy5Ytf/SjH3322WepHooK8+mnn1588cUtWrTIyso6
+8sgjb7zxxvz8/FQPRaWYMGFCIpGYMmVKqgehwvTp06fzl4wcOTLVc1WKRHFxcapn+HYpLCzs
+1KnThx9+uHbt2lTPQoUpKCjo0KFDbm5u69at27dv//HHH7/xxhs5OTn/+Mc/WrZsmerp2F2f
+ffZZ69at16xZ07Vr16ZNm/7jH//497//3b59+7feeisjIyPV01GRvvjii8MPP3zlypV//vOf
+e/TokepxqABFRUW1atXasmXLDutvuumm22+/PSUjVSpH7Paczz77bOrUqaeffvqsWbNSPQsV
+7I9//GNubu4Pf/jDefPmjR07dubMmWPHjl23bt2ll16a6tGoALfeeuuaNWseeeSRV199dcyY
+Mbm5ueeff/6cOXPGjh2b6tGoYFdeeeXKlStTPQUV6dNPP92yZcs111xT/L+irLog7PakFi1a
+nHbaaS+99FKqB6HiPf/88yGEO++8Mz09Pbnm4osv7tSp04wZM/Ly8lI6GhXg5ZdfbtiwYb9+
+/ZIP09PTr7nmmhCC/5MWmYkTJz799NNt2rRJ9SBUpAULFoQQWrRokepB9hBht+eMGzdu0qRJ
+kyZNatasWapnoYK9//77zZo1O+CAA0qvbNKkSXFx8aJFi1I1FRWisLCwRo0a3bp1S0v77z8w
+k5fJuqAiJitXrvzpT3/avXv3iy++ONWzUJGEHZXl9NNPP+uss84666ycnJxUz0IFmzp16rRp
+00qvKSoqevXVVxOJRJMmTVI1FRUiIyPjvffe+9Of/lR65eTJk0MIxx57bIqGouL97Gc/27Rp
+08MPP5xIJFI9CxUpGXazZs1q3759VlbWoYceOmDAgOXLl6d6rsoi7KACtGvXrvRNEkVFRQMH
+DlyxYsXZZ5/tDuiYTJ48+bLLLvv+978/aNCgs88+2zWU0Zg0adL48ePvvvvupk2bpnoWKlgy
+7G688caMjIwzzzwzPT199OjRrVu3/vjjj1M9WqUQdlDBli9f3rt37/vvv79hw4bDhw9P9ThU
+pJdffvmhhx566623atas+f3vf98tsXFYtWrVT3/6027duin1KC1durR27doTJkx4++23n3zy
+yXfffffWW29dvXr1lVdemerRKoWwgwpTXFz8xz/+8dBDD50wYULnzp1ff/31Ro0apXooKtLv
+f//7zZs3z5s376STTrr++uuvu+66VE9EBfjFL36Rl5c3atSo0pdREo2ZM2euX7++Z8+eyYdp
+aWlDhgxp2bLltGnTovw2Sv8jhoqxatWqHj16XHHFFTVq1Bg1atRrr73mLpkoZWZmHnnkkePG
+jTvwwAP/+Mc/bt26NdUTsVumTZv2xBNP3Hnnnc2bN0/1LOwh6enpxxxzTAjh3//+d6pnqXjC
+DirApk2bevToMXXq1B49enzwwQcDBgwo+d4Tqrp33nnnoosu2uHvENSoUePwww/fsmXL6tWr
+UzUYFSL5r/af//znif9IHog9/fTTE4nEiBEjUj0gu2XLli3Lly//8pG55HUUUd7L6AIRqABD
+hw596623rrrqqnvuucfZnMjUqVPniSeeyMjIKP13CIqLixcuXJiTk/Od73wnhbOx+1q3bj1g
+wIDSa/71r3/NmjWre/fuTZo0adWqVaoGo0J8/vnnTZo06dmz5zPPPFOysri4ePbs2ZmZmQcf
+fHAKZ6ssxexxbdu2zcnJSfUUVJjCwsIGDRrUq1cvPz8/1bNQ8YqKipo3b169evXZs2eXrLn/
+/vtDCOeff35qZ6My3H333SGEP//5z6kehIrRuXPntLS0F154IfmwqKho2LBhIYRf/OIXqR2s
+kjhiB7tryZIly5Yty8nJOeGEE7787KRJkw488MA9PxUVJZFIPPjggyeffHLHjh2PP/74+vXr
+v/vuu++8806DBg3c9Qx7vxEjRhxzzDGnnXba8ccff+CBB/7rX//Kzc094ogjfvWrX6V6tEoh
+7GB3LV68OISwbt26t99++8vPfvkvT1PlnHjiiW+//fYtt9ySm5v7+uuvt2jR4tprrx0yZEiU
+F+hAZFq3bj1r1qxbb731zTfffPPNNw8//PCbb775xhtvrFGjRqpHqxSJ4uLiVM8AAEAFcJU3
+AEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSE
+HQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAk
+hB0AQCSEHQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSEHQBAJIQdAEAkhB0AQCSEHRCn
+DRs2HHzwwYlEYsKECTs8tW3btu9973uJRGLkyJF7YJKLLrookUgUFhbugZ8FfMsJOyBOWVlZ
+o0aNCiH87Gc/W7NmTemnHnjggdmzZ5944ok//vGPUzQdQKUQdkC0unXrdvnll69YseL6668v
+Wbl48eIhQ4bk5OQ88sgjiUQiheMBVDhhB8TszjvvbNq06ahRo6ZPnx5CKC4u/ulPf7px48bh
+w4c3atQo1dMBVDBhB8Ssdu3ayROyl1566ebNm8eNG/fSSy/16NHj4osvLuceLr744kQi8frr
+r5deOXHixEQiMWjQoOTDf/7zn+edd17jxo0zMzMbNWp0zjnnzJ079yv3VlRUNGbMmGOOOaZu
+3br77rtvly5dpk2bthvvD+B/CDsgcj/4wQ8uvfTSDz/8cODAgVdddVW9evVGjhxZ/pOw5513
+Xghh8uTJpVc+/fTTIYS+ffuGED7++OOuXbtOmjTpiCOO6N27d7169SZNmnT88ccvXbr0y3v7
+zW9+079//w8++KBr164nnHDC7NmzTz311BkzZuzumwRIKgaI3bp160pOvD755JO79NrNmzfX
+qVPn4IMPLioqSq7ZsGFDrVq1vvvd7yYf3nzzzSGEZ555puQl99xzTwhh7NixyYcXXnhhCGHr
+1q1FRUX77rtv06ZN8/Lykk8lTxD369dvd98hQHFxcXGxI3ZA/OrUqXPyySeHELKzs0855ZRd
+em1mZuaZZ565YMGCd999N7nmxRdf3LhxY/JwXQihS5cuDz/88JlnnlnykjZt2oQQVq9evcOu
+tm7dumbNmvT09Bo1aiTXdO7c+c0337zuuuu+0dsC2JGwA+L3xhtvPPLIIzVr1szPz7/mmmt2
+9eW9evUKpc7GTpgwIT09vU+fPsmHJ5xwwiWXXJKRkbFp06ZZs2YNHz584MCBX7mf6tWrn3ba
+aQsXLmzXrt3999//3nvvhRA6dux4+OGHf8M3BvC/hB0QuY0bN/bv37+4uPjFF19s167do48+
++sILL+zSHrp3716nTp1k2G3cuHHKlCknnnjiAQcckHx23bp1AwcObNOmTe3atTt27Dh69OjG
+jRt/3a6efPLJG264YdWqVVdffXWbNm0aNmx41VVXrVq1anfeIEAJYQdEbsiQIR9++OHll1/e
+pUuXUaNGpaWl/fjHP97hK4t3LjMz86yzzpo7d+6SJUtefPHFDRs2lL6p9oc//OG9997bqVOn
+5557bv369fPmzfvlL3/5dbvKzs4eOnTop59+Onv27HvuuadBgwbDhw/v3r17UVHRbr1JgBCC
+sAPiNnPmzPvvv79hw4ZDhw4NIbRv3/7qq6/+7LPPfvGLX+zSfkrujZ0wYULt2rXPOOOM5Pr8
+/PwXX3yxZ8+eI0eOPO2007KyskIIixcv/sqdLFy48NZbb33llVfS0tLat29/zTXXzJ49+/jj
+j3/nnXf+3//7f7vzNgGShB0QrY0bNyZvOP3jH/9Yp06d5MrbbrutWbNmf/rTn5577rny76p7
+9+45OTnjxo2bMmXKeeedV6tWreT6rVu3FhQUfP7558XFxck1n3zyya233hpC2LRp0w47SUtL
+u+222wYNGlRQUJBcU1BQsG7duvT09P3333833ijAdsIOiNaNN9748ccf9+rVq+QAWwghKytr
+xIgRIYSf/OQn5b+4LXlv7FtvvbVhw4aS+2FDCPXq1fvBD37w97///ZBDDunTp8/JJ5988MEH
+t2jRIiMj47777rv33ntL76Rp06annXba7NmzjzjiiAEDBpxxxhkNGjSYM2fOFVdckZ2dXRHv
+GPi2E3ZAnP7+978/8MADdevWHT58+A5PnXTSSX379l2xYsXPfvaz8u8weW9skyZN/u///q/0
++nHjxl1yySVbtmyZOnVqQUHByJEjn3/++bvuuiuRSCxfvrz0lolE4oknnhg8eHDyVTNnzmzR
+osXDDz+8Q/8BfGOJktMHAABUaY7YAQBEQtgBAERC2AHfXiNGjNivLDfddFOqxwQoL9fYAd9e
+GzZsyMvL2/k2tWrVKvmqFIC9nLADAIiEU7EAAJEQdgAAkRB2AACREHYAAJEQdgAAkRB2AACR
+EHYAAJEQdgAAkRB2AACREHYAAJEQdgAAkRB2AACREHYAAJEQdgAAkRB2AACREHYAAJEQdgAA
+kRB2AACREHYAAJEQdgAAkRB2AACREHYAAJEQdgAAkRB2AACREHYAAJH4/zjw1JGZxKi1AAAA
+AElFTkSuQmCC"
+>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -1274,7 +1600,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'The AI I/O PhD Part I: The SME Item Writer';
+    var disqus_title = 'Installing an R Kernel in Jupyter';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

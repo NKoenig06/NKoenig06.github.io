@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>The AI I/O PhD Part I: The SME Item Writer — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: The AI I/O PhD Part I: The SME Item Writer; Date: 2022-12-05; Author: N. Koenig">
+	<title>Why should you care about learning Python or R? — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Why should you care about learning Python or R?; Date: 2019-01-21; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,16 +26,16 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">The AI I/O PhD Part I: The SME Item Writer</h1>
+		<h1 itemprop="name headline" class="article-title">Why should you care about learning Python or R?</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2022-12-05T19:10:00-06:00" itemprop="datePublished">Mon 05 December 2022</time>
+		<time datetime="2019-01-21T08:00:00-06:00" itemprop="datePublished">Mon 21 January 2019</time>
 	</div>
 	<div>
 		Category:
 		<span itemprop="articleSection">
-			<a href="/category/data-science-artificial-intelligence.html" rel="category">data science, artificial intelligence</a>
+			<a href="/category/programming.html" rel="category">programming</a>
 		</span>
 	</div>
  
@@ -45,10 +45,13 @@
 			<a href="/tag/data-science.html" rel="tag">Data Science</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/ai.html" rel="tag">AI</a>
+			<a href="/tag/python.html" rel="tag">Python</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/deep-learning.html" rel="tag">Deep Learning</a>
+			<a href="/tag/r.html" rel="tag">R</a>
+		</span>
+		<span itemprop="keywords">
+			<a href="/tag/open-source.html" rel="tag">Open Source</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1170,44 +1173,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/x5uLCYo.png" alt="ai_lecture"></p>
-<p>*image credit of Dall-E the artistic AI</p>
-<h2 id="Psychometrics">Psychometrics<a class="anchor-link" href="#Psychometrics">&#182;</a></h2><p>One thing that has often taken a lot of skill, creativity, and nuance is item writing for test development. Big 5 personality scales like the <a href="https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf">BFI-2</a> are just one of a variety of personality scales out there. These scales usually require the writing of several variations of multiple items designed to elicit specific traits and then the collection of data to establish factor loadings and scale inter-item correlations showing good scale reliabilities. For more details on actually creating and validating psychometrically sound scales I'd refer you to Nunnally and Bernstein's book titled <a href="https://www.amazon.com/Psychometric-Theory-Jum-C-Nunnally/dp/0071070885"><em>Psychometric Theory</em></a>.</p>
-<h3 id="Scale-Development">Scale Development<a class="anchor-link" href="#Scale-Development">&#182;</a></h3><p>Scale development typically involves the following (Hinkin, 1995):</p>
-<ol>
-<li><p>Identifying the construct</p>
-</li>
-<li><p>Using SMEs to create item pools</p>
-</li>
-<li><p>Narrow the pool of items down to be used as a first draft of the scale</p>
-</li>
-<li><p>Administer the scale to a large population</p>
-</li>
-<li><p>Examine and evaluate the psychometric properties of the scale</p>
-</li>
-</ol>
-<h3 id="Context-Matters">Context Matters<a class="anchor-link" href="#Context-Matters">&#182;</a></h3><p>One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.</p>
-<h2 id="AI">AI<a class="anchor-link" href="#AI">&#182;</a></h2><p>This brings us to the main point of this article. Can we use AI to help us generate items and if so, how, and under what circumstances?</p>
-<p>Open AI just released a version of their GPT-3 davinci model called <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.</p>
-<h2 id="Item-Writing">Item Writing<a class="anchor-link" href="#Item-Writing">&#182;</a></h2><p>Today let's focus on item writing.</p>
-<p>Can AI write traditional Likert style scale items we see in so many of our personality/work styles sections of assessments?</p>
-<p>I'm going to first ask ChatGPT to write 5 Likert style items designed to assess the trait of extraversion.</p>
-<p><img src="https://i.imgur.com/ipDQwfc.png" alt="img"></p>
-<p>You can see I told ChatGPT that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.</p>
-<p>These are good, but as I mentioned earlier we should probably add the context of work to the questions. So, let's tell GPT that I want the items to be written in a work context.</p>
-<p><img src="https://i.imgur.com/OdN5pRz.png" alt="img"></p>
-<p>So you can see it still retained the main premise of the item, but added work-specific context. It swapped social gatherings with meetings and added the context of coworkers in other items as well.</p>
-<p>This is pretty good, but one problem I see is they are all framed positively. Typically we want some items that are framed positively and others that are framed negatively. So let's ask GPT to provide us with both.</p>
-<p><img src="https://i.imgur.com/O9ZvYwd.png" alt="img"></p>
-<p>These look pretty good. If we were being really picky we could say that these are all just rephrased variants of the same 10 items, but we could explore ways to generate specific variations of a subset of items if we wanted to. I feel like GPT succeeded in writing some pretty solid items for extraversion. I'd expect them to all load together if we collected data on them and ran a CFA.</p>
-<p>One final test I wanted to do was to ask ChatGPT to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.</p>
-<p><img src="https://i.imgur.com/1DjBc1o.png" alt="img"></p>
-<p>Overall, I'd say I'm pretty impressed with GPT as a generator of Likert style items to be used in psychometric assessments. You don't need to define the traits you are asking it to generate items for. Just provide it with the name and other instructions. It understands what Likert style questions look like and understands how to frame Likert style questions both negatively and positively.</p>
-<p>In future articles I'll explore using AI to create additional training data for models, to summarize articles, to help write code, and more.</p>
-<h2 id="Paper-on-this-Topic">Paper on this Topic<a class="anchor-link" href="#Paper-on-this-Topic">&#182;</a></h2><p>If anyone would like to read an excellent paper on developing a pipeline to do this with an older version of GPT, I’d highly recommend this excellent paper by <a href="https://doi.org/10.1111/peps.12543">Ivan Hernandez and Weiwen Nie that was recently published in Personnel Psychology (Hernandez &amp; Nie, 2022)</a>. They leveraged a GPT-2 model that was fine-tuned on personality items to generate thousands of potential items. Then to infer the expected correlation among these items they used BERT to generate embedding representations of IPIP items and the correlations those embeddings had with the other item embeddings from respondent data. They used the relationship between these to estimate the expected correlations on the new items they created. It’s a very creative use of this new technology IMO.</p>
-<p>However, now it appears they can skip the fine-tuning a model step and just ask GPT to create items to represent specific traits instead of randomly creating thousands of items and attempting to estimate how related they may be. But nonetheless, this is a very good paper I’d recommend everyone interested in this read.</p>
-<h2 id="ChatGPT's-Closing-Argument">ChatGPT's Closing Argument<a class="anchor-link" href="#ChatGPT's-Closing-Argument">&#182;</a></h2><p>I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)</p>
-<p><img src="https://i.imgur.com/QpQsezh.png" alt="img"></p>
+<h1 id="Why-should-you-care-about-this-stuff-as-a-social-scientist?">Why should you care about this stuff as a social scientist?<a class="anchor-link" href="#Why-should-you-care-about-this-stuff-as-a-social-scientist?">&#182;</a></h1><p>I still think I've done a poor job of communicating why you should care about learning this stuff as a social scientist, so I'll try to write a quick article giving you my thoughts on why.</p>
+<p><strong>Popularity</strong>; Python (and R) are quickly becoming some of the <a href="https://www.economist.com/graphic-detail/2018/07/26/python-is-becoming-the-worlds-most-popular-coding-language">most popular</a> programming languages. This means that anyone in technology you are working with is likely to know at least one of them, but very unlikely to know SPSS or SAS.</p>
+<p><img src="https://i.imgur.com/ElEduu4.png" alt="python_popularity"></p>
 
 </div>
 </div>
@@ -1215,11 +1183,40 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>References:</p>
-<p><a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386">Grover, S., &amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.</a></p>
-<p>Hernandez, I., &amp; Nie, W. (2022). The AI-IP: Minimizing the guesswork of personality scale item development through artificial intelligence. Personnel Psychology, 00, 1– 24. Advance online publication. <a href="https://doi.org/10.1111/peps.12543">https://doi.org/10.1111/peps.12543</a></p>
-<p><a href="https://www.researchgate.net/profile/Khandoker-Mahmudur-Rahman/post/In_the_case_where_no_existing_scale_is_available_how_do_you_prepare_your_questionnaire_in_quantitative_research/attachment/59d625fc79197b8077984478/AS%3A319986898276353%401453302229543/download/Hinkin+1995.pdf">Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988.</a> <a href="https://doi.org/10.1177/014920639502100509">https://doi.org/10.1177/014920639502100509</a></p>
+<ul>
+<li><p><strong>Open Source</strong>; is becoming the way of life for everything from development to data science. Software like SPSS and SAS are quickly falling behind because the types of functions and algorithms they can offer will always be behind open source, in most cases by 5-10 years. There are likely a few reasons for this, some that readily come to mind are bureaucracy; find a place in line on the next production cycle, resources; IBM and SAS are going to have a hard time competing with the tens of thousands of people contributing to open source software, innovation; programmers at these large companies aren't developing the XGBoosts, CATBoosts, CNNs, RNNs, etc. The one's that are need a place to build that architecture as they create it. They almost always choose open source for this.</p>
+</li>
+<li><p><strong>Reproducibility</strong>; as both a practitioner and an academic reproducible research and work is quickly becoming a necessity. Just look at the popularity of the site <a href="https://en.wikipedia.org/wiki/ArXiv">arXiv</a> and github. The expectation is becoming that you show your work. Just as a study's methodology and participant population is expected to be meticulously documented, in a peer reviewed journal article it is becoming more common that the same process be followed for one's analysis. Proprietary software makes this difficult, as it requires a user license to replicate it even if you were given the syntax, whereas with open source if the requirements are well documented anyone can reproduce it.</p>
+</li>
+<li><p><strong>Scalability</strong>; with the invasion of cloud computing the expectation is that code can be scalable, sometimes to multiple computers. SPSS and SAS can't offer this. By this I mean that it can run instantaneously. Instead of analytics reports being completed on a timeline the expectation is they are automatically created as new data becomes available.</p>
+</li>
+<li><p><strong>Cost</strong>; licenses for SPSS and SAS may seem expensive for individuals, but that cost is nothing compared to what corporate licenses can cost. I've worked for several companies where you can't access SPSS because two many people are taking up all of the licenses.</p>
+<ul>
+<li>I've worked for a fortune 10 company that almost stopped paying for licenses because of all of the alternatives (Python, R, Alteryx, SAS, Scala, Spark, etc.). You definitely don't want to be caught not being able to do your job anymore because your company stopped paying for your software. </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Community</strong>; I'm not sure why, but the community around open-source languages is so helpful and collaborative. They have tons of meetups, groups, even their own conferences (e.g. <a href="https://www.rstudio.com/conference/">rstudio::conf</a>, <a href="https://pydata.org/miami2019/">PyData</a>).<ul>
+<li>You have a question about Python or R? You can basically just google it because your first couple pages will almost certainly be from <a href="https://stackoverflow.com/">Stackoverflow</a>, which is a community forum designed for people to post programming questions, which allows other users to provide solutions that can be voted (think Reddit for actual relevant questions/topics).</li>
+<li>You have a question about SPSS? That's what the Syntax Guide is for, right? If you are great with your control+F skills you can probably find your answer after a few hours...errr days. After all <strong>it's only 2500 pages</strong>!!</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Keeping up with technology</strong>; it's just keeping up with the Joneses at this point. Everyone outside of the social sciences is learning to program in Python or R, so it will soon become an expectation when hiring. Even my previous boss, who's a wizard at SPSS and is likely only a few years away from retirement has spent time dabbling in Python and R (he heavily prefers R, and I think that's blasphemy!! but at least he's learning one).</li>
+</ul>
+<h2 id="And-finally-and-most-importantly,-because-you-sound-so-smart-and-cool-when-you-talk-about-it!!">And finally and most <strong>importantly</strong>, because you sound so smart and cool when you talk about it!!<a class="anchor-link" href="#And-finally-and-most-importantly,-because-you-sound-so-smart-and-cool-when-you-talk-about-it!!">&#182;</a></h2><p><img src="https://i.imgur.com/BpGV7AZ.jpg" alt="python_meme"></p>
+<p>Ok, ok, this last one might be in my own head. The image below is more along the lines of the way my wife looks at me when I talk about it :)</p>
+<p><img src="https://i.imgur.com/F2JlbyI.jpg" alt="rolling_eyes"></p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="These-are-the-reasons-I-feel-are-most-important,-feel-free-to-add-more-below-in-the-comments-and-I-can-make-edits-to-this-article-to-add-more">These are the reasons I feel are most important, feel free to add more below in the comments and I can make edits to this article to add more<a class="anchor-link" href="#These-are-the-reasons-I-feel-are-most-important,-feel-free-to-add-more-below-in-the-comments-and-I-can-make-edits-to-this-article-to-add-more">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -1274,7 +1271,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'The AI I/O PhD Part I: The SME Item Writer';
+    var disqus_title = 'Why should you care about learning Python or R?';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

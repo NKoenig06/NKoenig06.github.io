@@ -1,0 +1,2692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>EDA of Glassdoor Data — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: EDA of Glassdoor Data; Date: 2019-12-01; Author: N. Koenig">
+	<meta name="author" content="N. Koenig">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="/theme/html5.js"></script>
+		<![endif]-->
+	<link href="/theme/css/ipython.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
+	<link href="/theme/css/local.css" rel="stylesheet">
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+	<div class="page-header">
+		<h1><a href="/">AIO: Bridging the Gap Between Data Science and IO</a>
+			<br>	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="text-center article-header">
+		<h1 itemprop="name headline" class="article-title">EDA of Glassdoor Data</h1>
+		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
+			<h4 itemprop="name">N. Koenig</h4>
+		</span>
+		<time datetime="2019-12-01T11:00:00-06:00" itemprop="datePublished">Sun 01 December 2019</time>
+	</div>
+	<div>
+		Category:
+		<span itemprop="articleSection">
+			<a href="/category/data-science.html" rel="category">data science</a>
+		</span>
+	</div>
+ 
+	<div>
+		Tags:
+		<span itemprop="keywords">
+			<a href="/tag/data-science.html" rel="tag">Data Science</a>
+		</span>
+		<span itemprop="keywords">
+			<a href="/tag/python.html" rel="tag">Python</a>
+		</span>
+	</div>
+	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
+.ansibold {
+  font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
+  border-color: #ababab;
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
+}
+@media print {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell > div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the <head> if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
+  border: 0;
+  border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+div.output_area .mglyph > img {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 1px 0 1px 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+
+
+
+.rendered_html pre,
+
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell > div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+</style>
+<style type="text/css">pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Natural-Language-Processing">Natural Language Processing<a class="anchor-link" href="#Natural-Language-Processing">&#182;</a></h1><p>In recent years academics and practitioners a like have realized that while structured surveys and assessments are valuable employees and candidates can provide us much more rich data via the written or spoken word. In this article I'll leverage the Glassdoor data to show one specific quick way to do so. In future articles I'll discuss more advanced techniques like <a href="https://en.wikipedia.org/wiki/Bag-of-words_model">Bag of Words</a> and Deep Learning language based models like <a href="https://arxiv.org/abs/1801.06146">ULMFiT</a> and potentially <a href="https://arxiv.org/abs/1810.04805">BERT</a>.</p>
+<p><img src="https://i.imgur.com/xzbw8IL.png" alt="img"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import packages</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># load the data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/glassdoor_data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pros&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;pros&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cons&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cons&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;advice_to_mgmt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;advice_to_mgmt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sentiment-Analysis">Sentiment Analysis<a class="anchor-link" href="#Sentiment-Analysis">&#182;</a></h1><p><img src="https://i.imgur.com/k48EKbK.jpg" alt="img"></p>
+<p>Sentiment Analysis is a fairly simple concept. A trained sentiment based model has the capability of analyzing a set of written (or spoken text) and identifying whether the corpus is positive, negative, or neutral. A good overview of sentiment analysis in action is available <a href="https://towardsdatascience.com/sentiment-analysis-concept-analysis-and-applications-6c94d6f58c17">here</a>, but for the focus of this article I will assume you are generally familiar with sentiment and it's uses.</p>
+<p>One potential use is for the sentiment to be used as a predictor in a model designed to predict satisfaction. The Glassdoor data provides us with 3 sets of text.</p>
+<ol>
+<li>Pros: these are the pros the respondent identified when it came to working for the company. </li>
+<li>Cons: these are the cons the respodent identified when it came to working for the company.</li>
+<li>Advice to Management: this is any advice the respondent had to provide to management. </li>
+</ol>
+<p>We could go through the effort of collecting data from several sources (Yelp, IMBD, etc.) and building our own sentiment analysis algorithm, or we can leverage what is already available to make it much easier. For the purposes of this article we will use <a href="https://github.com/cjhutto/vaderSentiment">Vader</a> which stands for <strong>Valence Aware Dictionary &amp; sEntiment Reasoner.</strong></p>
+<p>Let's first install Vader, which we can do following the documentation from the github repo. Just for quick reference you can pip or conda install packages in the Jupyter Notebook by using the <strong>exclamation point</strong> at the beginning of the line. This actually acts as a terminal command in the notebook, you can read more <a href="https://support.anaconda.com/hc/en-us/articles/360023858254-Executing-Terminal-Commands-in-Jupyter-Notebooks">here</a>. For the purposes of this article I am going to comment mine out as I have already installed the package.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#!pip install vaderSentiment</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>After we installthe package we can follow the documentation from the repo and load the Sentiment Analyzer by running the following command.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">vaderSentiment.vaderSentiment</span> <span class="kn">import</span> <span class="n">SentimentIntensityAnalyzer</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's test it out on a response. Let's first pick a few written responses from our dataframe. We can do that by indexing into a column.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sentences</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cons&#39;</span><span class="p">][:</span><span class="mi">2</span><span class="p">];</span> <span class="n">sentences</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    no respect for employees, minimum wages for a ...
+1    Sometime I felt like it was hard to work your ...
+Name: cons, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's take the code from the repo and feed it the sentences.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">analyzer</span> <span class="o">=</span> <span class="n">SentimentIntensityAnalyzer</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+    <span class="n">vs</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">polarity_scores</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:-&lt;65}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">vs</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>no respect for employees, minimum wages for a whole lot of physical work which includes lifting 50pounds, no appreciation for good work, chances are the manager of your dept. would be a high school drop-out so no room for intellectual growth. They will pay you minimum wages and a good portion of it would be deducted for the union which will take away 50 bucks as initiation fee and 7$ every week, the union is good for nothing &amp; will never help you. {&#39;neg&#39;: 0.081, &#39;neu&#39;: 0.668, &#39;pos&#39;: 0.25, &#39;compound&#39;: 0.9496}
+Sometime I felt like it was hard to work your way up, especially starting at such a low position. I often felt that the upper management thought they were better than me. {&#39;neg&#39;: 0.103, &#39;neu&#39;: 0.737, &#39;pos&#39;: 0.159, &#39;compound&#39;: 0.4404}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Output">Output<a class="anchor-link" href="#Output">&#182;</a></h3><p>You can see here we get 4 outputs from the sentiment analyzer.</p>
+<ol>
+<li>Negative</li>
+<li>Neutral</li>
+<li>Positive</li>
+<li>Compound</li>
+</ol>
+<p>For the purposes of this we only care about the first 3. This is great, but we are going to have to write our own function to save all of these as this loop prints and then writes over. So....how can we write a function that we can use?</p>
+<p>We are going to be feeding it a list of text, so let's assign that as the input to the function. We want to loop through that list and we want to save the output of the list to another a list (a list of lists). So that looks like this:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_sentiment</span><span class="p">(</span><span class="n">text_list</span><span class="p">):</span>
+    <span class="n">json_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">text_list</span><span class="p">:</span>
+        <span class="n">sentiment</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">polarity_scores</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">json_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentiment</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">json_list</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_sentiment</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;neg&#39;: 0.081, &#39;neu&#39;: 0.668, &#39;pos&#39;: 0.25, &#39;compound&#39;: 0.9496},
+ {&#39;neg&#39;: 0.103, &#39;neu&#39;: 0.737, &#39;pos&#39;: 0.159, &#39;compound&#39;: 0.4404}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, what do we get as output if we test our sentences object on it? We get a list of dictionaries, which we clearly need to parse. Luckily pandas makes that easy with <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.io.json.json_normalize.html">json_normalize</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pandas.io.json</span> <span class="kn">import</span> <span class="n">json_normalize</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's first turn all of the text rows into a list.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pros_text_lst</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;pros&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">cons_text_lst</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cons&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">advice_text_lst</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;advice_to_mgmt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then let's run the function on each set of text, use json_normalize to turn the dictionary into a pandas dataframe, and rename each column to be specific to the text column it came from.</p>
+<h3 id="Pros">Pros<a class="anchor-link" href="#Pros">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pros_sentiment</span> <span class="o">=</span> <span class="n">get_sentiment</span><span class="p">(</span><span class="n">pros_text_lst</span><span class="p">)</span>
+<span class="n">pros_sent_df</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">(</span><span class="n">pros_sentiment</span><span class="p">)</span>
+<span class="n">pros_sent_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pros_compound&#39;</span><span class="p">,</span><span class="s1">&#39;pros_neg&#39;</span><span class="p">,</span><span class="s1">&#39;pros_neu&#39;</span><span class="p">,</span><span class="s1">&#39;pros_pos&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cons">Cons<a class="anchor-link" href="#Cons">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cons_sentiment</span> <span class="o">=</span> <span class="n">get_sentiment</span><span class="p">(</span><span class="n">cons_text_lst</span><span class="p">)</span>
+<span class="n">cons_sent_df</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">(</span><span class="n">cons_sentiment</span><span class="p">)</span>
+<span class="n">cons_sent_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cons_compound&#39;</span><span class="p">,</span><span class="s1">&#39;cons_neg&#39;</span><span class="p">,</span><span class="s1">&#39;cons_neu&#39;</span><span class="p">,</span><span class="s1">&#39;cons_pos&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Advice">Advice<a class="anchor-link" href="#Advice">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">advice_sentiment</span> <span class="o">=</span> <span class="n">get_sentiment</span><span class="p">(</span><span class="n">advice_text_lst</span><span class="p">)</span>
+<span class="n">advice_sent_df</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">(</span><span class="n">advice_sentiment</span><span class="p">)</span>
+<span class="n">advice_sent_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;advice_compound&#39;</span><span class="p">,</span><span class="s1">&#39;advice_neg&#39;</span><span class="p">,</span><span class="s1">&#39;advice_neu&#39;</span><span class="p">,</span><span class="s1">&#39;advice_pos&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then let's concatenate all 4 of the dataframes back together.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span><span class="n">cons_sent_df</span><span class="p">,</span><span class="n">pros_sent_df</span><span class="p">,</span><span class="n">advice_sent_df</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Label/Criterion">Label/Criterion<a class="anchor-link" href="#Label/Criterion">&#182;</a></h1><p>For simplicity let's go ahead and just turn this into a classification problem (although we could easily make this a regression problem by changing the algorithms we use). This makes it much easier to compare each method to each other.</p>
+<p>The first thing we want to do is remove all the 3s so we can assign the 4s &amp; 5s to "high" and 1s &amp; 2s to "low".</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classification_df</span> <span class="o">=</span> <span class="n">new_df</span><span class="p">[</span><span class="n">new_df</span><span class="p">[</span><span class="s1">&#39;rating_overall&#39;</span><span class="p">]</span><span class="o">!=</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;rating_overall&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span><span class="mi">4</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's look at the mean of the ratings, which will be equivalent to the % of ratings that were high. You can see below that 68.8% of ratings were high, so if our algorithm was "assign everything as a high rating" it would be 68.8% accurate. We can consider that our baseline.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[18]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.6881768953068592</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Features/Variables-to-Include">Features/Variables to Include<a class="anchor-link" href="#Features/Variables-to-Include">&#182;</a></h1><p>As we mentioned earlier, for the purposes of this article we will only be focusing on Sentiment as features, so we will take the probability of each set of text being negative, neutral, and positive as the input features for our model.</p>
+<p>Later we'll consider some others and see which one's appear the most important.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">classification_df</span><span class="p">[[</span><span class="s1">&#39;cons_neg&#39;</span><span class="p">,</span><span class="s1">&#39;cons_neu&#39;</span><span class="p">,</span><span class="s1">&#39;cons_pos&#39;</span><span class="p">,</span><span class="s1">&#39;pros_neg&#39;</span><span class="p">,</span><span class="s1">&#39;pros_neu&#39;</span><span class="p">,</span><span class="s1">&#39;pros_pos&#39;</span><span class="p">,</span><span class="s1">&#39;advice_neg&#39;</span><span class="p">,</span><span class="s1">&#39;advice_neu&#39;</span><span class="p">,</span><span class="s1">&#39;advice_pos&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Because we are using machine learning we will want to utilize either a cross-validation technique or a train/test split. For this we'll do a simple 75/25 train test split.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span><span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>11634 3878 15512
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Naive-Bayes">Naive Bayes<a class="anchor-link" href="#Naive-Bayes">&#182;</a></h1><p>The first algorithm to test is the simplest. Naive Bayes. It relies on Bayes theorem (below) and essentially relies on the probabilities of each class given the inputs (X). To learn more about Naive Bayes read <a href="https://machinelearningmastery.com/naive-bayes-for-machine-learning/">this article</a></p>
+<p><img src="https://i.imgur.com/yzowjuV.jpg" alt="img"></p>
+<p>The first thing we need to do is load the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html">scikit learn implementation of the Naive Bayes Classifier</a></p>
+<p>Then we create the object, fit, and predict.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="n">nb</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">nb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">nb_proba</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="c1"># Predictions###############</span>
+<span class="n">nb_proba_2</span> <span class="o">=</span> <span class="n">nb_proba</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">nb_pred</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Naive Bayes Accuracy:&#39;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">nb_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Naive Bayes AUC:&#39;</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">nb_proba_2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Naive Bayes Accuracy: 0.720216606498195
+Naive Bayes AUC: 0.7265449139419485
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see here that our simple Naive Bayes Algorithm achieved an accuracy of 0.72 and had an AUC of 0.727. The reason we will calculate both is because often times in prediction models where the classes are imbalanced, like they are here (0.69/0.31) AUC gives us a more holistic picture of how our model is performing. So our Naive Bayes model is outperforming our baseline model by roughly 3.2% from an accuracy perspective, not all that great.</p>
+<p>Let's look at the classification report to get the <a href="https://en.wikipedia.org/wiki/F1_score">F-1 score</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">nb_pred</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>             precision    recall  f1-score   support
+
+          0       0.58      0.40      0.47      1214
+          1       0.76      0.86      0.81      2664
+
+avg / total       0.70      0.72      0.70      3878
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So our F-1 score is 0.70 and you can see that our model is much better at predicting high ratings than it is at predicting low ratings.</p>
+<h1 id="Logistic-Regression">Logistic Regression<a class="anchor-link" href="#Logistic-Regression">&#182;</a></h1><p><img src="https://i.imgur.com/GJO3I1Y.png" alt="img"></p>
+<p>Next let's consider a traditional I/O model, the Logistic Regression. For more information on the mathematics behind LR <a href="https://machinelearningmastery.com/logistic-regression-for-machine-learning/">this article</a> may be useful. Again we first import the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">sklearn</a> implementation and then we follow all the previous steps.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">lr_proba</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="c1"># Predictions###############</span>
+<span class="n">lr_proba_2</span> <span class="o">=</span> <span class="n">lr_proba</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">lr_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Logistic Regression Accuracy:&#39;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">lr_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Logistic Regression AUC:&#39;</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">lr_proba_2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Logistic Regression Accuracy: 0.7331098504383703
+Logistic Regression AUC: 0.7255526737610758
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">lr_pred</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>             precision    recall  f1-score   support
+
+          0       0.65      0.31      0.42      1214
+          1       0.75      0.92      0.83      2664
+
+avg / total       0.72      0.73      0.70      3878
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Logistic Regression outperforms Naive Bayes in accuracy, but not AUC. It has a similar F-1 score, but has better <a href="https://en.wikipedia.org/wiki/Precision_and_recall">precision</a> on the low ratings while achieving lower <a href="https://en.wikipedia.org/wiki/Precision_and_recall">recall</a>.</p>
+<h1 id="Random-Forest">Random Forest<a class="anchor-link" href="#Random-Forest">&#182;</a></h1><p><img src="https://i.imgur.com/ib25WBR.png" alt="img"></p>
+<p>Next, let's look at one of the more popular "Machine Learning" algorithms today the Random Forests algorithm. In fairly simple terms the Random Forests algorithm uses bagging where it takes random subsets of both data and features and creates a tree-based model to predict the label. All of these "trees" are then aggregated together to form an <strong>ensemble</strong> model using the <a href="https://en.wikipedia.org/wiki/Wisdom_of_the_crowd">wisdom of the crowds</a> theory. For more specifics I refer you to <a href="https://machinelearningmastery.com/bagging-and-random-forest-ensemble-algorithms-for-machine-learning/">this article</a>.</p>
+<p>We will implement <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">sklearn</a> version of the algorithm.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">rf_proba</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="c1"># Predictions###############</span>
+<span class="n">rf_proba_2</span> <span class="o">=</span> <span class="n">rf_proba</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">rf_pred</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Random Forests Accuracy:&#39;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">rf_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Random Forests AUC:&#39;</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">rf_proba_2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Random Forests Accuracy: 0.7274368231046932
+Random Forests AUC: 0.741069992974853
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">rf_pred</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>             precision    recall  f1-score   support
+
+          0       0.57      0.53      0.55      1214
+          1       0.79      0.82      0.80      2664
+
+avg / total       0.72      0.73      0.72      3878
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see here that while the random forests algorithm didn't obtain an accuracy level as high as the logistic regression it does have a higher AUC and a higher F1-score. This algorithm seems to be better at recall for the low ratings than both Naive Bayes and Logistic Regression. One thing to remember here is that both of our earlier algorithms have very few hyperparameters that can be tuned, so the base implementation is likely as good as it gets.</p>
+<p><strong>Logistic regression</strong> has a <strong>penalty</strong> input, which defaults to l2 regularization and it also has a <strong>C</strong> input, which is the regularization strength, and that defaults to 1.</p>
+<p>However, <strong>Random Forests</strong> has 8+ hypers making it much more unlikely that you have obtained an ideal hyperparameter combination as the default. A little later I'll walk through how to turn the hyperparamaters.</p>
+<h1 id="Gradient-Boosted-Trees">Gradient Boosted Trees<a class="anchor-link" href="#Gradient-Boosted-Trees">&#182;</a></h1><p>The final algorithm we will try is typically considered the most powerful. Unlike random forests which randomly develops trees via bagging, gradient boosting takes a purposeful approach and focuses on improving the <strong>weak learners</strong> or the trees that are performing relatively poorly. By doing this it boosts the overall success of the combination of trees at the end. For more specifics I refer you to <a href="https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/">this article</a>.</p>
+<p>We will actually not be using sklearn for the gradient boosting algorithm (although I have heard that the most recent version of sklearn does have a gradient boosting algorithm on par with XGboost and LightGBM. For this we will focus on <a href="https://xgboost.readthedocs.io/en/latest/python/python_intro.html">XGBoost</a>. Luckily for us the developers built the API to reflect the sklearn implementation, which makes it almost exactly the same.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+<span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">()</span>
+<span class="n">xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">xgb_proba</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="c1"># Predictions###############</span>
+<span class="n">xgb_proba_2</span> <span class="o">=</span> <span class="n">xgb_proba</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">xgb_pred</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;XGBoost Accuracy:&#39;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">xgb_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;XGBoost AUC:&#39;</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">xgb_proba_2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>XGBoost Accuracy: 0.7661165549252192
+XGBoost AUC: 0.7868951632851963
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">xgb_pred</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>             precision    recall  f1-score   support
+
+          0       0.70      0.45      0.55      1214
+          1       0.78      0.91      0.84      2664
+
+avg / total       0.76      0.77      0.75      3878
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we can see XGBoost is clearly the superior base algorithm here with an accuracy score of 0.766, an AUC of 0.787 and an F1-score of 0.75 with really strong performance on precision.</p>
+<p>Let's try adding a few new features quickly and then re-running our Logistic Regression and XGBoost models.</p>
+<p>One feature that might be valuable is the length of the responses. It could be argued that people who spent more time wrting gave better reviews because they were more engaged. Let's check out that hypothesis.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;pros_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;pros&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)))</span>
+<span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;cons_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;cons&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)))</span>
+<span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;advice_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;advice_to_mgmt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;advice_len&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[46]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>count    15512.000000
+mean        10.779203
+std         21.285726
+min          1.000000
+25%          1.000000
+50%          2.000000
+75%         12.000000
+max        488.000000
+Name: advice_len, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For the advice response we have a mean of about 11 words with a max length of 488. Let's see what that person wrote. Let's add these as 3 additional features into our model and see how it does now.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">classification_df</span><span class="p">[[</span><span class="s1">&#39;cons_neg&#39;</span><span class="p">,</span><span class="s1">&#39;cons_neu&#39;</span><span class="p">,</span><span class="s1">&#39;cons_pos&#39;</span><span class="p">,</span><span class="s1">&#39;pros_neg&#39;</span><span class="p">,</span><span class="s1">&#39;pros_neu&#39;</span><span class="p">,</span><span class="s1">&#39;pros_pos&#39;</span><span class="p">,</span><span class="s1">&#39;advice_neg&#39;</span><span class="p">,</span><span class="s1">&#39;advice_neu&#39;</span><span class="p">,</span><span class="s1">&#39;advice_pos&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;pros_len&#39;</span><span class="p">,</span><span class="s1">&#39;cons_len&#39;</span><span class="p">,</span><span class="s1">&#39;advice_len&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">classification_df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span><span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>11634 3878 15512
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">lr_proba</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="c1"># Predictions###############</span>
+<span class="n">lr_proba_2</span> <span class="o">=</span> <span class="n">lr_proba</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">lr_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Logistic Regression Accuracy:&#39;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">lr_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Logistic Regression AUC:&#39;</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">lr_proba_2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Logistic Regression Accuracy: 0.7919030428055699
+Logistic Regression AUC: 0.8346437458875681
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">lr_pred</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>             precision    recall  f1-score   support
+
+          0       0.76      0.50      0.60      1214
+          1       0.80      0.93      0.86      2664
+
+avg / total       0.79      0.79      0.78      3878
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>WOW</strong> look at that improvement. The length clearly has a lot of signal it bumped up the accuracy on the logistic regression model by almost 0.06 while also improving the by about 0.11 with an F1-score improvement of 0.08.</p>
+<p>I think it's also important to point out here the importance of good features as you can see it doesn't matter that we used XGBoost with the old feature set because the traditional logistic regression beat it with better features.</p>
+<p>Having said that, let's give XGBoost a try with the new features.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+<span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">()</span>
+<span class="n">xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">xgb_proba</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="c1"># Predictions###############</span>
+<span class="n">xgb_proba_2</span> <span class="o">=</span> <span class="n">xgb_proba</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">xgb_pred</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;XGBoost Accuracy:&#39;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">xgb_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;XGBoost AUC:&#39;</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">xgb_proba_2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>XGBoost Accuracy: 0.8017019082001031
+XGBoost AUC: 0.8461809729828675
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">xgb_pred</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>             precision    recall  f1-score   support
+
+          0       0.76      0.54      0.63      1214
+          1       0.81      0.92      0.86      2664
+
+avg / total       0.80      0.80      0.79      3878
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So given the new features XGBoost still wins, but the increase isn't quite as powerful as what we saw from Logistic Regression. Now let's look at the most important features.</p>
+<p>For Logistic Regression Statsmodels is actually the easiest way to get the feature importance.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="n">logit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">logit</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Optimization terminated successfully.
+         Current function value: 0.457859
+         Iterations 10
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[73]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table class="simpletable">
+<caption>Logit Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>       <td>label</td>      <th>  No. Observations:  </th>  <td> 11634</td> 
+</tr>
+<tr>
+  <th>Model:</th>               <td>Logit</td>      <th>  Df Residuals:      </th>  <td> 11622</td> 
+</tr>
+<tr>
+  <th>Method:</th>               <td>MLE</td>       <th>  Df Model:          </th>  <td>    11</td> 
+</tr>
+<tr>
+  <th>Date:</th>          <td>Tue, 26 Nov 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.2618</td> 
+</tr>
+<tr>
+  <th>Time:</th>              <td>16:24:43</td>     <th>  Log-Likelihood:    </th> <td> -5326.7</td>
+</tr>
+<tr>
+  <th>converged:</th>           <td>True</td>       <th>  LL-Null:           </th> <td> -7215.7</td>
+</tr>
+<tr>
+  <th> </th>                      <td> </td>        <th>  LLR p-value:       </th>  <td> 0.000</td> 
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+       <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>cons_neg</th>   <td>  -61.8974</td> <td>   64.868</td> <td>   -0.954</td> <td> 0.340</td> <td> -189.036</td> <td>   65.241</td>
+</tr>
+<tr>
+  <th>cons_neu</th>   <td>  -58.5847</td> <td>   64.866</td> <td>   -0.903</td> <td> 0.366</td> <td> -185.720</td> <td>   68.551</td>
+</tr>
+<tr>
+  <th>cons_pos</th>   <td>  -59.3830</td> <td>   64.865</td> <td>   -0.915</td> <td> 0.360</td> <td> -186.517</td> <td>   67.751</td>
+</tr>
+<tr>
+  <th>pros_neg</th>   <td>   58.6305</td> <td>   64.864</td> <td>    0.904</td> <td> 0.366</td> <td>  -68.500</td> <td>  185.761</td>
+</tr>
+<tr>
+  <th>pros_neu</th>   <td>   59.9169</td> <td>   64.868</td> <td>    0.924</td> <td> 0.356</td> <td>  -67.223</td> <td>  187.057</td>
+</tr>
+<tr>
+  <th>pros_pos</th>   <td>   62.9908</td> <td>   64.868</td> <td>    0.971</td> <td> 0.332</td> <td>  -64.148</td> <td>  190.129</td>
+</tr>
+<tr>
+  <th>advice_neg</th> <td>   -3.0256</td> <td>    1.175</td> <td>   -2.575</td> <td> 0.010</td> <td>   -5.329</td> <td>   -0.723</td>
+</tr>
+<tr>
+  <th>advice_neu</th> <td>   -0.6362</td> <td>    1.153</td> <td>   -0.552</td> <td> 0.581</td> <td>   -2.896</td> <td>    1.624</td>
+</tr>
+<tr>
+  <th>advice_pos</th> <td>   -1.1880</td> <td>    1.159</td> <td>   -1.025</td> <td> 0.305</td> <td>   -3.460</td> <td>    1.084</td>
+</tr>
+<tr>
+  <th>pros_len</th>   <td>    0.0766</td> <td>    0.003</td> <td>   23.859</td> <td> 0.000</td> <td>    0.070</td> <td>    0.083</td>
+</tr>
+<tr>
+  <th>cons_len</th>   <td>   -0.0447</td> <td>    0.002</td> <td>  -25.492</td> <td> 0.000</td> <td>   -0.048</td> <td>   -0.041</td>
+</tr>
+<tr>
+  <th>advice_len</th> <td>   -0.0201</td> <td>    0.002</td> <td>  -11.554</td> <td> 0.000</td> <td>   -0.024</td> <td>   -0.017</td>
+</tr>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, we can see that for logistic regression the length of each of the responses and the probability that the advice was negative were all significant features.</p>
+<p>Now let's see what XGBoost identified.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">feats</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># a dict to hold feature_name: feature_importance</span>
+<span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">importance</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">xgb</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">):</span>
+    <span class="n">feats</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">=</span> <span class="n">importance</span> <span class="c1">#add the name/value pair </span>
+
+<span class="n">importances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Gini-importance&#39;</span><span class="p">})</span>
+<span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="n">rcParams</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span>
+<span class="n">figure</span> <span class="o">=</span> <span class="n">importances</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Gini-importance&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">8</span><span class="p">:,:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA6sAAAH7CAYAAAAq8wlbAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi4zLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvIxREBQAAIABJREFUeJzs3Xu4bWVZN/7vLUfPoWClkBtfURExTMBSXg+piGGivnhIKQyVMA+vmqfCFEnLQ/0yDU8pns+YRYKax9TXE9tEBRUjRdlaimCaCcjG+/fHGAsXy417IYf5rM3nc1372muOOeZc977GnuOZ32c8zzOquwMAAAAjudqiCwAAAICVhFUAAACGI6wCAAAwHGEVAACA4QirAAAADEdYBQAAYDjCKgAAAMMRVgEAABiOsAoAAMBwtl50ASvtuOOOvW7dukWXAQAAwBXg05/+9He6e6fN7TdcWF23bl3Wr1+/6DIAAAC4AlTV11azn2HAAAAADEdYBQAAYDjCKgAAAMMZbs7qplxwwQXZsGFDzjvvvEWXwuVg++23z84775xtttlm0aUAAACDWhNhdcOGDbn2ta+ddevWpaoWXQ6XQXfn7LPPzoYNG7LrrrsuuhwAAGBQa2IY8HnnnZfrX//6guoWoKpy/etf31VyAADgZ1oTYTWJoLoFcSwBAIDNWTNhFQAAgKuONTFndaV1Tz3hcn2/M55z4Kr2+9a3vpXHP/7x+cQnPpEddtgh2267bZ785Cdnl112yWtf+9q88IUv/Jmvv/3tb5+PfexjP7X9pS99aa5xjWvk937v936u+n8er371q7P//vvnhje84ZX2OwEAAFZrTYbVReju3Oc+98mhhx6aN77xjUmSr33tazn++ONz3/veN3vvvfdm32NTQTVJjjjiiMu11s258MIL8+pXvzq3utWthFUAAGBIhgGv0gc+8IFsu+22FwuWN77xjfOYxzwmH/rQh3Kve90rSXLUUUflsMMOy53vfOfc5CY3udjV1mtd61qbfO+jjjoqf/mXf5kkufOd75zHP/7xueMd75jdd989J510Uu53v/tlt912y9Oe9rQkyRlnnJFb3OIWOfTQQ3PrW986Bx98cH74wx8mSd7//vfnNre5Tfbcc88cdthhOf/885Mk69aty9FHH5399tsvb3rTm7J+/fo85CEPyV577ZVzzz03Rx99dPbZZ5/c6la3yuGHH57uvqiepzzlKdl3331zs5vdLB/5yEeSTIH3iU98Yvbcc8/c+ta3zote9KIkyac//enc6U53ym1ve9vc4x73yH/8x39cbscAAAC46hBWV+nUU0/Nr/3ar61q3y996Ut5z3vek0996lN55jOfmQsuuOBS/a5tt902H/7wh3PEEUfkoIMOyjHHHJNTTjklr371q3P22WcnSU477bQcfvjh+dznPpfrXOc6efGLX5zzzjsvD33oQ/OWt7wln//857Nx48a85CUvueh9t99++3z0ox/NIYcckr333jtveMMbcvLJJ+fqV796Hv3oR+ekk07KKaecknPPPTfvfOc7L3rdxo0b86lPfSoveMEL8sxnPjNJ8vKXvzxf/epX85nPfCaf+9zn8pCHPCQXXHBBHvOYx+S4447Lpz/96Rx22GE58sgjL9W/HQAAIBFWf26PetSj8qu/+qvZZ599fuq5Aw88MNttt1123HHH3OAGN8i3vvWtS/Xe9773vZMke+65Z/bYY4/88i//crbbbrvc5CY3yZlnnpkk2WWXXXKHO9whSXLIIYfkox/9aE477bTsuuuuudnNbpYkOfTQQ/PhD3/4ovd94AMfeIm/84Mf/GBud7vbZc8998wHPvCBnHrqqRc9d7/73S9Jctvb3jZnnHFGkuR973tfjjjiiGy99TSS/HrXu15OO+20nHLKKbn73e+evfbaK8961rOyYcOGS/VvBwAASMxZXbU99tgjb3/72y96fMwxx+Q73/nOJueqbrfddhf9vNVWW2Xjxo0Xe/7II4/MCSdMi0SdfPLJl/j6q13tahd7r6td7WoXvdfK279U1UVDdy/JNa95zU1uP++88/KHf/iHWb9+fXbZZZccddRRF7sP6lINy/8t3f1TNXR39thjj3z84x//mXUAAABsjiurq/Sbv/mbOe+88y42rHZpnuil9exnPzsnn3zyJoPqan3961+/KBS+6U1vyn777Zdb3OIWOeOMM3L66acnSV73utflTne60yZff+1rXzv//d//nSQXBdMdd9wxP/jBD3Lcccdt9vfvv//+eelLX3pReD3nnHNy85vfPGedddZFdV1wwQUXu0ILAACwWqu6slpVByT5myRbJXlFdz9nxfNPSPLwJBuTnJXksO7+2vzchUk+P+/69e6+92Ut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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>XGBoost actually had slightly different feature importance, with the probability that the advice was negative being most important, followed by the length of the cons and then 3 really close features in the advice length, the probability that the cons were negative and the probability that the pros were positive.</p>
+<p>In the future we can explore the impact that hyperparameter tuning would have on our models and I plan to write future articles examining the use of Bag of Words and Deep Learning algorithms to see if we can improve our prediction here.</p>
+<p>But, from just using sentiment probability of the text and the length of the text we were able to get an 11.5% boost over the baseline in predictive accuracy and achieve a pretty respectable AUC of 0.846. Not at all bad in my opinion.</p>
+
+</div>
+</div>
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+</div>
+	<hr>
+	<h2>Comments</h2>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="@N_KNIG">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'https-nkoenig06-github-io'; 
+    var disqus_title = 'EDA of Glassdoor Data';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+		</div>
+	</div> 	<!-- <hr> -->
+</div> <!-- /container -->
+<footer class="aw-footer bg-danger">
+	<div class="container"> <!-- footer -->
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="row">
+					<div class="col-md-3">
+						<h4>Navigation</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="">AIO: Bridging the Gap Between Data Science and IO</a></li>
+							<li><a href="/feeds/all.atom.xml" type="application/atom+xml"><i class="fa fa-rss "></i> atom</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Author</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://twitter.com/N_KNIG/">Twitter</a></li>
+							<li><a href="http://www.linkedin.com/in/nick-koenig-69699a27/">LinkedIn</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Categories</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="/category/about.html">about (1)</a></li>
+							<li><a href="/category/data-science.html">data science (16)</a></li>
+							<li><a href="/category/data-science,-artificial-intelligence.html">data science, artificial intelligence (2)</a></li>
+							<li><a href="/category/data-science,-programming.html">data science, programming (1)</a></li>
+							<li><a href="/category/programming.html">programming (6)</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Links</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://jupyter.org/">Jupyter.org</a></li>
+							<li><a href="http://python.org/">Python.org</a></li>
+							<li><a href="http://kdnuggets.com/">KDnuggets</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center center-block aw-bottom">
+			<p>&copy; N. Koenig 2016</p>
+			<p>Powered by Pelican</p>
+		</div>
+	</div>
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-132815257-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<a href="https://github.com/NKoenig06"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+</body>
+</html>

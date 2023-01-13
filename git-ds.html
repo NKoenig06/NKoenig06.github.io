@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>The AI I/O PhD Part I: The SME Item Writer — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: The AI I/O PhD Part I: The SME Item Writer; Date: 2022-12-05; Author: N. Koenig">
+	<title>Basics of Git for a Social/Data Scientist — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: Basics of Git for a Social/Data Scientist; Date: 2019-01-20; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,16 +26,16 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">The AI I/O PhD Part I: The SME Item Writer</h1>
+		<h1 itemprop="name headline" class="article-title">Basics of Git for a Social/Data Scientist</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2022-12-05T19:10:00-06:00" itemprop="datePublished">Mon 05 December 2022</time>
+		<time datetime="2019-01-20T08:45:00-06:00" itemprop="datePublished">Sun 20 January 2019</time>
 	</div>
 	<div>
 		Category:
 		<span itemprop="articleSection">
-			<a href="/category/data-science-artificial-intelligence.html" rel="category">data science, artificial intelligence</a>
+			<a href="/category/programming.html" rel="category">programming</a>
 		</span>
 	</div>
  
@@ -45,10 +45,10 @@
 			<a href="/tag/data-science.html" rel="tag">Data Science</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/ai.html" rel="tag">AI</a>
+			<a href="/tag/git.html" rel="tag">Git</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/deep-learning.html" rel="tag">Deep Learning</a>
+			<a href="/tag/version-control.html" rel="tag">Version Control</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1170,44 +1170,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/x5uLCYo.png" alt="ai_lecture"></p>
-<p>*image credit of Dall-E the artistic AI</p>
-<h2 id="Psychometrics">Psychometrics<a class="anchor-link" href="#Psychometrics">&#182;</a></h2><p>One thing that has often taken a lot of skill, creativity, and nuance is item writing for test development. Big 5 personality scales like the <a href="https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf">BFI-2</a> are just one of a variety of personality scales out there. These scales usually require the writing of several variations of multiple items designed to elicit specific traits and then the collection of data to establish factor loadings and scale inter-item correlations showing good scale reliabilities. For more details on actually creating and validating psychometrically sound scales I'd refer you to Nunnally and Bernstein's book titled <a href="https://www.amazon.com/Psychometric-Theory-Jum-C-Nunnally/dp/0071070885"><em>Psychometric Theory</em></a>.</p>
-<h3 id="Scale-Development">Scale Development<a class="anchor-link" href="#Scale-Development">&#182;</a></h3><p>Scale development typically involves the following (Hinkin, 1995):</p>
-<ol>
-<li><p>Identifying the construct</p>
-</li>
-<li><p>Using SMEs to create item pools</p>
-</li>
-<li><p>Narrow the pool of items down to be used as a first draft of the scale</p>
-</li>
-<li><p>Administer the scale to a large population</p>
-</li>
-<li><p>Examine and evaluate the psychometric properties of the scale</p>
-</li>
-</ol>
-<h3 id="Context-Matters">Context Matters<a class="anchor-link" href="#Context-Matters">&#182;</a></h3><p>One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.</p>
-<h2 id="AI">AI<a class="anchor-link" href="#AI">&#182;</a></h2><p>This brings us to the main point of this article. Can we use AI to help us generate items and if so, how, and under what circumstances?</p>
-<p>Open AI just released a version of their GPT-3 davinci model called <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.</p>
-<h2 id="Item-Writing">Item Writing<a class="anchor-link" href="#Item-Writing">&#182;</a></h2><p>Today let's focus on item writing.</p>
-<p>Can AI write traditional Likert style scale items we see in so many of our personality/work styles sections of assessments?</p>
-<p>I'm going to first ask ChatGPT to write 5 Likert style items designed to assess the trait of extraversion.</p>
-<p><img src="https://i.imgur.com/ipDQwfc.png" alt="img"></p>
-<p>You can see I told ChatGPT that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.</p>
-<p>These are good, but as I mentioned earlier we should probably add the context of work to the questions. So, let's tell GPT that I want the items to be written in a work context.</p>
-<p><img src="https://i.imgur.com/OdN5pRz.png" alt="img"></p>
-<p>So you can see it still retained the main premise of the item, but added work-specific context. It swapped social gatherings with meetings and added the context of coworkers in other items as well.</p>
-<p>This is pretty good, but one problem I see is they are all framed positively. Typically we want some items that are framed positively and others that are framed negatively. So let's ask GPT to provide us with both.</p>
-<p><img src="https://i.imgur.com/O9ZvYwd.png" alt="img"></p>
-<p>These look pretty good. If we were being really picky we could say that these are all just rephrased variants of the same 10 items, but we could explore ways to generate specific variations of a subset of items if we wanted to. I feel like GPT succeeded in writing some pretty solid items for extraversion. I'd expect them to all load together if we collected data on them and ran a CFA.</p>
-<p>One final test I wanted to do was to ask ChatGPT to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.</p>
-<p><img src="https://i.imgur.com/1DjBc1o.png" alt="img"></p>
-<p>Overall, I'd say I'm pretty impressed with GPT as a generator of Likert style items to be used in psychometric assessments. You don't need to define the traits you are asking it to generate items for. Just provide it with the name and other instructions. It understands what Likert style questions look like and understands how to frame Likert style questions both negatively and positively.</p>
-<p>In future articles I'll explore using AI to create additional training data for models, to summarize articles, to help write code, and more.</p>
-<h2 id="Paper-on-this-Topic">Paper on this Topic<a class="anchor-link" href="#Paper-on-this-Topic">&#182;</a></h2><p>If anyone would like to read an excellent paper on developing a pipeline to do this with an older version of GPT, I’d highly recommend this excellent paper by <a href="https://doi.org/10.1111/peps.12543">Ivan Hernandez and Weiwen Nie that was recently published in Personnel Psychology (Hernandez &amp; Nie, 2022)</a>. They leveraged a GPT-2 model that was fine-tuned on personality items to generate thousands of potential items. Then to infer the expected correlation among these items they used BERT to generate embedding representations of IPIP items and the correlations those embeddings had with the other item embeddings from respondent data. They used the relationship between these to estimate the expected correlations on the new items they created. It’s a very creative use of this new technology IMO.</p>
-<p>However, now it appears they can skip the fine-tuning a model step and just ask GPT to create items to represent specific traits instead of randomly creating thousands of items and attempting to estimate how related they may be. But nonetheless, this is a very good paper I’d recommend everyone interested in this read.</p>
-<h2 id="ChatGPT's-Closing-Argument">ChatGPT's Closing Argument<a class="anchor-link" href="#ChatGPT's-Closing-Argument">&#182;</a></h2><p>I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)</p>
-<p><img src="https://i.imgur.com/QpQsezh.png" alt="img"></p>
+<h1 id="Basics-of-Git-for-a-Social/Data-Scientist">Basics of Git for a Social/Data Scientist<a class="anchor-link" href="#Basics-of-Git-for-a-Social/Data-Scientist">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When I started working I was often asked to run analyses on our data. So I would do what I thought everyone else did. You fire up SPSS, you click thru, you get your output, then you paste it into excel, right? I quickly started to realize that I would get the same types of requests fairly often and it became fairly cumbersome to click thru the entire process each times, sometimes having to make very small tweaks after slightly different questions came back.</p>
+<p>This is when I discovered the power of syntax within SPSS. I could just paste the syntax once and then save that syntax. I just needed to point it to the right dataset and make the small tweaks in the syntax file each time a new request came in. I realized it could save me a lot of time. Over time you would start making edits to the script. This would require you to save the files each time.</p>
+<p>Eventually, you'd have a folder with 30 different variations of the syntax, as you make updates, then if you have to share with your colleagues at work you had to either email them or save them all to a shared drive. Which ones had you already uploaded, which ones had you not? Did you make changes to certain files, that you didn't remember? Do you just re-save the entire directory each time?</p>
+<p>Long story, short....keeping track of your version control and syntax required a lot of organization.</p>
+<p>Enter <a href="https://en.wikipedia.org/wiki/Git">Git</a>. Git is a version control system that keeps track of changes in all your computer files.</p>
+<p><img src="https://i.imgur.com/ZxHFq2B.jpg" alt="version_control_joke"></p>
 
 </div>
 </div>
@@ -1215,26 +1190,136 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>References:</p>
-<p><a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386">Grover, S., &amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.</a></p>
-<p>Hernandez, I., &amp; Nie, W. (2022). The AI-IP: Minimizing the guesswork of personality scale item development through artificial intelligence. Personnel Psychology, 00, 1– 24. Advance online publication. <a href="https://doi.org/10.1111/peps.12543">https://doi.org/10.1111/peps.12543</a></p>
-<p><a href="https://www.researchgate.net/profile/Khandoker-Mahmudur-Rahman/post/In_the_case_where_no_existing_scale_is_available_how_do_you_prepare_your_questionnaire_in_quantitative_research/attachment/59d625fc79197b8077984478/AS%3A319986898276353%401453302229543/download/Hinkin+1995.pdf">Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988.</a> <a href="https://doi.org/10.1177/014920639502100509">https://doi.org/10.1177/014920639502100509</a></p>
+<p>I am by no means an expert in git and there are far more resources out there that explain all of the amazing stuff you can do like create branches off of the master branch to work on updating specific features. This is especially important if multiple people will be making updates to the files at the same time. But for the purposes of this post I will just share the basics. Like how to use git to quickly send your files to github, which now has <a href="https://techcrunch.com/2019/01/07/github-free-users-now-get-unlimited-private-repositories/"><strong>free private repos</strong></a>.</p>
+<p>So, this article will walk you through:</p>
+<ol>
+<li>Setting up a github account</li>
+<li>Making your first repository</li>
+<li>Cloning the repository</li>
+<li>Creating a small jupyter notebook script</li>
+<li>Using git to make a commit and pushing the updates to github</li>
+</ol>
+<p>I think this provides the basics of using git and is something that is valuable to all social scientists.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="1.-Setting-up-a-Github-account">1. Setting up a Github account<a class="anchor-link" href="#1.-Setting-up-a-Github-account">&#182;</a></h1><p>When you go to <a href="https://github.com/">https://github.com/</a> you will be immediately asked if you want to start a github account. You can enter a username, your email and a password and you are ready to go.</p>
+<h1 id="2.-Making-your-first-repository">2. Making your first repository<a class="anchor-link" href="#2.-Making-your-first-repository">&#182;</a></h1><ul>
+<li>Under your user on the top right of the page you will see a dropdown menu. One of the options is <strong>Your repositories</strong>. Let's click there.</li>
+<li>After that you will see a <strong>New</strong> option next to the <strong>Find a repository</strong> search bar. Click there. </li>
+<li>Let's give our repo a name; for the purposes of this I'll call it test-repository. I'll give it a description of "This is a test", I'll set it to private, and I'll check the box that says initialize a README. See an image of it below.</li>
+</ul>
+<p><img src="https://i.imgur.com/tSlGfdK.png" alt="repo"></p>
 
-    </div>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Congratulations!! You now have your first github repo!</strong></p>
+<h1 id="3.-Clone-your-repository">3. Clone your repository<a class="anchor-link" href="#3.-Clone-your-repository">&#182;</a></h1><p>This simply means copying your repository to your local machine (you could also clone it to a cloud machine if you had a live instance). The great thing about github is you can clone everyone's repository. I'd typically recommend forking it first, so that way you can just use this same process to make any changes to it. <a href="https://github.community/t5/Support-Protips/The-difference-between-forking-and-cloning-a-repository/ba-p/1372">Here's</a> a quick article on the differences between cloning and forking for those interested.</p>
+<p>To clone your repo you just click on the green clone or download tab and if you press the little notepad button it copies the url for you.</p>
+<p><img src="https://i.imgur.com/KLRdETI.png" alt="clone_repo"></p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can clone our repo. One quick note is that if you followed my earlier tutorial on setting up a python environment and you downloaded miniconda or anaconda, it should have come with git. If you did not, you may need to download git. You can follow the instructions for your specific OS <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">here</a>.</p>
+<p>let's open up the bash shell/terminal and navigate to where we want the repository to go. I'm going to go to my desktop and the projects folder. Then we type in <strong>git clone</strong> and we paste the link we copied from above.</p>
+<p><img src="https://i.imgur.com/y9fHqUk.png" alt="clone_bash_1"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now because I made this a private repo it will ask me for my username and password. If you had instead made it public it would just automatically clone it for you.</p>
+<p>I found a <a href="https://www.lemoda.net/windows/windows2unix/windows2unix.html">good resource</a> for communicating between unix and windows bash commands. This might be useful to keep as you work through bash stuff with me as I will be talking about unix commands, so if you are in windows your commands might be slightly different.</p>
+<p>For example I want to use the <strong>ls</strong> command now to view the directories in the Projects folder to ensure we did in fact clone the repo. But if you are in windows according to the resource link you will need to use <strong>dir</strong></p>
+<p><img src="https://i.imgur.com/9dRwv3b.png" alt="clone_bash_2"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now as you can see we do have a directory/folder titled test-repository and if you navigate to that repo you can see we have a README.md, which is exactly what we had in our github repo. So now you have the repository locally.</p>
+<h1 id="4.-Now-let's-create-a-simple-Jupyter-Notebook-so-we-can-make-our-first-commit-and-push-it-to-github.">4. Now let's create a simple Jupyter Notebook so we can make our first commit and push it to github.<a class="anchor-link" href="#4.-Now-let's-create-a-simple-Jupyter-Notebook-so-we-can-make-our-first-commit-and-push-it-to-github.">&#182;</a></h1><ul>
+<li>Open jupyter, navigate to the repo folder and open up a notebook</li>
+</ul>
+<p>I wrote a basic function and tested it with a couple of unit tests I saved it as <strong>First_commit.ipynb</strong></p>
+<p><strong>Hey... I can do AI!!!</strong></p>
+<p><img src="https://i.imgur.com/iHHbGyN.png" alt="first_commit"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="5.-Now-let's-do-our-first-commit">5. Now let's do our first commit<a class="anchor-link" href="#5.-Now-let's-do-our-first-commit">&#182;</a></h1><ul>
+<li>After you wrote your function and saved your .ipynb file we can go back to the bash shell</li>
+<li>Ensure you are still in the same directory and if you use the command to list directories you should see your .ipynb file</li>
+<li>First let's do a <strong>git status</strong> to see that we have untracked files present</li>
+<li>We can then use the command <strong>git add .</strong> which will add all of our files in the directory</li>
+<li>To do your first <strong>commit</strong> type the following command <strong>git commit -m "This is my first commit to this repo"</strong> where the dash m allows you to make a comment about the commit</li>
+</ul>
+<p><img src="https://i.imgur.com/Lh2raBb.png" alt="commit"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So now you've just made your first commit, but in order to get it to github you need to do one more thing.</p>
+<ul>
+<li><strong>git push -u origin master</strong> will push it upstream to the origin master branch (which is the only branch we currently have)</li>
+</ul>
+<p><img src="https://i.imgur.com/F6mnW0l.png" alt="push"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Now-let's-go-checkout-out-our-github-repo!!!">Now let's go checkout out our github repo!!!<a class="anchor-link" href="#Now-let's-go-checkout-out-our-github-repo!!!">&#182;</a></h2><p>and look what we have! We have our notebook in our repo with my most recent commit message next to my username.</p>
+<p><img src="https://i.imgur.com/HR4gkFF.png" alt="github"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-TLDR-version:">The TLDR version:<a class="anchor-link" href="#The-TLDR-version:">&#182;</a></h1><p>Now you have successfully leveraged git and moving forward if you structure all of your projects like this it's as simple as the following four commands in the bash shell after navigating to the directory.</p>
+<ol>
+<li><strong>git status</strong></li>
+<li><strong>git add .</strong></li>
+<li><strong>git commit -m "notes about the commit"</strong></li>
+<li><strong>git push u - origin master</strong></li>
+</ol>
+<p>I hope I communicated how important this is and even if your company does not use github the first 3 commands still work within your local machine and there are ways to go back in history to look at previous versions and changes that have been made to specific files.</p>
+<p>Also, this is literally very basic use of git, it has a ton more features.</p>
+<p>Additional Resources:</p>
+<ul>
+<li><a href="https://medium.freecodecamp.org/what-is-git-and-how-to-use-it-c341b049ae61">Article on intro to git</a></li>
+<li><a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics">Article on git basics</a></li>
+</ul>
+<h1 id="You-are-well-on-your-way-to-becoming-a-technologically-saavy-social-scientist!!">You are well on your way to becoming a technologically saavy social scientist!!<a class="anchor-link" href="#You-are-well-on-your-way-to-becoming-a-technologically-saavy-social-scientist!!">&#182;</a></h1>
+</div>
+</div>
 </div>
  
 
@@ -1274,7 +1359,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'The AI I/O PhD Part I: The SME Item Writer';
+    var disqus_title = 'Basics of Git for a Social/Data Scientist';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

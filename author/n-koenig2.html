@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>AIO: Bridging the Gap Between Data Science and IO <small>N. Koenig</small></title>
+	<meta name="description" content="Coding, scientific development, finance, data analysis, visualization, statistics, and machine learning">
+	<meta name="author" content="N. Koenig">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="/theme/html5.js"></script>
+		<![endif]-->
+	<link href="/theme/css/ipython.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
+	<link href="/theme/css/local.css" rel="stylesheet">
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+	<div class="page-header">
+		<h1><a href="/">AIO: Bridging the Gap Between Data Science and IO</a>
+			<br>	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+        
+        
+<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
+	<a href="/siopml-sentiment.html">
+		<h2 itemprop="name headline">Using Sentiment to Predict Personality (SIOP ML Competition) Part I</h2>
+	</a>
+	<time datetime="2020-01-31T14:00:00-06:00" itemprop="datePublished">Fri 31 January 2020</time>
+	&nbsp;—&nbsp;
+	<span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+		<span itemprop="name">N. Koenig</span>
+	</span>
+	<div class="summary"><p>This article leverages a pre-built sentiment python package to create features from open-ended text that are used to predict self-reported personality traits. The data used comes from the 2019 SIOP Machine Learning Competition and this simple methodology produces a 20th place score.</p></div>
+	Category:
+	<span itemprop="articleSection">
+		<a href="/category/data-science.html" rel="category">data science</a>
+	</span>
+	Tags:
+ 
+	<span itemprop="keywords">
+		<a href="/tag/data-science.html" rel="tag">Data Science</a>
+	</span>
+	<span itemprop="keywords">
+		<a href="/tag/machine-learning.html" rel="tag">Machine Learning</a>
+	</span>
+	<span itemprop="keywords">
+		<a href="/tag/python.html" rel="tag">Python</a>
+	</span>
+</div>
+<hr>
+        
+<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
+	<a href="/modin-vectors.html">
+		<h2 itemprop="name headline">Using Parallel Processing and Vectorization to Speed Up Your Code</h2>
+	</a>
+	<time datetime="2020-01-14T10:00:00-06:00" itemprop="datePublished">Tue 14 January 2020</time>
+	&nbsp;—&nbsp;
+	<span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+		<span itemprop="name">N. Koenig</span>
+	</span>
+	<div class="summary"><p>Often times as data scientists we are looking for ways to speed up our data pipeline. In this article I discuss and briefly test a new dataframe that allows you to leverage multiple CPU cores. I also explore 3 different ways to process dataframe columns and compare their speeds across both the traditional dataframe (pandas) and the parallel dataframe (modin). This is meant to be a brief article highlighting some research I have been doing lately.</p></div>
+	Category:
+	<span itemprop="articleSection">
+		<a href="/category/programming.html" rel="category">programming</a>
+	</span>
+	Tags:
+ 
+	<span itemprop="keywords">
+		<a href="/tag/python.html" rel="tag">Python</a>
+	</span>
+	<span itemprop="keywords">
+		<a href="/tag/data-science.html" rel="tag">Data Science</a>
+	</span>
+	<span itemprop="keywords">
+		<a href="/tag/programming.html" rel="tag">Programming</a>
+	</span>
+</div>
+<hr>
+        
+<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
+	<a href="/gd-tm-cluster.html">
+		<h2 itemprop="name headline">Topic Modeling Company Reviews with K-means</h2>
+	</a>
+	<time datetime="2020-01-10T10:00:00-06:00" itemprop="datePublished">Fri 10 January 2020</time>
+	&nbsp;—&nbsp;
+	<span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+		<span itemprop="name">N. Koenig</span>
+	</span>
+	<div class="summary"><p>This is the third of three articles in my series on using unsupervised machine learning algorithms in Python to understand open-ended survey responses. I'll again re-visit the "Cons" responses, but this time I will use the K-means clustering algorithm. After the responses our clustered I will examine the responses within each cluster to identify themes and examine the breakdown of themes across companies.</p></div>
+	Category:
+	<span itemprop="articleSection">
+		<a href="/category/data-science.html" rel="category">data science</a>
+	</span>
+	Tags:
+ 
+	<span itemprop="keywords">
+		<a href="/tag/data-science.html" rel="tag">Data Science</a>
+	</span>
+	<span itemprop="keywords">
+		<a href="/tag/python.html" rel="tag">Python</a>
+	</span>
+</div>
+<hr>
+        
+<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
+	<a href="/gd-tm-lda.html">
+		<h2 itemprop="name headline">Topic Modeling Company Reviews with LDA</h2>
+	</a>
+	<time datetime="2019-12-13T16:00:00-06:00" itemprop="datePublished">Fri 13 December 2019</time>
+	&nbsp;—&nbsp;
+	<span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+		<span itemprop="name">N. Koenig</span>
+	</span>
+	<div class="summary"><p>This is the second of three articles in my series on using topic modeling in Python to understand open-ended survey responses. I'll again re-visit the "Cons" responses, but this time I will use Latent Dirichlet Allocation (LDA). I'll also walk through how to use an interactive visualization library to view the results of the LDA model.</p></div>
+	Category:
+	<span itemprop="articleSection">
+		<a href="/category/data-science.html" rel="category">data science</a>
+	</span>
+	Tags:
+ 
+	<span itemprop="keywords">
+		<a href="/tag/data-science.html" rel="tag">Data Science</a>
+	</span>
+	<span itemprop="keywords">
+		<a href="/tag/python.html" rel="tag">Python</a>
+	</span>
+</div>
+<hr>
+        
+<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
+	<a href="/gd-tm-svd.html">
+		<h2 itemprop="name headline">Topic Modeling Company Reviews with SVD</h2>
+	</a>
+	<time datetime="2019-12-06T03:00:00-06:00" itemprop="datePublished">Fri 06 December 2019</time>
+	&nbsp;—&nbsp;
+	<span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+		<span itemprop="name">N. Koenig</span>
+	</span>
+	<div class="summary"><p>Unsupervised learning is an important part of machine learning and as I/Os we often find ourselves with data that we are asked to make sense of but we don't have any target to optimize for. When it comes to NLP in surveys, employee feedback forms, and customer reviews, a common request is to help break down all the responses into general categories. This is where a method like topic modeling may be useful. In this article we'll walk through how to leverage Singular Value Decomposition (SVD) to do topic modeling on company reviews.</p></div>
+	Category:
+	<span itemprop="articleSection">
+		<a href="/category/data-science.html" rel="category">data science</a>
+	</span>
+	Tags:
+ 
+	<span itemprop="keywords">
+		<a href="/tag/data-science.html" rel="tag">Data Science</a>
+	</span>
+	<span itemprop="keywords">
+		<a href="/tag/python.html" rel="tag">Python</a>
+	</span>
+	<span itemprop="keywords">
+		<a href="/tag/nlp.html" rel="tag">NLP</a>
+	</span>
+</div>
+<hr>
+ <div class="pagination">
+<ul>
+    <li class="prev"><a href="/author/n-koenig.html">&larr; Previous</a></li>
+
+    <li class=""><a href="/author/n-koenig.html">1</a></li>
+    <li class="active"><a href="/author/n-koenig2.html">2</a></li>
+    <li class=""><a href="/author/n-koenig3.html">3</a></li>
+    <li class=""><a href="/author/n-koenig4.html">4</a></li>
+    <li class=""><a href="/author/n-koenig5.html">5</a></li>
+    <li class=""><a href="/author/n-koenig6.html">6</a></li>
+
+    <li class="next"><a href="/author/n-koenig3.html">Next &rarr;</a></li>
+
+</ul>
+</div> 		</div>
+	</div> 	<!-- <hr> -->
+</div> <!-- /container -->
+<footer class="aw-footer bg-danger">
+	<div class="container"> <!-- footer -->
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="row">
+					<div class="col-md-3">
+						<h4>Navigation</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="">AIO: Bridging the Gap Between Data Science and IO</a></li>
+							<li><a href="/feeds/all.atom.xml" type="application/atom+xml"><i class="fa fa-rss "></i> atom</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Author</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://twitter.com/N_KNIG/">Twitter</a></li>
+							<li><a href="http://www.linkedin.com/in/nick-koenig-69699a27/">LinkedIn</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Categories</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="/category/about.html">about (1)</a></li>
+							<li><a href="/category/data-science.html">data science (16)</a></li>
+							<li><a href="/category/data-science,-artificial-intelligence.html">data science, artificial intelligence (2)</a></li>
+							<li><a href="/category/data-science,-programming.html">data science, programming (1)</a></li>
+							<li><a href="/category/programming.html">programming (6)</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Links</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://jupyter.org/">Jupyter.org</a></li>
+							<li><a href="http://python.org/">Python.org</a></li>
+							<li><a href="http://kdnuggets.com/">KDnuggets</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center center-block aw-bottom">
+			<p>&copy; N. Koenig 2016</p>
+			<p>Powered by Pelican</p>
+		</div>
+	</div>
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-132815257-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<a href="https://github.com/NKoenig06"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+</body>
+</html>

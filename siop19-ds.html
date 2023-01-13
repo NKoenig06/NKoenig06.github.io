@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>The AI I/O PhD Part I: The SME Item Writer — AIO: Bridging the Gap Between Data Science and IO</title>
-	<meta name="description" content="Title: The AI I/O PhD Part I: The SME Item Writer; Date: 2022-12-05; Author: N. Koenig">
+	<title>SIOP 2019 "So You Want to Be a Data Scientist: A Self-Guided Curriculum" — AIO: Bridging the Gap Between Data Science and IO</title>
+	<meta name="description" content="Title: SIOP 2019 "So You Want to Be a Data Scientist: A Self-Guided Curriculum"; Date: 2019-04-02; Author: N. Koenig">
 	<meta name="author" content="N. Koenig">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,16 +26,16 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">The AI I/O PhD Part I: The SME Item Writer</h1>
+		<h1 itemprop="name headline" class="article-title">SIOP 2019 "So You Want to Be a Data Scientist: A Self-Guided Curriculum"</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">N. Koenig</h4>
 		</span>
-		<time datetime="2022-12-05T19:10:00-06:00" itemprop="datePublished">Mon 05 December 2022</time>
+		<time datetime="2019-04-02T13:10:00-05:00" itemprop="datePublished">Tue 02 April 2019</time>
 	</div>
 	<div>
 		Category:
 		<span itemprop="articleSection">
-			<a href="/category/data-science-artificial-intelligence.html" rel="category">data science, artificial intelligence</a>
+			<a href="/category/data-science.html" rel="category">data science</a>
 		</span>
 	</div>
  
@@ -45,10 +45,10 @@
 			<a href="/tag/data-science.html" rel="tag">Data Science</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/ai.html" rel="tag">AI</a>
+			<a href="/tag/math.html" rel="tag">Math</a>
 		</span>
 		<span itemprop="keywords">
-			<a href="/tag/deep-learning.html" rel="tag">Deep Learning</a>
+			<a href="/tag/python.html" rel="tag">Python</a>
 		</span>
 	</div>
 	<div itemprop="articleBody" class="article-body"><style type="text/css">/*!
@@ -1170,58 +1170,182 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://i.imgur.com/x5uLCYo.png" alt="ai_lecture"></p>
-<p>*image credit of Dall-E the artistic AI</p>
-<h2 id="Psychometrics">Psychometrics<a class="anchor-link" href="#Psychometrics">&#182;</a></h2><p>One thing that has often taken a lot of skill, creativity, and nuance is item writing for test development. Big 5 personality scales like the <a href="https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf">BFI-2</a> are just one of a variety of personality scales out there. These scales usually require the writing of several variations of multiple items designed to elicit specific traits and then the collection of data to establish factor loadings and scale inter-item correlations showing good scale reliabilities. For more details on actually creating and validating psychometrically sound scales I'd refer you to Nunnally and Bernstein's book titled <a href="https://www.amazon.com/Psychometric-Theory-Jum-C-Nunnally/dp/0071070885"><em>Psychometric Theory</em></a>.</p>
-<h3 id="Scale-Development">Scale Development<a class="anchor-link" href="#Scale-Development">&#182;</a></h3><p>Scale development typically involves the following (Hinkin, 1995):</p>
+<h1 id="So-You-Want-To-Be-A-Data-Scientist?-A-Self-Guided-Curriculum">So You Want To Be A Data Scientist? A Self-Guided Curriculum<a class="anchor-link" href="#So-You-Want-To-Be-A-Data-Scientist?-A-Self-Guided-Curriculum">&#182;</a></h1><p><img src="https://i.imgur.com/OVQ33KM.png" alt="Imgur"></p>
+<p>One of the themes that has been becoming more and more popular over the past few years at SIOP has been the area(s) of data science and machine learning. Unfortunately many of our grad programs don't have the time to provide us with both a well rounded education in the core competencies of I/O and data science.</p>
+<p>However, <strong>lucky for us</strong> many do provide us with what is in my opinion the most important competencies which can provide a solid foundation for a career in data science.</p>
+<p>While they don't often teach us about random forests, linear algebra, or programming what they do teach us in my experience is more fundamental and more rare in the practice of data science. I will list and describe two specific areas I think I/O does a great job of teaching that are often forgotten by many.</p>
 <ol>
-<li><p>Identifying the construct</p>
-</li>
-<li><p>Using SMEs to create item pools</p>
-</li>
-<li><p>Narrow the pool of items down to be used as a first draft of the scale</p>
-</li>
-<li><p>Administer the scale to a large population</p>
-</li>
-<li><p>Examine and evaluate the psychometric properties of the scale</p>
-</li>
+<li>Critical Thinking: The idea that as data scientists we might not have all the data to fully answer the question asked is a difficult concept for many people with more pure computer science and statistics backgrounds to grasp at first. I/Os tend to understand that the data is what was thought to be important by one decision maker and at one point in time and may not even be appropriate given the question being asked. We can leverage this more holistic view of the problem to identify if we are asking the right questions, have the right data to answer the question(s) and as a lead into the second area whether we are using the right methodology and/or algorithms to answer the question(s).</li>
+<li>Research Methods: I/Os typically have strong training in research methods. <a href="https://www.amazon.com/Experimental-Quasi-Experimental-Designs-Generalized-Inference/dp/0395615569">Our holy grail for years in grad school</a> taught us all about the many experimental and quasi-experimental designs, along with the pros and cons of each. This allows us to view each research question in the context of the quasi-experimental design the data was collected in. On the other hand CS and Stats trained professionals might have only heard of A/B testing. We also typically have a strong understanding of the pros and cons of most of the more standard machine learning algorithms (linear vs. logistic regression, ANOVAs, etc.) for this reason the image below wasn't as mind blowing to me as it was to many of the more pure data scientists I saw posting it all over the internet. </li>
 </ol>
-<h3 id="Context-Matters">Context Matters<a class="anchor-link" href="#Context-Matters">&#182;</a></h3><p>One additional area of item writing in the field of I/O that is becoming more discussed is the inclusion of work context, especially when it comes to personality items (Grover &amp; Furnham, 2021). Adding this context can help with getting responses that are consistent with how they would be likely to behave at work specifically, but many scales often lack this context. This is something we should strive to include in the creation of new scales if the use case is for work.</p>
-<h2 id="AI">AI<a class="anchor-link" href="#AI">&#182;</a></h2><p>This brings us to the main point of this article. Can we use AI to help us generate items and if so, how, and under what circumstances?</p>
-<p>Open AI just released a version of their GPT-3 davinci model called <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>. This AI has the capability of taking in natural language and generating shockingly intelligible responses. It seems possible that this AI can at the very least support a lot of the work we do as I/Os today and in some cases, potentially outperform us, especially if the goal is semi-accurate and very quick results.</p>
-<h2 id="Item-Writing">Item Writing<a class="anchor-link" href="#Item-Writing">&#182;</a></h2><p>Today let's focus on item writing.</p>
-<p>Can AI write traditional Likert style scale items we see in so many of our personality/work styles sections of assessments?</p>
-<p>I'm going to first ask ChatGPT to write 5 Likert style items designed to assess the trait of extraversion.</p>
-<p><img src="https://i.imgur.com/ipDQwfc.png" alt="img"></p>
-<p>You can see I told ChatGPT that I wanted them to be written in the style of a Likert item and that I wanted them to assess the trait of Extraversion.</p>
-<p>These are good, but as I mentioned earlier we should probably add the context of work to the questions. So, let's tell GPT that I want the items to be written in a work context.</p>
-<p><img src="https://i.imgur.com/OdN5pRz.png" alt="img"></p>
-<p>So you can see it still retained the main premise of the item, but added work-specific context. It swapped social gatherings with meetings and added the context of coworkers in other items as well.</p>
-<p>This is pretty good, but one problem I see is they are all framed positively. Typically we want some items that are framed positively and others that are framed negatively. So let's ask GPT to provide us with both.</p>
-<p><img src="https://i.imgur.com/O9ZvYwd.png" alt="img"></p>
-<p>These look pretty good. If we were being really picky we could say that these are all just rephrased variants of the same 10 items, but we could explore ways to generate specific variations of a subset of items if we wanted to. I feel like GPT succeeded in writing some pretty solid items for extraversion. I'd expect them to all load together if we collected data on them and ran a CFA.</p>
-<p>One final test I wanted to do was to ask ChatGPT to write some items on a non Big 5 trait. I feel like if it was trained on the corpus of the web the Big 5 would be the traits it would have the most data on. So I decided to ask it to do the same thing for Self-Efficacy and this is what it gave me.</p>
-<p><img src="https://i.imgur.com/1DjBc1o.png" alt="img"></p>
-<p>Overall, I'd say I'm pretty impressed with GPT as a generator of Likert style items to be used in psychometric assessments. You don't need to define the traits you are asking it to generate items for. Just provide it with the name and other instructions. It understands what Likert style questions look like and understands how to frame Likert style questions both negatively and positively.</p>
-<p>In future articles I'll explore using AI to create additional training data for models, to summarize articles, to help write code, and more.</p>
-<h2 id="Paper-on-this-Topic">Paper on this Topic<a class="anchor-link" href="#Paper-on-this-Topic">&#182;</a></h2><p>If anyone would like to read an excellent paper on developing a pipeline to do this with an older version of GPT, I’d highly recommend this excellent paper by <a href="https://doi.org/10.1111/peps.12543">Ivan Hernandez and Weiwen Nie that was recently published in Personnel Psychology (Hernandez &amp; Nie, 2022)</a>. They leveraged a GPT-2 model that was fine-tuned on personality items to generate thousands of potential items. Then to infer the expected correlation among these items they used BERT to generate embedding representations of IPIP items and the correlations those embeddings had with the other item embeddings from respondent data. They used the relationship between these to estimate the expected correlations on the new items they created. It’s a very creative use of this new technology IMO.</p>
-<p>However, now it appears they can skip the fine-tuning a model step and just ask GPT to create items to represent specific traits instead of randomly creating thousands of items and attempting to estimate how related they may be. But nonetheless, this is a very good paper I’d recommend everyone interested in this read.</p>
-<h2 id="ChatGPT's-Closing-Argument">ChatGPT's Closing Argument<a class="anchor-link" href="#ChatGPT's-Closing-Argument">&#182;</a></h2><p>I'll leave everyone with ChatGPT describing in its own words why it thinks we should use it to write personality questions instead of using graduate students. I may not agree with it, but you can't really argue with its logic :)</p>
-<p><img src="https://i.imgur.com/QpQsezh.png" alt="img"></p>
+<p><img src="https://i.imgur.com/fY8uQ41.png" alt="Imgur"></p>
+<p><strong>AND</strong> given the fact that most programming needs to happen by repetitive practice on your own time, learning by yourself through trial and error is honestly a great way to go about it. Plus, unlike learning critical thinking and research methods, there are an abundance of free or near free resources online to learn programming, linear algebra, and machine learning.</p>
+<p>Our hope for this session and this blog post is to provide you with the resources we found helpful. We also reflected back on our journey and the many courses/books we tried and decided if we could do it all over again we'd probably have focused on only a few of them. We provided these courses in a curriculum that any of you can follow to build the skills necessary to make the transition into Data Science.</p>
+<h1 id="The-Debate!">The Debate!<a class="anchor-link" href="#The-Debate!">&#182;</a></h1><p>There is often a debate when it comes to what programming language to learn. For open source the options are typically Python or R. In all honesty I think it's best to be able to use both, but I'd pick one and run with it. It's better to be able to do a lot in one language than a few things in either language. I'll give a few thoughts on each one below that hopefully helps you make a decision on which to focus on and then after that we will lay out our self-guided curriculum for both.</p>
+<h2 id="Python">Python<a class="anchor-link" href="#Python">&#182;</a></h2><p><img src="https://i.imgur.com/qicagVG.png" alt="Imgur"></p>
+<ul>
+<li>A complete programming language. You can build a website, and a deep learning algorithm. This makes it extremely user friendly when it comes to doing traditional programming work that often comes up, like building functions to extract data, etc. </li>
+<li>The preferred programming language by the ML &amp; DL community. This means that the cutting edge stuff in ML &amp; DL will almost always be coming out first on Python and then someone will later build a wrapper or a similar implementation in R.</li>
+<li>All software developers know Python. While it's true most software developers don't prefer Python for the majority of their work they are all familiar with it and typically have an easier time tying Python code into their existing environment if your goal is to put a model into production. </li>
+</ul>
+<p><strong>The old saying is....Python is the second best language for everything.</strong></p>
+<h2 id="R">R<a class="anchor-link" href="#R">&#182;</a></h2><p><img src="https://i.imgur.com/zpUVrqP.png" alt="Imgur"></p>
+<ul>
+<li>A statistical programming language. Developed specifically for working with dataframes. This makes a lot of the commands in base R extremely well suited for the way the I/O community views data analysis. </li>
+<li>Great niche packages, especially for the social sciences. If you can think of a niche implementation of an algorithm or a methodology, someone probably already has a package for it in R. This isn't necessarily true in Python, that's not to say you can't build one for Python, but just that most package devs in Python are focused on software dev, ML, and DL, and a lot less on Item Response Theory and Structural Equation Modeling. </li>
+<li>Data manipulation and management is extremely easy and intuitive (or so I've heard) with dplyr and tidyr. I personally haven't used this, but people familiar with both often complain about the lack of a dplyr and tidyr implementation in Python. </li>
+</ul>
+<p><strong>Now onto the Curriculum(s)!</strong></p>
+<h1 id="The-Python-Self-Guided-Curriculum">The Python Self-Guided Curriculum<a class="anchor-link" href="#The-Python-Self-Guided-Curriculum">&#182;</a></h1><table>
+<thead><tr>
+<th>Step</th>
+<th>Resource Title</th>
+<th>Why This Resource?</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Codecademy Introduction to Python</td>
+<td>It's the fastest and easiests initial dive into Python out there.  Learning Python basics is a fundamental first step into getting into Machine Learning and this course will have you up in running in under a minute.  The class provides a great introduction to Python and trains you up through Object Oriented Programming.  This should be enough for you to begin learning Machine Learning specific Python modules and understanding Machine Learning specific educational resources.</td>
+<td><a href="https://www.codecademy.com/learn/learn-python">Link</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Python for Data Science and Machine Learning Bootcamp</td>
+<td>It draws a good connection between basic Python and the more specific visualization and ML libraries that are required to begin doing Machine Learning.  It also provides a nice overview intro to Python course to verify that you learned enough in the previous step and provide confidence in your ability to move on (you will always feel like you don't know enough to move on).   The class ends with a nice applied introduction to most Machine Learning methods giving you an idea of what each method does and allows you to decide where you want to dive deeper moving forward.</td>
+<td><a href="https://www.udemy.com/python-for-data-science-and-machine-learning-bootcamp/?couponCode=CURRENT_PY_DS_ML">Link</a></td>
+</tr>
+<tr>
+<td>3A</td>
+<td>Python Machine Learning: Machine Learning and Deep Learning with Python, scikit-learn, and TensorFlow</td>
+<td>Provides a nice survey of machine learning and deep learning methods. Assumes familiarity with Python and machine learning fundamentals.</td>
+<td><a href="https://www.amazon.com/Python-Machine-Learning-scikit-learn-TensorFlow-ebook/dp/B0742K7HYF/ref=pd_sim_351_8?_encoding=UTF8&amp;pd_rd_i=B0742K7HYF&amp;pd_rd_r=6e39d5da-473a-11e9-87a3-d1c5d12b63d5&amp;pd_rd_w=LEWix&amp;pd_rd_wg=Tvxvm&amp;pf_rd_p=90485860-83e9-4fd9-b838-b28a9b7fda30&amp;pf_rd_r=W7AHNJQ9PK89P34WHPX0&amp;psc=1&amp;refRID=W7AHNJQ9PK89P34WHPX0">Link</a></td>
+</tr>
+<tr>
+<td>3B</td>
+<td>Hands-On Machine Learning with Scikit-Learn and Tensorflow</td>
+<td>Provides a nice sruvey of machine learning and deep learning methods. Assumes familiarity with Python and machine learning fundamentals.</td>
+<td><a href="https://github.com/devakar/deep-learning-books/blob/master/Hands%20on%20Machine%20Learning%20with%20Scikit%20Learn%20and%20TensorFlow.pdf">Link</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Deep Learning with Python</td>
+<td>This book provides a history of deep learning, an introduction to the concepts and topics relevant to understanding deep learning, and then walk throughs of different deep learning methods using Keras.  The book was written by Francois Chollet, the lead developer at Google for Keras.  It's clearly written and a great way to quickly dive into deep learning methods and approaches.  Additionally, Chollet stays away from confusing looking mathematical equations and insteads writes out any relevant equations in Python code.  This approach is surprisingly effective as it makes it clear what the equation is doing and how the deep learning method is using that math to develop models from the data.</td>
+<td><a href="https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438/ref=asc_df_1617294438/?tag=hyprod-20&amp;linkCode=df0&amp;hvadid=266029226349&amp;hvpos=1o1&amp;hvnetw=g&amp;hvrand=8696879907107195053&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=9021464&amp;hvtargid=pla-356949152624&amp;psc=1">Link</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Coursera Deep Learning Specialization</td>
+<td>Andrew Ng did a lot over the last decade to make machine learning and deep learning a household name. He is one of the founders of Coursera and his Machine Learning course on Coursera is still probably one of the most popular courses ever on the platform. This specialization does a great job of breaking down the math and walking you through the code step by step for neural networks, CNNs, and RNNs. It's a great overview of everything deep learning has to offer.</td>
+<td><a href="https://www.coursera.org/specializations/deep-learning">Link</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="The-R-Self-Guided-Curriculum">The R Self-Guided Curriculum<a class="anchor-link" href="#The-R-Self-Guided-Curriculum">&#182;</a></h1><table>
+<thead><tr>
+<th>Step</th>
+<th>Resource Title</th>
+<th>Why This Resource?</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SWIRL</td>
+<td>SWIRL teaches you R programming and data science interactively, at your own pace, and right in the R console.  This is a fast and effective way to learn R from scratch from a Data Science lense.</td>
+<td><a href="https://swirlstats.com/">Link</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>An Introduction to Statistical Learning with applications in r</td>
+<td>This book provides an introduction to statistical learning methods. It is aimed for upper level undergraduate students, masters students and Ph.D. students in the non-mathematical sciences. The book also contains a number of R labs with detailed explanations on how to implement the various methods in real life settings, and should be a valuable resource for a practicing data scientist.</td>
+<td><a href="http://www-bcf.usc.edu/~gareth/ISL/">Link</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Data Science and Machine Learning Bootcamp with R</td>
+<td>Similar to Python's implementation of this course it takes you from the basics of R programming, through vector and matrix algebra, into the ggplot2 plotting library and finally introduces you to Machine Learning using real datasets.</td>
+<td><a href="https://www.udemy.com/data-science-and-machine-learning-bootcamp-with-r/?couponCode=CURRENT_STU_R">Link</a></td>
+</tr>
+<tr>
+<td>4A</td>
+<td>Pattern Recognition and Machine Learning</td>
+<td>This book, intended for advanced undergraduates, PhD students, researchers and practitioners in the ML field, provides an authoritative presentation of many statistical techniques  in machine learning. The book is as an excellent reference, written very clearly and structured in an excellent way. It is not math heavy and offers plenty of heuristic and intutions.</td>
+<td><a href="http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf">Link</a></td>
+</tr>
+<tr>
+<td>4B</td>
+<td>Pattern Recognition - Lecture Notes, North Carolina University</td>
+<td>A series of lecture notes from Professor Osuna on machine learning. The slides are extremely clear, simple and full of step by step examples.</td>
+<td><a href="https://psi.engr.tamu.edu/courses/">Link</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Deep Learning with R</td>
+<td>This book provides a history of deep learning, an introduction to the concepts and topics relevant to understanding deep learning, and then walk throughs of different deep learning methods using Keras.  The book was written by Francois Chollet, the lead developer at Google for Keras.  It's clearly written and a great way to quickly dive into deep learning methods and approaches.  Additionally, Chollet stays away from confusing looking mathematical equations and insteads writes out any relevant equations in R code.  This approach is surprisingly effective as it makes it clear what the equation is doing and how the deep learning method is using that math to develop models from the data.</td>
+<td><a href="https://www.amazon.com/Deep-Learning-R-Francois-Chollet/dp/161729554X">Link</a></td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>References:</p>
-<p><a href="https://www.sciencedirect.com/science/article/pii/S0191886920300386">Grover, S., &amp; Furnham, A. (2021). Personality at home vs. work: Does framing for work increase predictive validity of the Dark Triad on work outcomes? Personality and Individual Differences, 169, 109848.</a></p>
-<p>Hernandez, I., &amp; Nie, W. (2022). The AI-IP: Minimizing the guesswork of personality scale item development through artificial intelligence. Personnel Psychology, 00, 1– 24. Advance online publication. <a href="https://doi.org/10.1111/peps.12543">https://doi.org/10.1111/peps.12543</a></p>
-<p><a href="https://www.researchgate.net/profile/Khandoker-Mahmudur-Rahman/post/In_the_case_where_no_existing_scale_is_available_how_do_you_prepare_your_questionnaire_in_quantitative_research/attachment/59d625fc79197b8077984478/AS%3A319986898276353%401453302229543/download/Hinkin+1995.pdf">Hinkin, T. R. (1995). A Review of Scale Development Practices in the Study of Organizations. Journal of Management, 21(5), 967–988.</a> <a href="https://doi.org/10.1177/014920639502100509">https://doi.org/10.1177/014920639502100509</a></p>
+<h1 id="A-list-of-all-resources-gathered-by-our-team-along-with-the-approximate-level-of-difficulty.">A list of all resources gathered by our team along with the approximate level of difficulty.<a class="anchor-link" href="#A-list-of-all-resources-gathered-by-our-team-along-with-the-approximate-level-of-difficulty.">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;iframe src=&quot;https://docs.google.com/spreadsheets/d/1fmIPR0vCCGTOqWGJ--dJq6cdls6fDro8QTDGwt33Udc/edit?usp=sharing/pubhtml?gid=0&amp;amp;single=true&amp;amp;widget=true&amp;amp;headers=false&quot; width = 1400, height = 1000&gt;&lt;/iframe&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[29]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<iframe src="https://docs.google.com/spreadsheets/d/1fmIPR0vCCGTOqWGJ--dJq6cdls6fDro8QTDGwt33Udc/edit?usp=sharing/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" width = 1400, height = 1000></iframe>
+</div>
+
+</div>
 
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1274,7 +1398,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'https-nkoenig06-github-io'; 
-    var disqus_title = 'The AI I/O PhD Part I: The SME Item Writer';
+    var disqus_title = 'SIOP 2019 "So You Want to Be a Data Scientist: A Self-Guided Curriculum"';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -1119,11 +1119,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/HIQX2lI.png" alt="img"&gt;&lt;/p&gt;
-&lt;h1 id="Using-ChatGPT-to-Train-an-Interview-Model"&gt;Using ChatGPT to Train an Interview Model&lt;a class="anchor-link" href="#Using-ChatGPT-to-Train-an-Interview-Model"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;In my first article on the impressive skillset of Open AIs new model ChatGPT I demonstrated ChatGPT's ability to take in a prompt identifying a psychological construct and an item type and output fairly well written Likert style personality items.&lt;/p&gt;
-&lt;p&gt;In this article I'll discuss a few new topics and bring them all together to train an item capable of accurately differentiating poor from good responses.&lt;/p&gt;
-&lt;p&gt;First I will discuss a few new, but important concepts. Namely, the idea behind transfer learning and few shot learning. Then I will use ChatGPT to create a unique set of interview responses to a fairly standard interview question on customer experience. I will then show readers how to use those responses to train a classification model using the few shot learning technique.&lt;/p&gt;
-&lt;h3 id="Transfer-Learning"&gt;Transfer Learning&lt;a class="anchor-link" href="#Transfer-Learning"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Large language models and even methods like word2vec have brought about the idea of &lt;a href="https://en.wikipedia.org/wiki/Transfer_learning"&gt;transfer learning&lt;/a&gt;. This is where you can leverage parts of another model for your new model. Large language models can readily be leveraged for this for many supervised NLP tasks. One of the biggest problems with language early on was that of equifinality, or the concept that you can use many terms or sets of terms to describe a similar concept. Large language models help us solve that problem because they are trained on hundreds of billions of examples of English language, which allows it to understand that terms like customer and client are very similar to one another. We can see that with a quick example.&lt;/p&gt;
-&lt;p&gt;Let's examine the cosine similarity of the following 4 sentences. We should expect A and B to be very similar even though they are using different language to describe a similar situation. C, should be the least related.&lt;/p&gt;
+&lt;h1 id="Using-ChatGPT-to-Train-an-Interview-Model"&gt;Using ChatGPT to Train an Interview Model&lt;a class="anchor-link" href="#Using-ChatGPT-to-Train-an-Interview-Model"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;In my first &lt;a href="https://nkoenig06.github.io/AI-1.html"&gt;article&lt;/a&gt; on the impressive skillset of Open AIs new model ChatGPT I demonstrated ChatGPT's ability to take in a prompt identifying a psychological construct (i.e. Extraversion) and an item type and output fairly well written Likert style personality items.&lt;/p&gt;
+&lt;p&gt;In this article I'll discuss a few new topics and bring them all together to train a model capable of accurately differentiating poor from good responses.&lt;/p&gt;
+&lt;p&gt;First I will to discuss a few new, but important concepts. Namely, the ideas behind transfer learning and few shot learning. Then I will use ChatGPT to create a unique set of interview responses to a fairly standard behavioral interview question on customer experience. I will then show readers how to use those responses to train a classification model using the few shot learning technique.&lt;/p&gt;
+&lt;h3 id="Transfer-Learning"&gt;Transfer Learning&lt;a class="anchor-link" href="#Transfer-Learning"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Large language models and even methods like word2vec have brought about the idea of &lt;a href="https://en.wikipedia.org/wiki/Transfer_learning"&gt;transfer learning&lt;/a&gt;. This is where you can use parts of another model for your new model. Large language models can readily be leveraged for this for many supervised NLP tasks. One of the biggest problems with language early on was the idea of equifinality, or the concept that you can use many terms or phrases to describe a similar concept. Large language models help us solve that problem because they are trained on billions of examples of prose in the English language (and with some models over a hundred languages), which allows it to understand that terms like customer and client are very similar to one another. We can see that with a quick example below.&lt;/p&gt;
+&lt;p&gt;Let's examine the cosine similarity of the following 3 sentences. We should expect A and B to be very similar even though they are using different language to describe a similar situation. C, should be the least related.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1134,7 +1134,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;That client was difficult to work with&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;That customer was a problem to deal with.&amp;quot;&lt;/span&gt;  &lt;span class="c1"&gt;# this is very similar to &amp;#39;a&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;That customer was a problem to deal with.&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;I enjoy working with all of my associates.&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1262,7 +1262,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;As we expected the cosine similarity between A and B is extremely high and C is not very close to them.&lt;/p&gt;
-&lt;p&gt;The idea of transfer learning helps us understand that these large language models already have a deep understanding of language.&lt;/p&gt;
+&lt;p&gt;The idea of transfer learning helps us understand that these large language models already have a deep understanding of language and consider sentences using similar, but different, language as still similar the way a human would.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1270,7 +1270,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Few-Shot-Learning"&gt;Few Shot Learning&lt;a class="anchor-link" href="#Few-Shot-Learning"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;We can use this to our advantage and reduce the number of training samples we need to generate a reasonably good model. This idea describes the general premise of few shot learning. Provide a pre-trained large language model with a few examples of what good and bad look like and with that information it can generalize using the rest of the information present in the language model. This is in contrast to traditional supervised machine learning where often times thousands of examples of good and bad are needed in order to train an accurate model for making predictions on out of sample examples.&lt;/p&gt;
+&lt;h2 id="Few-Shot-Learning"&gt;Few Shot Learning&lt;a class="anchor-link" href="#Few-Shot-Learning"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;We can use this to our advantage and reduce the number of training samples we need to generate a reasonably good model. This idea describes the general premise behind few shot learning. Provide a pre-trained large language model (LLM) with a handful of examples of what good and bad look like and with that information and the rest of the information already present within the LLM it can generalize using the rest of the information present in the language model. This is in contrast to traditional supervised machine learning where often times thousands of examples of good and bad are needed in order to train an accurate model for making predictions on out of sample examples.&lt;/p&gt;
 &lt;p&gt;For those interested in learning a lot more about few shot learning, I'd recommend this &lt;a href="https://blog.paperspace.com/few-shot-learning/"&gt;article&lt;/a&gt; or for a comprehensive overview this &lt;a href="https://arxiv.org/pdf/2205.06743.pdf"&gt;paper&lt;/a&gt;.&lt;/p&gt;
 
 &lt;/div&gt;
@@ -1280,7 +1280,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="ChatGPT"&gt;ChatGPT&lt;a class="anchor-link" href="#ChatGPT"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;This brings us to the point where ChatGPT gets involved. We showed many of the capabilities of ChatGPT in the previous &lt;a href="https://nkoenig06.github.io/AI-1.html"&gt;article&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Typically one of the main problems with building a model is access to generalizable training data. How do you get people to respond to an interview question? You can provide it with a few examples, but chances are your examples are limited. Using ChatGPT and prompt engineering may help us solve that problem. You can provide ChatGPT with a request and context and it can use that to generate multiple realistic responses for you to train your model on.&lt;/p&gt;
+&lt;p&gt;Typically one of the main problems with building a model is access to quality training data. How do you get people to respond to an interview question? You can provide it with a few of your own examples, but chances are your personal examples are limited. Using ChatGPT and prompt engineering may help us solve that problem. You can provide ChatGPT with a request and context and it can use that to generate multiple realistic responses for you to train your model on. There are also many other ways to create synthetic data that I may write about later, like translation-back translation using NMTs, random synonym replacement, etc.&lt;/p&gt;
 &lt;p&gt;Let's ask ChatGPT to give us some training examples of poor responses to the interview question&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Describe  time when you had to deal with a challenging customer. What was the situation and what was the outcome?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://i.imgur.com/4y6sEjnl.png" alt="img"&gt;&lt;/p&gt;
@@ -1494,11 +1494,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Simulate the few-shot regime by sampling 8 examples per class&lt;/span&gt;
-&lt;span class="n"&gt;train_dataset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;test_dataset&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;train&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;train_dataset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;test_dataset&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;train&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;eval_dataset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;test_dataset&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1603,10 +1602,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
  
  
-&lt;div id="93d5d25e-e970-4733-a8d8-9d20ce55536a"&gt;&lt;/div&gt;
+&lt;div id="6756221e-1a0b-49da-92ea-87e8a385733d"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#93d5d25e-e970-4733-a8d8-9d20ce55536a');
+var element = $('#6756221e-1a0b-49da-92ea-87e8a385733d');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "14cf685988314a8f848ab82696341cd0", "version_major": 2, "version_minor": 0}
@@ -1625,10 +1624,10 @@ var element = $('#93d5d25e-e970-4733-a8d8-9d20ce55536a');
 
  
  
-&lt;div id="4ede5fea-d66b-462f-9bbe-8b27edb15883"&gt;&lt;/div&gt;
+&lt;div id="ed37c96b-84fa-43e3-83ee-7e71c6c426d9"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#4ede5fea-d66b-462f-9bbe-8b27edb15883');
+var element = $('#ed37c96b-84fa-43e3-83ee-7e71c6c426d9');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "79398f7ca85a4777b124b94e8cc46c3d", "version_major": 2, "version_minor": 0}
@@ -1659,10 +1658,10 @@ var element = $('#4ede5fea-d66b-462f-9bbe-8b27edb15883');
 
  
  
-&lt;div id="0b2856b3-8b72-4e76-8c02-f0c3c8bf3f66"&gt;&lt;/div&gt;
+&lt;div id="5bf3957b-f3a0-49d3-8cd8-98e76b0aae82"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#0b2856b3-8b72-4e76-8c02-f0c3c8bf3f66');
+var element = $('#5bf3957b-f3a0-49d3-8cd8-98e76b0aae82');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "11966e75dd584b00b50b4840dde329e8", "version_major": 2, "version_minor": 0}
@@ -1711,7 +1710,8 @@ var element = $('#0b2856b3-8b72-4e76-8c02-f0c3c8bf3f66');
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;I asked ChatGPT for 2 new good examples and 2 new poor examples. 2 in a restaurant as a bartender and 2 as a customer service representative in a call center.&lt;/p&gt;
+&lt;p&gt;So you can see here that our model had 100% accuracy on the examples that were part of the test set, but let's ask ChatGPT to create some more examples for us to test on the completed model.&lt;/p&gt;
+&lt;p&gt;I asked ChatGPT for 2 new good examples and 2 new poor examples. 2 with the context of being a bartender and 2 as a customer service representative in a call center.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1907,10 +1907,25 @@ var element = $('#0b2856b3-8b72-4e76-8c02-f0c3c8bf3f66');
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;So we can see that ChatGPT can be used to create realistic synthetic data to help us train models on and using this we created a reasonably accurate model for distinguishing good from poor interview responses on the compotency of customer experience.&lt;/p&gt;
+&lt;p&gt;Again, we see that the model achieved 100% accuracy. Pretty good for training a model on 10 examples total.&lt;/p&gt;
+&lt;h2 id="Wrap-Up"&gt;Wrap Up&lt;a class="anchor-link" href="#Wrap-Up"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I'm sure we could give some mediocre responses that the model would have trouble classifying, but this was meant to be a rather simple example of demonstrating how you can use ChatGPT to create realistic responses to interview questions to train a model on and how you can use a few examples to train a reasonably good model with a few shot learning approach.&lt;/p&gt;
+&lt;p&gt;There are a number of ways we can leverage ChatGPT and LLMs like it in our work as I/O professionals. Can you think of any others? Feel free to leave them in the comments below and perhaps I can use the idea to write a future article.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
 &lt;/div&gt;
  
 
